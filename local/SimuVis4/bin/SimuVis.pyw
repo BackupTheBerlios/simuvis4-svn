@@ -4,6 +4,7 @@
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
+revision = $Rev$
 
 import sys, os
 
@@ -31,8 +32,7 @@ Usage: %s [options]
 """ % sys.argv[0]
 
 
-version = 4016
-versionString = 'v4.0 [%s]' % version
+versionString = 'v4.0 [r%s]' % revision
 
 print "This is SimuVis4 (%s) by Joerg Raedler, starting ..." % versionString
 
