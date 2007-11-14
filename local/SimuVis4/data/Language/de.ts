@@ -55,12 +55,12 @@
 <context>
     <name>DataBrowser</name>
     <message>
-        <location filename="__init__.py" line="36"/>
+        <location filename="__init__.py" line="27"/>
         <source>Ctrl+B</source>
         <translation>Ctrl+B</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="41"/>
+        <location filename="__init__.py" line="32"/>
         <source>Filesystem</source>
         <translation>Dateisystem</translation>
     </message>
@@ -142,12 +142,12 @@ Abhängig von der Art der Ausnahme  können Sie sie eventuell ignorieren, aber z
 <context>
     <name>Graphics</name>
     <message>
-        <location filename="__init__.py" line="32"/>
+        <location filename="__init__.py" line="26"/>
         <source>&amp;Graphics Test</source>
         <translation>&amp;Graphics Test</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="33"/>
+        <location filename="__init__.py" line="27"/>
         <source>Show a new graphics window</source>
         <translation>Zeige ein neues Graphics Fenster</translation>
     </message>
@@ -162,7 +162,7 @@ Abhängig von der Art der Ausnahme  können Sie sie eventuell ignorieren, aber z
         <translation>Dokument Drucken</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="30"/>
+        <location filename="__init__.py" line="24"/>
         <source>GraphicsView</source>
         <translation>GraphicsView</translation>
     </message>
@@ -204,7 +204,7 @@ h: show this help
         <translation type="obsolete">Drücke h für Hilfe!</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="69"/>
+        <location filename="__init__.py" line="57"/>
         <source>Drag Me!</source>
         <translation>Zieh mich!</translation>
     </message>
@@ -224,7 +224,7 @@ h: diese Hilfe anzeigen
 </translation>
     </message>
     <message>
-        <location filename="__init__.py" line="66"/>
+        <location filename="__init__.py" line="54"/>
         <source>Press &quot;h&quot; for help!</source>
         <translation>Drücke &quot;h&quot; für Hilfe!</translation>
     </message>
@@ -614,32 +614,32 @@ h: diese Hilfe anzeigen
         <translation>&amp;PlugIns</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="198"/>
+        <location filename="MainWin.py" line="200"/>
         <source>Initializing Plugins</source>
         <translation>Initialisiere PlugIns</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="222"/>
+        <location filename="MainWin.py" line="224"/>
         <source>Main: startup succeeded</source>
         <translation>Hauptprogramm: Startvorgang beendet</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="235"/>
+        <location filename="MainWin.py" line="239"/>
         <source>Select file to execute</source>
         <translation>Wähle eine auszuführende Datei aus</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="241"/>
+        <location filename="MainWin.py" line="245"/>
         <source>Executing file %s</source>
         <translation>Führe Datei aus: %s</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="243"/>
+        <location filename="MainWin.py" line="247"/>
         <source>Loading aborted</source>
         <translation>Laden abgebrochen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="257"/>
+        <location filename="MainWin.py" line="261"/>
         <source>Main: uncatched internal exception: %s: %s:
 %s</source>
         <translation>Hauptprogramm: unbehandelte interne Ausnahme: %s: %s:
@@ -653,7 +653,7 @@ based on python, Qt, Qwt, VTK and other</source>
 auf Basis von Python, Qt, Qwt, Vtk</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="371"/>
+        <location filename="MainWin.py" line="375"/>
         <source>restarting on platform &quot;%s&quot; not yet supported</source>
         <translation>Neustart auf der Plattform &quot;%s&quot; wird nicht unterstützt</translation>
     </message>
@@ -768,17 +768,17 @@ auf Basis von Python, Qt, Qwt, Vtk</translation>
         <translation>Starte den Plugin-Manager</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="189"/>
+        <location filename="MainWin.py" line="191"/>
         <source>Starting plugin browser</source>
         <translation>Starte den Plugin-Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="206"/>
+        <location filename="MainWin.py" line="208"/>
         <source>Starting task browser</source>
         <translation>Starte den Task-Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="215"/>
+        <location filename="MainWin.py" line="217"/>
         <source>Starting help system</source>
         <translation>Starte das Hilfe-System</translation>
     </message>
@@ -1058,19 +1058,24 @@ in der PythonConsole (falls installiert) oder in Skripten nutzen können.</trans
 <context>
     <name>PlugIn</name>
     <message>
-        <location filename="PlugIn.py" line="94"/>
+        <location filename="PlugInProxy.py" line="94"/>
         <source>PlugIn: serving file &quot;%s&quot; from plugin-path &quot;%s&quot;</source>
         <translation>PlugIn: lade Datei &quot;%s&quot; vom PlugIn-Pfad &quot;%s&quot;</translation>
     </message>
     <message>
-        <location filename="PlugIn.py" line="59"/>
+        <location filename="PlugInProxy.py" line="59"/>
         <source>PlugIn: successfully initialized &quot;%s&quot;</source>
         <translation>PlugIn: &quot;%s&quot; erfolgreich initialisiert</translation>
     </message>
     <message>
-        <location filename="PlugIn.py" line="61"/>
+        <location filename="PlugInProxy.py" line="61"/>
         <source>PlugIn: error while initializing plugin &quot;%s&quot;</source>
         <translation>PlugIn: Fehler bei der Initialisierung des PlugIns &quot;%s&quot;</translation>
+    </message>
+    <message>
+        <location filename="PlugIn.py" line="32"/>
+        <source>%s: could not load translations for language &quot;%s&quot;, skipping</source>
+        <translation>%s: konnte Übersetzung für Sprache &quot;%s&quot; nicht laden, überspringe es</translation>
     </message>
 </context>
 <context>
@@ -1253,7 +1258,7 @@ in der PythonConsole (falls installiert) oder in Skripten nutzen können.</trans
 <context>
     <name>PyConsoleWindow</name>
     <message>
-        <location filename="__init__.py" line="48"/>
+        <location filename="PyConsoleWindow.py" line="25"/>
         <source>Python console</source>
         <translation>Python-Konsole</translation>
     </message>
@@ -1705,92 +1710,92 @@ not covered by another dialog or window!&lt;/p&gt;
         <translation>TextEditor: konnte Datei nicht schreiben: %s</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="24"/>
+        <location filename="__init__.py" line="48"/>
         <source>Text files</source>
         <translation>Textdateien</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="26"/>
+        <location filename="__init__.py" line="50"/>
         <source>&amp;New</source>
         <translation>&amp;Neu</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="28"/>
+        <location filename="__init__.py" line="52"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="29"/>
+        <location filename="__init__.py" line="53"/>
         <source>New file</source>
         <translation>Neue Datei</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="33"/>
+        <location filename="__init__.py" line="57"/>
         <source>&amp;Open</source>
         <translation>&amp;Öffnen</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="35"/>
+        <location filename="__init__.py" line="59"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="36"/>
+        <location filename="__init__.py" line="60"/>
         <source>Open file</source>
         <translation>Datei öffnen</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="40"/>
+        <location filename="__init__.py" line="64"/>
         <source>&amp;Save</source>
         <translation>&amp;Speichern</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="42"/>
+        <location filename="__init__.py" line="66"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="56"/>
+        <location filename="__init__.py" line="80"/>
         <source>Save file</source>
         <translation>Datei speichern</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="47"/>
+        <location filename="__init__.py" line="71"/>
         <source>&amp;Save as ...</source>
         <translation>Speichern &amp;unter ...</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="49"/>
+        <location filename="__init__.py" line="73"/>
         <source>Save file as ...</source>
         <translation>Datei speichern unter ...</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="53"/>
+        <location filename="__init__.py" line="77"/>
         <source>&amp;Close</source>
         <translation>S&amp;chließen</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="55"/>
+        <location filename="__init__.py" line="79"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="60"/>
+        <location filename="__init__.py" line="84"/>
         <source>&amp;Run</source>
         <translation>&amp;Ausführen</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="62"/>
+        <location filename="__init__.py" line="86"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="63"/>
+        <location filename="__init__.py" line="87"/>
         <source>Run current file</source>
         <translation>Aktuelle Datei ausführen</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="73"/>
+        <location filename="__init__.py" line="97"/>
         <source>Select file to open</source>
         <translation>Wähle eine zu öffnende Datei</translation>
     </message>
@@ -1800,7 +1805,7 @@ not covered by another dialog or window!&lt;/p&gt;
         <translation>Dokument Drucken</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="112"/>
+        <location filename="__init__.py" line="23"/>
         <source>Unnamed Textfile</source>
         <translation>Unbenannte Textdatei</translation>
     </message>
