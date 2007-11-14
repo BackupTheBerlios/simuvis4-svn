@@ -136,7 +136,9 @@ if language or glb.config.has_option('main', 'i18n_language'):
             translator.load(qmFile)
         else:
             glb.logger.error('Main: translation "%s" not found, falling back to default language', language)
-
+    glb.language = language
+else:
+    glb.language = None
 
 if glb.config.has_option('main', 'disable_splash') and not glb.config.getboolean('main', 'disable_splash'):
     splash = os.path.join(glb.config.get('main', 'system_picture_path'), glb.config.get('main', 'splash_image'))
