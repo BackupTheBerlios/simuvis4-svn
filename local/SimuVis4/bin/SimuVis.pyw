@@ -30,8 +30,10 @@ Usage: %s [options]
             use language lang if available
 """ % sys.argv[0]
 
-svn_revision = '$Rev$'
-versionString = 'v4.0 [%s]' % svn_revision
+# svn_revision: string will be replaced by svn
+svn_revision = int('$Rev$'.split()[1])
+version = '4.0.%04d' % svn_revision
+versionString = 'v4.0 [rev:%d]' % svn_revision
 
 print "This is SimuVis4 (%s) by Joerg Raedler, starting ..." % versionString
 
@@ -157,7 +159,7 @@ from SimuVis4.MainWin import MainWindow
 
 mainWin = MainWindow()
 pyver = '.'.join([str(i) for i in sys.version_info[:3]])
-mainWin.setWindowTitle("%s | %s@%s | Python %s" % (glb.appName, glb.userName, glb.hostName, pyver))
+mainWin.setWindowTitle("%s | %s | %s@%s | Python %s" % (glb.appName, version, glb.userName, glb.hostName, pyver))
 
 if fullScreen:
     mainWin.showFullScreen()
