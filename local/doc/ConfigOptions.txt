@@ -1,0 +1,37 @@
+
+[main]
+'application_icon'		String	Icon file to use
+'application_name'		String	name of application (instead of SimuVis4)
+'disable_splash'		Bool	don't show splashscreen
+'splash_image'			String	filename of splash image
+'disable_main_menu'		Bool	disable main menu
+
+'hide_exceptions'		Bool	don't show dialog on exceptions
+'i18n_language'			String	specify language to use (en, de, ...)
+'save_config'			Bool	save configuration if it has changed
+'ignore_plugins'		String	list of plugin names to ignore (whitespace separated)
+
+'disable_log_window'	Bool	disable logger window
+'hide_log_window'		Bool	hide logger window at startup
+'log_threshold'			Int		loggin threshold, look at module logging
+
+'disable_task_browser'	Bool	disable task browser (not yet done)
+'hide_task_browser'		Bool	hide task browser at startup
+
+'disable_plugin_browser' Bool	disable plugin browser
+'hide_plugin browser'	Bool	hide plugin browser at startup
+
+'system_data_path'		String	base path to SimuVis data (PlugIns, Locale, ...)
+'system_plugin_path'	String	path to plugins
+'system_picture_path', 	String	path to pictures
+'system_language_path'	String	path to language files
+
+'user_work_path'		String	default path to be used in file dialogs etc.
+
+
+[python_console]
+'disable_menu'			Bool	dont make menu entries
+'show_window'			Bool	show window at startup
+'show_minimized'		Bool	show window minimized
+'use_history'			Bool	try to save and load command history
+
