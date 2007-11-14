@@ -92,7 +92,7 @@ if not configRead or not config.has_section('main'):
 
     config.set_def('main', 'i18n_language', 'de')
     config.set_def('main', 'save_config', 'no')
-    config.set_def('main', 'ignore_plugins', 'DummyPlugIn FooBar')
+    config.set_def('main', 'ignore_plugins', 'DummyPlugIn')
 
     config.set_def('main', 'disable_log_window', 'no')
     config.set_def('main', 'hide_log_window', 'yes')
@@ -121,7 +121,7 @@ if not configRead or not config.has_section('main'):
     config.set_def('main', 'system_language_path', os.path.join(dataPath, 'Language'))
     config.set_def('main', 'system_help_path', os.path.join(dataPath, 'Help'))
 
-    config.set_def('main', 'user_plugin_path', os.path.join(mainModule.baseDir, '..', 'AdditionalPlugIns'))
+    #config.set_def('main', 'user_plugin_path', os.path.join(mainModule.baseDir, '..', 'AdditionalPlugIns'))
 
     config.set_def('main', 'user_work_path', os.getcwd())
 

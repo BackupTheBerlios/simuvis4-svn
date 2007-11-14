@@ -184,7 +184,8 @@ class MainWindow(QMainWindow):
         from SimuVis4.PlugInManager import PlugInManager
         self.plugInManager =  PlugInManager()
         self.plugInManager.loadAllFromFolder(cfg['main:system_plugin_path'])
-        self.plugInManager.loadAllFromFolder(cfg['main:user_plugin_path'])
+        if cfg.has_option('main', 'user_plugin_path'):
+            self.plugInManager.loadAllFromFolder(cfg['main:user_plugin_path'])
 
         if not cfg.getboolean('main', 'disable_plugin_browser'):
             progress(QCoreApplication.translate('MainWin', 'Starting plugin browser'))

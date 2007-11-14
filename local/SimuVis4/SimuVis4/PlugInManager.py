@@ -8,12 +8,12 @@
 
 
 import zipfile, os
-import Globals, PlugIn, Errors
+import Globals, PlugInProxy, Errors
 from PyQt4.QtCore import QCoreApplication
 
 logger = Globals.logger
 
-skipFolder = ('CVS',)
+skipFolder = ('CVS', '.svn')
 
 class PlugInManager:
 
@@ -25,9 +25,9 @@ class PlugInManager:
         logger.info(unicode(QCoreApplication.translate('PlugInManager', 'PlugInManager: trying to load plugin from: "%s"')), path)
         try:
             if zipfile.is_zipfile(path):
-                p = PlugIn.PlugInZip(path)
+                p = PlugInProxy.PlugInZipProxy(path)
             elif os.path.isdir(path):
-                p = PlugIn.PlugInFolder(path)
+                p = PlugInProxy.PlugInFolderProxy(path)
             else:
                 logger.error(unicode(QCoreApplication.translate('PlugInManager', 'PlugInManager: this is not a plugin: "%s"')), path)
         except:
