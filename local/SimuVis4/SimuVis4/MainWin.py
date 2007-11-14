@@ -184,6 +184,7 @@ class MainWindow(QMainWindow):
         from SimuVis4.PlugInManager import PlugInManager
         self.plugInManager =  PlugInManager()
         self.plugInManager.loadAllFromFolder(cfg['main:system_plugin_path'])
+        self.plugInManager.loadAllFromFolder(cfg['main:user_plugin_path'])
 
         if not cfg.getboolean('main', 'disable_plugin_browser'):
             progress(QCoreApplication.translate('MainWin', 'Starting plugin browser'))
@@ -226,6 +227,8 @@ class MainWindow(QMainWindow):
 
         if Globals.startScript:
             self.executeFile(Globals.startScript)
+        elif cfg.has_option('main', 'system_start_script'):
+            self.executeFile(glb['main:system_start_script'])
 
 
     def executeFile(self, fn=None):

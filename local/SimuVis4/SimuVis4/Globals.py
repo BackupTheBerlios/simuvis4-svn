@@ -121,6 +121,8 @@ if not configRead or not config.has_section('main'):
     config.set_def('main', 'system_language_path', os.path.join(dataPath, 'Language'))
     config.set_def('main', 'system_help_path', os.path.join(dataPath, 'Help'))
 
+    config.set_def('main', 'user_plugin_path', os.path.join(mainModule.baseDir, '..', 'AdditionalPlugIns'))
+
     config.set_def('main', 'user_work_path', os.getcwd())
 
 defaultFolder = config['main:user_work_path']

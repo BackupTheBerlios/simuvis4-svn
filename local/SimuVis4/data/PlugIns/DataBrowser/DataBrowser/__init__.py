@@ -43,8 +43,8 @@ def plugInInit(p):
         import NetCDF3
         browser.netCDF3Browser = NetCDF3.NetCDF3Browser()
         browser.toolBox.addItem(browser.netCDF3Browser, 'netCDF 3')
-        browser.netCDF3Browser.model.addNcFile('/net/Homes/joerg/blafasel.nc')
-        browser.netCDF3Browser.model.addNcFile('/net/Homes/joerg/blafasel.nc')
+        #browser.netCDF3Browser.model.addNcFile('/net/Homes/joerg/blafasel.nc')
+        #browser.netCDF3Browser.model.addNcFile('/net/Homes/joerg/blafasel.nc')
     else: #except:
         pass
 
