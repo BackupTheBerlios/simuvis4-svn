@@ -4,7 +4,7 @@
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
-revision = $Rev$
+svn_revision = '$Rev:$'
 
 import sys, os
 
@@ -31,8 +31,7 @@ Usage: %s [options]
             use language lang if available
 """ % sys.argv[0]
 
-
-versionString = 'v4.0 [r%s]' % revision
+versionString = 'v4.0 [%s]' % svn_revision
 
 print "This is SimuVis4 (%s) by Joerg Raedler, starting ..." % versionString
 
