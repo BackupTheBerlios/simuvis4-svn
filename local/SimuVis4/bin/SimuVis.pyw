@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # encoding: latin-1
-# version:  $Id$
-svn_revision = '$Revision:$'
+# version:  $Id: SimuVis.pyw 43 2007-11-14 20:29:17Z jraedler $
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
@@ -32,6 +31,7 @@ Usage: %s [options]
             use language lang if available
 """ % sys.argv[0]
 
+svn_revision = '$Rev$'
 versionString = 'v4.0 [%s]' % svn_revision
 
 print "This is SimuVis4 (%s) by Joerg Raedler, starting ..." % versionString
