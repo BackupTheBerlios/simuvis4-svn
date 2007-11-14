@@ -4,7 +4,7 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-"""PlugInManager - managing python plugIns"""
+"""PlugInManager - managing SimuVis plugIns"""
 
 
 import zipfile, os
@@ -49,10 +49,21 @@ class PlugInManager:
 
     def initializePlugIns(self, prg=None):
         plist = self.plugIns.values()
-        # FIXME: sort list o plugins to meet dependencies
-        #print [(p.name, p.requires) for p in plist]
+        pro = []
+        for pi in plist:
+            pro += pi.provides
+        # first throw out all plugins with unfulfilled dependencies
+        for pi in plist:
+            for p in pi.requires:
+                if not p in pro:
+                    logger.warning(unicode(QCoreApplication.translate('PlugInManager',
+                        'PlugInManager: plugin "%s" needs "%s" which is not provided, skipping')), pi.name, p)
+                    plist.remove(pi)
+                    break
+        # first sort by number of dependencies
         plist.sort(cmp = lambda a,b: cmp(len(a.requires), len(b.requires)))
-        #print [(p.name, p.requires) for p in plist]
+        # FIXME: should sort list to meet exact dependencies!
+        # now initialize plugins
         for p in plist:
             prg(unicode(QCoreApplication.translate('PlugInManager', 'Initializing plugin: %s')) % p.name)
             if p.state < 2:

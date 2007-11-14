@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -46,7 +47,7 @@
 <context>
     <name>AboutDlg</name>
     <message>
-        <location filename="About.py" line="122"/>
+        <location filename="About.py" line="121"/>
         <source>Operating System</source>
         <translation>Betriebssystem</translation>
     </message>
@@ -1196,14 +1197,19 @@ in der PythonConsole (falls installiert) oder in Skripten nutzen können.</trans
         <translation>PlugInManager: PlugIn &quot;%s&quot; soll ignoriert werden, überspringe es</translation>
     </message>
     <message>
-        <location filename="PlugInManager.py" line="72"/>
+        <location filename="PlugInManager.py" line="83"/>
         <source>PlugInManager: exception while loading the plugin: &quot;%s&quot;</source>
         <translation>PlugInManager: Ausnahme während des Ladens des PlugIns: &quot;%s&quot;</translation>
     </message>
     <message>
-        <location filename="PlugInManager.py" line="57"/>
+        <location filename="PlugInManager.py" line="68"/>
         <source>Initializing plugin: %s</source>
         <translation>Initialisiere das Plugin: %s</translation>
+    </message>
+    <message>
+        <location filename="PlugInManager.py" line="60"/>
+        <source>PlugInManager: plugin &quot;%s&quot; needs &quot;%s&quot; which is not provided, skipping</source>
+        <translation>PlugInManager: PlugIn &quot;%s&quot; benötigt &quot;%s&quot;, welches nicht verfügbar ist, überspringe es</translation>
     </message>
 </context>
 <context>
@@ -1457,12 +1463,36 @@ SimuVis is a product of &lt;b&gt;dezentral gbr&lt;/b&gt; (Berlin, Germany).&lt;/
 I&apos;d like to thank the authors of python, Qt and innumerable &lt;br&gt;
 other contributors to free software projects.&lt;p&gt;
 </source>
-        <translation>&lt;p&gt;SimuVis4 und sein Vorgänger wurden geschrieben von &lt;b&gt;Jörg Rädler&lt;/b&gt; &lt;i&gt;(software@dezentral.de)&lt;/i&gt;.&lt;br&gt;
+        <translation type="obsolete">&lt;p&gt;SimuVis4 und sein Vorgänger wurden geschrieben von &lt;b&gt;Jörg Rädler&lt;/b&gt; &lt;i&gt;(software@dezentral.de)&lt;/i&gt;.&lt;br&gt;
 SimuVis ist ein Produkt der &lt;b&gt;dezentral gbr&lt;/b&gt; (Berlin).&lt;/p&gt;
 &lt;p&gt;Weitere Informationen sind zu finden unter: http://dezentral.de/soft/SimuVis4/&lt;/p&gt;
 &lt;p&gt;Bitte beachte, daß SimuVis viele andere Softwarepakete nutzt.&lt;br&gt;
 Mein Dank geht an die Autoren von Python, Qt und unzählige andere Autoren, die&lt;br&gt;
 zu OpenSource-Projekten beitragen.&lt;p&gt;</translation>
+    </message>
+    <message>
+        <location filename="About.py" line="36"/>
+        <source>
+&lt;p&gt;SimuVis4 and its ancestors are written by &lt;b&gt;Joerg Raedler&lt;/b&gt; &lt;i&gt;(jr@j-raedler.de)&lt;/i&gt;.&lt;br&gt;
+&lt;p&gt;You can find more information at http://www.simuvis.de/.&lt;/p&gt;
+
+&lt;p&gt;Please keep in mind that SimuVis needs other software to work.&lt;br&gt;
+I&apos;d like to thank the authors of python, Qt and innumerable &lt;br&gt;
+other contributors to free software projects.&lt;p&gt;
+</source>
+        <translation type="obsolete">&lt;p&gt;SimuVis4 und sein Vorgänger wurden geschrieben von &lt;b&gt;Jörg Rädler&lt;/b&gt; &lt;i&gt;(jr@j-raedler)&lt;/i&gt;.&lt;/p&gt;&lt;p&gt;Weitere Informationen sind zu finden unter: http://www.simuvis.de/.&lt;/p&gt;&lt;p&gt;Bitte beachte, daß SimuVis viele andere Softwarepakete nutzt.&lt;br&gt;Mein Dank geht an die Autoren von Python, Qt und unzählige andere Autoren, die&lt;br&gt;zu OpenSource-Projekten beitragen.&lt;p&gt;en gibt es unter http://www.simuvis.de/.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <location filename="About.py" line="36"/>
+        <source>
+&lt;p&gt;SimuVis4 and its ancestors are written by &lt;b&gt;Joerg Raedler&lt;/b&gt; &lt;i&gt;(jr@j-raedler.de)&lt;/i&gt;.&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;You can find more information at http://www.simuvis.de/.&lt;/p&gt;
+
+&lt;p&gt;Please keep in mind that SimuVis needs other software to work.&lt;br&gt;
+I&apos;d like to thank the authors of python, Qt and innumerable &lt;br&gt;
+other contributors to free software projects.&lt;p&gt;
+</source>
+        <translation>&lt;p&gt;SimuVis4 und sein Vorgänger wurden geschrieben von &lt;b&gt;Jörg Rädler&lt;/b&gt; &lt;i&gt;(jr@j-raedler)&lt;/i&gt;.&lt;/p&gt; &lt;p&gt;Weitere Informationen sind zu finden unter: http://www.simuvis.de/.&lt;/p&gt;&lt;p&gt;Bitte beachte, daß SimuVis viele andere Softwarepakete nutzt.&lt;br&gt;Mein Dank geht an die Autoren von Python, Qt und unzählige andere Autoren, die&lt;br&gt;zu OpenSource-Projekten beitragen.&lt;p&gt;</translation>
     </message>
 </context>
 <context>

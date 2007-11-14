@@ -24,9 +24,8 @@ like Qwt and Vtk.</p>
 
 txtAuthors = QCoreApplication.translate('SimuVis',
 """
-<p>SimuVis4 and its ancestors are written by <b>Joerg Raedler</b> <i>(software@dezentral.de)</i>.<br>
-SimuVis is a product of <b>dezentral gbr</b> (Berlin, Germany).</p>
-<p>You can find more information at: http://dezentral.de/soft/SimuVis4/</p>
+<p>SimuVis4 and its ancestors are written by <b>Joerg Raedler</b> <i>(jr@j-raedler.de)</i>.<br></p>
+<p>You can find more information at http://www.simuvis.de/.</p>
 
 <p>Please keep in mind that SimuVis needs other software to work.<br>
 I'd like to thank the authors of python, Qt and innumerable <br>
