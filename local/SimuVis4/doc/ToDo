@@ -1,0 +1,10 @@
+- Building
+- support old SimuVis scenes
+- help system
+- PythonConsole completion based on QCompleter
+- make PlugInBrowser work
+- make TaskBrowser work
+
+Open Bugs:
+- SubWin state not in sync with toggle action
+- PythonConsole doesn't append at the right place
