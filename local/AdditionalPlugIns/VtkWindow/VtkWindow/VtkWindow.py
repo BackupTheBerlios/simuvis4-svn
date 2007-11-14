@@ -1,5 +1,5 @@
 # encoding: latin-1
-# version:  $Id: VtkWindow.py,v 1.5 2007/04/21 17:32:47 joerg Exp $
+# version:  $Id$
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework

@@ -1,5 +1,5 @@
 # encoding: latin-1
-# version:  $Id: PlugIn.py,v 1.7 2007/11/07 16:13:24 joerg Exp $
+# version:  $Id$
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
@@ -7,7 +7,7 @@
 """PlugIn - managing SimuVis4 plugins"""
 
 import SimuVis4
-from PyQt4.QtCore import QCoreApplication
+from PyQt4.QtCore import QCoreApplication, QTranslator
 
 class SimplePlugIn:
     """PluginClass to be used INSIDE the PlugIn modules"""
@@ -24,11 +24,11 @@ class SimplePlugIn:
 
     def initTranslations(self):
         if self._glb.language:
-            try:
+            if 1: #try:
                 self._translator = QTranslator()
                 self._translator.load(self.getFile('%s.qm' % self._glb.language).read())
                 self._glb.application.installTranslator(self._translator)
-            except:
+            else: #except:
                 self._glb.logger.info(unicode(QCoreApplication.translate('PlugIn', '%s: could not load translations for language "%s", skipping')),
                     self.name, self._glb.language)
                 self._translator = None

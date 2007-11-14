@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# version: $Id: setup.py,v 1.2 2007/04/23 14:39:58 joerg Exp $
+# version: $Id$
 # this file is part of the SimuVis framework
 # author: Joerg Raedler <joerg@dezentral.de>
 # license: global SimuVis license

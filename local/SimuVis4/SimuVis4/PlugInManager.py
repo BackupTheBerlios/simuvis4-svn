@@ -1,5 +1,5 @@
 # encoding: latin-1
-# version:  $Id: PlugInManager.py,v 1.6 2007/11/07 16:13:24 joerg Exp $
+# version:  $Id$
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
@@ -13,7 +13,7 @@ from PyQt4.QtCore import QCoreApplication
 
 logger = Globals.logger
 
-skipFolder = ('CVS', '.svn')
+skipFolder = ('CVS', '.svn', '.devel')
 
 class PlugInManager:
 

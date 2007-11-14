@@ -1,5 +1,5 @@
 # encoding: latin-1
-# version:  $Id: NetCDF3.py,v 1.1 2007/11/07 12:55:06 joerg Exp $
+# version:  $Id$
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework

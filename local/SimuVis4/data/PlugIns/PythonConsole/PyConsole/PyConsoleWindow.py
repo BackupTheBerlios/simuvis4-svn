@@ -1,5 +1,5 @@
 # encoding: latin-1
-# version:  $Id: PyConsoleWindow.py,v 1.4 2007/04/21 17:29:54 joerg Exp $
+# version:  $Id$
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework

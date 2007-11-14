@@ -1,5 +1,5 @@
 # encoding: latin-1
-# version:  $Id: __init__.py,v 1.9 2007/08/14 12:10:10 joerg Exp $
+# version:  $Id$
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework

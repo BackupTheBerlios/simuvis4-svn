@@ -1,5 +1,5 @@
 # encoding: latin-1
-# version:  $Id: MainWin.py,v 1.20 2007/08/14 11:19:41 joerg Exp $
+# version:  $Id$
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework

@@ -1,5 +1,5 @@
 # encoding: latin-1
-# version:  $Id: Globals.py,v 1.16 2007/08/14 12:23:05 joerg Exp $
+# version:  $Id$
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
@@ -121,7 +121,7 @@ if not configRead or not config.has_section('main'):
     config.set_def('main', 'system_language_path', os.path.join(dataPath, 'Language'))
     config.set_def('main', 'system_help_path', os.path.join(dataPath, 'Help'))
 
-    #config.set_def('main', 'user_plugin_path', os.path.join(mainModule.baseDir, '..', 'AdditionalPlugIns'))
+    config.set_def('main', 'user_plugin_path', os.path.join(mainModule.baseDir, '..', 'AdditionalPlugIns'))
 
     config.set_def('main', 'user_work_path', os.getcwd())
 

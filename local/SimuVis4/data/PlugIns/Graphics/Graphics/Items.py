@@ -1,5 +1,5 @@
 # encoding: latin-1
-# version:  $Id: Items.py,v 1.6 2007/04/23 13:19:38 joerg Exp $
+# version:  $Id$
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework

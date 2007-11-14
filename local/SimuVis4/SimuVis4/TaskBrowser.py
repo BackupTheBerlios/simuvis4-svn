@@ -1,5 +1,5 @@
 # encoding: latin-1
-# version:  $Id: TaskBrowser.py,v 1.3 2007/04/21 17:20:50 joerg Exp $
+# version:  $Id$
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
