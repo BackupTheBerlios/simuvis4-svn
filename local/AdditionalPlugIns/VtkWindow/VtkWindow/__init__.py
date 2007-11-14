@@ -9,7 +9,7 @@ import SimuVis4.Globals
 import SimuVis4.Misc
 from SimuVis4.SubWinManager import SubWinManager
 from PyQt4.QtGui import QAction, QIcon, QWidget, QPixmap
-from PyQt4.QtCore import SIGNAL, QCoreApplication
+from PyQt4.QtCore import SIGNAL, QCoreApplication, QTranslator
 
 myName = 'VtkWindow'
 proxy  = None
@@ -20,11 +20,19 @@ VtkWidget = None
 VtkWindow = None
 Objects = None
 Helpers = None
+translator = None
 
 def plugInInit(p):
-    global proxy, manager, vtk, VtkWidget, VtkWindow, Objects, Helpers
+    global proxy, manager, vtk, VtkWidget, VtkWindow, Objects, Helpers, translator
     proxy = p
     import vtk, VtkWidget, VtkWindow, Objects, Helpers
+    if SimuVis4.Globals.language:
+        try:
+            translator = QTranslator()
+            translator.load(proxy.openFile('%s.qm' % SimuVis4.Globals.language).read())
+            SimuVis4.Globals.application.installTranslator(translator)
+        except:
+            pass
     xpm = QPixmap()
     xpm.loadFromData(proxy.openFile('3dwin.xpm').read())
     winIcon = QIcon(xpm)
@@ -47,12 +55,14 @@ def plugInExit(fast):
         manager.shutdown()
         del manager
     manager = None
+    if translator:
+        SimuVis4.Globals.application.removeTranslator(translator)
 
 
 def test(name=None):
     if not manager:
         return
-        
+
     w = manager.newWindow(name)
 
     ren = vtk.vtkRenderer()
@@ -84,7 +94,7 @@ def test(name=None):
     cubeActor.AddPosition(0.0, 2.0, 0.0)
     cubeActor.GetProperty().SetColor(0.3, 1.0, 0.3)
     ren.AddActor(cubeActor)
-    #w.makeToolBar()
+    w.makeToolBar()
     w.show()
     w.vtkWidget.Initialize()
     w.vtkWidget.Start()
