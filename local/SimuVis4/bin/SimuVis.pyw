@@ -32,10 +32,10 @@ Usage: %s [options]
 
 # svn_revision: string will be replaced by svn
 svn_revision = int('$Rev$'.split()[1])
-version = '4.0.%04d' % svn_revision
-versionString = 'v4.0 [rev:%d]' % svn_revision
+version_info = (4, 0, svn_revision)
+version_string = '4.0.%04d' % svn_revision
 
-print "This is SimuVis4 (%s) by Joerg Raedler, starting ..." % versionString
+print "This is SimuVis4 (%s) by Joerg Raedler, starting ..." % version_string
 
 def errorExit(h, *msg):
     try:
@@ -159,7 +159,7 @@ from SimuVis4.MainWin import MainWindow
 
 mainWin = MainWindow()
 pyver = '.'.join([str(i) for i in sys.version_info[:3]])
-mainWin.setWindowTitle("%s | %s | %s@%s | Python %s" % (glb.appName, version, glb.userName, glb.hostName, pyver))
+mainWin.setWindowTitle("%s | %s | %s@%s | Python %s" % (glb.appName, version_string, glb.userName, glb.hostName, pyver))
 
 if fullScreen:
     mainWin.showFullScreen()

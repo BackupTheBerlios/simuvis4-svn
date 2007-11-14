@@ -131,6 +131,9 @@ class MainWindow(QMainWindow):
         self.helpAboutAction.setStatusTip(QCoreApplication.translate('MainWin', 'Info about this application'))
         self.connect(self.helpAboutAction, SIGNAL("triggered()"), self.about)
 
+        self.helpHomepageAction = QAction(QIcon(), QCoreApplication.translate('MainWin', 'Open homepage'), self)
+        self.helpHomepageAction.setStatusTip(QCoreApplication.translate('MainWin', 'Open application homepage in broweser'))
+        self.connect(self.helpHomepageAction, SIGNAL("triggered()"), self.showHomepage)
 
     def _initMenus(self):
         self.fileMenu = self.menuBar().addMenu(QCoreApplication.translate('MainWin', '&File'))
@@ -153,6 +156,7 @@ class MainWindow(QMainWindow):
 
         self.helpMenu = self.menuBar().addMenu(QCoreApplication.translate('MainWin', '&Help'))
         self.helpMenu.addAction(self.helpAction)
+        self.helpMenu.addAction(self.helpHomepageAction)
         self.helpMenu.addAction(self.helpAboutAction)
         # do it one time so the actions are registered at the main window
         self.prepareWindowMenu()
@@ -229,7 +233,7 @@ class MainWindow(QMainWindow):
         if Globals.startScript:
             self.executeFile(Globals.startScript)
         elif cfg.has_option('main', 'system_start_script'):
-            self.executeFile(glb['main:system_start_script'])
+            self.executeFile(cfg['main:system_start_script'])
 
 
     def executeFile(self, fn=None):
@@ -282,6 +286,14 @@ class MainWindow(QMainWindow):
         aboutDlg = AboutDlg(self)
         aboutDlg.setWindowTitle(cfg['main:application_name'])
         aboutDlg.show()
+
+
+    def showHomepage(self):
+        if cfg.has_option('main', 'application_homepage'):
+            url = cfg['main:application_homepage']
+        else:
+            url = 'http://www.simuvis.de/'
+        QDesktopServices.openUrl(QUrl(url))
 
 
     def printWindow(self):

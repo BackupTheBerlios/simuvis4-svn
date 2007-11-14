@@ -93,7 +93,7 @@ class AboutDlg(QDialog, Ui_AboutDialog):
     def collectVersions(self):
         csw = Misc.Switcher(0, "#ffffff", "#eeeeee")
         buf = ['<table><tr bgcolor="#dddddd"><th>Component/Library</th><th>Version</th></tr>']
-        buf.append('<tr bgcolor="%s"><td>SimuVis4</td><td>%s</td></tr>' % (csw(), Globals.versionString))
+        buf.append('<tr bgcolor="%s"><td>SimuVis4</td><td>%s</td></tr>' % (csw(), Globals.version_string))
         buf.append('<tr bgcolor="%s"><td>Python</td><td>%s | %s</td></tr>' % \
             (csw(), '.'.join([str(i) for i in sys.version_info]), sys.version))
         buf.append('<tr bgcolor="%s"><td>PyQt</td><td>%s | %s</td></tr>' % (csw(), PYQT_VERSION_STR, PYQT_VERSION))

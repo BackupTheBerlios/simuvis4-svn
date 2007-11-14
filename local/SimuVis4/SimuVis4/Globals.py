@@ -9,8 +9,8 @@
 import Config, logging, sys, os
 
 mainModule = sys.modules['__main__']
-version = mainModule.version
-versionString = mainModule.versionString
+version_string = mainModule.version_string
+version_info   = mainModule.version_info
 
 appName = 'SimuVis4'
 platform = sys.platform

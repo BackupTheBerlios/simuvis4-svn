@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -574,7 +573,7 @@ h: diese Hilfe anzeigen
         <translation>Vorheriges Unterfenster aktivieren</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="154"/>
+        <location filename="MainWin.py" line="157"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
@@ -594,52 +593,52 @@ h: diese Hilfe anzeigen
         <translation type="obsolete">Über</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="136"/>
+        <location filename="MainWin.py" line="139"/>
         <source>&amp;File</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="145"/>
+        <location filename="MainWin.py" line="148"/>
         <source>&amp;Tools</source>
         <translation>&amp;Werkzeuge</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="147"/>
+        <location filename="MainWin.py" line="150"/>
         <source>&amp;Window</source>
         <translation>&amp;Fenster</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="150"/>
+        <location filename="MainWin.py" line="153"/>
         <source>&amp;PlugIns</source>
         <translation>&amp;PlugIns</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="200"/>
+        <location filename="MainWin.py" line="204"/>
         <source>Initializing Plugins</source>
         <translation>Initialisiere PlugIns</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="224"/>
+        <location filename="MainWin.py" line="228"/>
         <source>Main: startup succeeded</source>
         <translation>Hauptprogramm: Startvorgang beendet</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="239"/>
+        <location filename="MainWin.py" line="243"/>
         <source>Select file to execute</source>
         <translation>Wähle eine auszuführende Datei aus</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="245"/>
+        <location filename="MainWin.py" line="249"/>
         <source>Executing file %s</source>
         <translation>Führe Datei aus: %s</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="247"/>
+        <location filename="MainWin.py" line="251"/>
         <source>Loading aborted</source>
         <translation>Laden abgebrochen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="261"/>
+        <location filename="MainWin.py" line="265"/>
         <source>Main: uncatched internal exception: %s: %s:
 %s</source>
         <translation>Hauptprogramm: unbehandelte interne Ausnahme: %s: %s:
@@ -653,7 +652,7 @@ based on python, Qt, Qwt, VTK and other</source>
 auf Basis von Python, Qt, Qwt, Vtk</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="375"/>
+        <location filename="MainWin.py" line="387"/>
         <source>restarting on platform &quot;%s&quot; not yet supported</source>
         <translation>Neustart auf der Plattform &quot;%s&quot; wird nicht unterstützt</translation>
     </message>
@@ -758,29 +757,39 @@ auf Basis von Python, Qt, Qwt, Vtk</translation>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="170"/>
+        <location filename="MainWin.py" line="174"/>
         <source>Starting logging system</source>
         <translation>Starte das Log-System</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="183"/>
+        <location filename="MainWin.py" line="187"/>
         <source>Starting plugin manager</source>
         <translation>Starte den Plugin-Manager</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="191"/>
+        <location filename="MainWin.py" line="195"/>
         <source>Starting plugin browser</source>
         <translation>Starte den Plugin-Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="208"/>
+        <location filename="MainWin.py" line="212"/>
         <source>Starting task browser</source>
         <translation>Starte den Task-Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="217"/>
+        <location filename="MainWin.py" line="221"/>
         <source>Starting help system</source>
         <translation>Starte das Hilfe-System</translation>
+    </message>
+    <message>
+        <location filename="MainWin.py" line="134"/>
+        <source>Open homepage</source>
+        <translation>Öffne Homepage</translation>
+    </message>
+    <message>
+        <location filename="MainWin.py" line="135"/>
+        <source>Open application homepage in broweser</source>
+        <translation>Zeige die Homepage der Anwendung im Browser</translation>
     </message>
 </context>
 <context>
