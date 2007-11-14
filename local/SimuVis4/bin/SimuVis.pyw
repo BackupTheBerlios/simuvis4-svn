@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # encoding: latin-1
 # version:  $Id$
+svn_revision = '$Revision:$'
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
-svn_revision = '$Revision:$'
+# svn_revision = '$Revision:$'
 
 import sys, os
 
