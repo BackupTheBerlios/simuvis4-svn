@@ -6,74 +6,59 @@
 
 """PythonConsole is a SimuVis4 plugin to get a python console with PyCute"""
 
-import os, sys
-import SimuVis4.Globals as Globals
+import SimuVis4, os, sys
+from SimuVis4.PlugIn import SimplePlugIn
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
-myname = "PythonConsole"
 
-cfg = Globals.config
-cfgsec = 'python_console'
+class PlugIn(SimplePlugIn):
 
-proxy  = None
-consoleWindow = None
-
-
-def configInit():
-    """check if plugin config section is available, initialize if not"""
-    if not cfg.has_section(cfgsec):
-        cfg.add_section(cfgsec)
-        cfg.set_def(cfgsec, 'show_window', 'no')
-        cfg.set_def(cfgsec, 'show_minimized', 'no')
-        cfg.set_def(cfgsec, 'show_maximized', 'yes')
-        cfg.set_def(cfgsec, 'use_history', 'yes')
-
-
-def plugInInit(p):
-    global proxy, consoleWindow
-    proxy = p
-    configInit()
-    from PyConsoleWindow import PyConsoleWindow
-    consoleWindow = PyConsoleWindow(Globals.mainWin.workSpace)
-    Globals.mainWin.workSpace.addWindow(consoleWindow)
-    histF = None
-    if cfg.getboolean(cfgsec, 'use_history'):
-        histF = os.path.join(Globals.homePath, '.SV4PyCon.his')
-    consoleWindow.console.initInterpreter(loc=Globals.__dict__, historyFile=histF)
-    xpm = QPixmap()
-    xpm.loadFromData(proxy.openFile('pycon.xpm').read())
-    icon = QIcon(xpm)
-    consoleWindow.setWindowIcon(icon)
-    consoleWindow.setWindowTitle(QCoreApplication.translate('PyConsoleWindow', 'Python console'))
-    consoleWindow.toggleVisibleAction.setIcon(icon)
-    Globals.mainWin.plugInMenu.addAction(consoleWindow.toggleVisibleAction)
-    if cfg.getboolean(cfgsec, 'show_window'):
-        if cfg.getboolean(cfgsec, 'show_maximized'):
-            consoleWindow.showMaximized()
-        elif cfg.getboolean(cfgsec, 'show_minimized'):
-            consoleWindow.showMinimized()
-        else:
-            consoleWindow.show()
+    def load(self):
+        cfg = SimuVis4.Globals.config
+        cfgsec = self.name.lower()
+        if not cfg.has_section(cfgsec):
+            cfg.add_section(cfgsec)
+            cfg.set_def(cfgsec, 'show_window', 'no')
+            cfg.set_def(cfgsec, 'show_minimized', 'no')
+            cfg.set_def(cfgsec, 'show_maximized', 'yes')
+            cfg.set_def(cfgsec, 'use_history', 'yes')
+        glb = SimuVis4.Globals
+        from PyConsoleWindow import PyConsoleWindow
+        self.consoleWindow = PyConsoleWindow(glb.mainWin.workSpace)
+        glb.mainWin.workSpace.addWindow(self.consoleWindow)
+        histF = None
+        if cfg.getboolean(cfgsec, 'use_history'):
+            histF = os.path.join(glb.homePath, '.SV4PyCon.his')
+        self.consoleWindow.console.initInterpreter(loc=glb.__dict__, historyFile=histF)
+        xpm = QPixmap()
+        xpm.loadFromData(self.getFile('pycon.xpm').read())
+        icon = QIcon(xpm)
+        self.consoleWindow.setWindowIcon(icon)
+        self.consoleWindow.setWindowTitle(QCoreApplication.translate('PyConsoleWindow', 'Python console'))
+        self.consoleWindow.toggleVisibleAction.setIcon(icon)
+        glb.mainWin.plugInMenu.addAction(self.consoleWindow.toggleVisibleAction)
+        if cfg.getboolean(cfgsec, 'show_window'):
+            if cfg.getboolean(cfgsec, 'show_maximized'):
+                self.consoleWindow.showMaximized()
+            elif cfg.getboolean(cfgsec, 'show_minimized'):
+                self.consoleWindow.showMinimized()
+            else:
+                self.consoleWindow.show()
 
 
-def plugInExitOk():
-    return True
+    def unload(self, fast):
+        if self.consoleWindow:
+            if not fast:
+                self.consoleWindow.console.exitInterpreter()
+                del self.consoleWindow
 
-    
-def plugInExit(fast):
-    global consoleWindow
-    if consoleWindow:
-        if not fast:
-            consoleWindow.console.exitInterpreter()
-            del consoleWindow
 
-            
-def showWindow():
-    if consoleWindow:
-        consoleWindow.show()
+    def showWindow(self):
+        if self.consoleWindow:
+            self.consoleWindow.show()
 
-        
-def hideWindow():
-    if consoleWindow:
-        consoleWindow.hide()
+
+    def hideWindow(self):
+        if self.consoleWindow:
+            self.consoleWindow.hide()

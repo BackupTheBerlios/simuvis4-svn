@@ -5,17 +5,41 @@
 # this file is part of the SimuVis4 framework
 """TextEditor PlugIn for SimuVis4 - provides simple text editing"""
 
-myname = "TextEditor"
-proxy = None
-manager = None
-
-import SimuVis4.Globals, os
+import SimuVis4, os
 from SimuVis4.SubWinManager import SubWinManager
+from SimuVis4.PlugIn import SimplePlugIn
 import TextEditorWindow
 from PyQt4.QtGui import QAction, QIcon, QWidget, QPixmap, QMenu, QFileDialog
 from PyQt4.QtCore import SIGNAL, QCoreApplication, QObject
 
-logger = SimuVis4.Globals.logger
+
+class PlugIn(SimplePlugIn):
+
+    def load(self):
+        xpm = QPixmap()
+        xpm.loadFromData(self.getFile('text.xpm').read())
+        winIcon = QIcon(xpm)
+        self.winManager = TextEditorManager(SimuVis4.Globals.mainWin.workSpace, TextEditorWindow.TextEditorWindow,
+            QCoreApplication.translate('TextEditor', "Unnamed Textfile"), winIcon)
+        self.winManager.initMain(SimuVis4.Globals.mainWin)
+
+
+    def unload(self, fast):
+        if self.winManager:
+            self.winManager.shutdown()
+            del self.winManager
+
+
+    def test(self):
+        if self.winManager:
+            self.winManager.newWindow()
+
+
+    def listWindows(self):
+        if self.winManager:
+            return winManager.windows
+
+
 
 class TextEditorManager(SubWinManager):
 
@@ -101,35 +125,3 @@ class TextEditorManager(SubWinManager):
         del self.separator
 
 
-
-def plugInInit(p):
-    global proxy, manager
-    proxy = p
-    xpm = QPixmap()
-    xpm.loadFromData(proxy.openFile('text.xpm').read())
-    winIcon = QIcon(xpm)
-    manager = TextEditorManager(SimuVis4.Globals.mainWin.workSpace, TextEditorWindow.TextEditorWindow,
-        QCoreApplication.translate('TextEditor', "Unnamed Textfile"), winIcon)
-    manager.initMain(SimuVis4.Globals.mainWin)
-
-
-def plugInExitOk():
-    return True
-
-
-def plugInExit(fast):
-    global manager
-    if manager:
-        manager.shutdown()
-        del manager
-    manager = None
-
-
-def test():
-    if manager:
-        manager.newWindow()
-
-
-def listWindows():
-    if manager:
-        return manager.windows
