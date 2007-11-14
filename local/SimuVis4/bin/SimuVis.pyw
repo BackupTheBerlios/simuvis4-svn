@@ -4,7 +4,7 @@
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
-svn_revision = '$Rev:$'
+svn_revision = '$Revision:$'
 
 import sys, os
 
