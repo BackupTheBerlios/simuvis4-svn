@@ -6,19 +6,14 @@
 
 """MatPlot PlugIn for SimuVis4 - provides an interface to matplotlib/pylab"""
 
-myname = "MatPlot"
-proxy = None
 
 import os
-import SimuVis4.Globals
+import SimuVis4
+from SimuVis4.PlugIn import SimplePlugIn
 from SimuVis4.SubWinManager import SubWinManager
 from PyQt4.QtGui import QAction, QIcon, QWidget, QMenu, QFileDialog, QMessageBox
 from PyQt4.QtCore import SIGNAL, QCoreApplication, QObject, QTimer
 
-logger = SimuVis4.Globals.logger
-
-cfg = SimuVis4.Globals.config
-cfgsec = 'matplot'
 
 configWarningText = unicode(QCoreApplication.translate('MatPlot',
 """The MatPlot plugin enables matplotlib/pylab to be
@@ -41,6 +36,7 @@ use matplotlib/pylab in the python console (if the
 PythonConsole plugin is active) or in scripts.""")
     ) % os.path.split(__file__)[0]
 
+
 testCode = """# matplotlib example from the original matplotlib distribution
 # Press CTRL-J in the text editor window to run this code!
 
@@ -57,40 +53,6 @@ pie(fracs, explode=explode, labels=labels, autopct='%1.1f%%', shadow=True)
 show()
 """
 
-def configInit():
-    """check if plugin config section is available, initialize if not"""
-    if not cfg.has_section(cfgsec):
-        cfg.add_section(cfgsec)
-        cfg.set_def(cfgsec, 'show_config_warning', 'yes')
-
-
-def plugInInit(p):
-    global proxy
-    configInit()
-    proxy = p
-    import matplotlib
-    try:
-        matplotlib.use('SV4Agg')
-    except:
-        if cfg.getboolean(cfgsec, 'show_config_warning'):
-            QTimer().singleShot(2000, showConfigWarning)
-        raise Exception('matplotlib does not yet support SV4')
-    logo = os.path.join( matplotlib.rcParams['datapath'], 'matplotlib.png' )
-    winIcon = QIcon(logo)
-    testAction = QAction(winIcon,
-        QCoreApplication.translate('MatPlot', '&MatPlot Test'), SimuVis4.Globals.mainWin)
-    testAction.setStatusTip(QCoreApplication.translate('MatPlot', 'Show a matplotlib test window'))
-    QWidget.connect(testAction, SIGNAL("triggered()"), test)
-    SimuVis4.Globals.mainWin.plugInMenu.addAction(testAction)
-
-
-def plugInExitOk():
-    return True
-
-
-def plugInExit(fast):
-    return
-
 
 def showConfigWarning(*arg):
     QMessageBox.warning(SimuVis4.Globals.mainWin,
@@ -98,13 +60,40 @@ def showConfigWarning(*arg):
         configWarningText)
 
 
-def test():
-    textEditor = None
-    p = SimuVis4.Globals.mainWin.plugInManager
-    if p.hasPlugIn('TextEditor'):
-        textEditor = SimuVis4.Globals.mainWin.plugInManager.getPlugIn('TextEditor')
-    if textEditor:
-        w = textEditor.manager.newWindow()
-        w.textEdit.setText(testCode)
-    else:
-        SimuVis4.Globals.mainWin.executor.run(testCode)
+class PlugIn(SimplePlugIn):
+
+    def load(self):
+        self.initTranslations()
+        cfg = SimuVis4.Globals.config
+        cfgsec = self.name.lower()
+        if not cfg.has_section(cfgsec):
+            cfg.add_section(cfgsec)
+            cfg.set_def(cfgsec, 'show_config_warning', 'yes')
+        glb = SimuVis4.Globals
+        import matplotlib
+        self.matplotlib = matplotlib
+        try:
+            matplotlib.use('SV4Agg')
+        except:
+            if cfg.getboolean(cfgsec, 'show_config_warning'):
+                QTimer().singleShot(2000, self.showConfigWarning)
+            raise Exception('matplotlib does not yet support SV4')
+        logo = os.path.join( matplotlib.rcParams['datapath'], 'matplotlib.png' )
+        winIcon = QIcon(logo)
+        testAction = QAction(winIcon,
+            QCoreApplication.translate('MatPlot', '&MatPlot Test'), SimuVis4.Globals.mainWin)
+        testAction.setStatusTip(QCoreApplication.translate('MatPlot', 'Show a matplotlib test window'))
+        QWidget.connect(testAction, SIGNAL("triggered()"), self.test)
+        SimuVis4.Globals.mainWin.plugInMenu.addAction(testAction)
+
+
+    def test(self):
+        textEditor = None
+        p = SimuVis4.Globals.mainWin.plugInManager
+        if p.hasPlugIn('TextEditor'):
+            textEditor = SimuVis4.Globals.mainWin.plugInManager.getPlugIn('TextEditor')
+        if textEditor:
+            w = textEditor.winManager.newWindow()
+            w.textEdit.setText(testCode)
+        else:
+            SimuVis4.Globals.mainWin.executor.run(testCode)

@@ -151,18 +151,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="__init__.py" line="27"/>
+        <location filename="__init__.py" line="23"/>
         <source>Meteonorm weather import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="__init__.py" line="26"/>
+        <location filename="__init__.py" line="22"/>
         <source>SMILE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="__init__.py" line="28"/>
-        <source>Convert Meteonrom weather files to netCDF format</source>
+        <location filename="__init__.py" line="24"/>
+        <source>Convert Meteonorm weather files to netCDF format</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

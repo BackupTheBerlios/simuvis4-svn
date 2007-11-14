@@ -4,47 +4,35 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-"""TextEditor PlugIn for SimuVis4 - provides simple text editing"""
-
-myname = "SmileKit"
-proxy = None
-menu = None
-Meteo2Nc = None
+"""SmileKit PlugIn for SimuVis4 - useful functions for SMILE"""
 
 
 import SimuVis4.Globals
-logger = SimuVis4.Globals.logger
-
+from SimuVis4.PlugIn import SimplePlugIn
 from PyQt4.QtGui import QAction, QIcon, QMenu
 from PyQt4.QtCore import SIGNAL, QCoreApplication, QObject
 
-def plugInInit(p):
-    global proxy, Meteo2Nc, menu
-    proxy = p
-    import Meteo2Nc
 
-    menu = QMenu(QCoreApplication.translate('SmileKit', 'SMILE'))
-    mn2ncAction = QAction(QIcon(), QCoreApplication.translate('SmileKit', 'Meteonorm weather import'), SimuVis4.Globals.mainWin)
-    mn2ncAction.setStatusTip(QCoreApplication.translate('SmileKit', 'Convert Meteonrom weather files to netCDF format'))
-    QObject.connect(mn2ncAction, SIGNAL("triggered()"), showMn2NcWindow)
-    menu.addAction(mn2ncAction)
-    SimuVis4.Globals.mainWin.plugInMenu.addMenu(menu)
+class PlugIn(SimplePlugIn):
 
-
-def plugInExitOk():
-    return True
+    def load(self):
+        self.initTranslations()
+        import Meteo2Nc
+        self.Meteo2Nc = Meteo2Nc
+        self.menu = QMenu(QCoreApplication.translate('SmileKit', 'SMILE'))
+        mn2ncAction = QAction(QIcon(), QCoreApplication.translate('SmileKit', 'Meteonorm weather import'), SimuVis4.Globals.mainWin)
+        mn2ncAction.setStatusTip(QCoreApplication.translate('SmileKit', 'Convert Meteonorm weather files to netCDF format'))
+        QObject.connect(mn2ncAction, SIGNAL("triggered()"), self.showMn2NcWindow)
+        self.menu.addAction(mn2ncAction)
+        SimuVis4.Globals.mainWin.plugInMenu.addMenu(self.menu)
 
 
-def plugInExit(fast):
-    pass
+    def showMn2NcWindow(self):
+        ws = SimuVis4.Globals.mainWin.workSpace
+        win = self.Meteo2Nc.Meteo2NcWindow(ws)
+        ws.addWindow(win)
+        win.show()
 
 
-def showMn2NcWindow():
-    ws = SimuVis4.Globals.mainWin.workSpace
-    win = Meteo2Nc.Meteo2NcWindow(ws)
-    ws.addWindow(win)
-    win.show()
-
-
-def test():
-    showMn2NcWindow()
+    def test(self):
+        self.showMn2NcWindow()

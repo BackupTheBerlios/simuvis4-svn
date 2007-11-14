@@ -3,7 +3,7 @@
 <context>
     <name>MatPlot</name>
     <message>
-        <location filename="__init__.py" line="42"/>
+        <location filename="__init__.py" line="37"/>
         <source>The MatPlot plugin enables matplotlib/pylab to be
 used from within SimuVis4. Unfortinately some manual
 intervention is necessary for this to work. This has
@@ -25,17 +25,17 @@ PythonConsole plugin is active) or in scripts.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="__init__.py" line="81"/>
+        <location filename="__init__.py" line="84"/>
         <source>&amp;MatPlot Test</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="__init__.py" line="82"/>
+        <location filename="__init__.py" line="85"/>
         <source>Show a matplotlib test window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="__init__.py" line="97"/>
+        <location filename="__init__.py" line="59"/>
         <source>MatPlot plugin configuration info</source>
         <translation type="unfinished"></translation>
     </message>

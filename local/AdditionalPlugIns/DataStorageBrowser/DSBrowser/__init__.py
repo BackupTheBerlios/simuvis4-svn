@@ -5,44 +5,24 @@
 # this file is part of the SimuVis4 framework
 """LNBCoolSim PlugIn for SimuVis4 """
 
-myname = "DataStorageBrowser"
-proxy = None
-browser = None
-
 import sys
-import SimuVis4 #, SimuVis4.Globals
-logger = SimuVis4.Globals.logger
-
+import SimuVis4
+from SimuVis4.PlugIn import SimplePlugIn
 from PyQt4.QtGui import QLabel
 from PyQt4.QtCore import QCoreApplication, Qt
 
-cfg = SimuVis4.Globals.config
-cfgsec = 'dsbrowser'
+class PlugIn(SimplePlugIn):
 
-
-def configInit():
-    """check if plugin config section is available, initialize if not"""
-    if not cfg.has_section(cfgsec):
-        cfg.add_section(cfgsec)
-        cfg.set_def(cfgsec, 'datastorage_path', '/net/Dezentral/Projekte/Angebote/ISE_DataStorage-GUI/nmd/')
-        cfg.set_def(cfgsec, 'default_database', '/net/Dezentral/Projekte/Angebote/ISE_DataStorage-GUI/nmd/datastorage/wetter')
-
-
-def plugInInit(p):
-    global proxy, browser
-    proxy = p
-    configInit()
-    sys.path.append(cfg.get(cfgsec, 'datastorage_path'))
-    import DSBrowser
-    dsbrowser = DSBrowser.DSBrowser()
-    SimuVis4.Globals.dataBrowser.toolBox.addItem(dsbrowser, 'DataStorage')
-    dsbrowser.model.addDatabase(cfg.get(cfgsec, 'default_database'))
-
-
-def plugInExitOk():
-    return True
-
-
-def plugInExit(fast):
-    SimuVis4.Globals.dataBrowser = None
-    pass
+    def load(self):
+        self.initTranslations()
+        cfg = SimuVis4.Globals.config
+        cfgsec = self.name.lower()
+        if not cfg.has_section(cfgsec):
+            cfg.add_section(cfgsec)
+            cfg.set_def(cfgsec, 'datastorage_path', '/net/Dezentral/Projekte/Angebote/ISE_DataStorage-GUI/nmd/')
+            cfg.set_def(cfgsec, 'default_database', '/net/Dezentral/Projekte/Angebote/ISE_DataStorage-GUI/nmd/datastorage/wetter')
+        sys.path.append(cfg.get(cfgsec, 'datastorage_path'))
+        import DSBrowser
+        dsbrowser = DSBrowser.DSBrowser()
+        SimuVis4.Globals.dataBrowser.toolBox.addItem(dsbrowser, 'DataStorage')
+        dsbrowser.model.addDatabase(cfg.get(cfgsec, 'default_database'))
