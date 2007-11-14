@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ -d devel ]; then
+if [ -d .devel ]; then
   rm -Rfv build
   rm -Rfv dist
   find . -type f \( -name "*~" -o -iname "*.pyo" -o -iname "*.pyc" \) -exec rm -v {} \;

@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ -d devel ]; then
+if [ -d .devel ]; then
   PY=$(find . -type f -iname "*.py")
   LANGUAGES="de"
   LANGPATH="data/Language"
