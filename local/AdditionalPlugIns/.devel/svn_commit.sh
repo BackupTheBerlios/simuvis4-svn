@@ -1,6 +1,6 @@
 #!/bin/sh
-if [ -d devel ]; then
-  . devel/clear.sh
+if [ -d .devel ]; then
+  . .devel/clear.sh
   export SVN_EDITOR=ne
   svn commit .
 else

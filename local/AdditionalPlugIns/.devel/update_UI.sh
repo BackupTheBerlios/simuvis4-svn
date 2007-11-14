@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ -d devel ]; then
+if [ -d .devel ]; then
   for UI in $(find . -type f -iname "*.ui"); do
     PY=${UI%.ui}.py
     if [ $UI -nt $PY ]; then

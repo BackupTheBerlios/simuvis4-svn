@@ -1,6 +1,6 @@
 #!/bin/sh
-if [ -d devel ]; then
-  . devel/clear.sh
+if [ -d .devel ]; then
+  . .devel/clear.sh
   TS=$(date +%y%m%d%H%M)
   TBZ=SV4_$TS.tar.bz2
   tar -cjf ../$TBZ ../SimuVis4/
