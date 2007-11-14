@@ -1,7 +1,6 @@
 #!/bin/sh
 if [ -d .devel ]; then
-  rm -Rfv build
-  rm -Rfv dist
+  rm -fv *.zip
   find . -type f \( -name "*~" -o -iname "*.pyo" -o -iname "*.pyc" \) -exec rm -v {} \;
 else
   echo "Start this tool in the base folder of development"
