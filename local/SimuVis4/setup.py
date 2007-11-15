@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # version: $Id$
 # this file is part of the SimuVis framework
-# author: Joerg Raedler <joerg@dezentral.de>
-# license: global SimuVis license
+# author: Joerg Raedler <jr@j-raedler.de>
+# license: GPL v2
 
 from distutils.core import setup
 
@@ -78,7 +78,7 @@ args = { 'name' : "SimuVis4",
          'long_description' : longdesc,
          'license' : "GPL",
          'author' : "Joerg Raedler",
-         'author_email' : "joerg@dezentral.de",
+         'author_email' : "jr@j-raedler.de",
          'maintainer' : "dezentral gbr Berlin",
          'maintainer_email' : "software@dezentral.de",
          'url' : "http://www.dezentral.de/soft/SimuVis4",

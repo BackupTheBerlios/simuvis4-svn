@@ -1,6 +1,6 @@
 # encoding: latin-1
 # version:  $Id$
-# author:   Joerg Raedler <joerg@dezentral.de>
+# author:   Joerg Raedler <jr@j-raedler.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 """
