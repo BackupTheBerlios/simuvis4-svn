@@ -24,12 +24,15 @@ class SimplePlugIn:
 
     def initTranslations(self):
         if self._glb.language:
-            if 1: #try:
+            try:
                 self._translator = QTranslator()
-                self._translator.load(self.getFile('%s.qm' % self._glb.language).read())
+                self._qm = self.getFile('%s.qm' % self._glb.language).read()
+                self._translator.loadFromData(self._qm)
                 self._glb.application.installTranslator(self._translator)
-            else: #except:
-                self._glb.logger.info(unicode(QCoreApplication.translate('PlugIn', '%s: could not load translations for language "%s", skipping')),
+                self._glb.logger.info(unicode(QCoreApplication.translate('PlugIn', 'PlugIn: %s: translation loaded for language "%s"')),
+                    self.name, self._glb.language)
+            except:
+                self._glb.logger.warning(unicode(QCoreApplication.translate('PlugIn', 'PlugIn: %s: could not load translations for language "%s", skipping')),
                     self.name, self._glb.language)
                 self._translator = None
 

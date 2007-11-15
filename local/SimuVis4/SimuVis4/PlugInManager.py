@@ -13,7 +13,7 @@ from PyQt4.QtCore import QCoreApplication
 
 logger = Globals.logger
 
-skipFolder = ('CVS', '.svn', '.devel')
+skipFolder = ('CVS', '.svn', '.devel', 'test')
 
 class PlugInManager:
 
