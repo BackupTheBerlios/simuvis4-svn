@@ -10,7 +10,7 @@ Helpers = vtkpi.Helpers
 Objects = vtkpi.Objects
 
 def makeTextDemo():
-    window = vtkpi.manager.newWindow("Test of SimuVis' VTK-PlugIn")
+    window = vtkpi.winManager.newWindow("Test of SimuVis' VTK-PlugIn")
     ren = vtk.vtkRenderer()
     window.vtkWidget.GetRenderWindow().AddRenderer(ren)
     txt = 'SimuVis4'
@@ -43,7 +43,7 @@ def makeTextDemo():
 
 
 def makeEarthDemo():
-    window = vtkpi.manager.newWindow("Test of SimuVis' VTK-PlugIn")
+    window = vtkpi.winManager.newWindow("Test of SimuVis' VTK-PlugIn")
     ren = vtk.vtkRenderer()
     window.vtkWidget.GetRenderWindow().AddRenderer(ren)
 

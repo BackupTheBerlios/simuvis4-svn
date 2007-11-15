@@ -28,17 +28,17 @@ Bitte starte das Skript configure_matplotlib.py(im Ordner %s).Es werden dabei zw
 Nach einem Neustart von SimuVis4 solltest Du matplot/pylabin der PythonConsole (falls installiert) oder in Skripten nutzen können.</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="84"/>
+        <location filename="__init__.py" line="87"/>
         <source>&amp;MatPlot Test</source>
         <translation>&amp;MatPlot Test</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="85"/>
+        <location filename="__init__.py" line="88"/>
         <source>Show a matplotlib test window</source>
         <translation>Öffne ein Testfenster für matplotlib</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="59"/>
+        <location filename="__init__.py" line="62"/>
         <source>MatPlot plugin configuration info</source>
         <translation>Informationen zur Konfiguration vom MatPlot-Plugin</translation>
     </message>
