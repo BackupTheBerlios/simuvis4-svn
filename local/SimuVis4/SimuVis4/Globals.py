@@ -92,7 +92,7 @@ if not configRead or not config.has_section('main'):
 
     config.set_def('main', 'i18n_language', 'de')
     config.set_def('main', 'save_config', 'no')
-    config.set_def('main', 'ignore_plugins', 'DummyPlugIn')
+    config.set_def('main', 'ignore_plugins', 'DummyPlugIn DataStorageBrowser')
 
     config.set_def('main', 'disable_log_window', 'no')
     config.set_def('main', 'hide_log_window', 'yes')

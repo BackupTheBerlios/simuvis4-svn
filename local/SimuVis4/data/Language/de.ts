@@ -1085,7 +1085,17 @@ in der PythonConsole (falls installiert) oder in Skripten nutzen können.</trans
     <message>
         <location filename="PlugIn.py" line="32"/>
         <source>%s: could not load translations for language &quot;%s&quot;, skipping</source>
-        <translation>%s: konnte Übersetzung für Sprache &quot;%s&quot; nicht laden, überspringe es</translation>
+        <translation type="obsolete">%s: konnte Übersetzung für Sprache &quot;%s&quot; nicht laden, überspringe es</translation>
+    </message>
+    <message>
+        <location filename="PlugIn.py" line="32"/>
+        <source>PlugIn: %s: translation loaded for language &quot;%s&quot;</source>
+        <translation>PlugIn: %s: Übersetzung für Sprache &quot;%s&quot; geladen</translation>
+    </message>
+    <message>
+        <location filename="PlugIn.py" line="35"/>
+        <source>PlugIn: %s: could not load translations for language &quot;%s&quot;, skipping</source>
+        <translation>PlugIn: %s: konnte Übersetzung für Sprache &quot;%s&quot; nicht laden, überspringe es</translation>
     </message>
 </context>
 <context>
