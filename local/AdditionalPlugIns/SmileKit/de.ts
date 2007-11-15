@@ -1,112 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>Mn2NcDialog</name>
     <message>
         <location filename="Mn2NcDialog.py" line="205"/>
         <source>Meteonorm - netCDF Converter</source>
-        <translation type="unfinished"></translation>
+        <translation>Meteonorm - netCDF Konverter</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="206"/>
         <source>Meteonorm file</source>
-        <translation type="unfinished"></translation>
+        <translation>Meteonorm-Datei</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="226"/>
         <source>File name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateiname:</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="227"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="209"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Laden</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="210"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Hilfe</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="211"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Ort</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="212"/>
         <source>Show 3D view</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige 3D-Ansicht</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="213"/>
         <source> m</source>
-        <translation type="unfinished"></translation>
+        <translation> m</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="Mn2NcDialog.py" line="222"/>
         <source> °</source>
-        <translation type="unfinished"></translation>
+        <translation> °</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="215"/>
         <source>Time zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeitzone:</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="216"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Höhe:</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="217"/>
         <source>Latitude:</source>
-        <translation type="unfinished"></translation>
+        <translation>Breitengrad:</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="218"/>
         <source> h</source>
-        <translation type="unfinished"></translation>
+        <translation> h</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="219"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Name:</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="220"/>
         <source>Comment:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar:</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="221"/>
         <source>Longitude:</source>
-        <translation type="unfinished"></translation>
+        <translation>Längengrad:</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="223"/>
         <source>Statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistik</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="224"/>
         <source>Enable statistical calculations</source>
-        <translation type="unfinished"></translation>
+        <translation>statistische Auswertung aktivieren</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="225"/>
         <source>netCDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>netCDF-Datei</translation>
     </message>
     <message>
         <location filename="Mn2NcDialog.py" line="228"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichern</translation>
     </message>
 </context>
 <context>
@@ -114,57 +113,57 @@
     <message>
         <location filename="Meteo2Nc.py" line="42"/>
         <source>Select Meteonorm file to open</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle die zu öffnende Meteonorm-Datei</translation>
     </message>
     <message>
         <location filename="Meteo2Nc.py" line="49"/>
         <source>HowTo generate a Meteonorm-5 file</source>
-        <translation type="unfinished"></translation>
+        <translation>Anleitung zum Generieren einer Meteonorm-5-Datei</translation>
     </message>
     <message>
         <location filename="Meteo2Nc.py" line="104"/>
         <source>No filename specified</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlender Dateiname</translation>
     </message>
     <message>
         <location filename="Meteo2Nc.py" line="105"/>
         <source>Please enter a filename in the input box!</source>
-        <translation type="unfinished"></translation>
+        <translation>Trage einen Dateinamen in das Eingabefeld ein!</translation>
     </message>
     <message>
         <location filename="Meteo2Nc.py" line="76"/>
         <source>created %s from %s by Meteo2Nc.py (v%d)</source>
-        <translation type="unfinished"></translation>
+        <translation>erstellt %s aus %s mit Meteo2Nc.py (v%d)</translation>
     </message>
     <message>
         <location filename="Meteo2Nc.py" line="95"/>
         <source>Select netCDF file to save</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle den Namen der zu sichernden netCDF-Datei</translation>
     </message>
     <message>
         <location filename="Meteo2Nc.py" line="109"/>
         <source>netCDF file saved!</source>
-        <translation type="unfinished"></translation>
+        <translation>netCDF-Datei gespeichert!</translation>
     </message>
     <message>
         <location filename="Meteo2Nc.py" line="110"/>
         <source>The netCDF file was successfully saved!</source>
-        <translation type="unfinished"></translation>
+        <translation>Die netCDF-Datei wurde erfolgreich gespeichert!</translation>
     </message>
     <message>
         <location filename="__init__.py" line="23"/>
         <source>Meteonorm weather import</source>
-        <translation type="unfinished"></translation>
+        <translation>Meteonorm Wetterdaten-Import</translation>
     </message>
     <message>
         <location filename="__init__.py" line="22"/>
         <source>SMILE</source>
-        <translation type="unfinished"></translation>
+        <translation>SMILE</translation>
     </message>
     <message>
         <location filename="__init__.py" line="24"/>
         <source>Convert Meteonorm weather files to netCDF format</source>
-        <translation type="unfinished"></translation>
+        <translation>Konvertiere eine Meteonorm-Wetterdatei in das netCDF-Format</translation>
     </message>
 </context>
 </TS>

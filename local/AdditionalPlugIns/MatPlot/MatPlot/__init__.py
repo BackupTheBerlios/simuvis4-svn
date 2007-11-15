@@ -41,6 +41,9 @@ testCode = """# matplotlib example from the original matplotlib distribution
 # Press CTRL-J in the text editor window to run this code!
 
 from pylab import *
+
+matplotlib.use('SV4Agg')
+
 figure(1, figsize=(8,8))
 ax = axes([0.1, 0.1, 0.8, 0.8])
 
