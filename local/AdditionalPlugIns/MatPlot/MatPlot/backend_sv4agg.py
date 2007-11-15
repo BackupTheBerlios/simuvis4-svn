@@ -159,27 +159,27 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
     toolitems = (
         (QtCore.QCoreApplication.translate('MatPlot', 'Home'),
             QtCore.QCoreApplication.translate('MatPlot', 'Reset original view'),
-            'home.ppm', 'home'),
+            'home.png', 'home'),
         (QtCore.QCoreApplication.translate('MatPlot', 'Back'),
             QtCore.QCoreApplication.translate('MatPlot', 'Back to  previous view'),
-            'back.ppm', 'back'),
+            'back.png', 'back'),
         (QtCore.QCoreApplication.translate('MatPlot', 'Forward'),
             QtCore.QCoreApplication.translate('MatPlot', 'Forward to next view'),
-            'forward.ppm', 'forward'),
+            'forward.png', 'forward'),
         (None, None, None, None),        
         (QtCore.QCoreApplication.translate('MatPlot', 'Pan'),
             QtCore.QCoreApplication.translate('MatPlot', 'Pan axes with left mouse, zoom with right'),
-            'move.ppm', 'pan'),
+            'move.png', 'pan'),
         (QtCore.QCoreApplication.translate('MatPlot', 'Zoom'),
             QtCore.QCoreApplication.translate('MatPlot', 'Zoom to rectangle'),
-            'zoom_to_rect.ppm', 'zoom'),
+            'zoom_to_rect.png', 'zoom'),
         (None, None, None, None),
         (QtCore.QCoreApplication.translate('MatPlot', 'Subplots'),
             QtCore.QCoreApplication.translate('MatPlot', 'Configure subplots'),
             'subplots.png', 'configure_subplots'),
         (QtCore.QCoreApplication.translate('MatPlot', 'Save'),
             QtCore.QCoreApplication.translate('MatPlot', 'Save the figure'),
-            'filesave.ppm', 'save_figure'),
+            'filesave.png', 'save_figure'),
         )
 
     def __init__(self, canvas, parent):
@@ -195,6 +195,9 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
 
     def _init_toolbar(self):
         basedir = matplotlib.rcParams['datapath']
+        tmp = os.path.join(basedir, 'images')
+        if os.path.isdir(tmp):
+            basedir = tmp
 
         for text, tooltip_text, image_file, callback in self.toolitems:
             if not text:
