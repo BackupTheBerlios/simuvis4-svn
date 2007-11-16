@@ -40,6 +40,6 @@ class HelpBrowser(SubWindow):
     def showHelp(self, context=None, topic=None):
         self.show()
         #FIXME: show topic
-        
+
     def addSource(self, context, document):
         pass
