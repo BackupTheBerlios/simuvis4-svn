@@ -12,7 +12,7 @@ small changes.
 """
 from __future__ import division
 
-import math, os, sys
+import math, os, sys, tempfile
 
 import matplotlib
 from matplotlib import verbose
@@ -75,6 +75,51 @@ def new_figure_manager( num, *args, **kwargs ):
     return FigureManagerSV4( canvas, num )
 
 
+class MatPlotWindow(SubWindow):
+    def setup(self, canvas, num):
+        mainWin.workSpace.addWindow(self)
+        self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
+        self.mainLayout.setSpacing(2)
+
+        self.setWindowTitle(unicode(QtCore.QCoreApplication.translate('MatPlot', 'Figure %d')) % num)
+        image = os.path.join( matplotlib.rcParams['datapath'],'matplotlib.png' )
+        self.setWindowIcon(QtGui.QIcon(image))
+
+        self.canvas = canvas
+        canvas.setParent(self)
+        canvas.setFocusPolicy( QtCore.Qt.ClickFocus )
+        canvas.setFocus()
+        self.mainLayout.addWidget(canvas, 1)
+
+
+    def printWindow(self, printer):
+        # printing is done via SVG in a temporary file
+        try:
+            from PyQt4 import QtSvg
+        except ImportError:
+            SubWindow.printWindow(self, printer)
+            return
+        if not printer:
+            printer = QtGui.QPrinter()
+        printer.setPageSize(QtGui.QPrinter.A4)
+        dialog = QtGui.QPrintDialog(printer, self)
+        dialog.setWindowTitle(QtCore.QCoreApplication.translate('MatPlot', 'Print Document'))
+        if dialog.exec_() != QtGui.QDialog.Accepted:
+            return
+        painter = QtGui.QPainter(printer)
+        painter.setRenderHint(QtGui.QPainter.Antialiasing)
+        f, name = tempfile.mkstemp('.svg')
+        #os.close(f)
+        self.canvas.print_figure(name, dpi=300)
+        renderer = QtSvg.QSvgRenderer(name)
+        renderer.render(painter)
+        self.printer = printer # without this the printer gets destroyed to early
+
+
+    def saveWindow(self, fileName=None):
+        self.toolbar.save_figure()
+
+
 class FigureManagerSV4( FigureManagerBase ):
     """
     Public attributes
@@ -89,29 +134,17 @@ class FigureManagerSV4( FigureManagerBase ):
         FigureManagerBase.__init__( self, canvas, num )
         self.canvas = canvas
 
-        window = SubWindow(mainWin.workSpace)
+        window = MatPlotWindow(mainWin.workSpace)
+        window.setup(canvas, num)
         self.window = window
-        mainWin.workSpace.addWindow(window)
-        window.setAttribute(QtCore.Qt.WA_DeleteOnClose)
-        window.mainLayout.setSpacing(2)
 
-        window.setWindowTitle(unicode(QtCore.QCoreApplication.translate('MatPlot', 'Figure %d')) % num)
-        image = os.path.join( matplotlib.rcParams['datapath'],'matplotlib.png' )
-        window.setWindowIcon(QtGui.QIcon( image ))
-
-        canvas.setParent(window)
-
-        # Give the keyboard focus to the figure instead of the manager
-        canvas.setFocusPolicy( QtCore.Qt.ClickFocus )
-        canvas.setFocus()
-
-        window.mainLayout.addWidget(canvas, 1)
 
         QtCore.QObject.connect(window, QtCore.SIGNAL( 'destroyed()' ),
                             self._widgetclosed )
         window._destroying = False
 
         toolbar = self._get_toolbar(canvas, window)
+        window.toolbar = toolbar
         self.toolbar = toolbar
         if toolbar:
            window.mainLayout.addWidget(toolbar, 0)
@@ -267,11 +300,24 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
         return FigureCanvasSV4(fig)
 
     def save_figure(self):
-        fileName = unicode(QtGui.QFileDialog.getSaveFileName(self, QtCore.QCoreApplication.translate('MatPlot',
-            "Select file to save"), SimuVis4.Globals.defaultFolder, '*.png'))
-        if fileName:
-            SimuVis4.Globals.defaultFolder, tmp = os.path.split(fileName)
-            self.canvas.print_figure(fileName)
+        fileTypes = {'PNG':('png',), 'PS':('ps',), 'EPS':('eps',), 'BMP':('bmp',), 'SVG':('svg',), 'PDF':('pdf',)}
+        filters = ';;'.join(['%s (%s)' % (k, ' '.join(['*.'+e for e in v])) for k, v in fileTypes.items()])
+        dlg = QtGui.QFileDialog(self,
+            QtCore.QCoreApplication.translate('MatPlot', 'Select file to save'),
+            SimuVis4.Globals.defaultFolder or '', filters)
+        dlg.setFileMode(QtGui.QFileDialog.AnyFile)
+        dlg.setAcceptMode(QtGui.QFileDialog.AcceptSave)
+        if dlg.exec_() != QtGui.QDialog.Accepted:
+            return
+        tmp = str(dlg.selectedFilter())
+        fileType = tmp[:tmp.find('(')-1]
+        dlg.setDefaultSuffix(fileTypes[fileType][0])
+        files = dlg.selectedFiles()
+        if not files:
+            return
+        fileName = unicode(files[0])
+        SimuVis4.Globals.defaultFolder, tmp = os.path.split(fileName)
+        self.canvas.print_figure(fileName, dpi=300)
 
 
 class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg ):
