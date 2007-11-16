@@ -30,8 +30,7 @@ Usage: %s [options]
             use language lang if available
 """ % sys.argv[0]
 
-# svn_revision: string will be replaced by svn
-svn_revision = int('$Rev$'.split()[1])
+svn_revision = 61
 version_info = (4, 0, svn_revision)
 version_string = '4.0.%04d' % svn_revision
 
