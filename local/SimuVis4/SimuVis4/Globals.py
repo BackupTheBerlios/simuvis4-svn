@@ -68,7 +68,7 @@ else:
         configRead = True
     else:
         logger.warning('Config: system-wide config file not found: %s', systemConfigFile)
-    
+
     if os.path.isfile(personalConfigFile):
         logger.info('Config: reading personal settings from %s', personalConfigFile)
         config.read(personalConfigFile)
@@ -81,7 +81,7 @@ if not configRead or not config.has_section('main'):
     # default configuration values
     config.add_section('main')
     config.set_def('main', 'disable_splash', 'no')
-    config.set_def('main', 'splash_image', 'splash1.png')
+    config.set_def('main', 'splash_image', 'splash2.png')
     config.set_def('main', 'disable_main_menu', 'no')
     config.set_def('main', 'application_icon', 'Icon16.png')
     config.set_def('main', 'application_name', 'SimuVis4')
@@ -106,7 +106,9 @@ if not configRead or not config.has_section('main'):
 
     config.set_def('main', 'disable_help_browser', 'no')
 
-    config.set_def('main', 'save_last_exception', 'SV4_lastException.txt')
+    if platform == 'win32':
+        # FIXME: there's an error on windows when exiting, somewhere in the logging system...
+        config.set_def('main', 'save_last_exception', 'SV4_lastException.txt')
 
     # try to guess data path:
     dataPath = os.path.join(mainModule.baseDir, 'data')
