@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# encoding: latin-1
+# encoding: utf-8
 # version:  $Id$
 # author:   Joerg Raedler <jr@j-raedler.de>
 # license:  GPL v2
