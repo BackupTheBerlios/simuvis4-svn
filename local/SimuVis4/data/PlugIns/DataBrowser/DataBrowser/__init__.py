@@ -34,6 +34,7 @@ class PlugIn(SimplePlugIn):
             import NetCDF3
             browser.netCDF3Browser = NetCDF3.NetCDF3Browser()
             browser.toolBox.addItem(browser.netCDF3Browser, 'netCDF 3')
-            #browser.netCDF3Browser.model.addNcFile('/net/Homes/joerg/blafasel.nc')
+            browser.netCDF3Browser.model.addNcFile('blafasel.nc')
         except:
-            pass
+            SimuVis4.Globals.logger.warning(unicode(QCoreApplication.translate('DataBrowser',
+                'DataBrowser: could not load browser for netCDF3, please install pycdf from http://pysclint.sourceforge.net/pycdf/')))

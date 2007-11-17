@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -63,6 +62,11 @@
         <location filename="__init__.py" line="32"/>
         <source>Filesystem</source>
         <translation>Dateisystem</translation>
+    </message>
+    <message>
+        <location filename="__init__.py" line="40"/>
+        <source>DataBrowser: could not load browser for netCDF3, please install pycdf from http://pysclint.sourceforge.net/pycdf/</source>
+        <translation>DataBrowser: kann NetCDF3-Browser nicht laden, bitte pycdf von http://pysclint.sourceforge.net/pycdf/ installieren</translation>
     </message>
 </context>
 <context>
@@ -1075,12 +1079,12 @@ in der PythonConsole (falls installiert) oder in Skripten nutzen können.</trans
     <message>
         <location filename="PlugInProxy.py" line="59"/>
         <source>PlugIn: successfully initialized &quot;%s&quot;</source>
-        <translation>PlugIn: &quot;%s&quot; erfolgreich initialisiert</translation>
+        <translation type="obsolete">PlugIn: &quot;%s&quot; erfolgreich initialisiert</translation>
     </message>
     <message>
         <location filename="PlugInProxy.py" line="61"/>
         <source>PlugIn: error while initializing plugin &quot;%s&quot;</source>
-        <translation>PlugIn: Fehler bei der Initialisierung des PlugIns &quot;%s&quot;</translation>
+        <translation type="obsolete">PlugIn: Fehler bei der Initialisierung des PlugIns &quot;%s&quot;</translation>
     </message>
     <message>
         <location filename="PlugIn.py" line="32"/>
@@ -1096,6 +1100,21 @@ in der PythonConsole (falls installiert) oder in Skripten nutzen können.</trans
         <location filename="PlugIn.py" line="35"/>
         <source>PlugIn: %s: could not load translations for language &quot;%s&quot;, skipping</source>
         <translation>PlugIn: %s: konnte Übersetzung für Sprache &quot;%s&quot; nicht laden, überspringe es</translation>
+    </message>
+    <message>
+        <location filename="PlugInProxy.py" line="59"/>
+        <source>PlugIn: %s: successfully initialized</source>
+        <translation>PlugIn: %s: erfolgreich geladen</translation>
+    </message>
+    <message>
+        <location filename="PlugInProxy.py" line="61"/>
+        <source>PlugIn: %s: error while initializing plugin</source>
+        <translation>PlugIn: %s: Fehler bei der Initialisierung</translation>
+    </message>
+    <message>
+        <location filename="PlugInProxy.py" line="94"/>
+        <source>PlugIn: %s: serving file &quot;%s&quot; from plugin-path &quot;%s&quot;</source>
+        <translation type="obsolete">PlugIn: %s: lade Datei &quot;%s&quot; vom PlugIn-Pfad &quot;%s&quot;</translation>
     </message>
 </context>
 <context>

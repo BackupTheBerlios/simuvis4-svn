@@ -56,9 +56,9 @@ class PlugInFolderProxy:
             self.state = 1
             self.plugIn = m.PlugIn(self, self.name)
             self.state = 2
-            logger.info(unicode(QCoreApplication.translate('PlugIn', 'PlugIn: successfully initialized "%s"')), self.name)
+            logger.info(unicode(QCoreApplication.translate('PlugIn', 'PlugIn: %s: successfully initialized')), self.name)
         except:
-            logger.exception(unicode(QCoreApplication.translate('PlugIn', 'PlugIn: error while initializing plugin "%s"')), self.name)
+            logger.exception(unicode(QCoreApplication.translate('PlugIn', 'PlugIn: %s: error while initializing plugin')), self.name)
             self.state = -1
             self.plugIn = None
         del sys.path[0]
