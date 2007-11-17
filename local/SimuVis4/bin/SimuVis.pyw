@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# encoding: latin-1
+# encoding: utf-8
 # version:  $Id: SimuVis.pyw 43 2007-11-14 20:29:17Z jraedler $
 # author:   Joerg Raedler <joerg@dezentral.de>
 # license:  GPL v2
