@@ -21,7 +21,7 @@ class PlugIn(SimplePlugIn):
         if not cfg.has_section(cfgsec):
             cfg.add_section(cfgsec)
             cfg.set_def(cfgsec, 'start_enabled', 'yes')
-            cfg.set_def(cfgsec, 'tcp_port', '12346')
+            cfg.set_def(cfgsec, 'tcp_port', '12345')
             cfg.set_def(cfgsec, 'cmd_queue_size', '1')
             cfg.set_def(cfgsec, 'ip_filter', '127.0.0.1')
         glb = SimuVis4.Globals

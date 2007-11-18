@@ -35,6 +35,8 @@ class CodeReceiver:
     def __init__(self, tcpPort, qSize, ipFilter=''):
         self.queue = Queue.Queue(qSize)
         self.counter = SimuVis4.Misc.Counter()
+        SimuVis4.Globals.logger.info(unicode(QCoreApplication.translate('RemoteControl',
+            'RemoteControl: starting TCP listener at port %d'), tcpPort))
         self.tcpListener = threading.Thread(target=listen_tcp, args=(tcpPort, self.queue, ipFilter))
         self.timer = QTimer(SimuVis4.Globals.mainWin)
         QObject.connect(self.timer, SIGNAL('timeout()'), self.execute)
