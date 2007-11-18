@@ -38,13 +38,12 @@ class CodeReceiver:
         SimuVis4.Globals.logger.info(unicode(QCoreApplication.translate('RemoteControl',
             'RemoteControl: starting TCP listener at port %s')), tcpPort)
         self.tcpListener = threading.Thread(target=listen_tcp, args=(tcpPort, self.queue, ipFilter))
+        self.tcpListener.start()
         self.timer = QTimer(SimuVis4.Globals.mainWin)
         QObject.connect(self.timer, SIGNAL('timeout()'), self.execute)
 
     def setEnabled(self, e=True):
         if e:
-            if self.tcpListener and not self.tcpListener.isAlive():
-                self.tcpListener.start()
             self.timer.start(100)
         else:
             if self.timer.isActive():

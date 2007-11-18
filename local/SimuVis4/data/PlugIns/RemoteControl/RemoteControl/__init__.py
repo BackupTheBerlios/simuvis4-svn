@@ -33,7 +33,7 @@ class PlugIn(SimplePlugIn):
                 from Receiver import CodeReceiver
                 self.receiver = CodeReceiver(tcpPort, qSize, ipFilter)
                 self.toggleAction = QAction(glb.mainWin)
-                self.toggleAction.setText(QCoreApplication.translate('RemoteControl', 'Remote control'))
+                self.toggleAction.setText(QCoreApplication.translate('RemoteControl', 'Remote control active'))
                 self.toggleAction.setCheckable(True)
                 QObject.connect(self.toggleAction, SIGNAL("toggled(bool)"), self.receiver.setEnabled)
                 if cfg.has_option(cfgsec, 'start_enabled'):
