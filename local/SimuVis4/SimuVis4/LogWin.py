@@ -60,7 +60,7 @@ class LogWindow(SubWindow):
 
 
     def setThreshold(self, t):
-        self.handler.setLevel(levelInfo[t][1])
+        self.handler.setLevel(levelInfo[t][1]-1)
 
 
     def printWindow(self, printer=None):

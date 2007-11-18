@@ -19,10 +19,10 @@ globalNameSpace = Globals.__dict__ # gobals()
 
 def _execute(s):
     exec s in globalNameSpace
-    
+
 
 class Executor(object):
-    
+
     def __init__(self):
         self._threads = {}
         self._cnt = Misc.Counter()
@@ -50,7 +50,7 @@ class Executor(object):
         finally:
             self.postRun(name)
             self.cancelFlag = False
-        
+
     def runFile(self, f, name=None):
         """run python code from file-like object f"""
         return self.run(f.read(), name)
@@ -58,7 +58,7 @@ class Executor(object):
     def runFilename(self, name):
         """run python code from file with name n"""
         return self.run(open(name, 'r').read(), name)
-    
+
     def thread(self, c, name=None):
         """run python code c in a separate thread with name name"""
         if not name:
@@ -86,7 +86,7 @@ class Executor(object):
         thread = self.threads[name]
         thread.join(timeout)
         return not thread.isAlive()
-                
+
     def cleanThreads(self):
         """forget all finished threads, return number of active threads"""
         for name, thread in self.threads.items():
