@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1428,6 +1429,39 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
         <location filename="QPyShell.py" line="277"/>
         <source>Writing failed! Make sure you have write permissions!</source>
         <translation>Schreiben der Datei fehlgeschlagen! Stelle sicher, dass die Schreibrechte ausreichen!</translation>
+    </message>
+</context>
+<context>
+    <name>RemoteControl</name>
+    <message>
+        <location filename="__init__.py" line="36"/>
+        <source>Remote control</source>
+        <translation>Fernbedienung</translation>
+    </message>
+    <message>
+        <location filename="Receiver.py" line="21"/>
+        <source>accepting connection from %s, port %d</source>
+        <translation type="obsolete">akzeptiere Verbindung von %s, Port %d</translation>
+    </message>
+    <message>
+        <location filename="Receiver.py" line="30"/>
+        <source>refusing connection from %s, port %d</source>
+        <translation type="obsolete">lehne Verbindung von %s, Port %d ab</translation>
+    </message>
+    <message>
+        <location filename="Receiver.py" line="60"/>
+        <source>RemoteControl: trying to run code:</source>
+        <translation>RemoteControl: versuche, Code auszuführen: </translation>
+    </message>
+    <message>
+        <location filename="Receiver.py" line="21"/>
+        <source>RemoteControl: accepting connection from %s, port %d</source>
+        <translation>RemoteControl: akzeptiere Verbindung von %s, Port %d</translation>
+    </message>
+    <message>
+        <location filename="Receiver.py" line="30"/>
+        <source>RemoteControl: refusing connection from %s, port %d</source>
+        <translation>RemoteControl: lehne Verbindung von %s, Port %d ab</translation>
     </message>
 </context>
 <context>

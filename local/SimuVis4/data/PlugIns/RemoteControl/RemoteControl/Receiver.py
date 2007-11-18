@@ -18,7 +18,7 @@ def listen_tcp(port, queue, ipFilter):
         sip, sport = addr
         if sip.startswith(ipFilter):
             SimuVis4.Globals.logger.info(unicode(QCoreApplication.translate('RemoteControl',
-                'accepting connection from %s, port %d')), sip, sport)
+                'RemoteControl: accepting connection from %s, port %d')), sip, sport)
             while 1:
                 d = conn.recv(1024)
                 if not d: break
@@ -27,7 +27,7 @@ def listen_tcp(port, queue, ipFilter):
             conn.close()
         else:
             SimuVis4.Globals.logger.warning(unicode(QCoreApplication.translate('RemoteControl',
-                'refusing connection from %s, port %d')), sip, sport)
+                'RemoteControl: refusing connection from %s, port %d')), sip, sport)
 
 
 class CodeReceiver:
