@@ -364,7 +364,7 @@ h: diese Hilfe anzeigen
 <context>
     <name>MainWin</name>
     <message>
-        <location filename="MainWin.py" line="61"/>
+        <location filename="MainWin.py" line="62"/>
         <source>Ready</source>
         <translation>Fertig</translation>
     </message>
@@ -374,12 +374,12 @@ h: diese Hilfe anzeigen
         <translation type="obsolete">Skript &amp;ausführen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="69"/>
+        <location filename="MainWin.py" line="70"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="70"/>
+        <location filename="MainWin.py" line="71"/>
         <source>Execute python script</source>
         <translation>Pythonskript ausführen</translation>
     </message>
@@ -464,92 +464,92 @@ h: diese Hilfe anzeigen
         <translation type="obsolete">Skript schließen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="73"/>
+        <location filename="MainWin.py" line="74"/>
         <source>&amp;Print</source>
         <translation>&amp;Drucken</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="74"/>
+        <location filename="MainWin.py" line="75"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="80"/>
+        <location filename="MainWin.py" line="81"/>
         <source>Print window contents</source>
         <translation>Fensterinhalt drucken</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="78"/>
+        <location filename="MainWin.py" line="79"/>
         <source>&amp;Restart</source>
         <translation>Neusta&amp;rten</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="79"/>
+        <location filename="MainWin.py" line="80"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="83"/>
+        <location filename="MainWin.py" line="84"/>
         <source>&amp;Quit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="84"/>
+        <location filename="MainWin.py" line="85"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="85"/>
+        <location filename="MainWin.py" line="86"/>
         <source>Quit application</source>
         <translation>Anwendung beenden</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="88"/>
+        <location filename="MainWin.py" line="89"/>
         <source>&amp;Tile</source>
         <translation>&amp;Kacheln</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="89"/>
+        <location filename="MainWin.py" line="90"/>
         <source>Tile the windows</source>
         <translation>Unterfenster gekachelt anordnen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="97"/>
+        <location filename="MainWin.py" line="98"/>
         <source>&amp;Cascade</source>
         <translation>&amp;Kaskadieren</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="98"/>
+        <location filename="MainWin.py" line="99"/>
         <source>Cascade the windows</source>
         <translation>Unterfenster kaskadiert anordnen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="102"/>
+        <location filename="MainWin.py" line="103"/>
         <source>&amp;Maximize / Minimize</source>
         <translation>&amp;Maximieren / Minimieren</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="103"/>
+        <location filename="MainWin.py" line="104"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="104"/>
+        <location filename="MainWin.py" line="105"/>
         <source>Show current window maximized, minimized or normal</source>
         <translation>Aktuelles Unterfenster maximiert, minimiert oder normal anzeigen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="108"/>
+        <location filename="MainWin.py" line="109"/>
         <source>Arrange &amp;icons</source>
         <translation>&amp;Ikons anordnen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="109"/>
+        <location filename="MainWin.py" line="110"/>
         <source>Arrange the icons</source>
         <translation>Ikons auf der Arbeitsfläche anordnen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="113"/>
+        <location filename="MainWin.py" line="114"/>
         <source>Ne&amp;xt</source>
         <translation>&amp;Nächstes</translation>
     </message>
@@ -559,12 +559,12 @@ h: diese Hilfe anzeigen
         <translation type="obsolete">Ctrl+F6</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="115"/>
+        <location filename="MainWin.py" line="116"/>
         <source>Move the focus to the next window</source>
         <translation>Nächstes Unterfenster aktivieren</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="119"/>
+        <location filename="MainWin.py" line="120"/>
         <source>Pre&amp;vious</source>
         <translation>&amp;Vorheriges</translation>
     </message>
@@ -574,22 +574,22 @@ h: diese Hilfe anzeigen
         <translation type="obsolete">Ctrl+Shift+F6</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="121"/>
+        <location filename="MainWin.py" line="122"/>
         <source>Move the focus to the previous window</source>
         <translation>Vorheriges Unterfenster aktivieren</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="157"/>
+        <location filename="MainWin.py" line="159"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="126"/>
+        <location filename="MainWin.py" line="127"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="127"/>
+        <location filename="MainWin.py" line="128"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
@@ -599,52 +599,52 @@ h: diese Hilfe anzeigen
         <translation type="obsolete">Über</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="139"/>
+        <location filename="MainWin.py" line="141"/>
         <source>&amp;File</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="148"/>
+        <location filename="MainWin.py" line="150"/>
         <source>&amp;Tools</source>
         <translation>&amp;Werkzeuge</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="150"/>
+        <location filename="MainWin.py" line="152"/>
         <source>&amp;Window</source>
         <translation>&amp;Fenster</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="153"/>
+        <location filename="MainWin.py" line="155"/>
         <source>&amp;PlugIns</source>
         <translation>&amp;PlugIns</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="204"/>
+        <location filename="MainWin.py" line="206"/>
         <source>Initializing Plugins</source>
         <translation>Initialisiere PlugIns</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="228"/>
+        <location filename="MainWin.py" line="230"/>
         <source>Main: startup succeeded</source>
         <translation>Hauptprogramm: Startvorgang beendet</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="243"/>
+        <location filename="MainWin.py" line="245"/>
         <source>Select file to execute</source>
         <translation>Wähle eine auszuführende Datei aus</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="249"/>
+        <location filename="MainWin.py" line="251"/>
         <source>Executing file %s</source>
         <translation>Führe Datei aus: %s</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="251"/>
+        <location filename="MainWin.py" line="253"/>
         <source>Loading aborted</source>
         <translation>Laden abgebrochen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="265"/>
+        <location filename="MainWin.py" line="267"/>
         <source>Main: uncatched internal exception: %s: %s:
 %s</source>
         <translation>Hauptprogramm: unbehandelte interne Ausnahme: %s: %s:
@@ -658,12 +658,12 @@ based on python, Qt, Qwt, VTK and other</source>
 auf Basis von Python, Qt, Qwt, Vtk</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="387"/>
+        <location filename="MainWin.py" line="389"/>
         <source>restarting on platform &quot;%s&quot; not yet supported</source>
         <translation>Neustart auf der Plattform &quot;%s&quot; wird nicht unterstützt</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="68"/>
+        <location filename="MainWin.py" line="69"/>
         <source>E&amp;xecute scipt</source>
         <translation>Skript &amp;ausführen</translation>
     </message>
@@ -708,12 +708,12 @@ auf Basis von Python, Qt, Qwt, Vtk</translation>
         <translation type="obsolete">Datei schließen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="130"/>
+        <location filename="MainWin.py" line="131"/>
         <source>&amp;About ...</source>
         <translation>Ü&amp;ber ...</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="131"/>
+        <location filename="MainWin.py" line="132"/>
         <source>Info about this application</source>
         <translation>Information über diese Anwendung</translation>
     </message>
@@ -738,64 +738,69 @@ auf Basis von Python, Qt, Qwt, Vtk</translation>
         <translation type="obsolete">&amp;Ausführen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="92"/>
+        <location filename="MainWin.py" line="93"/>
         <source>&amp;Fullscreen (main window)</source>
         <translation>&amp;Vollbild (Hauptfenster)</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="94"/>
+        <location filename="MainWin.py" line="95"/>
         <source>Toggle fullscreen appearance of main window</source>
         <translation>Vollbilddarstellung des Hauptfensters umschalten</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="114"/>
+        <location filename="MainWin.py" line="115"/>
         <source>Ctrl+&gt;</source>
         <translation>Ctrl+&gt;</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="120"/>
+        <location filename="MainWin.py" line="121"/>
         <source>Ctrl+&lt;</source>
         <translation>Ctrl+&lt;</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="93"/>
+        <location filename="MainWin.py" line="94"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="174"/>
+        <location filename="MainWin.py" line="176"/>
         <source>Starting logging system</source>
         <translation>Starte das Log-System</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="187"/>
+        <location filename="MainWin.py" line="189"/>
         <source>Starting plugin manager</source>
         <translation>Starte den Plugin-Manager</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="195"/>
+        <location filename="MainWin.py" line="197"/>
         <source>Starting plugin browser</source>
         <translation>Starte den Plugin-Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="212"/>
+        <location filename="MainWin.py" line="214"/>
         <source>Starting task browser</source>
         <translation>Starte den Task-Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="221"/>
+        <location filename="MainWin.py" line="223"/>
         <source>Starting help system</source>
         <translation>Starte das Hilfe-System</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="134"/>
+        <location filename="MainWin.py" line="135"/>
         <source>Open homepage</source>
         <translation>Öffne Homepage</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="135"/>
+        <location filename="MainWin.py" line="136"/>
         <source>Open application homepage in broweser</source>
         <translation>Zeige die Homepage der Anwendung im Browser</translation>
+    </message>
+    <message>
+        <location filename="MainWin.py" line="397"/>
+        <source>Main: shutdown complete</source>
+        <translation>Hauptprogramm: shutdown beendet</translation>
     </message>
 </context>
 <context>
@@ -1116,6 +1121,11 @@ in der PythonConsole (falls installiert) oder in Skripten nutzen können.</trans
         <location filename="PlugInProxy.py" line="94"/>
         <source>PlugIn: %s: serving file &quot;%s&quot; from plugin-path &quot;%s&quot;</source>
         <translation type="obsolete">PlugIn: %s: lade Datei &quot;%s&quot; vom PlugIn-Pfad &quot;%s&quot;</translation>
+    </message>
+    <message>
+        <location filename="PlugIn.py" line="50"/>
+        <source>PlugIn: %s: trying to unload</source>
+        <translation>PlugIn: %s: versuche, Plugin zu deaktivieren</translation>
     </message>
 </context>
 <context>
@@ -1449,17 +1459,17 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
         <translation type="obsolete">lehne Verbindung von %s, Port %d ab</translation>
     </message>
     <message>
-        <location filename="Receiver.py" line="61"/>
+        <location filename="Receiver.py" line="79"/>
         <source>RemoteControl: trying to run code:</source>
         <translation>RemoteControl: versuche, Code auszuführen: </translation>
     </message>
     <message>
-        <location filename="Receiver.py" line="21"/>
+        <location filename="Receiver.py" line="31"/>
         <source>RemoteControl: accepting connection from %s, port %d</source>
         <translation>RemoteControl: akzeptiere Verbindung von %s, Port %d</translation>
     </message>
     <message>
-        <location filename="Receiver.py" line="30"/>
+        <location filename="Receiver.py" line="40"/>
         <source>RemoteControl: refusing connection from %s, port %d</source>
         <translation>RemoteControl: lehne Verbindung von %s, Port %d ab</translation>
     </message>
@@ -1471,7 +1481,27 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
     <message>
         <location filename="Receiver.py" line="39"/>
         <source>RemoteControl: starting TCP listener at port %s</source>
-        <translation>RemoteControl: starte TCP-Enpfänger auf Port %s</translation>
+        <translation type="obsolete">RemoteControl: starte TCP-Enpfänger auf Port %s</translation>
+    </message>
+    <message>
+        <location filename="Receiver.py" line="20"/>
+        <source>RemoteControl: could not start TCP listener at port %s</source>
+        <translation>RemoteControl: konnte TCP Empfänger auf Port %s nicht starten</translation>
+    </message>
+    <message>
+        <location filename="Receiver.py" line="52"/>
+        <source>RemoteControl: starting thread for TCP listener at port %s</source>
+        <translation>RemoteControl: starte Thread für den TCP Empfänger auf Port %s</translation>
+    </message>
+    <message>
+        <location filename="Receiver.py" line="70"/>
+        <source>RemoteControl: Could not stop receiver!</source>
+        <translation>RemoteControl: Konnte Empfänger nicht stoppen!</translation>
+    </message>
+    <message>
+        <location filename="Receiver.py" line="71"/>
+        <source>Stopping the receiver thread of the RemoteContol plugin failed!</source>
+        <translation>Das Stoppen des Threads für den TCP-Empfänger ist fehlgeschlagen!</translation>
     </message>
 </context>
 <context>

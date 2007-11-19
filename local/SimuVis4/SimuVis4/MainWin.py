@@ -372,7 +372,6 @@ class MainWindow(QMainWindow):
             self.plugInManager.shutdown()
         else:
             return False
-        logger.info(QCoreApplication.translate('MainWin', 'Main: shutdown complete'))
         return True
 
 
@@ -395,6 +394,7 @@ class MainWindow(QMainWindow):
         if self.propagateShutdown():
             # FIXME: hide shutdown-related exception like logger-IOError on windows
             self.hideExceptions = True
+            logger.info(QCoreApplication.translate('MainWin', 'Main: shutdown complete'))
             Globals.application.closeAllWindows()
 
 
