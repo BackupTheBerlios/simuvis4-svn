@@ -15,9 +15,10 @@ from About import AboutDlg
 
 cfg    = Globals.config
 logger = Globals.logger
-    
+
 
 class ExceptionDialog(QDialog, Ui_ExceptionDialog):
+
     def __init__(self, parent):
         QDialog.__init__(self, parent)
         self.setupUi(self)
@@ -26,10 +27,10 @@ class ExceptionDialog(QDialog, Ui_ExceptionDialog):
 
 
 class MainWindow(QMainWindow):
-    
+
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
-        
+
         self.hideExceptions = cfg.getboolean('main', 'hide_exceptions')
         if cfg.has_option('main', 'save_last_exception'):
             self.saveLastException = cfg['main:save_last_exception']
@@ -134,6 +135,7 @@ class MainWindow(QMainWindow):
         self.helpHomepageAction = QAction(QIcon(), QCoreApplication.translate('MainWin', 'Open homepage'), self)
         self.helpHomepageAction.setStatusTip(QCoreApplication.translate('MainWin', 'Open application homepage in broweser'))
         self.connect(self.helpHomepageAction, SIGNAL("triggered()"), self.showHomepage)
+
 
     def _initMenus(self):
         self.fileMenu = self.menuBar().addMenu(QCoreApplication.translate('MainWin', '&File'))
@@ -370,6 +372,7 @@ class MainWindow(QMainWindow):
             self.plugInManager.shutdown()
         else:
             return False
+        logger.info(QCoreApplication.translate('MainWin', 'Main: shutdown complete'))
         return True
 
 

@@ -16,7 +16,7 @@ class PlugIn(SimplePlugIn):
 
     def load(self):
         cfg = SimuVis4.Globals.config
-        self.tcpReceiver = None
+        self.receiver = None
         cfgsec = self.name.lower()
         if not cfg.has_section(cfgsec):
             cfg.add_section(cfgsec)
@@ -41,8 +41,6 @@ class PlugIn(SimplePlugIn):
                 glb.mainWin.plugInMenu.addAction(self.toggleAction)
 
     def unload(self, fast):
-        if self.tcpReceiver:
-            if not fast:
-                self.receiver.shutdown()
-                self.receiver = None
-
+        if self.receiver:
+            self.receiver.shutdown()
+            self.receiver = None

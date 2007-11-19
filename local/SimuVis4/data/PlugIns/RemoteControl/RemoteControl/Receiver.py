@@ -4,35 +4,43 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-import SimuVis4, sys, socket, threading, Queue
+import SimuVis4, sys, socket, threading, Queue, time
 from PyQt4.QtCore import QTimer, QCoreApplication, QObject, SIGNAL
+from PyQt4.QtGui import QMessageBox
 
+shutdownEvent = threading.Event()
 
 def listen_tcp(port, queue, ipFilter):
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.bind(('', port))
+        s.settimeout(1.0)
     except:
         SimuVis4.Globals.logger.exception(unicode(QCoreApplication.translate('RemoteControl',
             'RemoteControl: could not start TCP listener at port %s')), port)
         return
-    while 1:
+    while not shutdownEvent.isSet():
         data = []
-        s.listen(1)
-        conn, addr = s.accept()
-        sip, sport = addr
-        if sip.startswith(ipFilter):
-            SimuVis4.Globals.logger.info(unicode(QCoreApplication.translate('RemoteControl',
-                'RemoteControl: accepting connection from %s, port %d')), sip, sport)
-            while 1:
-                d = conn.recv(1024)
-                if not d: break
-                data.append(d)
-            queue.put(''.join(data), True)
-            conn.close()
-        else:
-            SimuVis4.Globals.logger.warning(unicode(QCoreApplication.translate('RemoteControl',
-                'RemoteControl: refusing connection from %s, port %d')), sip, sport)
+        try:
+            sys.stdout.flush()
+            s.listen(1)
+            conn, addr = s.accept()
+            sip, sport = addr
+            if sip.startswith(ipFilter):
+                SimuVis4.Globals.logger.info(unicode(QCoreApplication.translate('RemoteControl',
+                    'RemoteControl: accepting connection from %s, port %d')), sip, sport)
+                while 1:
+                    d = conn.recv(1024)
+                    if not d: break
+                    data.append(d)
+                queue.put(''.join(data), True)
+                conn.close()
+            else:
+                SimuVis4.Globals.logger.warning(unicode(QCoreApplication.translate('RemoteControl',
+                    'RemoteControl: refusing connection from %s, port %d')), sip, sport)
+        except socket.timeout:
+            pass
+    s.close()
 
 
 class CodeReceiver:
@@ -55,8 +63,12 @@ class CodeReceiver:
                 self.timer.stop()
 
     def shutdown(self):
-        self.timer.stop()
-        # FIXME: close threads
+        shutdownEvent.set()
+        self.tcpListener.join(3)
+        if self.tcpListener.isAlive():
+            QMessageBox.critical(SimuVis4.Global.mainWin,
+                QCoreApplication.translate('RemoteControl', 'RemoteControl: Could not stop receiver!'),
+                QCoreApplication.translate('RemoteControl', 'Stopping the receiver thread of the RemoteContol plugin failed!'))
 
     def execute(self):
         if self.queue.empty():
@@ -70,3 +82,6 @@ class CodeReceiver:
             SimuVis4.Globals.logger.debug('-'*60)
             name = "Remote Code %d" % self.counter()
             SimuVis4.Globals.mainWin.executor.run(d, name=name)
+
+    def __del__(self):
+        self.shutdown()

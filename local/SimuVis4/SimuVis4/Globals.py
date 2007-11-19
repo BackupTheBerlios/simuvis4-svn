@@ -95,6 +95,8 @@ config.set_def('main', 'i18n_language', 'de')
 config.set_def('main', 'save_config', 'no')
 config.set_def('main', 'ignore_plugins', 'DummyPlugIn DataStorageBrowser')
 
+
+config.set_def('main', 'log_file', '.SV4.log')
 config.set_def('main', 'disable_log_window', 'no')
 config.set_def('main', 'hide_log_window', 'yes')
 config.set_def('main', 'log_threshold', str(logging.INFO))
@@ -131,4 +133,7 @@ config.set_def('main', 'user_work_path', os.getcwd())
 defaultFolder = config['main:user_work_path']
 
 logger.setLevel(config.getint('main', 'log_threshold'))
-
+logFile = config.get('main', 'log_file')
+if logFile:
+    from logging import FileHandler
+    logger.addHandler(FileHandler(logFile))

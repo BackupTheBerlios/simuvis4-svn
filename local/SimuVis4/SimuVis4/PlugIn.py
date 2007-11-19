@@ -47,6 +47,7 @@ class SimplePlugIn:
         if not fast:
             if self._translator:
                 SimuVis4.Globals.application.removeTranslator(self._translator)
+        self._glb.logger.info(unicode(QCoreApplication.translate('PlugIn', 'PlugIn: %s: trying to unload')), self.name)
         self.unload(fast)
 
 

@@ -46,6 +46,31 @@ class Counter(object):
         return float(self.__call__())
 
 
+class BoolSignal(object):
+    def __init__(self, vunset = False, vset = True):
+        self._unset = vunset
+        self._set = vset
+        self._v = vunset
+
+    def set(self):
+        self._v = self._set
+
+    def unset(self):
+        self._v = self._unset
+
+    def toggle(self):
+        if self.isSet():
+            self._v = self._unset
+        else:
+            self._v = self._set
+
+    def isSet(self):
+        return self._v == self._set
+
+    def __call__(self):
+        return self._v
+
+
 class Switcher(object):
     """will switch between two results with every call"""
     def __init__(self, v=0, v0=0, v1=1):
