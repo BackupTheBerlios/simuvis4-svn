@@ -68,8 +68,10 @@ class SV4RemoteClientUI(QtGui.QWidget):
             pass
 
 if __name__ == "__main__":
-    import sys
+    import sys, os
     app = QtGui.QApplication(sys.argv)
     mainWidget = SV4RemoteClientUI()
+    if len(sys.argv) > 1 and os.path.isfile(sys.argv[-1]):
+        mainWidget.codeInput.setText(open(sys.argv[-1], 'r').read())
     mainWidget.show()
     sys.exit(app.exec_())

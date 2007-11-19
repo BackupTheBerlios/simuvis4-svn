@@ -9,8 +9,13 @@ from PyQt4.QtCore import QTimer, QCoreApplication, QObject, SIGNAL
 
 
 def listen_tcp(port, queue, ipFilter):
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.bind(('', port))
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.bind(('', port))
+    except:
+        SimuVis4.Globals.logger.exception(unicode(QCoreApplication.translate('RemoteControl',
+            'RemoteControl: could not start TCP listener at port %s')), port)
+        return
     while 1:
         data = []
         s.listen(1)
@@ -36,7 +41,7 @@ class CodeReceiver:
         self.queue = Queue.Queue(qSize)
         self.counter = SimuVis4.Misc.Counter()
         SimuVis4.Globals.logger.info(unicode(QCoreApplication.translate('RemoteControl',
-            'RemoteControl: starting TCP listener at port %s')), tcpPort)
+            'RemoteControl: starting thread for TCP listener at port %s')), tcpPort)
         self.tcpListener = threading.Thread(target=listen_tcp, args=(tcpPort, self.queue, ipFilter))
         self.tcpListener.start()
         self.timer = QTimer(SimuVis4.Globals.mainWin)
@@ -58,7 +63,8 @@ class CodeReceiver:
             return
         else:
             d = self.queue.get(5.0, True)
-            SimuVis4.Globals.logger.debug(unicode(QCoreApplication.translate('RemoteControl', 'RemoteControl: trying to run code:')))
+            SimuVis4.Globals.logger.debug(unicode(QCoreApplication.translate('RemoteControl',
+                'RemoteControl: trying to run code:')))
             SimuVis4.Globals.logger.debug('-'*60)
             SimuVis4.Globals.logger.debug(unicode(d))
             SimuVis4.Globals.logger.debug('-'*60)

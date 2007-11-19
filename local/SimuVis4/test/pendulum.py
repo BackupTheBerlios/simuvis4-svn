@@ -116,7 +116,7 @@ class PendulumGraphics(Pendulum):
         self.gPendulum.rotate(self.phiStep)
 
 
-graphWin = Graphics.manager.newWindow("Pendel")
+graphWin = Graphics.winManager.newWindow("Pendel")
 
 pendulum = PendulumGraphics(length=5, phi=-90, omega=228.00)
 pendulum.initGraphics(graphWin.graphicsView)
