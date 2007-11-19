@@ -17,7 +17,7 @@ class PlugIn(SimplePlugIn):
         cfgsec = self.name.lower()
         if not cfg.has_section(cfgsec):
             cfg.add_section(cfgsec)
-            cfg.set_def(cfgsec, 'show', 'yes')
+        cfg.set_def(cfgsec, 'show', 'yes')
         glb = SimuVis4.Globals
         import Browser
         browser = Browser.Browser()

@@ -71,7 +71,7 @@ class PlugIn(SimplePlugIn):
         cfgsec = self.name.lower()
         if not cfg.has_section(cfgsec):
             cfg.add_section(cfgsec)
-            cfg.set_def(cfgsec, 'show_config_warning', 'yes')
+        cfg.set_def(cfgsec, 'show_config_warning', 'yes')
         glb = SimuVis4.Globals
         import matplotlib
         self.matplotlib = matplotlib
@@ -81,8 +81,11 @@ class PlugIn(SimplePlugIn):
             if cfg.getboolean(cfgsec, 'show_config_warning'):
                 QTimer().singleShot(2000, self.showConfigWarning)
             raise Exception('matplotlib does not yet support SV4')
-        logo = os.path.join( matplotlib.rcParams['datapath'], 'matplotlib.png' )
-        winIcon = QIcon(logo)
+        dpath = matplotlib.rcParams['datapath']
+        tmp = os.path.join(dpath, 'images')
+        if os.path.isdir(tmp):
+            dpath = tmp
+        winIcon = QIcon(os.path.join(dpath, 'matplotlib.png'))
         testAction = QAction(winIcon,
             QCoreApplication.translate('MatPlot', '&MatPlot Test'), SimuVis4.Globals.mainWin)
         testAction.setStatusTip(QCoreApplication.translate('MatPlot', 'Show a matplotlib test window'))

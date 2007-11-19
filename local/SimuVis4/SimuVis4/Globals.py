@@ -80,52 +80,53 @@ else:
 if not configRead or not config.has_section('main'):
     # default configuration values
     config.add_section('main')
-    config.set_def('main', 'disable_splash', 'no')
-    config.set_def('main', 'splash_image', 'splash2.png')
-    config.set_def('main', 'disable_main_menu', 'no')
-    config.set_def('main', 'application_icon', 'Icon16.png')
-    config.set_def('main', 'application_name', 'SimuVis4')
-    if mainModule.qtcore.PYQT_VERSION_STR >= '4.2':
-        config.set_def('main', 'background_image', 'background.png')
 
-    config.set_def('main', 'hide_exceptions', 'no')
+config.set_def('main', 'disable_splash', 'no')
+config.set_def('main', 'splash_image', 'splash2.png')
+config.set_def('main', 'disable_main_menu', 'no')
+config.set_def('main', 'application_icon', 'Icon16.png')
+config.set_def('main', 'application_name', 'SimuVis4')
+if mainModule.qtcore.PYQT_VERSION_STR >= '4.2':
+    config.set_def('main', 'background_image', 'background.png')
 
-    config.set_def('main', 'i18n_language', 'de')
-    config.set_def('main', 'save_config', 'no')
-    config.set_def('main', 'ignore_plugins', 'DummyPlugIn DataStorageBrowser')
+config.set_def('main', 'hide_exceptions', 'no')
 
-    config.set_def('main', 'disable_log_window', 'no')
-    config.set_def('main', 'hide_log_window', 'yes')
-    config.set_def('main', 'log_threshold', str(logging.INFO))
+config.set_def('main', 'i18n_language', 'de')
+config.set_def('main', 'save_config', 'no')
+config.set_def('main', 'ignore_plugins', 'DummyPlugIn DataStorageBrowser')
 
-    config.set_def('main', 'disable_task_browser', 'yes')
-    config.set_def('main', 'hide_task_browser', 'yes')
+config.set_def('main', 'disable_log_window', 'no')
+config.set_def('main', 'hide_log_window', 'yes')
+config.set_def('main', 'log_threshold', str(logging.INFO))
 
-    config.set_def('main', 'disable_plugin_browser', 'no')
-    config.set_def('main', 'hide_plugin_browser', 'yes')
+config.set_def('main', 'disable_task_browser', 'yes')
+config.set_def('main', 'hide_task_browser', 'yes')
 
-    config.set_def('main', 'disable_help_browser', 'no')
+config.set_def('main', 'disable_plugin_browser', 'no')
+config.set_def('main', 'hide_plugin_browser', 'yes')
 
-    if platform == 'win32':
-        # FIXME: there's an error on windows when exiting, somewhere in the logging system...
-        config.set_def('main', 'save_last_exception', 'SV4_lastException.txt')
+config.set_def('main', 'disable_help_browser', 'no')
 
-    # try to guess data path:
-    dataPath = os.path.join(mainModule.baseDir, 'data')
-    if not os.path.isdir(dataPath):
-        # already installed, but not configured correctly?
-        dataPath = os.path.join(mainModule.baseDir, 'lib', 'SimuVis4')
-    if not os.path.isdir(dataPath):
-        logger.error('Config: could not guess data path, SimuVis may not work correctly!')
-    config.set_def('main', 'system_data_path', dataPath)
-    config.set_def('main', 'system_plugin_path', os.path.join(dataPath, 'PlugIns'))
-    config.set_def('main', 'system_picture_path', os.path.join(dataPath, 'Pictures'))
-    config.set_def('main', 'system_language_path', os.path.join(dataPath, 'Language'))
-    config.set_def('main', 'system_help_path', os.path.join(dataPath, 'Help'))
+if platform == 'win32':
+    # FIXME: there's an error on windows when exiting, somewhere in the logging system...
+    config.set_def('main', 'save_last_exception', 'SV4_lastException.txt')
 
-    config.set_def('main', 'user_plugin_path', os.path.join(mainModule.baseDir, '..', 'AdditionalPlugIns'))
+# try to guess data path:
+dataPath = os.path.join(mainModule.baseDir, 'data')
+if not os.path.isdir(dataPath):
+    # already installed, but not configured correctly?
+    dataPath = os.path.join(mainModule.baseDir, 'lib', 'SimuVis4')
+if not os.path.isdir(dataPath):
+    logger.error('Config: could not guess data path, SimuVis may not work correctly!')
+config.set_def('main', 'system_data_path', dataPath)
+config.set_def('main', 'system_plugin_path', os.path.join(dataPath, 'PlugIns'))
+config.set_def('main', 'system_picture_path', os.path.join(dataPath, 'Pictures'))
+config.set_def('main', 'system_language_path', os.path.join(dataPath, 'Language'))
+config.set_def('main', 'system_help_path', os.path.join(dataPath, 'Help'))
 
-    config.set_def('main', 'user_work_path', os.getcwd())
+config.set_def('main', 'user_plugin_path', os.path.join(mainModule.baseDir, '..', 'AdditionalPlugIns'))
+
+config.set_def('main', 'user_work_path', os.getcwd())
 
 defaultFolder = config['main:user_work_path']
 

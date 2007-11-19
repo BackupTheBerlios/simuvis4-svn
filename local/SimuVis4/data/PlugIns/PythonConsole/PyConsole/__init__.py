@@ -19,10 +19,10 @@ class PlugIn(SimplePlugIn):
         cfgsec = self.name.lower()
         if not cfg.has_section(cfgsec):
             cfg.add_section(cfgsec)
-            cfg.set_def(cfgsec, 'show_window', 'no')
-            cfg.set_def(cfgsec, 'show_minimized', 'no')
-            cfg.set_def(cfgsec, 'show_maximized', 'yes')
-            cfg.set_def(cfgsec, 'use_history', 'yes')
+        cfg.set_def(cfgsec, 'show_window', 'no')
+        cfg.set_def(cfgsec, 'show_minimized', 'no')
+        cfg.set_def(cfgsec, 'show_maximized', 'yes')
+        cfg.set_def(cfgsec, 'use_history', 'yes')
         glb = SimuVis4.Globals
         from PyConsoleWindow import PyConsoleWindow
         self.consoleWindow = PyConsoleWindow(glb.mainWin.workSpace)
