@@ -1436,7 +1436,7 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
     <message>
         <location filename="__init__.py" line="36"/>
         <source>Remote control</source>
-        <translation>Fernbedienung</translation>
+        <translation type="obsolete">Fernbedienung</translation>
     </message>
     <message>
         <location filename="Receiver.py" line="21"/>
@@ -1449,7 +1449,7 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
         <translation type="obsolete">lehne Verbindung von %s, Port %d ab</translation>
     </message>
     <message>
-        <location filename="Receiver.py" line="60"/>
+        <location filename="Receiver.py" line="61"/>
         <source>RemoteControl: trying to run code:</source>
         <translation>RemoteControl: versuche, Code auszuführen: </translation>
     </message>
@@ -1462,6 +1462,16 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
         <location filename="Receiver.py" line="30"/>
         <source>RemoteControl: refusing connection from %s, port %d</source>
         <translation>RemoteControl: lehne Verbindung von %s, Port %d ab</translation>
+    </message>
+    <message>
+        <location filename="__init__.py" line="36"/>
+        <source>Remote control active</source>
+        <translation>Fernsteuerung aktiv</translation>
+    </message>
+    <message>
+        <location filename="Receiver.py" line="39"/>
+        <source>RemoteControl: starting TCP listener at port %s</source>
+        <translation>RemoteControl: starte TCP-Enpfänger auf Port %s</translation>
     </message>
 </context>
 <context>
