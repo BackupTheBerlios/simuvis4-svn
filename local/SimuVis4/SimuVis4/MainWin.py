@@ -84,7 +84,7 @@ class MainWindow(QMainWindow):
         self.fileExitAction = QAction(QIcon(QPixmap(Icons.fileExit)), QCoreApplication.translate('MainWin', '&Quit'), self)
         self.fileExitAction.setShortcut(QCoreApplication.translate('MainWin', "Ctrl+Q"))
         self.fileExitAction.setStatusTip(QCoreApplication.translate('MainWin', 'Quit application'))
-        self.connect(self.fileExitAction, SIGNAL("triggered()"), self.exitApplication)
+        self.connect(self.fileExitAction, SIGNAL("triggered()"), self.close)
 
         self.winTileAction = QAction(QCoreApplication.translate('MainWin', "&Tile"), self)
         self.winTileAction.setStatusTip(QCoreApplication.translate('MainWin', "Tile the windows"))
@@ -395,7 +395,12 @@ class MainWindow(QMainWindow):
             # FIXME: hide shutdown-related exception like logger-IOError on windows
             self.hideExceptions = True
             logger.info(QCoreApplication.translate('MainWin', 'Main: shutdown complete'))
-            Globals.application.closeAllWindows()
+            #Globals.application.closeAllWindows()
+
+
+    def closeEvent(self, e):
+        self.exitApplication()
+        e.accept()
 
 
     def killApplication(self):
