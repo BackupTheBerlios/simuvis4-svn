@@ -6,8 +6,10 @@
 
 import SimuVis4, os
 from SimuVis4.SubWin import SubWindow
-from PyQt4.Qwt5 import QwtPlot, QwtLegend, QwtPlotGrid, QwtPlotZoomer, QwtPicker, QwtPlotPrintFilter, QwtSlider
-from PyQt4.QtGui import QFrame, QHBoxLayout, QToolButton, QSizePolicy, QPen, QPrinter, QPrintDialog, QFileDialog, QDialog
+from PyQt4.Qwt5 import QwtPlot, QwtLegend, QwtPlotGrid, QwtPlotZoomer, QwtPicker,\
+    QwtPlotPrintFilter, QwtSlider, QwtPlotPanner, QwtPlotMagnifier
+from PyQt4.QtGui import QFrame, QHBoxLayout, QToolButton, QSizePolicy, QPen, QPrinter,\
+    QPrintDialog, QFileDialog, QDialog
 from PyQt4.QtCore import SIGNAL, QCoreApplication, Qt, QSize
 from PyQt4.QtSvg import QSvgGenerator
 
@@ -16,15 +18,19 @@ class QwtPlotWindow(SubWindow):
         SubWindow.__init__(self, parent)
         self.setWindowTitle(QCoreApplication.translate('QwtPlot', 'QwtPlotWindow'))
         self.plotWidget = QwtPlot(self)
+        self.plotWidget.plotLayout().setAlignCanvasToScales(True)
         self.legend = QwtLegend()
         self.legend.setItemMode(QwtLegend.ClickableItem)
         self.plotWidget.insertLegend(self.legend, QwtPlot.RightLegend)
         self.grid = QwtPlotGrid()
         self.grid.attach(self.plotWidget)
         self.grid.setPen(QPen(Qt.black, 0, Qt.DotLine))
-        self.zoomer = QwtPlotZoomer(QwtPlot.xBottom,QwtPlot.yLeft, QwtPicker.DragSelection, QwtPicker.AlwaysOff, 
-            self.plotWidget.canvas())
+        self.zoomer = QwtPlotZoomer(QwtPlot.xBottom, QwtPlot.yLeft, QwtPicker.DragSelection,
+            QwtPicker.AlwaysOff, self.plotWidget.canvas())
         self.zoomer.setRubberBandPen(QPen(Qt.green))
+        self.magnifier = QwtPlotMagnifier(self.plotWidget.canvas())
+        self.panner = QwtPlotPanner(self.plotWidget.canvas())
+        self.panner.setMouseButton(Qt.LeftButton, Qt.ControlModifier)
         self.mainLayout.setMargin(0)
         self.mainLayout.setSpacing(0)
         self.mainLayout.addWidget(self.plotWidget, 1)
@@ -40,31 +46,49 @@ class QwtPlotWindow(SubWindow):
         """Toggle the visibility of a plot item"""
         plotItem.setVisible(not plotItem.isVisible())
         self.plotWidget.replot()
-        
-        
+
+
     def initToolBar(self):
         if self.toolBar:
             return
         self.toolBar = QFrame(self)
         self.toolBarLayout = QHBoxLayout(self.toolBar)
-        self.toolBarLayout.setMargin(0)
-        self.toolBarLayout.setSpacing(0)
+        self.toolBarLayout.setMargin(4)
+        self.toolBarLayout.setSpacing(4)
+
+        self.zoomerButton = QToolButton(self.toolBar)
+        self.zoomerButton.setText('Z')
+        self.zoomerButton.setCheckable(True)
+        self.zoomerButton.setChecked(self.zoomer.isEnabled())
+        self.connect(self.zoomerButton, SIGNAL('toggled(bool)'), self.zoomer.setEnabled)
+        self.toolBarLayout.addWidget(self.zoomerButton)
+
+        self.magnifierButton = QToolButton(self.toolBar)
+        self.magnifierButton.setText('M')
+        self.magnifierButton.setCheckable(True)
+        self.magnifierButton.setChecked(self.magnifier.isEnabled())
+        self.connect(self.magnifierButton, SIGNAL('toggled(bool)'), self.magnifier.setEnabled)
+        self.toolBarLayout.addWidget(self.magnifierButton)
+
+        self.pannerButton = QToolButton(self.toolBar)
+        self.pannerButton.setText('P')
+        self.pannerButton.setCheckable(True)
+        self.pannerButton.setChecked(self.panner.isEnabled())
+        self.connect(self.magnifierButton, SIGNAL('toggled(bool)'), self.panner.setEnabled)
+        self.toolBarLayout.addWidget(self.pannerButton)
+
+        self.toolBarLayout.addSpacing(10)
 
         self.saveButton = QToolButton(self.toolBar)
         self.saveButton.setText('Save')
         self.toolBarLayout.addWidget(self.saveButton)
         self.connect(self.saveButton, SIGNAL('pressed()'), self.saveWindow)
-        
-        self.xPosSlider = QwtSlider(self.toolBar)
-        self.toolBarLayout.addWidget(self.xPosSlider)
-        
-        self.yPosSlider = QwtSlider(self.toolBar)
-        self.toolBarLayout.addWidget(self.yPosSlider)
-    
+
+        self.toolBarLayout.addStretch(100)
         self.mainLayout.addWidget(self.toolBar, 0)
         self.toolBar.show()
-        
-        
+
+
     def printWindow(self, printer=None):
         if not printer:
             printer = QPrinter()
