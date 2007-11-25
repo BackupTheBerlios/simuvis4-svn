@@ -147,9 +147,84 @@ Nach einem Neustart von SimuVis4 solltest Du matplot/pylabin der PythonConsole (
         <translation>Zeige ein Qwt-Testfenster</translation>
     </message>
     <message>
-        <location filename="QwtWindow.py" line="15"/>
+        <location filename="QwtWindow.py" line="19"/>
         <source>QwtPlotWindow</source>
         <translation>QwtPlotFenster</translation>
+    </message>
+    <message>
+        <location filename="QwtWindow.py" line="62"/>
+        <source>Enable zoomer</source>
+        <translation type="obsolete">Zoomer benutzer</translation>
+    </message>
+    <message>
+        <location filename="QwtWindow.py" line="70"/>
+        <source>Enable magnifier</source>
+        <translation type="obsolete">Vergrößerer benutzen</translation>
+    </message>
+    <message>
+        <location filename="QwtWindow.py" line="78"/>
+        <source>Enable panner</source>
+        <translation type="obsolete">Verschieben aktivieren</translation>
+    </message>
+    <message>
+        <location filename="QwtWindow.py" line="87"/>
+        <source>Save</source>
+        <translation type="obsolete">Speichern</translation>
+    </message>
+    <message>
+        <location filename="QwtWindow.py" line="88"/>
+        <source>Save plot as graphics</source>
+        <translation>Speichere Diagramm als Grafik</translation>
+    </message>
+    <message>
+        <location filename="QwtWindow.py" line="93"/>
+        <source>Print</source>
+        <translation type="obsolete">Drucken</translation>
+    </message>
+    <message>
+        <location filename="QwtWindow.py" line="94"/>
+        <source>Print plot to printer or file</source>
+        <translation>Drucke Diagramm auf einen Drucker oder in eine Datei</translation>
+    </message>
+    <message>
+        <location filename="QwtWindow.py" line="109"/>
+        <source>Print Document</source>
+        <translation>Drucke das Dokument</translation>
+    </message>
+    <message>
+        <location filename="QwtWindow.py" line="119"/>
+        <source>Select name of file to save</source>
+        <translation type="obsolete">Wähle den Namen der zu sichernden Datei</translation>
+    </message>
+    <message>
+        <location filename="QwtWindow.py" line="62"/>
+        <source>Enable zooming with the mouse</source>
+        <translation>Ermögliche das Zoomen mit der Maus</translation>
+    </message>
+    <message>
+        <location filename="QwtWindow.py" line="70"/>
+        <source>Enable magnifying with the mouse</source>
+        <translation>Ermögliche das Vergrößern/Verkleinern mit der Maus</translation>
+    </message>
+    <message>
+        <location filename="QwtWindow.py" line="78"/>
+        <source>Enable panning with the mouse</source>
+        <translation>Ermögliche das Verschieben mit der Maus</translation>
+    </message>
+    <message>
+        <location filename="QwtWindow.py" line="87"/>
+        <source>Save...</source>
+        <translation>Speichern...</translation>
+    </message>
+    <message>
+        <location filename="QwtWindow.py" line="93"/>
+        <source>Print...</source>
+        <translation>Drucken...</translation>
+    </message>
+    <message>
+        <location filename="QwtWindow.py" line="119"/>
+        <source>Select type and name of file to save</source>
+        <translation>Wähle Typ und Namen der zu sichernden Datei</translation>
     </message>
 </context>
 </TS>

@@ -7,7 +7,7 @@
 import SimuVis4, os
 from SimuVis4.SubWin import SubWindow
 from PyQt4.Qwt5 import QwtPlot, QwtLegend, QwtPlotGrid, QwtPlotZoomer, QwtPicker,\
-    QwtPlotPrintFilter, QwtSlider, QwtPlotPanner, QwtPlotMagnifier
+    QwtPlotPrintFilter, QwtSlider, QwtPlotPanner, QwtPlotMagnifier, QwtPlotPicker
 from PyQt4.QtGui import QFrame, QHBoxLayout, QToolButton, QSizePolicy, QPen, QPrinter,\
     QPrintDialog, QFileDialog, QDialog
 from PyQt4.QtCore import SIGNAL, QCoreApplication, Qt, QSize
@@ -26,11 +26,12 @@ class QwtPlotWindow(SubWindow):
         self.grid.attach(self.plotWidget)
         self.grid.setPen(QPen(Qt.black, 0, Qt.DotLine))
         self.zoomer = QwtPlotZoomer(QwtPlot.xBottom, QwtPlot.yLeft, QwtPicker.DragSelection,
-            QwtPicker.AlwaysOff, self.plotWidget.canvas())
+            QwtPicker.AlwaysOn, self.plotWidget.canvas())
         self.zoomer.setRubberBandPen(QPen(Qt.green))
         self.magnifier = QwtPlotMagnifier(self.plotWidget.canvas())
         self.panner = QwtPlotPanner(self.plotWidget.canvas())
         self.panner.setMouseButton(Qt.LeftButton, Qt.ControlModifier)
+        self.zoomer.setTrackerPen(QPen(Qt.red))
         self.mainLayout.setMargin(0)
         self.mainLayout.setSpacing(0)
         self.mainLayout.addWidget(self.plotWidget, 1)
@@ -58,6 +59,7 @@ class QwtPlotWindow(SubWindow):
 
         self.zoomerButton = QToolButton(self.toolBar)
         self.zoomerButton.setText('Z')
+        self.zoomerButton.setToolTip(QCoreApplication.translate('QwtPlot', 'Enable zooming with the mouse'))
         self.zoomerButton.setCheckable(True)
         self.zoomerButton.setChecked(self.zoomer.isEnabled())
         self.connect(self.zoomerButton, SIGNAL('toggled(bool)'), self.zoomer.setEnabled)
@@ -65,6 +67,7 @@ class QwtPlotWindow(SubWindow):
 
         self.magnifierButton = QToolButton(self.toolBar)
         self.magnifierButton.setText('M')
+        self.magnifierButton.setToolTip(QCoreApplication.translate('QwtPlot', 'Enable magnifying with the mouse'))
         self.magnifierButton.setCheckable(True)
         self.magnifierButton.setChecked(self.magnifier.isEnabled())
         self.connect(self.magnifierButton, SIGNAL('toggled(bool)'), self.magnifier.setEnabled)
@@ -72,6 +75,7 @@ class QwtPlotWindow(SubWindow):
 
         self.pannerButton = QToolButton(self.toolBar)
         self.pannerButton.setText('P')
+        self.pannerButton.setToolTip(QCoreApplication.translate('QwtPlot', 'Enable panning with the mouse'))
         self.pannerButton.setCheckable(True)
         self.pannerButton.setChecked(self.panner.isEnabled())
         self.connect(self.magnifierButton, SIGNAL('toggled(bool)'), self.panner.setEnabled)
@@ -80,9 +84,16 @@ class QwtPlotWindow(SubWindow):
         self.toolBarLayout.addSpacing(10)
 
         self.saveButton = QToolButton(self.toolBar)
-        self.saveButton.setText('Save')
+        self.saveButton.setText(QCoreApplication.translate('QwtPlot', 'Save...'))
+        self.saveButton.setToolTip(QCoreApplication.translate('QwtPlot', 'Save plot as graphics'))
         self.toolBarLayout.addWidget(self.saveButton)
         self.connect(self.saveButton, SIGNAL('pressed()'), self.saveWindow)
+
+        self.printButton = QToolButton(self.toolBar)
+        self.printButton.setText(QCoreApplication.translate('QwtPlot', 'Print...'))
+        self.printButton.setToolTip(QCoreApplication.translate('QwtPlot', 'Print plot to printer or file'))
+        self.toolBarLayout.addWidget(self.printButton)
+        self.connect(self.printButton, SIGNAL('pressed()'), self.printWindow)
 
         self.toolBarLayout.addStretch(100)
         self.mainLayout.addWidget(self.toolBar, 0)
@@ -105,7 +116,7 @@ class QwtPlotWindow(SubWindow):
         fileTypes = {'PDF':('pdf',), 'Postscript':('ps',),'SVG':('svg',)}
         filters = ';;'.join(['%s (%s)' % (k, ' '.join(['*.'+e for e in v])) for k, v in fileTypes.items()])
         dlg = QFileDialog(self,
-            QCoreApplication.translate('QwtPlot', 'Select name of file to save'),
+            QCoreApplication.translate('QwtPlot', 'Select type and name of file to save'),
             SimuVis4.Globals.defaultFolder or '', filters)
         dlg.setFileMode(QFileDialog.AnyFile)
         dlg.setAcceptMode(QFileDialog.AcceptSave)
