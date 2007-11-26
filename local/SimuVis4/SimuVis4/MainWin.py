@@ -182,6 +182,8 @@ class MainWindow(QMainWindow):
             Globals.logger.addHandler(self.logWin.handler)
             Globals.logger.removeHandler(Globals.startLogHandler)
             Globals.logger.removeHandler(Globals.startLogBuffer)
+            del Globals.startLogHandler
+            del Globals.startLogBuffer
             self.toolsMenu.addAction(self.logWin.toggleVisibleAction)
             if not cfg.getboolean('main', 'hide_log_window'):
                 self.logWin.toggleVisibleAction.setChecked(True)
