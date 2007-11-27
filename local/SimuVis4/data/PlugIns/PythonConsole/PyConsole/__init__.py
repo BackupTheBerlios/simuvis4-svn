@@ -26,7 +26,7 @@ class PlugIn(SimplePlugIn):
         glb = SimuVis4.Globals
         from PyConsoleWindow import PyConsoleWindow
         self.consoleWindow = PyConsoleWindow(glb.mainWin.workSpace)
-        glb.mainWin.workSpace.addWindow(self.consoleWindow)
+        glb.mainWin.workSpace.addSubWindow(self.consoleWindow)
         histF = None
         if cfg.getboolean(cfgsec, 'use_history'):
             histF = os.path.join(glb.homePath, '.SV4PyCon.his')

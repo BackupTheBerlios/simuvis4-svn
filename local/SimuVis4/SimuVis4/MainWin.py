@@ -42,8 +42,7 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(QIcon(QPixmap(iconFile)))
         self.setWindowTitle(cfg['main:application_name'])
 
-        self.workSpace = QWorkspace(self)
-        self.workSpace.setScrollBarsEnabled(True)
+        self.workSpace = QMdiArea(self)
         if cfg.has_option('main',  'background_image'):
             bgFile = os.path.join(cfg['main:system_picture_path'], cfg['main:background_image'])
             if os.path.exists(bgFile):
@@ -52,7 +51,7 @@ class MainWindow(QMainWindow):
 
         self.windowMapper = QSignalMapper(self)
         self.connect(self.windowMapper, SIGNAL("mapped(QWidget *)"),
-                     self.workSpace, SLOT("setActiveWindow(QWidget *)"))
+                     self.workSpace, SLOT("setActiveSubWindow(QMdiSubWindow *)"))
 
         self._initActions()
 
@@ -88,7 +87,7 @@ class MainWindow(QMainWindow):
 
         self.winTileAction = QAction(QCoreApplication.translate('MainWin', "&Tile"), self)
         self.winTileAction.setStatusTip(QCoreApplication.translate('MainWin', "Tile the windows"))
-        self.connect(self.winTileAction, SIGNAL("triggered()"), self.workSpace.tile)
+        self.connect(self.winTileAction, SIGNAL("triggered()"), self.workSpace.tileSubWindows)
 
         self.winFullScreenAction = QAction(QCoreApplication.translate('MainWin', "&Fullscreen (main window)"), self)
         self.winFullScreenAction.setShortcut(QCoreApplication.translate('MainWin', "F11"))
@@ -97,8 +96,7 @@ class MainWindow(QMainWindow):
 
         self.winCascadeAction = QAction(QCoreApplication.translate('MainWin', "&Cascade"), self)
         self.winCascadeAction.setStatusTip(QCoreApplication.translate('MainWin', "Cascade the windows"))
-        self.connect(self.winCascadeAction, SIGNAL("triggered()"),
-                     self.workSpace.cascade)
+        self.connect(self.winCascadeAction, SIGNAL("triggered()"), self.workSpace.cascadeSubWindows)
 
         self.winMaximizeAction = QAction(QCoreApplication.translate('MainWin', "&Maximize / Minimize"), self)
         self.winMaximizeAction.setShortcut(QCoreApplication.translate('MainWin', "Ctrl+M"))
@@ -106,22 +104,15 @@ class MainWindow(QMainWindow):
         self.connect(self.winMaximizeAction, SIGNAL("triggered()"),
                      self.maximizeCurrentWindow)
 
-        self.winArrangeAction = QAction(QCoreApplication.translate('MainWin', "Arrange &icons"), self)
-        self.winArrangeAction.setStatusTip(QCoreApplication.translate('MainWin', "Arrange the icons"))
-        self.connect(self.winArrangeAction, SIGNAL("triggered()"),
-                     self.workSpace.arrangeIcons)
-
         self.winNextAction = QAction(QCoreApplication.translate('MainWin', "Ne&xt"), self)
         self.winNextAction.setShortcut(QCoreApplication.translate('MainWin', "Ctrl+>"))
         self.winNextAction.setStatusTip(QCoreApplication.translate('MainWin', "Move the focus to the next window"))
-        self.connect(self.winNextAction, SIGNAL("triggered()"),
-                     self.workSpace.activateNextWindow)
+        self.connect(self.winNextAction, SIGNAL("triggered()"), self.workSpace.activateNextSubWindow)
 
         self.winPreviousAction = QAction(QCoreApplication.translate('MainWin', "Pre&vious"), self)
         self.winPreviousAction.setShortcut(QCoreApplication.translate('MainWin', "Ctrl+<"))
         self.winPreviousAction.setStatusTip(QCoreApplication.translate('MainWin', "Move the focus to the previous window"))
-        self.connect(self.winPreviousAction, SIGNAL("triggered()"),
-                     self.workSpace.activatePreviousWindow)
+        self.connect(self.winPreviousAction, SIGNAL("triggered()"), self.workSpace.activatePreviousSubWindow)
 
         self.helpAction = QAction(QIcon(), QCoreApplication.translate('MainWin', '&Help'), self)
         self.helpAction.setShortcut(QCoreApplication.translate('MainWin', "F1"))
@@ -176,7 +167,7 @@ class MainWindow(QMainWindow):
             progress(QCoreApplication.translate('MainWin', 'Starting logging system'))
             from SimuVis4.LogWin import LogWindow
             self.logWin = LogWindow(self.workSpace)
-            self.workSpace.addWindow(self.logWin)
+            self.workSpace.addSubWindow(self.logWin)
             Globals.startLogBuffer.setTarget(self.logWin.handler)
             Globals.startLogBuffer.flush()
             Globals.logger.addHandler(self.logWin.handler)
@@ -199,7 +190,7 @@ class MainWindow(QMainWindow):
             progress(QCoreApplication.translate('MainWin', 'Starting plugin browser'))
             from SimuVis4.PlugInBrowser import PlugInBrowser
             self.plugInBrowserWin = PlugInBrowser(self.workSpace)
-            self.workSpace.addWindow(self.plugInBrowserWin)
+            self.workSpace.addSubWindow(self.plugInBrowserWin)
             self.plugInMenu.addAction(self.plugInBrowserWin.toggleVisibleAction)
             if not cfg.getboolean('main', 'hide_plugin_browser'):
                 self.plugInBrowserWin.toggleAction.setChecked(True)
@@ -216,7 +207,7 @@ class MainWindow(QMainWindow):
             progress(QCoreApplication.translate('MainWin', 'Starting task browser'))
             from SimuVis4.TaskBrowser import TaskBrowser
             self.taskBrowserWin = TaskBrowser(self.workSpace)
-            self.workSpace.addWindow(self.taskBrowserWin)
+            self.workSpace.addSubWindow(self.taskBrowserWin)
             self.toolsMenu.addAction(self.taskBrowserWin.toggleVisibleAction)
             if not cfg.getboolean('main', 'hide_task_browser'):
                 self.taskBrowserWin.toggleAction.setChecked(True)
@@ -225,7 +216,7 @@ class MainWindow(QMainWindow):
             progress(QCoreApplication.translate('MainWin', 'Starting help system'))
             from SimuVis4.HelpBrowser import HelpBrowser
             self.helpBrowser = HelpBrowser(self.workSpace)
-            self.workSpace.addWindow(self.helpBrowser)
+            self.workSpace.addSubWindow(self.helpBrowser)
         else:
             self.helpBrowser = None
 
@@ -312,12 +303,11 @@ class MainWindow(QMainWindow):
         self.windowMenu.addAction(self.winMaximizeAction)
         self.windowMenu.addAction(self.winTileAction)
         self.windowMenu.addAction(self.winCascadeAction)
-        self.windowMenu.addAction(self.winArrangeAction)
         self.windowMenu.addSeparator()
         self.windowMenu.addAction(self.winNextAction)
         self.windowMenu.addAction(self.winPreviousAction)
 
-        windows = self.workSpace.windowList()
+        windows = self.workSpace.subWindowList()
         windows =  [w for w in windows if not w.isHidden()]
         if len(windows) != 0:
             self.windowMenu.addAction(self.separatorAction)
@@ -331,7 +321,7 @@ class MainWindow(QMainWindow):
 
 
     def activeMdiChild(self):
-        return self.workSpace.activeWindow()
+        return self.workSpace.activeSubWindow()
 
 
     def findMdiChild(self, name):
@@ -342,7 +332,7 @@ class MainWindow(QMainWindow):
 
 
     def windowsMenuActivated(self, sid):
-        w = self.workSpace.windowList()[sid]
+        w = self.workSpace.subWindowList()[sid]
         if (w):
             w.showNormal()
             w.setFocus()

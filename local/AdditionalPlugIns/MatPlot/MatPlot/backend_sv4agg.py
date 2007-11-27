@@ -77,7 +77,7 @@ def new_figure_manager( num, *args, **kwargs ):
 
 class MatPlotWindow(SubWindow):
     def setup(self, canvas, num):
-        mainWin.workSpace.addWindow(self)
+        mainWin.workSpace.addSubWindow(self)
         self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         self.mainLayout.setSpacing(2)
 

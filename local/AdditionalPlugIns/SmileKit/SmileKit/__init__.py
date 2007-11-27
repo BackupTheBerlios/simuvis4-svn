@@ -30,7 +30,7 @@ class PlugIn(SimplePlugIn):
     def showMn2NcWindow(self):
         ws = SimuVis4.Globals.mainWin.workSpace
         win = self.Meteo2Nc.Meteo2NcWindow(ws)
-        ws.addWindow(win)
+        ws.addSubWindow(win)
         win.show()
 
 

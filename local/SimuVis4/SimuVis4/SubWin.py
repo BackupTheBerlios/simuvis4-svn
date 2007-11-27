@@ -4,7 +4,7 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-from PyQt4.QtGui import QWidget, QVBoxLayout, QIcon, QPixmap, QAction, QMessageBox, QFileDialog, QDialog
+from PyQt4.QtGui import QWidget, QMdiSubWindow, QVBoxLayout, QIcon, QPixmap, QAction, QMessageBox, QFileDialog, QDialog
 from PyQt4.QtCore import QCoreApplication, SIGNAL
 import Globals, os
 
@@ -19,15 +19,17 @@ may save a screenshot instead.</p>
 not covered by another dialog or window!</p>
 """)
 
-class SubWindow(QWidget):
+class SubWindow(QMdiSubWindow):
 
     """base class for subwindows of the mdi workspace"""
 
     def __init__(self, parent):
-        QWidget.__init__(self, parent)
-        self.mainLayout = QVBoxLayout(self)
-        self.mainLayout.setMargin(0)
-        self.mainLayout.setSpacing(6)
+        QMdiSubWindow.__init__(self, parent)
+        self.mainWidget = QWidget(self)
+        self.setWidget(self.mainWidget)
+        self.mainLayout = QVBoxLayout(self.mainWidget)
+        self.mainLayout.setMargin(2)
+        self.mainLayout.setSpacing(4)
         icon = os.path.join(Globals.config['main:system_picture_path'], 'subwin.xpm')
         self.setWindowIcon(QIcon(QPixmap(icon)))
         self.setWindowTitle(QCoreApplication.translate('SubWindow', 'Unnamed Subwindow'))

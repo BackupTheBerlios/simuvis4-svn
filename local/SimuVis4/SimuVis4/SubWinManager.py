@@ -17,7 +17,7 @@ class SubWinManager(object):
         self.windows = []
 
     def getActiveWindow(self):
-        w = self.workSpace.activeWindow()
+        w = self.workSpace.activeSubWindow()
         if not w in self.windows:
             return None
         return w
@@ -30,7 +30,7 @@ class SubWinManager(object):
         if not name:
             name = "%s %d" % (self.winName, self.counter())
         w = self.subWinClass(self.workSpace)
-        self.workSpace.addWindow(w)
+        self.workSpace.addSubWindow(w)
         self.windows.append(w)
         w.setWindowIcon(self.winIcon)
         w.setWindowTitle(name)
@@ -39,6 +39,6 @@ class SubWinManager(object):
 
     def closeWindow(self, w=None):
         if not w:
-            w = self.getActiveWindow()
+            w = self.getActiveSubWindow()
         if w:
             w.close()

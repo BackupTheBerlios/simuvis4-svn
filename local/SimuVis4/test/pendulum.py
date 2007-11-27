@@ -122,7 +122,7 @@ pendulum = PendulumGraphics(length=5, phi=-90, omega=228.00)
 pendulum.initGraphics(graphWin.graphicsView)
 
 timerWin = SimTools.Widgets.TimeSignalWindow(mainWin.workSpace)
-mainWin.workSpace.addWindow(timerWin)
+mainWin.workSpace.addSubWindow(timerWin)
 timerWin.show()
 timerWin.timeSignalWidget.functions.append(pendulum.step)
 timerWin.timeSignalWidget.frequencyInput.setValue(40.0)

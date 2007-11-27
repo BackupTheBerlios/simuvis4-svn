@@ -19,7 +19,7 @@ class PlugIn(SimplePlugIn):
     def test():
         ws = SimuVis4.Globals.mainWin.workSpace
         win = self.Widgets.TimeSignalWindow(ws)
-        ws.addWindow(win)
+        ws.addSubWindow(win)
         def printVal(val):
             print val, '|',
         win.timeSignalWidget.functions.append(printVal)

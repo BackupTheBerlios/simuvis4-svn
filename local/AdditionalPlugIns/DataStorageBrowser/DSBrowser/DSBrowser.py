@@ -59,7 +59,7 @@ class DSBrowser(QWidget):
             plt = Qwt.QwtPlot()
             sw.mainLayout.addWidget(plt)
             sw.setFocusProxy(plt)
-            SimuVis4.Globals.mainWin.workSpace.addWindow(sw)
+            SimuVis4.Globals.mainWin.workSpace.addSubWindow(sw)
             curve = Qwt.QwtPlotCurve('data')
             curve.attach(plt)
             print type(n.data)
