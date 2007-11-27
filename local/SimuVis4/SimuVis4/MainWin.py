@@ -52,8 +52,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.workSpace)
 
         self.windowMapper = QSignalMapper(self)
-        self.connect(self.windowMapper, SIGNAL("mapped(QWidget *)"),
-                     self.workSpace, SLOT("setActiveSubWindow(QMdiSubWindow *)"))
+        self.connect(self.windowMapper, SIGNAL("mapped(QWidget *)"), self.activateMdiChild)
 
         self._initActions()
 
@@ -332,6 +331,10 @@ class MainWindow(QMainWindow):
                 return window
         return None
 
+
+    def activateMdiChild(self, w):
+        self.workSpace.setActiveSubWindow(w)
+        
 
     def windowsMenuActivated(self, sid):
         w = self.workSpace.subWindowList()[sid]
