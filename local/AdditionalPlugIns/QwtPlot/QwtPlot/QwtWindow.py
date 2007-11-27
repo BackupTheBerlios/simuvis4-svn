@@ -9,7 +9,7 @@ from SimuVis4.SubWin import SubWindow
 from PyQt4.Qwt5 import QwtPlot, QwtLegend, QwtPlotGrid, QwtPlotZoomer, QwtPicker,\
     QwtPlotPrintFilter, QwtSlider, QwtPlotPanner, QwtPlotMagnifier, QwtPlotPicker
 from PyQt4.QtGui import QFrame, QHBoxLayout, QToolButton, QSizePolicy, QPen, QPrinter,\
-    QPrintDialog, QFileDialog, QDialog
+    QPrintDialog, QFileDialog, QDialog, QIcon, QPixmap, QLabel
 from PyQt4.QtCore import SIGNAL, QCoreApplication, Qt, QSize
 from PyQt4.QtSvg import QSvgGenerator
 
@@ -37,7 +37,7 @@ class QwtPlotWindow(SubWindow):
         self.mainLayout.addWidget(self.plotWidget, 1)
         self.setFocusProxy(self.plotWidget)
         self.resize(100, 100)
-        self.setMinimumSize(200, 200)
+        self.setMinimumSize(350, 200)
         self.toolBar = None
         self.connect(self.plotWidget,SIGNAL("legendClicked(QwtPlotItem*)"), self.toggleVisibility)
         self.initToolBar()
@@ -55,10 +55,11 @@ class QwtPlotWindow(SubWindow):
         self.toolBar = QFrame(self)
         self.toolBarLayout = QHBoxLayout(self.toolBar)
         self.toolBarLayout.setMargin(4)
-        self.toolBarLayout.setSpacing(4)
+        self.toolBarLayout.setSpacing(2)
 
         self.zoomerButton = QToolButton(self.toolBar)
         self.zoomerButton.setText('Z')
+        self.zoomerButton.setIcon(QIcon(QPixmap(SimuVis4.Icons.zoom)))
         self.zoomerButton.setToolTip(QCoreApplication.translate('QwtPlot', 'Enable zooming with the mouse'))
         self.zoomerButton.setCheckable(True)
         self.zoomerButton.setChecked(self.zoomer.isEnabled())
@@ -67,6 +68,7 @@ class QwtPlotWindow(SubWindow):
 
         self.magnifierButton = QToolButton(self.toolBar)
         self.magnifierButton.setText('M')
+        self.magnifierButton.setIcon(QIcon(QPixmap(SimuVis4.Icons.magnify)))
         self.magnifierButton.setToolTip(QCoreApplication.translate('QwtPlot', 'Enable magnifying with the mouse'))
         self.magnifierButton.setCheckable(True)
         self.magnifierButton.setChecked(self.magnifier.isEnabled())
@@ -75,6 +77,7 @@ class QwtPlotWindow(SubWindow):
 
         self.pannerButton = QToolButton(self.toolBar)
         self.pannerButton.setText('P')
+        self.pannerButton.setIcon(QIcon(QPixmap(SimuVis4.Icons.pan)))
         self.pannerButton.setToolTip(QCoreApplication.translate('QwtPlot', 'Enable panning with the mouse'))
         self.pannerButton.setCheckable(True)
         self.pannerButton.setChecked(self.panner.isEnabled())
@@ -85,15 +88,22 @@ class QwtPlotWindow(SubWindow):
 
         self.saveButton = QToolButton(self.toolBar)
         self.saveButton.setText(QCoreApplication.translate('QwtPlot', 'Save...'))
+        self.saveButton.setIcon(QIcon(QPixmap(SimuVis4.Icons.fileSave)))
         self.saveButton.setToolTip(QCoreApplication.translate('QwtPlot', 'Save plot as graphics'))
         self.toolBarLayout.addWidget(self.saveButton)
         self.connect(self.saveButton, SIGNAL('pressed()'), self.saveWindow)
 
         self.printButton = QToolButton(self.toolBar)
         self.printButton.setText(QCoreApplication.translate('QwtPlot', 'Print...'))
+        self.printButton.setIcon(QIcon(QPixmap(SimuVis4.Icons.filePrint)))
         self.printButton.setToolTip(QCoreApplication.translate('QwtPlot', 'Print plot to printer or file'))
         self.toolBarLayout.addWidget(self.printButton)
         self.connect(self.printButton, SIGNAL('pressed()'), self.printWindow)
+
+        self.toolBarLayout.addSpacing(10)
+
+        self.statusLabel = QLabel(self.toolBar)
+        self.toolBarLayout.addWidget(self.statusLabel)
 
         self.toolBarLayout.addStretch(100)
         self.mainLayout.addWidget(self.toolBar, 0)
