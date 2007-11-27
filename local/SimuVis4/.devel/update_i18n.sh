@@ -6,7 +6,7 @@ if [ -d .devel ]; then
   for L in $LANGUAGES; do
     TS=$LANGPATH/$L.ts
     QM=$LANGPATH/$L.qm
-    pylupdate4 -verbose $PY -ts "$TS"
+    pylupdate4 -noobsolete -verbose $PY -ts "$TS"
     if [ "$TS" -nt "$QM" ]; then
       linguist-qt4 "$TS"
     fi

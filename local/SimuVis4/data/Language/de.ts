@@ -156,11 +156,6 @@ Abhängig von der Art der Ausnahme  können Sie sie eventuell ignorieren, aber z
         <translation>Zeige ein neues Graphics Fenster</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
-        <source>Graphics Window</source>
-        <translation type="obsolete">Graphics Fenster</translation>
-    </message>
-    <message>
         <location filename="GraphicsWindow.py" line="66"/>
         <source>Print Document</source>
         <translation>Dokument Drucken</translation>
@@ -171,41 +166,9 @@ Abhängig von der Art der Ausnahme  können Sie sie eventuell ignorieren, aber z
         <translation>GraphicsView</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
-        <source>Active keys in the Graphics window:
-+ zoom in
-- zoom out
-r reset view
-m maximize view
-h show this help
-</source>
-        <translation type="obsolete">Aktive Tasten im Graphics-Fenster:
-+ Hereinzoomen
-- Herauszoomen
-r Ansicht zurücksetzen
-m Ansicht maximieren
-h diese Hilfe anzeigen
-</translation>
-    </message>
-    <message>
         <location filename="GraphicsWindow.py" line="57"/>
         <source>Graphics window help</source>
         <translation>Hilfe zum Graphics-Fenster</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Active keys in the Graphics window:
-+/-/mousewheel: zoom in/out
-r: reset view
-m: maximize view
-h: show this help
-</source>
-        <translation type="obsolete">Aktive Tasten im Graphics-Fenster:+/-/Mausrad: Herein-/Herauszoomenr: Ansicht zurücksetzenm: Ansicht maximierenh: diese Hilfe anzeigen</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Press h for help!</source>
-        <translation type="obsolete">Drücke h für Hilfe!</translation>
     </message>
     <message>
         <location filename="__init__.py" line="57"/>
@@ -315,36 +278,6 @@ h: diese Hilfe anzeigen
         <translation>Dokument Drucken</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
-        <source>File format</source>
-        <translation type="obsolete">Dateiformat</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Select file format for saving the text</source>
-        <translation type="obsolete">Wähle das Format der zu sichernden Datei</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Plain Text</source>
-        <translation type="obsolete">Einfacher Text</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>HTML</source>
-        <translation type="obsolete">HTML</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Select name of text file to save</source>
-        <translation type="obsolete">Wähle einen Namen der zu sichernden Textdatei</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Select name of html file to save</source>
-        <translation type="obsolete">Wähle einen Namen der zu sichernden HTML-Datei</translation>
-    </message>
-    <message>
         <location filename="LogWin.py" line="80"/>
         <source>Select name of file to save</source>
         <translation>Dateinamen und Format wählen</translation>
@@ -368,11 +301,6 @@ h: diese Hilfe anzeigen
         <translation>Fertig</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
-        <source>&amp;Execute scipt</source>
-        <translation type="obsolete">Skript &amp;ausführen</translation>
-    </message>
-    <message>
         <location filename="MainWin.py" line="71"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
@@ -381,86 +309,6 @@ h: diese Hilfe anzeigen
         <location filename="MainWin.py" line="72"/>
         <source>Execute python script</source>
         <translation>Pythonskript ausführen</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>&amp;New</source>
-        <translation type="obsolete">&amp;Neu</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Ctrl+N</source>
-        <translation type="obsolete">Ctrl+N</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>New python script</source>
-        <translation type="obsolete">Neues Pythonskript</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>&amp;Open</source>
-        <translation type="obsolete">&amp;Öffnen</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Ctrl+O</source>
-        <translation type="obsolete">Ctrl+O</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Open python script</source>
-        <translation type="obsolete">Pythonskript öffnen</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>&amp;Run script</source>
-        <translation type="obsolete">Sk&amp;ript ausführen</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Run current script</source>
-        <translation type="obsolete">Aktuelles Skript ausführen</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>&amp;Save ...</source>
-        <translation type="obsolete">&amp;Speichern ...</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Ctrl+S</source>
-        <translation type="obsolete">Strl+S</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Save script</source>
-        <translation type="obsolete">Skript speichern</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Save as...</source>
-        <translation type="obsolete">Speichern unter ...</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Save script as</source>
-        <translation type="obsolete">Skipt speichern unter</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>&amp;Close</source>
-        <translation type="obsolete">S&amp;chließen</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Ctrl+W</source>
-        <translation type="obsolete">Ctrl+W</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Close script</source>
-        <translation type="obsolete">Skript schließen</translation>
     </message>
     <message>
         <location filename="MainWin.py" line="75"/>
@@ -539,23 +387,8 @@ h: diese Hilfe anzeigen
     </message>
     <message>
         <location filename="MainWin.py" line="109"/>
-        <source>Arrange &amp;icons</source>
-        <translation type="obsolete">&amp;Ikons anordnen</translation>
-    </message>
-    <message>
-        <location filename="MainWin.py" line="110"/>
-        <source>Arrange the icons</source>
-        <translation type="obsolete">Ikons auf der Arbeitsfläche anordnen</translation>
-    </message>
-    <message>
-        <location filename="MainWin.py" line="109"/>
         <source>Ne&amp;xt</source>
         <translation>&amp;Nächstes</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Ctrl+F6</source>
-        <translation type="obsolete">Ctrl+F6</translation>
     </message>
     <message>
         <location filename="MainWin.py" line="111"/>
@@ -566,11 +399,6 @@ h: diese Hilfe anzeigen
         <location filename="MainWin.py" line="114"/>
         <source>Pre&amp;vious</source>
         <translation>&amp;Vorheriges</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Ctrl+Shift+F6</source>
-        <translation type="obsolete">Ctrl+Shift+F6</translation>
     </message>
     <message>
         <location filename="MainWin.py" line="116"/>
@@ -591,11 +419,6 @@ h: diese Hilfe anzeigen
         <location filename="MainWin.py" line="121"/>
         <source>Help</source>
         <translation>Hilfe</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>About</source>
-        <translation type="obsolete">Über</translation>
     </message>
     <message>
         <location filename="MainWin.py" line="134"/>
@@ -650,13 +473,6 @@ h: diese Hilfe anzeigen
 %s</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
-        <source>Scientific programming, data analysis and visualisation
-based on python, Qt, Qwt, VTK and other</source>
-        <translation type="obsolete">Wissenschaftliche Programmierung, Datenanalyse and Visualisierung
-auf Basis von Python, Qt, Qwt, Vtk</translation>
-    </message>
-    <message>
         <location filename="MainWin.py" line="383"/>
         <source>restarting on platform &quot;%s&quot; not yet supported</source>
         <translation>Neustart auf der Plattform &quot;%s&quot; wird nicht unterstützt</translation>
@@ -667,46 +483,6 @@ auf Basis von Python, Qt, Qwt, Vtk</translation>
         <translation>Skript &amp;ausführen</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
-        <source>New file</source>
-        <translation type="obsolete">Neue Datei</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Open file</source>
-        <translation type="obsolete">Datei öffnen</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>&amp;Execute &amp;file</source>
-        <translation type="obsolete">Datei &amp;ausführen</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Ctrl+F</source>
-        <translation type="obsolete">Ctrl+F</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Run current file as script</source>
-        <translation type="obsolete">Aktuelle Datei als Skript ausführen</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Save file</source>
-        <translation type="obsolete">Datei speichern</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Save file as</source>
-        <translation type="obsolete">Datei speichern unter</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Close file</source>
-        <translation type="obsolete">Datei schließen</translation>
-    </message>
-    <message>
         <location filename="MainWin.py" line="124"/>
         <source>&amp;About ...</source>
         <translation>Ü&amp;ber ...</translation>
@@ -715,26 +491,6 @@ auf Basis von Python, Qt, Qwt, Vtk</translation>
         <location filename="MainWin.py" line="125"/>
         <source>Info about this application</source>
         <translation>Information über diese Anwendung</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>&amp;Execute file</source>
-        <translation type="obsolete">Datei &amp;ausführen</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>&amp;Save</source>
-        <translation type="obsolete">&amp;Speichern</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Save &amp;as ...</source>
-        <translation type="obsolete">Speichern &amp;unter ...</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>&amp;Execute</source>
-        <translation type="obsolete">&amp;Ausführen</translation>
     </message>
     <message>
         <location filename="MainWin.py" line="94"/>
@@ -803,265 +559,6 @@ auf Basis von Python, Qt, Qwt, Vtk</translation>
     </message>
 </context>
 <context>
-    <name>MatPlot</name>
-    <message>
-        <location filename="__init__.py" line="97"/>
-        <source>MatPlot plugin configuration info</source>
-        <translation type="obsolete">Informationen zur Konfiguration vom MatPlot-Plugin</translation>
-    </message>
-    <message>
-        <location filename="__init__.py" line="81"/>
-        <source>&amp;MatPlot Test</source>
-        <translation type="obsolete">&amp;MatPlot Test</translation>
-    </message>
-    <message>
-        <location filename="__init__.py" line="82"/>
-        <source>Show a matplotlib test window</source>
-        <translation type="obsolete">Öffne ein Testfenster für matplotlib</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="268"/>
-        <source>Select file to save</source>
-        <translation type="obsolete">Wähle einen Namen der zu sichernden Datei</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="98"/>
-        <source>Figure %d</source>
-        <translation type="obsolete">Diagramm %d</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="160"/>
-        <source>Home</source>
-        <translation type="obsolete">Startansicht</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="161"/>
-        <source>Reset original view</source>
-        <translation type="obsolete">Setze Ansicht auf die Startansicht zurück</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="163"/>
-        <source>Back</source>
-        <translation type="obsolete">Zurück</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="164"/>
-        <source>Back to  previous view</source>
-        <translation type="obsolete">Zurück zur letzten Ansicht</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="166"/>
-        <source>Forward</source>
-        <translation type="obsolete">Vorwärts</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="167"/>
-        <source>Forward to next view</source>
-        <translation type="obsolete">Weiter zur nächsten Ansicht</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="170"/>
-        <source>Pan</source>
-        <translation type="obsolete">Verschieben</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="171"/>
-        <source>Pan axes with left mouse, zoom with right</source>
-        <translation type="obsolete">Verschiebe Achsen mit der linken Maustaste, zoome mit der rechten Taste</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="173"/>
-        <source>Zoom</source>
-        <translation type="obsolete">Zoomen</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="174"/>
-        <source>Zoom to rectangle</source>
-        <translation type="obsolete">Zoome auf Rechteckauswahl</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="177"/>
-        <source>Subplots</source>
-        <translation type="obsolete">Unterdiagramme</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="178"/>
-        <source>Configure subplots</source>
-        <translation type="obsolete">Konfiguriere Parameter für Unterdiagramme</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="180"/>
-        <source>Save</source>
-        <translation type="obsolete">Speichern</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="181"/>
-        <source>Save the figure</source>
-        <translation type="obsolete">Speichere das Diagramm</translation>
-    </message>
-    <message>
-        <location filename="backend_sv4agg.py" line="244"/>
-        <source>Subplot Configuration Tool</source>
-        <translation type="obsolete">Konfiguration von Unterdiagrammen</translation>
-    </message>
-    <message>
-        <location filename="__init__.py" line="42"/>
-        <source>The MatPlot plugin enables matplotlib/pylab to be
-used from within SimuVis4. Unfortinately some manual
-intervention is necessary for this to work. This has
-not been done on your system.
-
-The following step will require write access to
-the matplotlib folder. Make sure you have sufficient
-rights (become root on a linux system).
-
-Please run the Script configure_matplotlib.py
-(in %s)!
-This will make two small changes to the installed
-matplotlib files and will symlink or copy the file
-backend_sv4agg.py to matplotlib.
-
-After a restart of SimuVis4 you should be able to
-use matplotlib/pylab in the python console (if the
-PythonConsole plugin is active) or in scripts.</source>
-        <translation type="obsolete">Das MatPlot-Plugin ermöglicht den Zugriff auf matplotlib/pylab
-aus SimuVis4 heraus. Leider muß dafür eine Änderung an 
-matplotlib durchgeführt werden. Dies ist auf diesem 
-System noch nicht geschehen.
-
-Der folgende Schritt benötigt Schreibrechte im matplotlib-Ordner.
-Stelle sicher, dass Du ausreichende Benutzerrechte besitzt 
-(z.B. eine root-shell auf einem Linux-System).
-
-Bitte starte das Skript configure_matplotlib.py
-(im Ordner %s).
-Es werden dabei zwei der installierten Dateien von matplotlib 
-leicht geändert und eine Kopie oder ein Symlink der Datei 
-backend_sv4agg.py angelegt.
-
-Nach einem Neustart von SimuVis4 solltest Du matplot/pylab
-in der PythonConsole (falls installiert) oder in Skripten nutzen können.</translation>
-    </message>
-</context>
-<context>
-    <name>Mn2NcDialog</name>
-    <message>
-        <location filename="Mn2NcDialog.py" line="205"/>
-        <source>Meteonorm - netCDF Converter</source>
-        <translation type="obsolete">Meteonorm - netCDF Konverter</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="206"/>
-        <source>Meteonorm file</source>
-        <translation type="obsolete">Meteonorm-Datei</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="226"/>
-        <source>File name:</source>
-        <translation type="obsolete">Dateiname:</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="227"/>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="209"/>
-        <source>Load</source>
-        <translation type="obsolete">Laden</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="211"/>
-        <source>Location</source>
-        <translation type="obsolete">Ort</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="220"/>
-        <source>Comment:</source>
-        <translation type="obsolete">Kommentar:</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="215"/>
-        <source>Time zone:</source>
-        <translation type="obsolete">Zeitzone:</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="219"/>
-        <source>Name:</source>
-        <translation type="obsolete">Name:</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="221"/>
-        <source>Longitude:</source>
-        <translation type="obsolete">Längengrad:</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="217"/>
-        <source>Latitude:</source>
-        <translation type="obsolete">Breitengrad:</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="223"/>
-        <source>Statistics</source>
-        <translation type="obsolete">Statistik</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>enable statistical calculations</source>
-        <translation type="obsolete">statistische Auswertung aktivieren</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="225"/>
-        <source>netCDF file</source>
-        <translation type="obsolete">netCDF-Datei</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="228"/>
-        <source>Save</source>
-        <translation type="obsolete">Speichern</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>enable earth view</source>
-        <translation type="obsolete">Erdkugel anzeigen</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="212"/>
-        <source>Show 3D view</source>
-        <translation type="obsolete">Zeige 3D-Ansicht</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="213"/>
-        <source> m</source>
-        <translation type="obsolete"> m</translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="Mn2NcDialog.py" line="222"/>
-        <source> °</source>
-        <translation type="obsolete"> °</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="216"/>
-        <source>Height:</source>
-        <translation type="obsolete">Höhe:</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="218"/>
-        <source> h</source>
-        <translation type="obsolete"> h</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="224"/>
-        <source>Enable statistical calculations</source>
-        <translation type="obsolete">Zeige statistische Werte</translation>
-    </message>
-    <message>
-        <location filename="Mn2NcDialog.py" line="210"/>
-        <source>Help</source>
-        <translation type="obsolete">Hilfe</translation>
-    </message>
-</context>
-<context>
     <name>NetCDF3</name>
     <message>
         <location filename="NetCDF3.py" line="49"/>
@@ -1080,21 +577,6 @@ in der PythonConsole (falls installiert) oder in Skripten nutzen können.</trans
         <location filename="PlugInProxy.py" line="94"/>
         <source>PlugIn: serving file &quot;%s&quot; from plugin-path &quot;%s&quot;</source>
         <translation>PlugIn: lade Datei &quot;%s&quot; vom PlugIn-Pfad &quot;%s&quot;</translation>
-    </message>
-    <message>
-        <location filename="PlugInProxy.py" line="59"/>
-        <source>PlugIn: successfully initialized &quot;%s&quot;</source>
-        <translation type="obsolete">PlugIn: &quot;%s&quot; erfolgreich initialisiert</translation>
-    </message>
-    <message>
-        <location filename="PlugInProxy.py" line="61"/>
-        <source>PlugIn: error while initializing plugin &quot;%s&quot;</source>
-        <translation type="obsolete">PlugIn: Fehler bei der Initialisierung des PlugIns &quot;%s&quot;</translation>
-    </message>
-    <message>
-        <location filename="PlugIn.py" line="32"/>
-        <source>%s: could not load translations for language &quot;%s&quot;, skipping</source>
-        <translation type="obsolete">%s: konnte Übersetzung für Sprache &quot;%s&quot; nicht laden, überspringe es</translation>
     </message>
     <message>
         <location filename="PlugIn.py" line="32"/>
@@ -1117,11 +599,6 @@ in der PythonConsole (falls installiert) oder in Skripten nutzen können.</trans
         <translation>PlugIn: %s: Fehler bei der Initialisierung</translation>
     </message>
     <message>
-        <location filename="PlugInProxy.py" line="94"/>
-        <source>PlugIn: %s: serving file &quot;%s&quot; from plugin-path &quot;%s&quot;</source>
-        <translation type="obsolete">PlugIn: %s: lade Datei &quot;%s&quot; vom PlugIn-Pfad &quot;%s&quot;</translation>
-    </message>
-    <message>
         <location filename="PlugIn.py" line="50"/>
         <source>PlugIn: %s: trying to unload</source>
         <translation>PlugIn: %s: versuche, Plugin zu deaktivieren</translation>
@@ -1140,11 +617,6 @@ in der PythonConsole (falls installiert) oder in Skripten nutzen können.</trans
         <translation>Plugin-&amp;Browser</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
-        <source>Ctrl+B</source>
-        <translation type="obsolete">Ctrl+B</translation>
-    </message>
-    <message>
         <location filename="PlugInBrowser.py" line="61"/>
         <source>PlugIn Browser</source>
         <translation>PlugIn-Browser</translation>
@@ -1156,11 +628,6 @@ in der PythonConsole (falls installiert) oder in Skripten nutzen können.</trans
         <location filename="PlugInBrowser.py" line="56"/>
         <source>PlugIns</source>
         <translation>PlugIns</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>A</source>
-        <translation type="obsolete">A</translation>
     </message>
     <message>
         <location filename="PlugInBrowser.py" line="58"/>
@@ -1196,11 +663,6 @@ in der PythonConsole (falls installiert) oder in Skripten nutzen können.</trans
         <location filename="PlugInBrowser.py" line="64"/>
         <source>Add ...</source>
         <translation>Neu ...</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Status</source>
-        <translation type="obsolete">Status</translation>
     </message>
     <message>
         <location filename="PlugInBrowser.py" line="57"/>
@@ -1390,36 +852,6 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
         <translation>Dokument Drucken</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
-        <source>File format</source>
-        <translation type="obsolete">Dateiformat</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Select file format for saving the text</source>
-        <translation type="obsolete">Wähle das Format der zu sichernden Datei</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Plain Text</source>
-        <translation type="obsolete">Einfacher Text</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>HTML</source>
-        <translation type="obsolete">HTML</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Select name of text file to save</source>
-        <translation type="obsolete">Wähle einen Namen der zu sichernden Textdatei</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Select name of html file to save</source>
-        <translation type="obsolete">Wähle einen Namen der zu sichernden HTML-Datei</translation>
-    </message>
-    <message>
         <location filename="QPyShell.py" line="309"/>
         <source>&lt;font color=&quot;#0000ff&quot;&gt;[Too many completions: %d]&lt;/font&gt;</source>
         <translation>&lt;font color=&quot;#0000ff&quot;&gt;[Zu viele Möglichkeiten: %d]&lt;/font&gt;</translation>
@@ -1443,21 +875,6 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
 <context>
     <name>RemoteControl</name>
     <message>
-        <location filename="__init__.py" line="36"/>
-        <source>Remote control</source>
-        <translation type="obsolete">Fernbedienung</translation>
-    </message>
-    <message>
-        <location filename="Receiver.py" line="21"/>
-        <source>accepting connection from %s, port %d</source>
-        <translation type="obsolete">akzeptiere Verbindung von %s, Port %d</translation>
-    </message>
-    <message>
-        <location filename="Receiver.py" line="30"/>
-        <source>refusing connection from %s, port %d</source>
-        <translation type="obsolete">lehne Verbindung von %s, Port %d ab</translation>
-    </message>
-    <message>
         <location filename="Receiver.py" line="79"/>
         <source>RemoteControl: trying to run code:</source>
         <translation>RemoteControl: versuche, Code auszuführen: </translation>
@@ -1476,11 +893,6 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
         <location filename="__init__.py" line="36"/>
         <source>Remote control active</source>
         <translation>Fernsteuerung aktiv</translation>
-    </message>
-    <message>
-        <location filename="Receiver.py" line="39"/>
-        <source>RemoteControl: starting TCP listener at port %s</source>
-        <translation type="obsolete">RemoteControl: starte TCP-Enpfänger auf Port %s</translation>
     </message>
     <message>
         <location filename="Receiver.py" line="20"/>
@@ -1504,14 +916,6 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
     </message>
 </context>
 <context>
-    <name>Screenshot</name>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Select name of image file to save</source>
-        <translation type="obsolete">Wähle einen Namen der zu sichernden Datei</translation>
-    </message>
-</context>
-<context>
     <name>SimTools</name>
     <message>
         <location filename="Widgets.py" line="93"/>
@@ -1526,16 +930,6 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
 </context>
 <context>
     <name>SimuVis</name>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Starting SimuVis</source>
-        <translation type="obsolete">Starte SimuVis</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Main: splash screen image not found: &quot;%s&quot;</source>
-        <translation type="obsolete">Hauptprogramm: Startbildschirm-Bild nicht gefunden: &quot;%s&quot;</translation>
-    </message>
     <message>
         <location filename="About.py" line="25"/>
         <source>
@@ -1555,36 +949,6 @@ Die Funktionalität kann über PlugIns erweitert werden.&lt;/p&gt;
 &lt;p&gt;SimuVis basiert auf Python, Qt, PyQt und anderen Toolkits wie Qwt and Vtk.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="About.py" line="37"/>
-        <source>
-&lt;p&gt;SimuVis4 and its ancestors are written by &lt;b&gt;Joerg Raedler&lt;/b&gt; &lt;i&gt;(software@dezentral.de)&lt;/i&gt;.&lt;br&gt;
-SimuVis is a product of &lt;b&gt;dezentral gbr&lt;/b&gt; (Berlin, Germany).&lt;/p&gt;
-&lt;p&gt;You can find more information at: http://dezentral.de/soft/SimuVis4/&lt;/p&gt;
-
-&lt;p&gt;Please keep in mind that SimuVis needs other software to work.&lt;br&gt;
-I&apos;d like to thank the authors of python, Qt and innumerable &lt;br&gt;
-other contributors to free software projects.&lt;p&gt;
-</source>
-        <translation type="obsolete">&lt;p&gt;SimuVis4 und sein Vorgänger wurden geschrieben von &lt;b&gt;Jörg Rädler&lt;/b&gt; &lt;i&gt;(software@dezentral.de)&lt;/i&gt;.&lt;br&gt;
-SimuVis ist ein Produkt der &lt;b&gt;dezentral gbr&lt;/b&gt; (Berlin).&lt;/p&gt;
-&lt;p&gt;Weitere Informationen sind zu finden unter: http://dezentral.de/soft/SimuVis4/&lt;/p&gt;
-&lt;p&gt;Bitte beachte, daß SimuVis viele andere Softwarepakete nutzt.&lt;br&gt;
-Mein Dank geht an die Autoren von Python, Qt und unzählige andere Autoren, die&lt;br&gt;
-zu OpenSource-Projekten beitragen.&lt;p&gt;</translation>
-    </message>
-    <message>
-        <location filename="About.py" line="36"/>
-        <source>
-&lt;p&gt;SimuVis4 and its ancestors are written by &lt;b&gt;Joerg Raedler&lt;/b&gt; &lt;i&gt;(jr@j-raedler.de)&lt;/i&gt;.&lt;br&gt;
-&lt;p&gt;You can find more information at http://www.simuvis.de/.&lt;/p&gt;
-
-&lt;p&gt;Please keep in mind that SimuVis needs other software to work.&lt;br&gt;
-I&apos;d like to thank the authors of python, Qt and innumerable &lt;br&gt;
-other contributors to free software projects.&lt;p&gt;
-</source>
-        <translation type="obsolete">&lt;p&gt;SimuVis4 und sein Vorgänger wurden geschrieben von &lt;b&gt;Jörg Rädler&lt;/b&gt; &lt;i&gt;(jr@j-raedler)&lt;/i&gt;.&lt;/p&gt;&lt;p&gt;Weitere Informationen sind zu finden unter: http://www.simuvis.de/.&lt;/p&gt;&lt;p&gt;Bitte beachte, daß SimuVis viele andere Softwarepakete nutzt.&lt;br&gt;Mein Dank geht an die Autoren von Python, Qt und unzählige andere Autoren, die&lt;br&gt;zu OpenSource-Projekten beitragen.&lt;p&gt;en gibt es unter http://www.simuvis.de/.&lt;/p&gt;</translation>
-    </message>
-    <message>
         <location filename="About.py" line="36"/>
         <source>
 &lt;p&gt;SimuVis4 and its ancestors are written by &lt;b&gt;Joerg Raedler&lt;/b&gt; &lt;i&gt;(jr@j-raedler.de)&lt;/i&gt;.&lt;br&gt;&lt;/p&gt;
@@ -1598,69 +962,6 @@ other contributors to free software projects.&lt;p&gt;
     </message>
 </context>
 <context>
-    <name>SmileKit</name>
-    <message>
-        <location filename="__init__.py" line="27"/>
-        <source>Meteonorm weather import</source>
-        <translation type="obsolete">Meteonorm Wetterdaten-Import</translation>
-    </message>
-    <message>
-        <location filename="Meteo2Nc.py" line="42"/>
-        <source>Select Meteonorm file to open</source>
-        <translation type="obsolete">Wähle die zu öffnende Meteonorm-Datei</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>created %s from %s by Meteo2Nc.py (%d)</source>
-        <translation type="obsolete">erstellt am %s aus %s von Meteo2Nc.py (%d)</translation>
-    </message>
-    <message>
-        <location filename="Meteo2Nc.py" line="95"/>
-        <source>Select netCDF file to save</source>
-        <translation type="obsolete">Wähle den Namen der zu sichernden netCDF-Datei</translation>
-    </message>
-    <message>
-        <location filename="__init__.py" line="26"/>
-        <source>SMILE</source>
-        <translation type="obsolete">SMILE</translation>
-    </message>
-    <message>
-        <location filename="__init__.py" line="28"/>
-        <source>Convert Meteonrom weather files to netCDF format</source>
-        <translation type="obsolete">Konvertiere eine Meteonorm-Wetterdatei in das netCDF-Format</translation>
-    </message>
-    <message>
-        <location filename="Meteo2Nc.py" line="104"/>
-        <source>No filename specified</source>
-        <translation type="obsolete">Fehlender Dateiname</translation>
-    </message>
-    <message>
-        <location filename="Meteo2Nc.py" line="105"/>
-        <source>Please enter a filename in the input box!</source>
-        <translation type="obsolete">Trage einen Dateinamen in das Eingabefeld ein!</translation>
-    </message>
-    <message>
-        <location filename="Meteo2Nc.py" line="109"/>
-        <source>netCDF file saved!</source>
-        <translation type="obsolete">netCDF-Datei gespeichert!</translation>
-    </message>
-    <message>
-        <location filename="Meteo2Nc.py" line="110"/>
-        <source>The netCDF file was successfully saved!</source>
-        <translation type="obsolete">Die netCDF-Datei wurde erfolgreich gespeichert!</translation>
-    </message>
-    <message>
-        <location filename="Meteo2Nc.py" line="49"/>
-        <source>HowTo generate a Meteonorm-5 file</source>
-        <translation type="obsolete">Anleitung zum Generieren einer Meteonorm-5-Datei</translation>
-    </message>
-    <message>
-        <location filename="Meteo2Nc.py" line="76"/>
-        <source>created %s from %s by Meteo2Nc.py (v%d)</source>
-        <translation type="obsolete">erstellt %s aus %s mit Meteo2Nc.py (v%d)</translation>
-    </message>
-</context>
-<context>
     <name>SubWindow</name>
     <message>
         <location filename="SubWin.py" line="35"/>
@@ -1668,29 +969,9 @@ other contributors to free software projects.&lt;p&gt;
         <translation>Unbenanntes Unterfenster</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
-        <source>Can&apos;t print this window</source>
-        <translation type="obsolete">Fenster kann nicht gedruckt werden</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Sorry, this window can&apos;t be printed!</source>
-        <translation type="obsolete">Dieses Fenster kann nicht gedruckt werden!</translation>
-    </message>
-    <message>
         <location filename="SubWin.py" line="44"/>
         <source>Save Screenshot?</source>
         <translation>Ein Bildschirmfoto speichern?</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>This window can&apos;t be printed, save a screenshot instead?</source>
-        <translation type="obsolete">Dieses Fenster ist nicht druckbar, soll stattdessen ein Bildschirmfoto gespeichert werden?</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Yes</source>
-        <translation type="obsolete">Ja</translation>
     </message>
     <message>
         <location filename="SubWin.py" line="48"/>
@@ -1726,22 +1007,6 @@ other contributors to free software projects.&lt;p&gt;
         <location filename="SubWin.py" line="87"/>
         <source>Writing failed! Make sure you have write permissions!</source>
         <translation>Schreiben der Datei fehlgeschlagen! Stelle sicher, dass die Schreibrechte ausreichen!</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>&lt;p&gt;This window can&apos;t be printed, but you
-may save a screenshot instead.&lt;p&gt;
-
-&lt;p&gt;A &lt;b&gt;widget screenshot&lt;/b&gt; will work in most cases.&lt;/p&gt;
-
-&lt;p&gt;For some windows (especially vtk) you may need a
-&lt;b&gt;window screenshot&lt;/b&gt;. Make sure the window is
-not covered by another dialog or window!&lt;/p&gt;
-</source>
-        <translation type="obsolete">&lt;p&gt;Dieses Fenster kann nicht gedruckt werden, Du kannst aber stattdessen einen Bildschirmschnappschuss speichern.&lt;/p&gt;
-&lt;p&gt;Ein &lt;b&gt;Widget-Schnappschuss&lt;/b&gt; funktioniert in den meisten Fälle&lt;/p&gt;
-&lt;p&gt;Für spezielle Fenster (wie z.B. VTK) ist allerdings ein &lt;b&gt;Fenster-Schnappschuss&lt;/b&gt; notwendig. Stelle sicher, dass das Fenster nicht durch andere Dialoge oder Fenster verdeckt wird!&lt;/p&gt;
-</translation>
     </message>
     <message>
         <location filename="SubWin.py" line="46"/>
@@ -2024,19 +1289,9 @@ not covered by another dialog or window!&lt;/p&gt;
         <translation>Schritt:</translation>
     </message>
     <message>
-        <location filename="" line="7471221"/>
-        <source>(1.0 x)</source>
-        <translation type="obsolete">(1.0 x)</translation>
-    </message>
-    <message>
         <location filename="TimeSignalWidget.py" line="208"/>
         <source>Signal</source>
         <translation>Signal</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Value</source>
-        <translation type="obsolete">Wert</translation>
     </message>
     <message>
         <location filename="TimeSignalWidget.py" line="210"/>
@@ -2057,34 +1312,6 @@ not covered by another dialog or window!&lt;/p&gt;
         <location filename="Widgets.py" line="68"/>
         <source>Stop!</source>
         <translation>Stop!</translation>
-    </message>
-</context>
-<context>
-    <name>VtkWindow</name>
-    <message>
-        <location filename="__init__.py" line="34"/>
-        <source>&amp;VtkWindow Test</source>
-        <translation type="obsolete">&amp;VtkWindow Testfenster</translation>
-    </message>
-    <message>
-        <location filename="__init__.py" line="35"/>
-        <source>Show a new Vtk test window</source>
-        <translation type="obsolete">Zeige ein neues Vtk-Testfenster</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>vtk test window %d</source>
-        <translation type="obsolete">Vtk Testfenster %d</translation>
-    </message>
-    <message>
-        <location filename="VtkWindow.py" line="15"/>
-        <source>VtkWindow</source>
-        <translation type="obsolete">VtkWindow</translation>
-    </message>
-    <message>
-        <location filename="__init__.py" line="32"/>
-        <source>Vtk Window</source>
-        <translation type="obsolete">Vtk Fenster</translation>
     </message>
 </context>
 </TS>
