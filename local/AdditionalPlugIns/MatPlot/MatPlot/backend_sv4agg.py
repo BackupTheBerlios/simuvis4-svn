@@ -32,7 +32,7 @@ from backend_agg import FigureCanvasAgg
 try:
     import SimuVis4
     import SimuVis4.Globals
-    from SimuVis4.SubWin import SubWindowV
+    from SimuVis4.SubWin import SubWindow, SubWindowV
     mainWin = SimuVis4.Globals.mainWin
 except:
     raise "This backend works only from SimuVis4!"
@@ -42,6 +42,10 @@ from PyQt4 import QtCore, QtGui
 
 backend_version = "0.2.0"
 
+imagepath = matplotlib.rcParams['datapath']
+tmp = os.path.join(imagepath, 'images')
+if os.path.isdir(tmp):
+    imagepath = tmp
 
 cursord = {
     cursors.MOVE          : QtCore.Qt.PointingHandCursor,
@@ -82,11 +86,7 @@ class MatPlotWindow(SubWindowV):
         self.mainLayout.setSpacing(2)
 
         self.setWindowTitle(unicode(QtCore.QCoreApplication.translate('MatPlot', 'Figure %d')) % num)
-        ip = matplotlib.rcParams['datapath']
-        tmp = os.path.join(ip, 'images')
-        if os.path.isdir(tmp):
-            ip = tmp
-        image = os.path.join(ip,'matplotlib.png')
+        image = os.path.join(imagepath,'matplotlib.png')
         self.setWindowIcon(QtGui.QIcon(image))
 
         self.canvas = canvas
@@ -94,6 +94,7 @@ class MatPlotWindow(SubWindowV):
         canvas.setFocusPolicy( QtCore.Qt.ClickFocus )
         canvas.setFocus()
         self.mainLayout.addWidget(canvas, 1)
+        self.setMinimumSize(350, 300)
 
 
     def printWindow(self, printer):
@@ -117,7 +118,8 @@ class MatPlotWindow(SubWindowV):
         self.canvas.print_figure(name, dpi=300)
         renderer = QtSvg.QSvgRenderer(name)
         renderer.render(painter)
-        self.printer = printer # without this the printer gets destroyed to early
+        #FIXME: without this the printer gets destroyed to early ...
+        self.printer = printer 
 
 
     def saveWindow(self, fileName=None):
@@ -231,17 +233,12 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
         NavigationToolbar2.__init__( self, canvas )
 
     def _init_toolbar(self):
-        basedir = matplotlib.rcParams['datapath']
-        tmp = os.path.join(basedir, 'images')
-        if os.path.isdir(tmp):
-            basedir = tmp
-
         for text, tooltip_text, image_file, callback in self.toolitems:
             if not text:
                 self.layout.addSpacing(8)
                 continue
             image = QtGui.QPixmap()
-            image.load(os.path.join(basedir, image_file))
+            image.load(os.path.join(imagepath, image_file))
             button = QtGui.QToolButton(self)
             button.setText(text)
             button.setIcon(QtGui.QIcon(image))
@@ -278,12 +275,12 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
 
     def configure_subplots(self):
         win = SubWindow(mainWin.workSpace)
-        mainWin.workSpace.addWindow(win)
+        mainWin.workSpace.addSubWindow(win)
         win.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         win.setMinimumSize(200, 100)
         win.setWindowTitle(QtCore.QCoreApplication.translate('MatPlot', 'Subplot Configuration Tool'))
-        image = os.path.join( matplotlib.rcParams['datapath'],'matplotlib.png' )
-        win.setWindowIcon(QtGui.QIcon( image ))
+        image = os.path.join(imagepath,'matplotlib.png' )
+        win.setWindowIcon(QtGui.QIcon(image))
 
         toolfig = Figure(figsize=(6,3))
         toolfig.subplots_adjust(top=0.9)
@@ -291,7 +288,7 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
         tool = SubplotTool(self.canvas.figure, toolfig)
 
         canvas.setParent(win)
-        win.mainLayout.addWidget(canvas)
+        win.setWidget(canvas)
         w = int (toolfig.bbox.width())
         h = int (toolfig.bbox.height())
 
