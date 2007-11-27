@@ -29,19 +29,19 @@ variables = {'time'             : ('hy',     'i', lambda v: (v-0.5)*3600.0),
             'wind_direction'    : ('DD',     's', lambda v: v)}
 
 
-mnHelpText = """Schritte in METEONORM 5:
-1. "Standort" w�hlen oder eingeben
-2. Men�punkt "Format" / "Ausgabeformate"
-3. "User defined" ausw�hlen / "Ok"
+mnHelpText = u"""Schritte in METEONORM 5:
+1. "Standort" wählen oder eingeben
+2. Menüpunkt "Format" / "Ausgabeformate"
+3. "User defined" auswählen / "Ok"
 4. "Kopfzeilen" aktivieren, Trennzeichen auf "Tab" stellen
-5. Folgende Variablen in beliebiger Reihenfolge ausw�hlen:
+5. Folgende Variablen in beliebiger Reihenfolge auswählen:
    Stunde im Jahr
    Luftdruck
    Lufttemperatur
    relative Luftfeuchtigkeit
    Direktstrahlung, horizontal
    Diffusstrahlung, horizontal
-   Bew�lkungsgrad
+   Bewölkungsgrad
    Windgeschwindigkeit
    Windrichtung
 6. "Ok"
@@ -150,25 +150,25 @@ def makeStatistics(data):
     t = []
     # check for common problems
     if len(set(data['wind_direction'])) < 15:
-        t.append('\n*** WARNING: wind direction varies to little, old Meteonorm file?\n')
+        t.append(u'\n*** WARNING: wind direction varies to little, old Meteonorm file?\n')
     if data['longitude'] * data['timezone'] < 0.0:
-        t.append('\n*** WARNING: longitude and timezone have different signs, old Meteonorm file?\n')
+        t.append(u'\n*** WARNING: longitude and timezone have different signs, old Meteonorm file?\n')
     else:
         if abs(data['longitude'] - 15.0*data['timezone']) > 10.0:
-            t.append('\n*** WARNING: significant difference between longitude and timezone!\n')
+            t.append(u'\n*** WARNING: significant difference between longitude and timezone!\n')
     b = data['beam_radiation']
     d = data['diffuse_radiation']
-    t.append('Beam radiation (daily):      %.1f Wh/m�d' % (sum(b)/365.0))
-    t.append('Diffuse radiation (daily):   %.1f Wh/m�d' % (sum(d)/365.0))
-    t.append('Total radiation (year):      %.1f kWh/m�a' % ((sum(b)+ sum(d))/1000.0))
-    t.append('Sun hours (beam >120 W/m�):  %d h/a' % len([x for x in b if x>120.0]))
-    a = data['air_temperature']
-    t.append('Air temperature (min):       %.1f �C' % min(a))
-    t.append('Air temperature (max):       %.1f �C' % max(a))
-    t.append('Air temperature (average):   %.1f �C' % (sum(a)/8761.0))
-    t.append('Relative humidity (average): %.1f %%' % (sum(data['relative_humidity'])/87.61))
-    t.append('Wind speed (average):        %.1f m/s' % (sum(data['wind_speed'])/8761.0))
-    t.append('Wind direction (average):    %.1f �' % (sum(data['wind_direction'])/8761.0))
+    t.append(u'Beam radiation (daily):      %.1f Wh/m²d' % (sum(b)/365.0))
+    t.append(u'Diffuse radiation (daily):   %.1f Wh/m²d' % (sum(d)/365.0))
+    t.append(u'Total radiation (year):      %.1f kWh/m²a' % ((sum(b)+ sum(d))/1000.0))
+    t.append(u'Sun hours (beam >120 W/m²):  %d h/a' % len([x for x in b if x>120.0]))
+    a = data[u'air_temperature']
+    t.append(u'Air temperature (min):       %.1f °C' % min(a))
+    t.append(u'Air temperature (max):       %.1f °C' % max(a))
+    t.append(u'Air temperature (average):   %.1f °C' % (sum(a)/8761.0))
+    t.append(u'Relative humidity (average): %.1f %%' % (sum(data['relative_humidity'])/87.61))
+    t.append(u'Wind speed (average):        %.1f m/s' % (sum(data['wind_speed'])/8761.0))
+    t.append(u'Wind direction (average):    %.1f °' % (sum(data['wind_direction'])/8761.0))
     return '\n'.join(t)
 
 

@@ -113,7 +113,7 @@ class Meteo2NcWidget(QWidget, Ui_Mn2NcDialog):
         vtkPI = glb.mainWin.plugInManager.getPlugIn('VtkWindow')
         if not vtkPI:
             return
-        earthViewWindow = vtkPI.manager.newWindow('Weather data location view')
+        earthViewWindow = vtkPI.winManager.newWindow('Weather data location view')
         ren = vtkPI.vtk.vtkRenderer()
         earthViewWindow.vtkWidget.GetRenderWindow().AddRenderer(ren)
         earth = vtkPI.Objects.Earth()
