@@ -5,7 +5,7 @@
 # this file is part of the SimuVis4 framework
 
 import sys
-from PyQt4.QtGui import QAction, QIcon
+from PyQt4.QtGui import QAction, QIcon, QDockWidget
 from PyQt4.QtCore import SIGNAL, QCoreApplication
 from SimuVis4.SubWin import SubWindow
 from QPyShell import QPyShell
@@ -28,3 +28,17 @@ class PyConsoleWindow(SubWindow):
 
     def saveWindow(self, fileName=None):
         self.console.saveContents(fileName)
+
+
+
+class PyConsoleDockWidget(QDockWidget):
+
+    def __init__(self):
+        QDockWidget.__init__(self, QCoreApplication.translate('PyConsoleWindow', 'Python console'))
+        self.console = QPyShell(self)
+        self.setWidget(self.console)
+        self.setMinimumSize(600, 200)
+        self.toggleViewAction().setText(QCoreApplication.translate('PyConsoleWindow', 'Python console'))
+        self.toggleViewAction().setShortcut(QCoreApplication.translate('PyConsoleWindow', "Ctrl+D"))
+        self.toggleViewAction().setStatusTip(QCoreApplication.translate('PyConsoleWindow', 'Python console'))
+

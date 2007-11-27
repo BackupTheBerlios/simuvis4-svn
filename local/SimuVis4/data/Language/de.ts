@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -774,12 +775,12 @@ h: diese Hilfe anzeigen
 <context>
     <name>PyConsoleWindow</name>
     <message>
-        <location filename="PyConsoleWindow.py" line="24"/>
+        <location filename="PyConsoleWindow.py" line="43"/>
         <source>Python console</source>
         <translation>Python-Konsole</translation>
     </message>
     <message>
-        <location filename="PyConsoleWindow.py" line="23"/>
+        <location filename="PyConsoleWindow.py" line="42"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
@@ -787,7 +788,7 @@ h: diese Hilfe anzeigen
 <context>
     <name>QPyShell</name>
     <message>
-        <location filename="QPyShell.py" line="47"/>
+        <location filename="QPyShell.py" line="144"/>
         <source>&lt;h3&gt; +++ Welcome to the python shell +++ &lt;/h3&gt;
 &lt;i&gt;You may enter arbitrary python code at the prompt above, 
 line by line. Please use spaces instead of tabs for indentation! 
@@ -802,74 +803,104 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
 </translation>
     </message>
     <message>
-        <location filename="QPyShell.py" line="69"/>
+        <location filename="QPyShell.py" line="166"/>
         <source>QPyShell - a simple python shell widget for Qt</source>
         <translation>QPyShell - eine einfaches Python-Shell-Widget für Qt</translation>
     </message>
     <message>
-        <location filename="QPyShell.py" line="72"/>
-        <source>Python command input</source>
-        <translation>Python Kommandozeile</translation>
-    </message>
-    <message>
-        <location filename="QPyShell.py" line="90"/>
+        <location filename="QPyShell.py" line="201"/>
         <source>Save ...</source>
         <translation>Speichern ...</translation>
     </message>
     <message>
-        <location filename="QPyShell.py" line="92"/>
+        <location filename="QPyShell.py" line="195"/>
         <source>Clear</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="QPyShell.py" line="127"/>
+        <location filename="QPyShell.py" line="236"/>
         <source>QPyShell: There can be only one highlander... sorry, I mean one active QPyShell widget!</source>
         <translation>QPyShell: Es kann nur einen geben! Einen Highlander und ein aktives QPyShell-Widget!</translation>
     </message>
     <message>
-        <location filename="QPyShell.py" line="154"/>
+        <location filename="QPyShell.py" line="263"/>
         <source># this is the command history of the QPyShell</source>
         <translation># Dies ist die Kommando-History der QPyShell</translation>
     </message>
     <message>
-        <location filename="QPyShell.py" line="170"/>
+        <location filename="QPyShell.py" line="279"/>
         <source>No interpreter found! You need to call QPyShell.initInterpreter() first!</source>
         <translation>Kein aktiver Interpreter! Su musst zuerst QPyShell.initInterpreter() aufrufen!</translation>
     </message>
     <message>
-        <location filename="QPyShell.py" line="219"/>
+        <location filename="QPyShell.py" line="328"/>
         <source>Command line history</source>
         <translation>Kommandozeilen-History</translation>
     </message>
     <message>
-        <location filename="QPyShell.py" line="220"/>
+        <location filename="QPyShell.py" line="329"/>
         <source>Please select a history item:</source>
         <translation>Bitte wähle eine History-Zeile:</translation>
     </message>
     <message>
-        <location filename="QPyShell.py" line="242"/>
+        <location filename="QPyShell.py" line="351"/>
         <source>Print Document</source>
         <translation>Dokument Drucken</translation>
     </message>
     <message>
-        <location filename="QPyShell.py" line="309"/>
+        <location filename="QPyShell.py" line="418"/>
         <source>&lt;font color=&quot;#0000ff&quot;&gt;[Too many completions: %d]&lt;/font&gt;</source>
         <translation>&lt;font color=&quot;#0000ff&quot;&gt;[Zu viele Möglichkeiten: %d]&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="QPyShell.py" line="253"/>
+        <location filename="QPyShell.py" line="362"/>
         <source>Select name of file to save</source>
         <translation>Dateinamen und Format wählen</translation>
     </message>
     <message>
-        <location filename="QPyShell.py" line="276"/>
+        <location filename="QPyShell.py" line="385"/>
         <source>Could not save file!</source>
         <translation>Speichern fehlgeschlagen!</translation>
     </message>
     <message>
-        <location filename="QPyShell.py" line="277"/>
+        <location filename="QPyShell.py" line="386"/>
         <source>Writing failed! Make sure you have write permissions!</source>
         <translation>Schreiben der Datei fehlgeschlagen! Stelle sicher, dass die Schreibrechte ausreichen!</translation>
+    </message>
+    <message>
+        <location filename="QPyShell.py" line="183"/>
+        <source>The python commandline: enter code her</source>
+        <translation>Die Python-Kommandozeile: gebe Code hier ein</translation>
+    </message>
+    <message>
+        <location filename="QPyShell.py" line="187"/>
+        <source>Enter</source>
+        <translation>Eingabe</translation>
+    </message>
+    <message>
+        <location filename="QPyShell.py" line="188"/>
+        <source>This button or [Enter] executes the command</source>
+        <translation>Dieser Knopf oder die Eingabetaste führen den Code aus</translation>
+    </message>
+    <message>
+        <location filename="QPyShell.py" line="196"/>
+        <source>Clear the output window</source>
+        <translation>Lösche den Inhalt des Ausgabefensters</translation>
+    </message>
+    <message>
+        <location filename="QPyShell.py" line="202"/>
+        <source>Save the contents of the output window</source>
+        <translation>Speichere den Inhalt des Ausgabefensters</translation>
+    </message>
+    <message>
+        <location filename="QPyShell.py" line="207"/>
+        <source>Print</source>
+        <translation>Drucken</translation>
+    </message>
+    <message>
+        <location filename="QPyShell.py" line="208"/>
+        <source>Print the contents of the output window</source>
+        <translation>Drucke den Inhalt des Ausgabefensters</translation>
     </message>
 </context>
 <context>

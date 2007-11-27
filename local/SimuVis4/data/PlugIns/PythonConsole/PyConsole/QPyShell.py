@@ -9,10 +9,107 @@ import os, sys, string
 from PyQt4.QtGui import QWidget, QTextCursor, QPrintDialog, QPrinter,\
     QDialog, QFileDialog, QMessageBox, QInputDialog, QTextEdit, QGroupBox,\
     QHBoxLayout, QVBoxLayout, QLabel, QLineEdit, QToolButton, QSpacerItem, \
-    QSizePolicy, QPushButton
+    QSizePolicy, QPushButton, QToolButton, QIcon, QPixmap
 from PyQt4.QtCore import SIGNAL, Qt, QSize, QCoreApplication
 from code import InteractiveInterpreter
 from Completer import Completer
+
+enterXPM = [
+    "16 16 5 1",
+    "# c None",
+    ". c None",
+    "c c #800000",
+    "b c #c00000",
+    "a c #ff0000",
+    ".###.########...",
+    ".###.#####.##...",
+    "#...#####a##....",
+    "#...####abc#.#..",
+    "#####.##abc#####",
+    "#.######abc#####",
+    "########abc#.###",
+    "########abc#####",
+    "#####a##abc#####",
+    "####ab##abc#####",
+    "###abbaaabc####.",
+    "#.abbbbbbbc#....",
+    "...cbbcccc##....",
+    "....cc######....",
+    "....#c####......",
+    "....######......"
+]
+
+
+clearXPM = [
+    "16 16 5 1",
+    "a c None",
+    ". c #e5a5a5",
+    "# c #ee6e6e",
+    "c c #f73737",
+    "b c #ff0000",
+    ".#aaaaaaaaaaaa#.",
+    "#bcaaaaaaaaaacb#",
+    "acbcaaaaaaaacbca",
+    "aacbcaaaaaacbcaa",
+    "aaacbcaaaacbcaaa",
+    "aaaacbcaacbcaaaa",
+    "aaaaacbccbcaaaaa",
+    "aaaaaacbbcaaaaaa",
+    "aaaaaacbbcaaaaaa",
+    "aaaaacbccbcaaaaa",
+    "aaaacbcaacbcaaaa",
+    "aaacbcaaaacbcaaa",
+    "aacbcaaaaaacbcaa",
+    "acbcaaaaaaaacbca",
+    "#bcaaaaaaaaaacb#",
+    ".#aaaaaaaaaaaa#."
+]
+
+saveXPM = [
+    '14 14 4 1',
+    '. c #040404',
+    '# c #808304',
+    'a c #bfc2bf',
+    'b c None',
+    '..............',
+    '.#.aaaaaaaa.a.',
+    '.#.aaaaaaaa...',
+    '.#.aaaaaaaa.#.',
+    '.#.aaaaaaaa.#.',
+    '.#.aaaaaaaa.#.',
+    '.#.aaaaaaaa.#.',
+    '.##........##.',
+    '.############.',
+    '.##.........#.',
+    '.##......aa.#.',
+    '.##......aa.#.',
+    '.##......aa.#.',
+    'b.............'
+]
+
+printXPM = [
+    '16 14 6 1',
+    '. c #000000',
+    '# c #848284',
+    'a c #c6c3c6',
+    'b c #ffff00',
+    'c c #ffffff',
+    'd c None',
+    'ddddd.........dd',
+    'dddd.cccccccc.dd',
+    'dddd.c.....c.ddd',
+    'ddd.cccccccc.ddd',
+    'ddd.c.....c....d',
+    'dd.cccccccc.a.a.',
+    'd..........a.a..',
+    '.aaaaaaaaaa.a.a.',
+    '.............aa.',
+    '.aaaaaa###aa.a.d',
+    '.aaaaaabbbaa...d',
+    '.............a.d',
+    'd.aaaaaaaaa.a.dd',
+    'dd...........ddd'
+]
 
 
 identChars = string.letters + string.digits + '_.'
@@ -68,38 +165,49 @@ class QPyShell(QWidget):
 
         self.setWindowTitle(QCoreApplication.translate("QPyShell", "QPyShell - a simple python shell widget for Qt"))
 
-        self.clBox = QGroupBox(self)
-        self.clBox.setTitle(QCoreApplication.translate("QPyShell", "Python command input"))
-
-        self.promptLabel = QLabel(self.clBox)
-        self.promptLabel.setText(">>>")
-        self.lineInput = QLineEdit(self.clBox)
-        self.enterButton = QToolButton(self.clBox)
-        self.enterButton.setArrowType(Qt.RightArrow)
-
-        self.clLayout = QHBoxLayout(self.clBox)
-        self.clLayout.addWidget(self.promptLabel)
-        self.clLayout.addWidget(self.lineInput)
-        self.clLayout.addWidget(self.enterButton)
+        self.mainLayout = QVBoxLayout(self)
 
         self.outputBrowser = QTextEdit(self)
         self.outputBrowser.setMinimumSize(QSize(100,100))
         self.outputBrowser.setReadOnly(True)
-
-        self.saveButton = QPushButton(self)
-        self.saveButton.setText(QCoreApplication.translate("QPyShell", "Save ..."))
-        self.clearButton = QPushButton(self)
-        self.clearButton.setText(QCoreApplication.translate("QPyShell", "Clear"))
-
-        self.buttonLayout = QHBoxLayout()
-        self.buttonLayout.addItem(QSpacerItem(27, 29, QSizePolicy.Expanding, QSizePolicy.Minimum))
-        self.buttonLayout.addWidget(self.saveButton)
-        self.buttonLayout.addWidget(self.clearButton)
-
-        self.mainLayout = QVBoxLayout(self)
         self.mainLayout.addWidget(self.outputBrowser)
-        self.mainLayout.addWidget(self.clBox)
-        self.mainLayout.addLayout(self.buttonLayout)
+
+        self.clLayout = QHBoxLayout()
+        self.mainLayout.addLayout(self.clLayout)
+
+        self.promptLabel = QLabel()
+        self.promptLabel.setText(">>>")
+        self.clLayout.addWidget(self.promptLabel)
+
+        self.lineInput = QLineEdit()
+        self.lineInput.setToolTip(QCoreApplication.translate('QPyShell', 'The python commandline: enter code her'))
+        self.clLayout.addWidget(self.lineInput)
+
+        self.enterButton = QToolButton(self)
+        self.enterButton.setText(QCoreApplication.translate("QPyShell", "Enter"))
+        self.enterButton.setToolTip(QCoreApplication.translate('QPyShell', 'This button or [Enter] executes the command'))
+        self.enterButton.setIcon(QIcon(QPixmap(enterXPM)))
+        self.clLayout.addWidget(self.enterButton)
+
+        self.clLayout.addSpacing(8)
+
+        self.clearButton = QToolButton(self)
+        self.clearButton.setText(QCoreApplication.translate("QPyShell", "Clear"))
+        self.clearButton.setToolTip(QCoreApplication.translate('QPyShell', 'Clear the output window'))
+        self.clearButton.setIcon(QIcon(QPixmap(clearXPM)))
+        self.clLayout.addWidget(self.clearButton)
+
+        self.saveButton = QToolButton(self)
+        self.saveButton.setText(QCoreApplication.translate("QPyShell", "Save ..."))
+        self.saveButton.setToolTip(QCoreApplication.translate('QPyShell', 'Save the contents of the output window'))
+        self.saveButton.setIcon(QIcon(QPixmap(saveXPM)))
+        self.clLayout.addWidget(self.saveButton)
+
+        self.printButton = QToolButton(self)
+        self.printButton.setText(QCoreApplication.translate("QPyShell", "Print"))
+        self.printButton.setToolTip(QCoreApplication.translate('QPyShell', 'Print the contents of the output window'))
+        self.printButton.setIcon(QIcon(QPixmap(printXPM)))
+        self.clLayout.addWidget(self.printButton)
 
         self.history = []
         self.historyFile = None
@@ -119,6 +227,7 @@ class QPyShell(QWidget):
 
         self.connect(self.enterButton, SIGNAL("pressed()"), self.run)
         self.connect(self.saveButton, SIGNAL("pressed()"), self.saveContents)
+        self.connect(self.printButton, SIGNAL("pressed()"), self.printContents)
         self.connect(self.clearButton, SIGNAL("pressed()"), self.outputBrowser.clear)
 
 
