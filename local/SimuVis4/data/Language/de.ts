@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -162,7 +161,7 @@ Abhängig von der Art der Ausnahme  können Sie sie eventuell ignorieren, aber z
         <translation type="obsolete">Graphics Fenster</translation>
     </message>
     <message>
-        <location filename="GraphicsWindow.py" line="67"/>
+        <location filename="GraphicsWindow.py" line="66"/>
         <source>Print Document</source>
         <translation>Dokument Drucken</translation>
     </message>
@@ -189,7 +188,7 @@ h diese Hilfe anzeigen
 </translation>
     </message>
     <message>
-        <location filename="GraphicsWindow.py" line="58"/>
+        <location filename="GraphicsWindow.py" line="57"/>
         <source>Graphics window help</source>
         <translation>Hilfe zum Graphics-Fenster</translation>
     </message>
@@ -296,22 +295,22 @@ h: diese Hilfe anzeigen
         <translation>Log Nachrichten</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="57"/>
+        <location filename="LogWin.py" line="56"/>
         <source>&amp;Log window</source>
         <translation>&amp;Logfenster</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="58"/>
+        <location filename="LogWin.py" line="57"/>
         <source>Ctrl+L</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="59"/>
+        <location filename="LogWin.py" line="58"/>
         <source>Log window</source>
         <translation>Logfenster</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="70"/>
+        <location filename="LogWin.py" line="69"/>
         <source>Print Document</source>
         <translation>Dokument Drucken</translation>
     </message>
@@ -346,17 +345,17 @@ h: diese Hilfe anzeigen
         <translation type="obsolete">Wähle einen Namen der zu sichernden HTML-Datei</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="81"/>
+        <location filename="LogWin.py" line="80"/>
         <source>Select name of file to save</source>
         <translation>Dateinamen und Format wählen</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="105"/>
+        <location filename="LogWin.py" line="104"/>
         <source>Could not save file!</source>
         <translation>Speichern fehlgeschlagen!</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="106"/>
+        <location filename="LogWin.py" line="105"/>
         <source>Writing failed! Make sure you have write permissions!</source>
         <translation>Schreiben der Datei fehlgeschlagen! Stelle sicher, dass die Schreibrechte ausreichen!</translation>
     </message>
@@ -364,7 +363,7 @@ h: diese Hilfe anzeigen
 <context>
     <name>MainWin</name>
     <message>
-        <location filename="MainWin.py" line="62"/>
+        <location filename="MainWin.py" line="63"/>
         <source>Ready</source>
         <translation>Fertig</translation>
     </message>
@@ -374,12 +373,12 @@ h: diese Hilfe anzeigen
         <translation type="obsolete">Skript &amp;ausführen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="70"/>
+        <location filename="MainWin.py" line="71"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="71"/>
+        <location filename="MainWin.py" line="72"/>
         <source>Execute python script</source>
         <translation>Pythonskript ausführen</translation>
     </message>
@@ -464,62 +463,62 @@ h: diese Hilfe anzeigen
         <translation type="obsolete">Skript schließen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="74"/>
+        <location filename="MainWin.py" line="75"/>
         <source>&amp;Print</source>
         <translation>&amp;Drucken</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="75"/>
+        <location filename="MainWin.py" line="76"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="81"/>
+        <location filename="MainWin.py" line="82"/>
         <source>Print window contents</source>
         <translation>Fensterinhalt drucken</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="79"/>
+        <location filename="MainWin.py" line="80"/>
         <source>&amp;Restart</source>
         <translation>Neusta&amp;rten</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="80"/>
+        <location filename="MainWin.py" line="81"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="84"/>
+        <location filename="MainWin.py" line="85"/>
         <source>&amp;Quit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="85"/>
+        <location filename="MainWin.py" line="86"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="86"/>
+        <location filename="MainWin.py" line="87"/>
         <source>Quit application</source>
         <translation>Anwendung beenden</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="89"/>
+        <location filename="MainWin.py" line="90"/>
         <source>&amp;Tile</source>
         <translation>&amp;Kacheln</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="90"/>
+        <location filename="MainWin.py" line="91"/>
         <source>Tile the windows</source>
         <translation>Unterfenster gekachelt anordnen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="98"/>
+        <location filename="MainWin.py" line="99"/>
         <source>&amp;Cascade</source>
         <translation>&amp;Kaskadieren</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="99"/>
+        <location filename="MainWin.py" line="100"/>
         <source>Cascade the windows</source>
         <translation>Unterfenster kaskadiert anordnen</translation>
     </message>
@@ -541,15 +540,15 @@ h: diese Hilfe anzeigen
     <message>
         <location filename="MainWin.py" line="109"/>
         <source>Arrange &amp;icons</source>
-        <translation>&amp;Ikons anordnen</translation>
+        <translation type="obsolete">&amp;Ikons anordnen</translation>
     </message>
     <message>
         <location filename="MainWin.py" line="110"/>
         <source>Arrange the icons</source>
-        <translation>Ikons auf der Arbeitsfläche anordnen</translation>
+        <translation type="obsolete">Ikons auf der Arbeitsfläche anordnen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="114"/>
+        <location filename="MainWin.py" line="109"/>
         <source>Ne&amp;xt</source>
         <translation>&amp;Nächstes</translation>
     </message>
@@ -559,12 +558,12 @@ h: diese Hilfe anzeigen
         <translation type="obsolete">Ctrl+F6</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="116"/>
+        <location filename="MainWin.py" line="111"/>
         <source>Move the focus to the next window</source>
         <translation>Nächstes Unterfenster aktivieren</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="120"/>
+        <location filename="MainWin.py" line="114"/>
         <source>Pre&amp;vious</source>
         <translation>&amp;Vorheriges</translation>
     </message>
@@ -574,22 +573,22 @@ h: diese Hilfe anzeigen
         <translation type="obsolete">Ctrl+Shift+F6</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="122"/>
+        <location filename="MainWin.py" line="116"/>
         <source>Move the focus to the previous window</source>
         <translation>Vorheriges Unterfenster aktivieren</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="159"/>
+        <location filename="MainWin.py" line="152"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="127"/>
+        <location filename="MainWin.py" line="120"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="128"/>
+        <location filename="MainWin.py" line="121"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
@@ -599,52 +598,52 @@ h: diese Hilfe anzeigen
         <translation type="obsolete">Über</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="141"/>
+        <location filename="MainWin.py" line="134"/>
         <source>&amp;File</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="150"/>
+        <location filename="MainWin.py" line="143"/>
         <source>&amp;Tools</source>
         <translation>&amp;Werkzeuge</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="152"/>
+        <location filename="MainWin.py" line="145"/>
         <source>&amp;Window</source>
         <translation>&amp;Fenster</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="155"/>
+        <location filename="MainWin.py" line="148"/>
         <source>&amp;PlugIns</source>
         <translation>&amp;PlugIns</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="206"/>
+        <location filename="MainWin.py" line="201"/>
         <source>Initializing Plugins</source>
         <translation>Initialisiere PlugIns</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="230"/>
+        <location filename="MainWin.py" line="225"/>
         <source>Main: startup succeeded</source>
         <translation>Hauptprogramm: Startvorgang beendet</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="245"/>
+        <location filename="MainWin.py" line="240"/>
         <source>Select file to execute</source>
         <translation>Wähle eine auszuführende Datei aus</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="251"/>
+        <location filename="MainWin.py" line="246"/>
         <source>Executing file %s</source>
         <translation>Führe Datei aus: %s</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="253"/>
+        <location filename="MainWin.py" line="248"/>
         <source>Loading aborted</source>
         <translation>Laden abgebrochen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="267"/>
+        <location filename="MainWin.py" line="262"/>
         <source>Main: uncatched internal exception: %s: %s:
 %s</source>
         <translation>Hauptprogramm: unbehandelte interne Ausnahme: %s: %s:
@@ -658,12 +657,12 @@ based on python, Qt, Qwt, VTK and other</source>
 auf Basis von Python, Qt, Qwt, Vtk</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="389"/>
+        <location filename="MainWin.py" line="383"/>
         <source>restarting on platform &quot;%s&quot; not yet supported</source>
         <translation>Neustart auf der Plattform &quot;%s&quot; wird nicht unterstützt</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="69"/>
+        <location filename="MainWin.py" line="70"/>
         <source>E&amp;xecute scipt</source>
         <translation>Skript &amp;ausführen</translation>
     </message>
@@ -708,12 +707,12 @@ auf Basis von Python, Qt, Qwt, Vtk</translation>
         <translation type="obsolete">Datei schließen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="131"/>
+        <location filename="MainWin.py" line="124"/>
         <source>&amp;About ...</source>
         <translation>Ü&amp;ber ...</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="132"/>
+        <location filename="MainWin.py" line="125"/>
         <source>Info about this application</source>
         <translation>Information über diese Anwendung</translation>
     </message>
@@ -738,67 +737,67 @@ auf Basis von Python, Qt, Qwt, Vtk</translation>
         <translation type="obsolete">&amp;Ausführen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="93"/>
+        <location filename="MainWin.py" line="94"/>
         <source>&amp;Fullscreen (main window)</source>
         <translation>&amp;Vollbild (Hauptfenster)</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="95"/>
+        <location filename="MainWin.py" line="96"/>
         <source>Toggle fullscreen appearance of main window</source>
         <translation>Vollbilddarstellung des Hauptfensters umschalten</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="115"/>
+        <location filename="MainWin.py" line="110"/>
         <source>Ctrl+&gt;</source>
         <translation>Ctrl+&gt;</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="121"/>
+        <location filename="MainWin.py" line="115"/>
         <source>Ctrl+&lt;</source>
         <translation>Ctrl+&lt;</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="94"/>
+        <location filename="MainWin.py" line="95"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="176"/>
+        <location filename="MainWin.py" line="169"/>
         <source>Starting logging system</source>
         <translation>Starte das Log-System</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="189"/>
+        <location filename="MainWin.py" line="184"/>
         <source>Starting plugin manager</source>
         <translation>Starte den Plugin-Manager</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="197"/>
+        <location filename="MainWin.py" line="192"/>
         <source>Starting plugin browser</source>
         <translation>Starte den Plugin-Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="214"/>
+        <location filename="MainWin.py" line="209"/>
         <source>Starting task browser</source>
         <translation>Starte den Task-Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="223"/>
+        <location filename="MainWin.py" line="218"/>
         <source>Starting help system</source>
         <translation>Starte das Hilfe-System</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="135"/>
+        <location filename="MainWin.py" line="128"/>
         <source>Open homepage</source>
         <translation>Öffne Homepage</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="136"/>
+        <location filename="MainWin.py" line="129"/>
         <source>Open application homepage in broweser</source>
         <translation>Zeige die Homepage der Anwendung im Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="397"/>
+        <location filename="MainWin.py" line="391"/>
         <source>Main: shutdown complete</source>
         <translation>Hauptprogramm: shutdown beendet</translation>
     </message>
@@ -1136,7 +1135,7 @@ in der PythonConsole (falls installiert) oder in Skripten nutzen können.</trans
         <translation>PlugIns</translation>
     </message>
     <message>
-        <location filename="PlugInBrowser.py" line="61"/>
+        <location filename="PlugInBrowser.py" line="60"/>
         <source>PlugIn &amp;browser</source>
         <translation>Plugin-&amp;Browser</translation>
     </message>
@@ -1146,7 +1145,7 @@ in der PythonConsole (falls installiert) oder in Skripten nutzen können.</trans
         <translation type="obsolete">Ctrl+B</translation>
     </message>
     <message>
-        <location filename="PlugInBrowser.py" line="63"/>
+        <location filename="PlugInBrowser.py" line="61"/>
         <source>PlugIn Browser</source>
         <translation>PlugIn-Browser</translation>
     </message>
@@ -1313,12 +1312,12 @@ in der PythonConsole (falls installiert) oder in Skripten nutzen können.</trans
 <context>
     <name>PyConsoleWindow</name>
     <message>
-        <location filename="PyConsoleWindow.py" line="25"/>
+        <location filename="PyConsoleWindow.py" line="24"/>
         <source>Python console</source>
         <translation>Python-Konsole</translation>
     </message>
     <message>
-        <location filename="PyConsoleWindow.py" line="24"/>
+        <location filename="PyConsoleWindow.py" line="23"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
@@ -1664,7 +1663,7 @@ other contributors to free software projects.&lt;p&gt;
 <context>
     <name>SubWindow</name>
     <message>
-        <location filename="SubWin.py" line="33"/>
+        <location filename="SubWin.py" line="35"/>
         <source>Unnamed Subwindow</source>
         <translation>Unbenanntes Unterfenster</translation>
     </message>
@@ -1679,7 +1678,7 @@ other contributors to free software projects.&lt;p&gt;
         <translation type="obsolete">Dieses Fenster kann nicht gedruckt werden!</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="42"/>
+        <location filename="SubWin.py" line="44"/>
         <source>Save Screenshot?</source>
         <translation>Ein Bildschirmfoto speichern?</translation>
     </message>
@@ -1694,37 +1693,37 @@ other contributors to free software projects.&lt;p&gt;
         <translation type="obsolete">Ja</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="46"/>
+        <location filename="SubWin.py" line="48"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="61"/>
+        <location filename="SubWin.py" line="63"/>
         <source>PNG - compressed image</source>
         <translation>PNG - komprimiertes Bild</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="62"/>
+        <location filename="SubWin.py" line="64"/>
         <source>JPEG - picture</source>
         <translation>JPEG - Bild</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="63"/>
+        <location filename="SubWin.py" line="65"/>
         <source>BMP - uncompressed bitmap</source>
         <translation>BMP - unkomprimierte Bitmap</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="66"/>
+        <location filename="SubWin.py" line="68"/>
         <source>Select name of file to save</source>
         <translation>Dateinamen und Format wählen</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="84"/>
+        <location filename="SubWin.py" line="86"/>
         <source>Could not save file!</source>
         <translation>Speichern fehlgeschlagen!</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="85"/>
+        <location filename="SubWin.py" line="87"/>
         <source>Writing failed! Make sure you have write permissions!</source>
         <translation>Schreiben der Datei fehlgeschlagen! Stelle sicher, dass die Schreibrechte ausreichen!</translation>
     </message>
@@ -1745,12 +1744,12 @@ not covered by another dialog or window!&lt;/p&gt;
 </translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="44"/>
+        <location filename="SubWin.py" line="46"/>
         <source>Widget</source>
         <translation>Widget</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="45"/>
+        <location filename="SubWin.py" line="47"/>
         <source>Window</source>
         <translation>Fenster</translation>
     </message>
@@ -1776,17 +1775,17 @@ not covered by another dialog or window!&lt;/p&gt;
         <translation>Tasks</translation>
     </message>
     <message>
-        <location filename="TaskBrowser.py" line="32"/>
+        <location filename="TaskBrowser.py" line="31"/>
         <source>&amp;Task browser</source>
         <translation>&amp;Task-Browser</translation>
     </message>
     <message>
-        <location filename="TaskBrowser.py" line="33"/>
+        <location filename="TaskBrowser.py" line="32"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="TaskBrowser.py" line="34"/>
+        <location filename="TaskBrowser.py" line="33"/>
         <source>Task Browser</source>
         <translation>Task-Browser</translation>
     </message>
@@ -1832,7 +1831,7 @@ not covered by another dialog or window!&lt;/p&gt;
 <context>
     <name>TextEditor</name>
     <message>
-        <location filename="TextEditorWindow.py" line="68"/>
+        <location filename="TextEditorWindow.py" line="67"/>
         <source>Select file to save</source>
         <translation>Wähle einen Namen der zu sichernden Datei</translation>
     </message>
@@ -1842,12 +1841,12 @@ not covered by another dialog or window!&lt;/p&gt;
         <translation>Texteditor</translation>
     </message>
     <message>
-        <location filename="TextEditorWindow.py" line="40"/>
+        <location filename="TextEditorWindow.py" line="39"/>
         <source>TextEditor: could not read file: %s</source>
         <translation>TextEditor: konnte Datei nicht lesen: %s</translation>
     </message>
     <message>
-        <location filename="TextEditorWindow.py" line="53"/>
+        <location filename="TextEditorWindow.py" line="52"/>
         <source>TextEditor: could not write file: %s</source>
         <translation>TextEditor: konnte Datei nicht schreiben: %s</translation>
     </message>
@@ -1942,7 +1941,7 @@ not covered by another dialog or window!&lt;/p&gt;
         <translation>Wähle eine zu öffnende Datei</translation>
     </message>
     <message>
-        <location filename="TextEditorWindow.py" line="84"/>
+        <location filename="TextEditorWindow.py" line="83"/>
         <source>Print Document</source>
         <translation>Dokument Drucken</translation>
     </message>

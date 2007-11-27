@@ -92,8 +92,8 @@ class TimeSignalWindow(SubWindow):
         SubWindow.__init__(self, parent)
         self.setWindowTitle(QCoreApplication.translate('SimTools', 'Time signal Generator'))
         self.timeSignalWidget = TimeSignalWidget(self)
-        self.mainLayout.addWidget(self.timeSignalWidget)
-        self.setFocusProxy(self.timeSignalWidget)
+        self.setWidget(self.timeSignalWidget)
+
 
 
 class SimpleQuantitiesDialog(QDialog):
@@ -191,5 +191,5 @@ class ProcessWindow(SubWindow):
         SubWindow.__init__(self, parent)
         self.setWindowTitle(QCoreApplication.translate('SimTools', 'Process'))
         self.processWidget = ProcessWidget(self)
-        self.mainLayout.addWidget(self.processWidget)
-        self.setFocusProxy(self.processWidget)
+        self.setWidget(self.processWidget)
+

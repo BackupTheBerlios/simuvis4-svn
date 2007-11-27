@@ -47,6 +47,8 @@ class MainWindow(QMainWindow):
             bgFile = os.path.join(cfg['main:system_picture_path'], cfg['main:background_image'])
             if os.path.exists(bgFile):
                 self.workSpace.setBackground(QBrush(QImage(bgFile)))
+        #self.workSpace.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        #self.workSpace.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.setCentralWidget(self.workSpace)
 
         self.windowMapper = QSignalMapper(self)

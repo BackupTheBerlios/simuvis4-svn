@@ -28,7 +28,7 @@ class SubWindow(QMdiSubWindow):
         self.mainWidget = QWidget(self)
         self.setWidget(self.mainWidget)
         self.mainLayout = QVBoxLayout(self.mainWidget)
-        self.mainLayout.setMargin(2)
+        self.mainLayout.setMargin(0)
         self.mainLayout.setSpacing(4)
         icon = os.path.join(Globals.config['main:system_picture_path'], 'subwin.xpm')
         self.setWindowIcon(QIcon(QPixmap(icon)))
@@ -85,3 +85,17 @@ class SubWindow(QMdiSubWindow):
             QMessageBox.critical(self,
                 QCoreApplication.translate('SubWindow', 'Could not save file!'),
                 QCoreApplication.translate('SubWindow', 'Writing failed! Make sure you have write permissions!'))
+
+
+
+class SubWindowV(SubWindow):
+
+    """SubWindow with a main VBoxLayout"""
+
+    def __init__(self, parent):
+        SubWindow.__init__(self, parent)
+        self.mainWidget = QWidget(self)
+        self.setWidget(self.mainWidget)
+        self.mainLayout = QVBoxLayout(self.mainWidget)
+        self.mainLayout.setMargin(0)
+        self.mainLayout.setSpacing(4)

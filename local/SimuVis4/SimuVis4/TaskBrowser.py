@@ -16,18 +16,17 @@ class TaskBrowserWidget(QWidget, Ui_TaskBrowserWidget):
         QWidget.__init__(self, parent)
         self.setupUi(self)
 
-        
+
 class TaskBrowser(SubWindow):
-    
+
     def __init__(self, parent):
         SubWindow.__init__(self, parent)
         icon = QIcon(QPixmap(os.path.join(Globals.config['main:system_picture_path'], 'taskwin.xpm')))
         self.setWindowIcon(icon)
         self.setWindowTitle(QCoreApplication.translate('TaskBrowser', 'Tasks'))
         self.browser = TaskBrowserWidget(self)
-        self.mainLayout.addWidget(self.browser)
-        self.setFocusProxy(self.browser)
-        
+        self.setWidget(self.browser)
+
         self.toggleVisibleAction.setIcon(icon)
         self.toggleVisibleAction.setText(QCoreApplication.translate('TaskBrowser', '&Task browser'))
         self.toggleVisibleAction.setShortcut(QCoreApplication.translate('TaskBrowser', "Ctrl+T"))

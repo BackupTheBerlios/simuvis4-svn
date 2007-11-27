@@ -32,7 +32,7 @@ from backend_agg import FigureCanvasAgg
 try:
     import SimuVis4
     import SimuVis4.Globals
-    from SimuVis4.SubWin import SubWindow
+    from SimuVis4.SubWin import SubWindowV
     mainWin = SimuVis4.Globals.mainWin
 except:
     raise "This backend works only from SimuVis4!"
@@ -75,14 +75,18 @@ def new_figure_manager( num, *args, **kwargs ):
     return FigureManagerSV4( canvas, num )
 
 
-class MatPlotWindow(SubWindow):
+class MatPlotWindow(SubWindowV):
     def setup(self, canvas, num):
         mainWin.workSpace.addSubWindow(self)
         self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         self.mainLayout.setSpacing(2)
 
         self.setWindowTitle(unicode(QtCore.QCoreApplication.translate('MatPlot', 'Figure %d')) % num)
-        image = os.path.join( matplotlib.rcParams['datapath'],'matplotlib.png' )
+        ip = matplotlib.rcParams['datapath']
+        tmp = os.path.join(ip, 'images')
+        if os.path.isdir(tmp):
+            ip = tmp
+        image = os.path.join(ip,'matplotlib.png')
         self.setWindowIcon(QtGui.QIcon(image))
 
         self.canvas = canvas

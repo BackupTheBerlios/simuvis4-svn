@@ -53,13 +53,11 @@ class PlugInBrowser(SubWindow):
         self.setWindowIcon(icon)
         self.setWindowTitle(QCoreApplication.translate('PlugInBrowser', 'PlugIns'))
         self.browser = PlugInBrowserWidget(self)
-        self.mainLayout.addWidget(self.browser)
-        self.setFocusProxy(self.browser)
+        self.setWidget(self.browser)
         self.plugInManager = Globals.mainWin.plugInManager
 
         self.toggleVisibleAction.setIcon(icon)
         self.toggleVisibleAction.setText(QCoreApplication.translate('PlugInBrowser', 'PlugIn &browser'))
-        ##self.toggleVisibleAction.setShortcut(QCoreApplication.translate('PlugInBrowser', "Ctrl+B"))
         self.toggleVisibleAction.setStatusTip(QCoreApplication.translate('PlugInBrowser', 'PlugIn Browser'))
         self.updateList()
 

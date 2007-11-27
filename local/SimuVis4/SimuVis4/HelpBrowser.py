@@ -33,8 +33,7 @@ class HelpBrowser(SubWindow):
         self.setWindowIcon(icon)
         self.setWindowTitle(QCoreApplication.translate('HelpBrowser', 'Help Browser'))
         self.browser = HelpBrowserWidget(self)
-        self.mainLayout.addWidget(self.browser)
-        self.setFocusProxy(self.browser)
+        self.setWidget(self.browser)
         QObject.connect(self.browser.closeButton, SIGNAL("pressed()"), self.close)
 
     def showHelp(self, context=None, topic=None):

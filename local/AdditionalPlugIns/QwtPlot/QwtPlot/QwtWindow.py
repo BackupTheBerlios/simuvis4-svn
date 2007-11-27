@@ -5,7 +5,7 @@
 # this file is part of the SimuVis4 framework
 
 import SimuVis4, os
-from SimuVis4.SubWin import SubWindow
+from SimuVis4.SubWin import SubWindowV
 from PyQt4.Qwt5 import QwtPlot, QwtLegend, QwtPlotGrid, QwtPlotZoomer, QwtPicker,\
     QwtPlotPrintFilter, QwtSlider, QwtPlotPanner, QwtPlotMagnifier, QwtPlotPicker
 from PyQt4.QtGui import QFrame, QHBoxLayout, QToolButton, QSizePolicy, QPen, QPrinter,\
@@ -13,9 +13,9 @@ from PyQt4.QtGui import QFrame, QHBoxLayout, QToolButton, QSizePolicy, QPen, QPr
 from PyQt4.QtCore import SIGNAL, QCoreApplication, Qt, QSize
 from PyQt4.QtSvg import QSvgGenerator
 
-class QwtPlotWindow(SubWindow):
+class QwtPlotWindow(SubWindowV):
     def __init__(self, parent):
-        SubWindow.__init__(self, parent)
+        SubWindowV.__init__(self, parent)
         self.setWindowTitle(QCoreApplication.translate('QwtPlot', 'QwtPlotWindow'))
         self.plotWidget = QwtPlot(self)
         self.plotWidget.plotLayout().setAlignCanvasToScales(True)

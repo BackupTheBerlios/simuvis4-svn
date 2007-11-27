@@ -75,7 +75,6 @@ class PlugIn(SimplePlugIn):
         cubeActor.AddPosition(0.0, 2.0, 0.0)
         cubeActor.GetProperty().SetColor(0.3, 1.0, 0.3)
         ren.AddActor(cubeActor)
-        #w.makeToolBar()
         w.show()
         w.vtkWidget.Initialize()
         w.vtkWidget.Start()

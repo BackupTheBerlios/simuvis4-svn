@@ -18,8 +18,7 @@ class TextEditorWindow(SubWindow):
         SubWindow.__init__(self, parent)
         self.setWindowTitle(QCoreApplication.translate('TextEditor', 'Text editor'))
         self.textEdit = QTextEdit(self)
-        self.mainLayout.addWidget(self.textEdit)
-        self.setFocusProxy(self.textEdit)
+        self.setWidget(self.textEdit)
         self.resize(600, 300)
         self.fileName = None
 

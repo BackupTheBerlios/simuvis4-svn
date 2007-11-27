@@ -134,6 +134,5 @@ class Meteo2NcWindow(SubWindow):
         SubWindow.__init__(self, parent)
         self.setWindowTitle(QCoreApplication.translate('SmileKit', 'Meteonorm weather import'))
         self.meteo2NcWidget = Meteo2NcWidget(self)
-        self.mainLayout.addWidget(self.meteo2NcWidget)
-        self.setFocusProxy(self.meteo2NcWidget)
+        self.setWidget(self.meteo2NcWidget)
 
