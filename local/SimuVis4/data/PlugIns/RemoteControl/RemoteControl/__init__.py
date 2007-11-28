@@ -24,6 +24,7 @@ class PlugIn(SimplePlugIn):
         cfg.set_def(cfgsec, 'tcp_port', '12345')
         cfg.set_def(cfgsec, 'cmd_queue_size', '1')
         cfg.set_def(cfgsec, 'ip_filter', '127.0.0.1')
+        cfg.set_def(cfgsec, 'raise_mainwindow', 'yes')
         glb = SimuVis4.Globals
         if cfg.has_option(cfgsec, 'tcp_port'):
             tcpPort  = cfg.getint(cfgsec, 'tcp_port')
@@ -31,7 +32,7 @@ class PlugIn(SimplePlugIn):
             ipFilter = cfg.get(cfgsec, 'ip_filter')
             if tcpPort:
                 from Receiver import CodeReceiver
-                self.receiver = CodeReceiver(tcpPort, qSize, ipFilter)
+                self.receiver = CodeReceiver(tcpPort, qSize, ipFilter, cfg.getboolean(cfgsec, 'raise_mainwindow'))
                 self.toggleAction = QAction(glb.mainWin)
                 self.toggleAction.setText(QCoreApplication.translate('RemoteControl', 'Remote control active'))
                 self.toggleAction.setCheckable(True)
