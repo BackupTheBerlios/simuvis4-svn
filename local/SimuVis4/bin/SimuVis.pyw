@@ -90,8 +90,7 @@ maxiScreen = False
 
 for o, a in opts:
     if o in ('-h', '--help'):
-        #errorExit('Usage', usage)
-        print usage 
+        print usage
         sys.exit(0)
     if o in ('-e', '--execute'):
         startScript = a
