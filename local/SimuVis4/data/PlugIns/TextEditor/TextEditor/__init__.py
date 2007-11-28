@@ -47,41 +47,43 @@ class TextEditorManager(SubWinManager):
         self.mainWin = mainWin
         menu = QMenu(QCoreApplication.translate('TextEditor', 'Text files'))
 
-        self.fileNewAction = QAction(QIcon(), QCoreApplication.translate('TextEditor', '&New'),
+        i = SimuVis4.Icons
+
+        self.fileNewAction = QAction(QIcon(QPixmap(i.fileNew)), QCoreApplication.translate('TextEditor', '&New'),
             self.mainWin)
         self.fileNewAction.setShortcut(QCoreApplication.translate('TextEditor', "Ctrl+N"))
         self.fileNewAction.setStatusTip(QCoreApplication.translate('TextEditor', 'New file'))
         QObject.connect(self.fileNewAction, SIGNAL("triggered()"), self.newWindow)
         menu.addAction(self.fileNewAction)
 
-        self.fileOpenAction = QAction(QIcon(), QCoreApplication.translate('TextEditor', '&Open'),
+        self.fileOpenAction = QAction(QIcon(QPixmap(i.fileOpen)), QCoreApplication.translate('TextEditor', '&Open'),
             self.mainWin)
         self.fileOpenAction.setShortcut(QCoreApplication.translate('TextEditor', "Ctrl+O"))
         self.fileOpenAction.setStatusTip(QCoreApplication.translate('TextEditor', 'Open file'))
         QObject.connect(self.fileOpenAction, SIGNAL("triggered()"), self.openFile)
         menu.addAction(self.fileOpenAction)
 
-        self.fileSaveAction = QAction(QIcon(), QCoreApplication.translate('TextEditor', '&Save'),
+        self.fileSaveAction = QAction(QIcon(QPixmap(i.fileSave)), QCoreApplication.translate('TextEditor', '&Save'),
             self.mainWin)
         self.fileSaveAction.setShortcut(QCoreApplication.translate('TextEditor', "Ctrl+S"))
         self.fileSaveAction.setStatusTip(QCoreApplication.translate('TextEditor', 'Save file'))
         QObject.connect(self.fileSaveAction, SIGNAL("triggered()"), self.save)
         menu.addAction(self.fileSaveAction)
 
-        self.fileSaveAsAction = QAction(QIcon(), QCoreApplication.translate('TextEditor', '&Save as ...'),
+        self.fileSaveAsAction = QAction(QIcon(QPixmap(i.fileSave)), QCoreApplication.translate('TextEditor', '&Save as ...'),
             self.mainWin)
         self.fileSaveAsAction.setStatusTip(QCoreApplication.translate('TextEditor', 'Save file as ...'))
         QObject.connect(self.fileSaveAsAction, SIGNAL("triggered()"), self.save)
         menu.addAction(self.fileSaveAsAction)
 
-        self.fileCloseAction = QAction(QIcon(), QCoreApplication.translate('TextEditor', '&Close'),
+        self.fileCloseAction = QAction(QIcon(QPixmap(i.fileClose)), QCoreApplication.translate('TextEditor', '&Close'),
             self.mainWin)
         self.fileCloseAction.setShortcut(QCoreApplication.translate('TextEditor', "Ctrl+W"))
         self.fileCloseAction.setStatusTip(QCoreApplication.translate('TextEditor', 'Save file'))
         QObject.connect(self.fileCloseAction, SIGNAL("triggered()"), self.closeWindow)
         menu.addAction(self.fileCloseAction)
 
-        self.fileRunAction = QAction(QIcon(), QCoreApplication.translate('TextEditor', '&Run'),
+        self.fileRunAction = QAction(QIcon(QPixmap(i.fileRun)), QCoreApplication.translate('TextEditor', '&Run'),
             self.mainWin)
         self.fileRunAction.setShortcut(QCoreApplication.translate('TextEditor', "Ctrl+J"))
         self.fileRunAction.setStatusTip(QCoreApplication.translate('TextEditor', 'Run current file'))

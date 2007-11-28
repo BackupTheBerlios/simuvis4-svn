@@ -9,7 +9,7 @@ from PyQt4.QtCore import SIGNAL, QCoreApplication
 from SubWin import SubWindow
 from UI.LogView import Ui_LogViewWidget
 from logging import *
-import Globals, Errors, os
+import Globals, Errors, Icons, os
 
 # FIXME: levels dynamisch bestimmen?
 levels = (DEBUG, INFO, WARNING, ERROR, CRITICAL)
@@ -32,6 +32,8 @@ class LogViewWidget(QWidget, Ui_LogViewWidget):
     def __init__(self, parent):
         QWidget.__init__(self, parent)
         self.setupUi(self)
+        self.SaveButton.setIcon(QIcon(QPixmap(Icons.fileSave)))
+        self.ClearButton.setIcon(QIcon(QPixmap(Icons.clear)))
 
 
 class LogWindow(SubWindow):

@@ -50,6 +50,36 @@ fileOpen = [
 ]
 
 
+fileNew = [
+    "16 16 9 1",
+    "  c #2C1664",
+    ". c #2651AD",
+    "X c #5C9FF3",
+    "o c #B15934",
+    "O c #E1AD55",
+    "+ c #F9F9FB",
+    "@ c #D3D9EB",
+    "# c #C1C6D1",
+    "$ c None",
+    "$$$$$$$$$$$$$$$$",
+    "X#X@XXXXXXXXXX.$",
+    "$XXXXXXXXXXXXX.$",
+    "$@++++++++++@@.$",
+    "$++++++++++++@.$",
+    "$@+++++++++++@.$",
+    "$@++++++++++@@.$",
+    "$@+++++++++#@@.$",
+    "$#+++++++#@OO@$$",
+    "$@++++++@O#OOOO$",
+    "$@+++++++#OOOO.$",
+    "$@+++++@OOOOOOOo",
+    "$X@@#@#@#OOOOOoo",
+    "$XX.......OoOOo$",
+    "$... . . oooooO$",
+    "$$$$$$$$$ ooo$$$"
+]
+
+
 fileSave = [
     '14 14 4 1',
     '. c #040404',
@@ -120,6 +150,36 @@ fileExit = [
     "oooo.      .oooo",
     "oooooX.  .Xooooo",
     "oooooooooooooooo"
+]
+
+
+fileClose = [
+    "16 16 9 1",
+    "  c #2D2D2D",
+    ". c #090909",
+    "X c #515151",
+    "o c #727272",
+    "O c #8F8F8F",
+    "+ c #AEAEAE",
+    "@ c #D2D2D2",
+    "# c #F1F1F1",
+    "$ c None",
+    "$  oXXXXXXXXX  $",
+    " X@oOOOOOOOO++  ",
+    " @  XXoooooooO+ ",
+    "XOXXXXooooOOOO+X",
+    "ooXo@@oooO@@OO+ ",
+    "XOXX@#@oo###O++X",
+    "XOXoo@#####OO++ ",
+    "XOoooO####OO+++ ",
+    "XOoooO####+O++@ ",
+    "XOooo#####@++++ ",
+    "XOoO@##O+###+@@ ",
+    "XOoO##OOO+##@@+ ",
+    "XOOOOO+O+++@@@@ ",
+    " +OOO+++++@@@#o ",
+    "  +++++++@++@O. ",
+    "$  X X         $"
 ]
 
 
@@ -225,3 +285,147 @@ pan = [
 ]
 
 
+clear = [
+    "16 16 5 1",
+    "a c None",
+    ". c #e5a5a5",
+    "# c #ee6e6e",
+    "c c #f73737",
+    "b c #ff0000",
+    ".#aaaaaaaaaaaa#.",
+    "#bcaaaaaaaaaacb#",
+    "acbcaaaaaaaacbca",
+    "aacbcaaaaaacbcaa",
+    "aaacbcaaaacbcaaa",
+    "aaaacbcaacbcaaaa",
+    "aaaaacbccbcaaaaa",
+    "aaaaaacbbcaaaaaa",
+    "aaaaaacbbcaaaaaa",
+    "aaaaacbccbcaaaaa",
+    "aaaacbcaacbcaaaa",
+    "aaacbcaaaacbcaaa",
+    "aacbcaaaaaacbcaa",
+    "acbcaaaaaaaacbca",
+    "#bcaaaaaaaaaacb#",
+    ".#aaaaaaaaaaaa#."
+]
+
+
+restart = [
+    "16 16 9 1",
+    "  c #054B16",
+    ". c #08611F",
+    "X c #449944",
+    "o c #6ED161",
+    "O c #8FD673",
+    "+ c #9AD98B",
+    "@ c gray100",
+    "# c #F4F9FB",
+    "$ c None",
+    "$$$$$$XXXX$$$$$$",
+    "$$$$XX++.oXX$$$$",
+    "$$$X++++..O+X$$$",
+    "$$X++O ....OO $$",
+    "$X++O.......OO $",
+    "$X++........OO $",
+    "X+O........OOO. ",
+    "XOo....O..OOOO  ",
+    "XO....OO.OOoO.  ",
+    "XO...OOOOOooo.  ",
+    "$X..OOOooooo.. $",
+    "$X..Ooooooo..  $",
+    "$$X..ooooo... $$",
+    "$$$ ..oX...  $$$",
+    "$$$$  .X..  $$$$",
+    "$$$$$$    $$$$$$"
+]
+
+
+accept = [
+    "16 16 9 1",
+    "  c #156A30",
+    ". c #06771A",
+    "X c #275751",
+    "o c #0E8D15",
+    "O c #62C349",
+    "+ c #ADEE6D",
+    "@ c gray100",
+    "# c #C4F491",
+    "$ c None",
+    "$$$$$$$$$$$$$$$$",
+    "$$$$$$$$$$$$$ooo",
+    "$$$$$$$$$$$$ooOo",
+    "$$$$$$$$$$.oO+Oo",
+    "o.$$$$$$$ooO+Oo$",
+    "ooo$$$$ .o++oo$$",
+    "OOo $$. O++O.$$$",
+    " OO   oO++O..$$$",
+    "o #O  +##O  $$$$",
+    "XX+#++##O  $$$$$",
+    "$XX##++O X$$$$$$",
+    "$XXO++O X$$$$$$$",
+    "$$X +OXX$$$$$$$$",
+    "$$XXOXX$$$$$$$$$",
+    "$$$XXX$$$$$$$$$$",
+    "$$$$$$$$$$$$$$$$"
+]
+
+
+bomb = [
+    "13 16 9 1",
+    "  c #080708",
+    ". c #2F2931",
+    "X c #211E22",
+    "o c #3D3442",
+    "O c #453B4A",
+    "+ c #56505A",
+    "@ c #621D22",
+    "# c #B092BC",
+    "$ c None",
+    "@@@$$$$$$$$$$",
+    "@@@$$$$$$$$$$",
+    "$@@.oO$$$$$$$",
+    "$.o.oX.$$$$$$",
+    "$X..Oo.X..$$$",
+    "$XX.ooXXX..$$",
+    "$XX..o.XXX.O$",
+    "$+...O..XX..O",
+    "$..O+#OXXXX.O",
+    "$oX.##oXXX.X.",
+    "$.XXO.......X",
+    "$..X..XXXX..X",
+    "$X.....XX....",
+    "$$..oOoooo.o#",
+    "$$X..ooo...o$",
+    "$$$..o....o$$"
+]
+
+
+help = [
+    "16 16 9 1",
+    "  c black",
+    ". c #3175FE",
+    "X c #1A64FC",
+    "o c #407FFF",
+    "O c #5F93FD",
+    "+ c #8CB2FD",
+    "@ c #B2CAFC",
+    "# c #E5EDFC",
+    "$ c None",
+    "$$$$$$O...$$$$$$",
+    "$$$$...OO..X$$$$",
+    "$$.OO@####@O.X$$",
+    "$$.O@#######O.$$",
+    "$.O@@########OX$",
+    "$O+@@##@@###@OX$",
+    "..++@#@@@##@OO.X",
+    ".O++++O+##@OOO.X",
+    ".oOOOO+@##OOOO.X",
+    ".OOOOOO##OOOOO.X",
+    "$.OOOOO@@OOOOOX$",
+    "$.OO+OO##OOOO.X$",
+    "$$.OO+O##++OOX$$",
+    "$$.XO++@@++OXX$$",
+    "$$$$.XoOOoXX$$$$",
+    "$$$$$$XXXX$$$$$$"
+]

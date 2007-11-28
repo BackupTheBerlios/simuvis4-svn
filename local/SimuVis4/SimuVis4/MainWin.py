@@ -24,6 +24,11 @@ class ExceptionDialog(QDialog, Ui_ExceptionDialog):
         self.setupUi(self)
         pmf = os.path.join(cfg['main:system_picture_path'], 'stop1.png')
         self.IconLabel.setPixmap(QPixmap(pmf))
+        self.ExitButton.setIcon(QIcon(QPixmap(Icons.fileExit)))
+        self.KillButton.setIcon(QIcon(QPixmap(Icons.bomb)))
+        self.RestartButton.setIcon(QIcon(QPixmap(Icons.restart)))
+        self.IgnoreButton.setIcon(QIcon(QPixmap(Icons.accept)))
+
 
 
 class MainWindow(QMainWindow):
@@ -76,7 +81,7 @@ class MainWindow(QMainWindow):
         self.filePrintAction.setStatusTip(QCoreApplication.translate('MainWin', 'Print window contents'))
         self.connect(self.filePrintAction, SIGNAL("triggered()"), self.printWindow)
 
-        self.fileRestartAction = QAction(QCoreApplication.translate('MainWin', '&Restart'), self)
+        self.fileRestartAction = QAction(QIcon(QPixmap(Icons.restart)), QCoreApplication.translate('MainWin', '&Restart'), self)
         self.fileRestartAction.setShortcut(QCoreApplication.translate('MainWin', "Ctrl+R"))
         self.fileRestartAction.setStatusTip(QCoreApplication.translate('MainWin', 'Print window contents'))
         self.connect(self.fileRestartAction, SIGNAL("triggered()"), self.restartApplication)
@@ -115,7 +120,7 @@ class MainWindow(QMainWindow):
         self.winPreviousAction.setStatusTip(QCoreApplication.translate('MainWin', "Move the focus to the previous window"))
         self.connect(self.winPreviousAction, SIGNAL("triggered()"), self.workSpace.activatePreviousSubWindow)
 
-        self.helpAction = QAction(QIcon(), QCoreApplication.translate('MainWin', '&Help'), self)
+        self.helpAction = QAction(QIcon(QPixmap(Icons.help)), QCoreApplication.translate('MainWin', '&Help'), self)
         self.helpAction.setShortcut(QCoreApplication.translate('MainWin', "F1"))
         self.helpAction.setStatusTip(QCoreApplication.translate('MainWin', 'Help'))
         self.connect(self.helpAction, SIGNAL("triggered()"), self.help)
@@ -293,7 +298,7 @@ class MainWindow(QMainWindow):
 
 
     def printWindow(self):
-        m = self.workSpace.activeWindow()
+        m = self.activeMdiChild()
         if (m):
           m.printWindow(None)
 
