@@ -4,12 +4,16 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
+try:
+    from Scientific.IO.NetCDF import NetCDFFile
+except ImportError:
+    from pupynere import NetCDFFile
+
 import os
 from PyQt4.QtGui import QWidget, QTreeView, QAbstractItemView, QStandardItemModel, QStandardItem, \
     QVBoxLayout, QSplitter, QTextBrowser, QMessageBox
 from PyQt4.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, SIGNAL, QCoreApplication
 
-from pycdf import CDF, NC
 from weakref import ref, proxy
 
 
@@ -60,11 +64,11 @@ class NetCDF3Model(QStandardItemModel):
         self.files = {}
 
     def addNcFile(self, ncFileName):
-        f = CDF(ncFileName, NC.WRITE | NC.CREATE)
+        f = NetCDFFile(ncFileName, 'r')
         self.files[ncFileName] = f
         fItem = QStandardItem(ncFileName)
         fItem.setData(QVariant(ncFileName))
-        fItem.ncItem = f # proxy(f)
+        fItem.ncItem = f
         self.rootItem.appendRow(fItem)
         for an,av in f.attributes().items():
             aItem = QStandardItem(an)

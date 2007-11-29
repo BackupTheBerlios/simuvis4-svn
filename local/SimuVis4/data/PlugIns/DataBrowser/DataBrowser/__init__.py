@@ -37,4 +37,4 @@ class PlugIn(SimplePlugIn):
             #browser.netCDF3Browser.model.addNcFile('blafasel.nc')
         except ImportError:
             SimuVis4.Globals.logger.warning(unicode(QCoreApplication.translate('DataBrowser',
-                'DataBrowser: could not load browser for netCDF3, please install pycdf from http://pysclint.sourceforge.net/pycdf/')))
+                'DataBrowser: could not load browser for netCDF3')))
