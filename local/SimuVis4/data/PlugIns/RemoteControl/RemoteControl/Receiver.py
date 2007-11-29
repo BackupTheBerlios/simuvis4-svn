@@ -45,7 +45,7 @@ def listen_tcp(port, queue, ipFilter):
 
 class CodeReceiver:
 
-    def __init__(self, tcpPort, qSize, ipFilter='', raiseOnExec=False):
+    def __init__(self, tcpPort, qSize, ipFilter='', raiseOnExec=False, raiseHack=False):
         self.queue = Queue.Queue(qSize)
         self.counter = SimuVis4.Misc.Counter()
         SimuVis4.Globals.logger.info(unicode(QCoreApplication.translate('RemoteControl',
@@ -53,6 +53,7 @@ class CodeReceiver:
         self.tcpListener = threading.Thread(target=listen_tcp, args=(tcpPort, self.queue, ipFilter))
         self.tcpListener.start()
         self.raiseOnExec = raiseOnExec
+        self.raiseHack = raiseHack
         self.timer = QTimer(SimuVis4.Globals.mainWin)
         QObject.connect(self.timer, SIGNAL('timeout()'), self.execute)
 
@@ -83,10 +84,11 @@ class CodeReceiver:
             SimuVis4.Globals.logger.debug('-'*60)
             name = "Remote Code %d" % self.counter()
             if self.raiseOnExec:
-                # SimuVis4.Globals.mainWin.raise_()
-                # FIXME: raise does not work reliable, use hide and show as workaround
-                SimuVis4.Globals.mainWin.hide()
-                SimuVis4.Globals.mainWin.show()
+                if self.raiseHack:
+                    SimuVis4.Globals.mainWin.hide()
+                    SimuVis4.Globals.mainWin.show()
+                else:
+                    SimuVis4.Globals.mainWin.raise_()
             SimuVis4.Globals.mainWin.executor.run(d, name=name)
 
     def __del__(self):
