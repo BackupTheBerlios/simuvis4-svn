@@ -79,7 +79,7 @@ class PlugIn(SimplePlugIn):
             matplotlib.use('SV4Agg')
         except:
             if cfg.getboolean(cfgsec, 'show_config_warning'):
-                QTimer().singleShot(2000, self.showConfigWarning)
+                QTimer().singleShot(2000, showConfigWarning)
             raise Exception('matplotlib does not yet support SV4')
         dpath = matplotlib.rcParams['datapath']
         tmp = os.path.join(dpath, 'images')
