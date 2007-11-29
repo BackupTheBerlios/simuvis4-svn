@@ -6,8 +6,7 @@
 
 from SimuVis4.SubWin import SubWindow
 from VtkWidget import VtkWidget
-from PyQt4.QtGui import QFrame, QHBoxLayout, QToolButton, QSizePolicy, QMdiSubWindow
-from PyQt4.QtCore import SIGNAL, QCoreApplication
+from PyQt4.QtCore import QCoreApplication
 
 
 class VtkWindow(SubWindow):
