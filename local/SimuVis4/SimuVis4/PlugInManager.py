@@ -99,3 +99,6 @@ class PlugInManager:
         for p in self.plugIns.values():
             if p.state == 2:
                 p.disable(False)
+
+    def __getitem__(self, name):
+        return self.getPlugIn(name)
