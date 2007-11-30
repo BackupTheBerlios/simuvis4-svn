@@ -19,6 +19,7 @@ class QwtPlotE(QwtPlot):
     def __init__(self, *arg):
         QwtPlot.__init__(self, *arg)
         self.plotLayout().setAlignCanvasToScales(True)
+        self.setCanvasBackground(Qt.white)
         self.legend = QwtLegend()
         self.legend.setItemMode(QwtLegend.ClickableItem)
         self.insertLegend(self.legend, QwtPlot.RightLegend)
