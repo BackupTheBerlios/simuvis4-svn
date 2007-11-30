@@ -18,52 +18,52 @@
         <translation>Zeige ein Qwt-Testfenster</translation>
     </message>
     <message>
-        <location filename="QwtWindow.py" line="19"/>
+        <location filename="QwtPlotWindow.py" line="47"/>
         <source>QwtPlotWindow</source>
         <translation>QwtPlotFenster</translation>
     </message>
     <message>
-        <location filename="QwtWindow.py" line="92"/>
+        <location filename="QwtPlotWindow.py" line="70"/>
         <source>Save plot as graphics</source>
         <translation>Speichere Diagramm als Grafik</translation>
     </message>
     <message>
-        <location filename="QwtWindow.py" line="99"/>
+        <location filename="QwtPlotWindow.py" line="77"/>
         <source>Print plot to printer or file</source>
         <translation>Drucke Diagramm auf einen Drucker oder in eine Datei</translation>
     </message>
     <message>
-        <location filename="QwtWindow.py" line="119"/>
+        <location filename="QwtPlotWindow.py" line="129"/>
         <source>Print Document</source>
         <translation>Drucke das Dokument</translation>
     </message>
     <message>
-        <location filename="QwtWindow.py" line="63"/>
+        <location filename="QwtPlotWindow.py" line="87"/>
         <source>Enable zooming with the mouse</source>
         <translation>Ermögliche das Zoomen mit der Maus</translation>
     </message>
     <message>
-        <location filename="QwtWindow.py" line="72"/>
+        <location filename="QwtPlotWindow.py" line="97"/>
         <source>Enable magnifying with the mouse</source>
         <translation>Ermögliche das Vergrößern/Verkleinern mit der Maus</translation>
     </message>
     <message>
-        <location filename="QwtWindow.py" line="81"/>
+        <location filename="QwtPlotWindow.py" line="107"/>
         <source>Enable panning with the mouse</source>
         <translation>Ermögliche das Verschieben mit der Maus</translation>
     </message>
     <message>
-        <location filename="QwtWindow.py" line="90"/>
+        <location filename="QwtPlotWindow.py" line="68"/>
         <source>Save...</source>
         <translation>Speichern...</translation>
     </message>
     <message>
-        <location filename="QwtWindow.py" line="97"/>
+        <location filename="QwtPlotWindow.py" line="75"/>
         <source>Print...</source>
         <translation>Drucken...</translation>
     </message>
     <message>
-        <location filename="QwtWindow.py" line="129"/>
+        <location filename="QwtPlotWindow.py" line="139"/>
         <source>Select type and name of file to save</source>
         <translation>Wähle Typ und Namen der zu sichernden Datei</translation>
     </message>

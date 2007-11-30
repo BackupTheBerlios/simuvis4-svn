@@ -3,7 +3,7 @@
 <context>
     <name>VtkWindow</name>
     <message>
-        <location filename="VtkWindow.py" line="16"/>
+        <location filename="VtkWindow.py" line="15"/>
         <source>VtkWindow</source>
         <translation>VtkWindow</translation>
     </message>

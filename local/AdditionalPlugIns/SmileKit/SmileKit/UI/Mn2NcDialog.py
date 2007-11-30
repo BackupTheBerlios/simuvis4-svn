@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './data/PlugIns/SmileKit/SmileKit/UI/Mn2NcDialog.ui'
+# Form implementation generated from reading ui file './SmileKit/SmileKit/UI/Mn2NcDialog.ui'
 #
-# Created: Thu Mar  8 14:47:05 2007
-#      by: PyQt4 UI code generator 4.1.1
+# Created: Fri Nov 30 12:39:50 2007
+#      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
 
-import sys
 from PyQt4 import QtCore, QtGui
 
 class Ui_Mn2NcDialog(object):
@@ -230,6 +229,7 @@ class Ui_Mn2NcDialog(object):
 
 
 if __name__ == "__main__":
+    import sys
     app = QtGui.QApplication(sys.argv)
     Mn2NcDialog = QtGui.QWidget()
     ui = Ui_Mn2NcDialog()
