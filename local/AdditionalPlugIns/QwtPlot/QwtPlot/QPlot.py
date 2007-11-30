@@ -5,7 +5,7 @@
 # this file is part of the SimuVis4 framework
 
 """
-This module will change PyQt4.Qwt5.qplt to open Plot()-windows as MDI-subwindows
+This module will change PyQt4.Qwt5.qplt to open Plot()- and IPlot()-windows as MDI-subwindows
 in SimuVis with some additional functions.
 """
 
@@ -19,5 +19,7 @@ def Plot(*args):
     win = QwtPlotWindow(SimuVis4.Globals.mainWin.workSpace, _Plot, *args)
     SimuVis4.Globals.mainWin.workSpace.addSubWindow(win)
     win.show()
+    return win.plot
 
-PyQt4.Qwt5.qplt.Plot = Plot
+PyQt4.Qwt5.qplt.Plot  = Plot
+PyQt4.Qwt5.qplt.IPlot = Plot
