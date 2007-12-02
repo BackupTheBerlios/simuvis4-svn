@@ -18,6 +18,7 @@ class PlugIn(SimplePlugIn):
         if not cfg.has_section(cfgsec):
             cfg.add_section(cfgsec)
         cfg.set_def(cfgsec, 'show', 'yes')
+        cfg.set_def(cfgsec, 'netcdf3_browser', 'yes')
         glb = SimuVis4.Globals
         import Browser
         browser = Browser.Browser()
@@ -30,11 +31,11 @@ class PlugIn(SimplePlugIn):
             browser.hide()
         browser.fileSystemBrowser = Browser.FileSystemBrowser()
         browser.toolBox.addItem(browser.fileSystemBrowser, QCoreApplication.translate('DataBrowser', "Filesystem"))
-        try:
-            import NetCDF3
-            browser.netCDF3Browser = NetCDF3.NetCDF3Browser()
-            browser.toolBox.addItem(browser.netCDF3Browser, 'netCDF 3')
-            #browser.netCDF3Browser.model.addNcFile('blafasel.nc')
-        except ImportError:
-            SimuVis4.Globals.logger.warning(unicode(QCoreApplication.translate('DataBrowser',
-                'DataBrowser: could not load browser for netCDF3')))
+        if cfg.getboolean(cfgsec, 'netcdf3_browser'):
+            try:
+                import NetCDF3
+                browser.netCDF3Browser = NetCDF3.NetCDF3Browser()
+                browser.toolBox.addItem(browser.netCDF3Browser, 'netCDF 3')
+            except ImportError:
+                SimuVis4.Globals.logger.warning(unicode(QCoreApplication.translate('DataBrowser',
+                    'DataBrowser: could not load browser for netCDF3')))

@@ -55,19 +55,19 @@
 <context>
     <name>DataBrowser</name>
     <message>
-        <location filename="__init__.py" line="27"/>
+        <location filename="__init__.py" line="28"/>
         <source>Ctrl+B</source>
         <translation>Ctrl+B</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="32"/>
+        <location filename="__init__.py" line="33"/>
         <source>Filesystem</source>
         <translation>Dateisystem</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="40"/>
-        <source>DataBrowser: could not load browser for netCDF3, please install pycdf from http://pysclint.sourceforge.net/pycdf/</source>
-        <translation>DataBrowser: kann NetCDF3-Browser nicht laden, bitte pycdf von http://pysclint.sourceforge.net/pycdf/ installieren</translation>
+        <location filename="__init__.py" line="41"/>
+        <source>DataBrowser: could not load browser for netCDF3</source>
+        <translation>DataBrowser: konnte netCDF3-Browser nicht laden</translation>
     </message>
 </context>
 <context>
@@ -254,42 +254,42 @@ h: diese Hilfe anzeigen
 <context>
     <name>LogWindow</name>
     <message>
-        <location filename="LogWin.py" line="43"/>
+        <location filename="LogWin.py" line="45"/>
         <source>Log Messages</source>
         <translation>Log Nachrichten</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="56"/>
+        <location filename="LogWin.py" line="58"/>
         <source>&amp;Log window</source>
         <translation>&amp;Logfenster</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="57"/>
+        <location filename="LogWin.py" line="59"/>
         <source>Ctrl+L</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="58"/>
+        <location filename="LogWin.py" line="60"/>
         <source>Log window</source>
         <translation>Logfenster</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="69"/>
+        <location filename="LogWin.py" line="71"/>
         <source>Print Document</source>
         <translation>Dokument Drucken</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="80"/>
+        <location filename="LogWin.py" line="82"/>
         <source>Select name of file to save</source>
         <translation>Dateinamen und Format wählen</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="104"/>
+        <location filename="LogWin.py" line="106"/>
         <source>Could not save file!</source>
         <translation>Speichern fehlgeschlagen!</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="105"/>
+        <location filename="LogWin.py" line="107"/>
         <source>Writing failed! Make sure you have write permissions!</source>
         <translation>Schreiben der Datei fehlgeschlagen! Stelle sicher, dass die Schreibrechte ausreichen!</translation>
     </message>
@@ -297,264 +297,264 @@ h: diese Hilfe anzeigen
 <context>
     <name>MainWin</name>
     <message>
-        <location filename="MainWin.py" line="63"/>
+        <location filename="MainWin.py" line="67"/>
         <source>Ready</source>
         <translation>Fertig</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="71"/>
+        <location filename="MainWin.py" line="75"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="72"/>
+        <location filename="MainWin.py" line="76"/>
         <source>Execute python script</source>
         <translation>Pythonskript ausführen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="75"/>
+        <location filename="MainWin.py" line="79"/>
         <source>&amp;Print</source>
         <translation>&amp;Drucken</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="76"/>
+        <location filename="MainWin.py" line="80"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="82"/>
+        <location filename="MainWin.py" line="86"/>
         <source>Print window contents</source>
         <translation>Fensterinhalt drucken</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="80"/>
+        <location filename="MainWin.py" line="84"/>
         <source>&amp;Restart</source>
         <translation>Neusta&amp;rten</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="81"/>
+        <location filename="MainWin.py" line="85"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="85"/>
+        <location filename="MainWin.py" line="89"/>
         <source>&amp;Quit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="86"/>
+        <location filename="MainWin.py" line="90"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="87"/>
+        <location filename="MainWin.py" line="91"/>
         <source>Quit application</source>
         <translation>Anwendung beenden</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="90"/>
+        <location filename="MainWin.py" line="94"/>
         <source>&amp;Tile</source>
         <translation>&amp;Kacheln</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="91"/>
+        <location filename="MainWin.py" line="95"/>
         <source>Tile the windows</source>
         <translation>Unterfenster gekachelt anordnen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="99"/>
+        <location filename="MainWin.py" line="103"/>
         <source>&amp;Cascade</source>
         <translation>&amp;Kaskadieren</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="100"/>
+        <location filename="MainWin.py" line="104"/>
         <source>Cascade the windows</source>
         <translation>Unterfenster kaskadiert anordnen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="103"/>
+        <location filename="MainWin.py" line="107"/>
         <source>&amp;Maximize / Minimize</source>
         <translation>&amp;Maximieren / Minimieren</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="104"/>
+        <location filename="MainWin.py" line="108"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="105"/>
+        <location filename="MainWin.py" line="109"/>
         <source>Show current window maximized, minimized or normal</source>
         <translation>Aktuelles Unterfenster maximiert, minimiert oder normal anzeigen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="109"/>
+        <location filename="MainWin.py" line="113"/>
         <source>Ne&amp;xt</source>
         <translation>&amp;Nächstes</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="111"/>
+        <location filename="MainWin.py" line="115"/>
         <source>Move the focus to the next window</source>
         <translation>Nächstes Unterfenster aktivieren</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="114"/>
+        <location filename="MainWin.py" line="118"/>
         <source>Pre&amp;vious</source>
         <translation>&amp;Vorheriges</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="116"/>
+        <location filename="MainWin.py" line="120"/>
         <source>Move the focus to the previous window</source>
         <translation>Vorheriges Unterfenster aktivieren</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="152"/>
+        <location filename="MainWin.py" line="156"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="120"/>
+        <location filename="MainWin.py" line="124"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="121"/>
+        <location filename="MainWin.py" line="125"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="134"/>
+        <location filename="MainWin.py" line="138"/>
         <source>&amp;File</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="143"/>
+        <location filename="MainWin.py" line="147"/>
         <source>&amp;Tools</source>
         <translation>&amp;Werkzeuge</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="145"/>
+        <location filename="MainWin.py" line="149"/>
         <source>&amp;Window</source>
         <translation>&amp;Fenster</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="148"/>
+        <location filename="MainWin.py" line="152"/>
         <source>&amp;PlugIns</source>
         <translation>&amp;PlugIns</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="201"/>
+        <location filename="MainWin.py" line="205"/>
         <source>Initializing Plugins</source>
         <translation>Initialisiere PlugIns</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="225"/>
+        <location filename="MainWin.py" line="229"/>
         <source>Main: startup succeeded</source>
         <translation>Hauptprogramm: Startvorgang beendet</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="240"/>
+        <location filename="MainWin.py" line="244"/>
         <source>Select file to execute</source>
         <translation>Wähle eine auszuführende Datei aus</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="246"/>
+        <location filename="MainWin.py" line="250"/>
         <source>Executing file %s</source>
         <translation>Führe Datei aus: %s</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="248"/>
+        <location filename="MainWin.py" line="252"/>
         <source>Loading aborted</source>
         <translation>Laden abgebrochen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="262"/>
+        <location filename="MainWin.py" line="266"/>
         <source>Main: uncatched internal exception: %s: %s:
 %s</source>
         <translation>Hauptprogramm: unbehandelte interne Ausnahme: %s: %s:
 %s</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="383"/>
+        <location filename="MainWin.py" line="391"/>
         <source>restarting on platform &quot;%s&quot; not yet supported</source>
         <translation>Neustart auf der Plattform &quot;%s&quot; wird nicht unterstützt</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="70"/>
+        <location filename="MainWin.py" line="74"/>
         <source>E&amp;xecute scipt</source>
         <translation>Skript &amp;ausführen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="124"/>
+        <location filename="MainWin.py" line="128"/>
         <source>&amp;About ...</source>
         <translation>Ü&amp;ber ...</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="125"/>
+        <location filename="MainWin.py" line="129"/>
         <source>Info about this application</source>
         <translation>Information über diese Anwendung</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="94"/>
+        <location filename="MainWin.py" line="98"/>
         <source>&amp;Fullscreen (main window)</source>
         <translation>&amp;Vollbild (Hauptfenster)</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="96"/>
+        <location filename="MainWin.py" line="100"/>
         <source>Toggle fullscreen appearance of main window</source>
         <translation>Vollbilddarstellung des Hauptfensters umschalten</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="110"/>
+        <location filename="MainWin.py" line="114"/>
         <source>Ctrl+&gt;</source>
         <translation>Ctrl+&gt;</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="115"/>
+        <location filename="MainWin.py" line="119"/>
         <source>Ctrl+&lt;</source>
         <translation>Ctrl+&lt;</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="95"/>
+        <location filename="MainWin.py" line="99"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="169"/>
+        <location filename="MainWin.py" line="173"/>
         <source>Starting logging system</source>
         <translation>Starte das Log-System</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="184"/>
+        <location filename="MainWin.py" line="188"/>
         <source>Starting plugin manager</source>
         <translation>Starte den Plugin-Manager</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="192"/>
+        <location filename="MainWin.py" line="196"/>
         <source>Starting plugin browser</source>
         <translation>Starte den Plugin-Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="209"/>
+        <location filename="MainWin.py" line="213"/>
         <source>Starting task browser</source>
         <translation>Starte den Task-Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="218"/>
+        <location filename="MainWin.py" line="222"/>
         <source>Starting help system</source>
         <translation>Starte das Hilfe-System</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="128"/>
+        <location filename="MainWin.py" line="132"/>
         <source>Open homepage</source>
         <translation>Öffne Homepage</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="129"/>
+        <location filename="MainWin.py" line="133"/>
         <source>Open application homepage in broweser</source>
         <translation>Zeige die Homepage der Anwendung im Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="391"/>
+        <location filename="MainWin.py" line="399"/>
         <source>Main: shutdown complete</source>
         <translation>Hauptprogramm: shutdown beendet</translation>
     </message>
@@ -562,14 +562,29 @@ h: diese Hilfe anzeigen
 <context>
     <name>NetCDF3</name>
     <message>
-        <location filename="NetCDF3.py" line="49"/>
+        <location filename="NetCDF3.py" line="67"/>
         <source>netCDF3: Item clicked</source>
         <translation>netCDF3: Eintrag geklickt</translation>
     </message>
     <message>
-        <location filename="NetCDF3.py" line="50"/>
+        <location filename="NetCDF3.py" line="68"/>
         <source>You clicked an item in the netCDF3-browser</source>
         <translation>Du hast einen Eintrag im netCDF3-Browser geklickt</translation>
+    </message>
+    <message>
+        <location filename="NetCDF3.py" line="29"/>
+        <source>Open...</source>
+        <translation>Öffnen...</translation>
+    </message>
+    <message>
+        <location filename="NetCDF3.py" line="31"/>
+        <source>Open a netCDF3 file</source>
+        <translation>Öffne eine netCDF3-Datei</translation>
+    </message>
+    <message>
+        <location filename="NetCDF3.py" line="53"/>
+        <source>Select netCDF3 file to open</source>
+        <translation>Wähle eine netCDF3-Datei zum Öffnen</translation>
     </message>
 </context>
 <context>
@@ -906,7 +921,7 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
 <context>
     <name>RemoteControl</name>
     <message>
-        <location filename="Receiver.py" line="79"/>
+        <location filename="Receiver.py" line="81"/>
         <source>RemoteControl: trying to run code:</source>
         <translation>RemoteControl: versuche, Code auszuführen: </translation>
     </message>
@@ -921,7 +936,7 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
         <translation>RemoteControl: lehne Verbindung von %s, Port %d ab</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="36"/>
+        <location filename="__init__.py" line="39"/>
         <source>Remote control active</source>
         <translation>Fernsteuerung aktiv</translation>
     </message>
@@ -936,12 +951,12 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
         <translation>RemoteControl: starte Thread für den TCP Empfänger auf Port %s</translation>
     </message>
     <message>
-        <location filename="Receiver.py" line="70"/>
+        <location filename="Receiver.py" line="72"/>
         <source>RemoteControl: Could not stop receiver!</source>
         <translation>RemoteControl: Konnte Empfänger nicht stoppen!</translation>
     </message>
     <message>
-        <location filename="Receiver.py" line="71"/>
+        <location filename="Receiver.py" line="73"/>
         <source>Stopping the receiver thread of the RemoteContol plugin failed!</source>
         <translation>Das Stoppen des Threads für den TCP-Empfänger ist fehlgeschlagen!</translation>
     </message>
@@ -1152,87 +1167,87 @@ not covered by another dialog or window!&lt;/p&gt;
         <translation>Textdateien</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="50"/>
+        <location filename="__init__.py" line="52"/>
         <source>&amp;New</source>
         <translation>&amp;Neu</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="52"/>
+        <location filename="__init__.py" line="54"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="53"/>
+        <location filename="__init__.py" line="55"/>
         <source>New file</source>
         <translation>Neue Datei</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="57"/>
+        <location filename="__init__.py" line="59"/>
         <source>&amp;Open</source>
         <translation>&amp;Öffnen</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="59"/>
+        <location filename="__init__.py" line="61"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="60"/>
+        <location filename="__init__.py" line="62"/>
         <source>Open file</source>
         <translation>Datei öffnen</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="64"/>
+        <location filename="__init__.py" line="66"/>
         <source>&amp;Save</source>
         <translation>&amp;Speichern</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="66"/>
+        <location filename="__init__.py" line="68"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="80"/>
+        <location filename="__init__.py" line="82"/>
         <source>Save file</source>
         <translation>Datei speichern</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="71"/>
+        <location filename="__init__.py" line="73"/>
         <source>&amp;Save as ...</source>
         <translation>Speichern &amp;unter ...</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="73"/>
+        <location filename="__init__.py" line="75"/>
         <source>Save file as ...</source>
         <translation>Datei speichern unter ...</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="77"/>
+        <location filename="__init__.py" line="79"/>
         <source>&amp;Close</source>
         <translation>S&amp;chließen</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="79"/>
+        <location filename="__init__.py" line="81"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="84"/>
+        <location filename="__init__.py" line="86"/>
         <source>&amp;Run</source>
         <translation>&amp;Ausführen</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="86"/>
+        <location filename="__init__.py" line="88"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="87"/>
+        <location filename="__init__.py" line="89"/>
         <source>Run current file</source>
         <translation>Aktuelle Datei ausführen</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="97"/>
+        <location filename="__init__.py" line="99"/>
         <source>Select file to open</source>
         <translation>Wähle eine zu öffnende Datei</translation>
     </message>
