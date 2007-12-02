@@ -13,20 +13,20 @@ except:
 import Scientific
 from Scientific.IO.NetCDF import NetCDFFile
 
-version = 3
+version = 3.1
 file_format  = 3
 
 
 # { name : (shortname, typestring, conversion func.), ...}
-variables = {'time'             : ('hy',     'i', lambda v: (v-0.5)*3600.0),
-            'air_pressure'      : ('p',      's', lambda v: v),
-            'air_temperature'   : ('Ta',     'f', lambda v: v),
-            'relative_humidity' : ('RH',     'f', lambda v: 0.01*v),
-            'beam_radiation'    : ('<G_Bh>', 'f', lambda v: v),
-            'diffuse_radiation' : ('<G_Dh>', 'f', lambda v: v),
-            'cloud_cover'       : ('N',      's', lambda v: v),
-            'wind_speed'        : ('FF',     'f', lambda v: v),
-            'wind_direction'    : ('DD',     's', lambda v: v)}
+variables = {'time'             : ('hy',     'i', 's',    lambda v: (v-0.5)*3600.0),
+            'air_pressure'      : ('p',      's', 'hPa',  lambda v: v),
+            'air_temperature'   : ('Ta',     'f', '°C',    lambda v: v),
+            'relative_humidity' : ('RH',     'f', '%',    lambda v: 0.01*v),
+            'beam_radiation'    : ('<G_Bh>', 'f', 'W/m²', lambda v: v),
+            'diffuse_radiation' : ('<G_Dh>', 'f', 'W/m²', lambda v: v),
+            'cloud_cover'       : ('N',      's', '1/8',  lambda v: v),
+            'wind_speed'        : ('FF',     'f', 'm/s',  lambda v: v),
+            'wind_direction'    : ('DD',     's', '°',  lambda v: v)}
 
 
 mnHelpText = u"""Schritte in METEONORM 5:
@@ -97,7 +97,7 @@ def readMnFile(fn, progress=progressDummy):
     nvars = len(variables)
     i = 1
     for n in variables.keys():
-        shortname, tc, cvt = variables[n]
+        shortname, tc, unit, cvt = variables[n]
         col = head.index(shortname)
         d =  cvt(a[:,col])
         ## periodic end
@@ -123,7 +123,7 @@ def writeNcFile(data, fileName=None, oldStyle=1):
     if data.has_key('comment'):
         f.comment = data['comment']
     else:
-        f.comment = 'created by MeteonormFile.py (v%d)' % version
+        f.comment = 'created by MeteonormFile.py (v%s)' % version
     if data.has_key('source_file'):
         f.source_file = str(data['source_file'])
     for vn in ('latitude', 'longitude', 'height'):
@@ -139,7 +139,8 @@ def writeNcFile(data, fileName=None, oldStyle=1):
         t = variables[vn][1]
         v = f.createVariable(vn, t, ('time',))
         v[:] = data[vn].astype(t)
-
+        v.original_name = variables[vn][0]
+        v.unit = variables[vn][2]
     f.sync()
     f.close()
 
