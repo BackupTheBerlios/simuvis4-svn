@@ -9,12 +9,12 @@ This module will change PyQt4.Qwt5.qplt to open Plot()- and IPlot()-windows as M
 in SimuVis with some additional functions.
 """
 
+import SimuVis4
+from PyQt4.QtCore import QCoreApplication
 
 try:
     import PyQt4.Qwt5.qplt
     from QwtPlotWindow import QwtPlotWindow
-    import SimuVis4
-    from PyQt4.QtCore import QCoreApplication
 
     _Plot = PyQt4.Qwt5.qplt.Plot
 

@@ -168,8 +168,8 @@
     </message>
     <message>
         <location filename="Meteo2Nc.py" line="18"/>
-        <source>SmileKit: NetCDF3-Support not found, Meteonoem file conversion will not work!</source>
-        <translation>SmileKit: NetCDF3-Unterstützung nicht gefunden, Meteonorm-Konvertierung wird nicht funktionieren!</translation>
+        <source>SmileKit: support for netCDF3 not found, Meteonorm file conversion will not work!</source>
+        <translation>SmileKit: Unterstützung für netCDF3 nicht gefunden, Meteonorm-Dateikonvertierung wird nicht funktionieren!</translation>
     </message>
 </context>
 </TS>
