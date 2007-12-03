@@ -10,8 +10,10 @@ from PyQt4.QtGui import QWidget, QTreeView, QAbstractItemView, QStandardItemMode
     QFrame, QFileDialog
 from PyQt4.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, SIGNAL, QCoreApplication
 
-from datastorage.database import DataBaseRoot, Sensor
+import matplotlib, pylab
+matplotlib.use("SV4Agg")
 
+from datastorage.database import DataBaseRoot, Sensor
 
 class DSBrowser(QWidget):
     """netCDF-Browser"""
@@ -81,24 +83,41 @@ class DSBrowser(QWidget):
 
     def node(self, mi):
         item = self.model.itemFromIndex(mi)
-        p = str(item.data().toString())
-        if '|' in p:
-            db, path = p.split('|')
-            return self.model.databases[db].find(path)
-        else:
-            return self.model.databases[p]
+        p = str(item.data().toString()).split('|')
+        if p[0] == 'R': # root
+            x = self.model.databases[p[1]]
+        elif p[0] in 'PGS': # project, group, sensor
+            x = self.model.databases[p[1]].find(p[2])
+        elif p[0] == 'C': # chart
+            x = self.model.databases[p[1]].find(p[2]).charts[p[3]]
+        return p[0], x
 
 
     def showItem(self, mi, pr):
-        n = self.node(mi)
-        if isinstance(n, Sensor):
+        t, n = self.node(mi)
+        if t == 'R':
+            pass
+        elif t == 'P':
+            pass
+        elif t == 'G':
+            pass
+        elif t == 'S':
             txt = "<b>%s:</b><br>Start: %d<br>Stop: %d<br>Step: %d<br>Len: %d" % \
                 (n.name, n.timegrid.start, n.timegrid.stop, n.timegrid.step, n.datalen())
             self.textBrowser.setText(txt)
+        elif t == 'C':
+            pass
 
-    def itemAction(self, mi,):
-        n = self.node(mi)
-        if isinstance(n, Sensor):
+
+    def itemAction(self, mi):
+        t, n = self.node(mi)
+        if t == 'R':
+            pass
+        elif t == 'P':
+            pass
+        elif t == 'G':
+            pass
+        elif t == 'S':
             import PyQt4.Qwt5 as Qwt
             import SimuVis4
             sw = SimuVis4.SubWin.SubWindow(SimuVis4.Globals.mainWin.workSpace)
@@ -109,11 +128,16 @@ class DSBrowser(QWidget):
             SimuVis4.Globals.mainWin.workSpace.addSubWindow(sw)
             curve = Qwt.QwtPlotCurve('data')
             curve.attach(plt)
-            print type(n.data)
-            print len(n.data)
-            print n.data
+            #print type(n.data)
+            #print len(n.data)
+            #print n.data
             curve.setData(range(len(n.data)), list(n.data))
             sw.show()
+        elif t == 'C':
+            matplotlib.use("SV4Agg")
+            pylab.figure()
+            n.plotGUI()
+            pylab.show()
 
 
 class DSModel(QStandardItemModel):
@@ -138,32 +162,36 @@ class DSModel(QStandardItemModel):
         db = DataBaseRoot(folder)
         self.databases[folder] = db
         dbItem = QStandardItem(folder)
-        dbItem.setData(QVariant(folder))
+        dbItem.setData(QVariant("R|%s" % folder))
         dbItem.setIcon(self.icons['database'])
         self.rootItem.appendRow(dbItem)
-        self._addProjects(db, dbItem, folder)
+        self._addDB(db, dbItem, folder)
 
-    def _addProjects(self, db, parent, dbf):
+    def _addDB(self, db, parent, dbf):
         for k, v in db.items():
             item = QStandardItem(k)
             item.setIcon(self.icons['project'])
-            item.setData(QVariant(dbf+'|'+v.path))
+            item.setData(QVariant("P|%s|%s" % (dbf, v.path)))
             parent.appendRow(item)
-            self._addSensorGroups(v, item, dbf)
+            self._addProject(v, item, dbf)
 
 
-    def _addSensorGroups(self, pr, parent, dbf):
+    def _addProject(self, pr, parent, dbf):
         for k, v in pr.items():
             item = QStandardItem(k)
             item.setIcon(self.icons['sensorgroup'])
-            item.setData(QVariant(dbf+'|'+v.path))
+            item.setData(QVariant("G|%s|%s" % (dbf, v.path)))
             parent.appendRow(item)
-            self._addSensors(v, item, dbf)
+            self._addSensorGroup(v, item, dbf)
 
-    def _addSensors(self, sg, parent, dbf):
+    def _addSensorGroup(self, sg, parent, dbf):
         for k, v in sg.items():
             item = QStandardItem(k)
             item.setIcon(self.icons['sensor'])
-            item.setData(QVariant(dbf+'|'+v.path))
+            item.setData(QVariant("S|%s|%s" % (dbf, v.path)))
             parent.appendRow(item)
-            #self._addSensors(v, item, dbf)
+        for k, v in sg.charts.items():
+            item = QStandardItem(k)
+            item.setIcon(self.icons['graph'])
+            item.setData(QVariant("C|%s|%s|%s" % (dbf, sg.path, k)))
+            parent.appendRow(item)
