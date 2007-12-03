@@ -7,8 +7,9 @@
 import SimuVis4, os, Icons
 from PyQt4.QtGui import QWidget, QTreeView, QAbstractItemView, QStandardItemModel, QStandardItem, \
     QVBoxLayout, QHBoxLayout, QSplitter, QTextBrowser, QMessageBox, QToolButton, QIcon, QPixmap, \
-    QFrame, QFileDialog
+    QFrame, QFileDialog, QPen
 from PyQt4.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, SIGNAL, QCoreApplication
+from PyQt4.Qwt5 import QwtPlotCurve
 
 import matplotlib, pylab
 matplotlib.use("SV4Agg")
@@ -118,21 +119,13 @@ class DSBrowser(QWidget):
         elif t == 'G':
             pass
         elif t == 'S':
-            import PyQt4.Qwt5 as Qwt
-            import SimuVis4
-            sw = SimuVis4.SubWin.SubWindow(SimuVis4.Globals.mainWin.workSpace)
-            sw.setWindowTitle(n.path)
-            plt = Qwt.QwtPlot()
-            sw.mainLayout.addWidget(plt)
-            sw.setFocusProxy(plt)
-            SimuVis4.Globals.mainWin.workSpace.addSubWindow(sw)
-            curve = Qwt.QwtPlotCurve('data')
-            curve.attach(plt)
-            #print type(n.data)
-            #print len(n.data)
-            #print n.data
-            curve.setData(range(len(n.data)), list(n.data))
-            sw.show()
+            w = SimuVis4.Globals.mainWin.plugInManager['QwtPlot'].winManager.newWindow(n.path)
+            curve = QwtPlotCurve(n.name)
+            curve.setData(n.timegrid.getTimeArray(), n[:].filled())
+            curve.setPen(QPen(Qt.blue))
+            curve.attach(w.plot)
+            w.plot.replot()
+            w.plot.zoomer.setZoomBase()
         elif t == 'C':
             matplotlib.use("SV4Agg")
             pylab.figure()
