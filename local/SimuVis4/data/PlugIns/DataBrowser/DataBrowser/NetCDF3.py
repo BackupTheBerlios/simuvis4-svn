@@ -9,7 +9,13 @@ from PyQt4.QtGui import QWidget, QTreeView, QAbstractItemView, QStandardItemMode
     QVBoxLayout, QHBoxLayout, QSplitter, QTextBrowser, QMessageBox, QToolButton, QIcon, QPixmap, \
     QFrame, QFileDialog
 from PyQt4.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, SIGNAL, QCoreApplication
-from pupynere import NetCDFFile
+
+try:
+    from Scientific.IO.NetCDF import NetCDFFile
+except ImportError:
+    SimuVis4.Globals.logger.warning(str(QCoreApplication.translate('DataBrowser',
+        'Scientific.IO.NetCDF not found, trying to use pupynere instead')))
+    from pupynere import NetCDFFile
 
 
 class NetCDF3Browser(QWidget):
@@ -80,8 +86,8 @@ class NetCDF3Browser(QWidget):
         elif t == 'D':
             txt = "<i>Dimension </i><b>%s:</b><br>%s" % (name, str(nc))
         elif t == 'V':
-            txt = "<i>Variable </i><b>%s:</b><br>Typecode: %s<br>Dimensions: %s" % \
-                (name, nc.typecode(), '*'.join(d for d in nc.dimensions))
+            txt = "<i>Variable </i><b>%s:</b><br>Typecode: %s<br>Dimensions: %s<br>Shape: %s" % \
+                (name, nc.typecode(), '*'.join(d for d in nc.dimensions), nc.shape)
         else:
             return
         self.textBrowser.setText(txt)
@@ -111,7 +117,7 @@ class NetCDF3Model(QStandardItemModel):
         fItem.setData(QVariant(ncFileName))
         fItem.ncItem = ('F', f)
         self.rootItem.appendRow(fItem)
-        for an,av in f.attributes.items():
+        for an,av in ncFAttributes(f).items():
             aItem = QStandardItem(an)
             aItem.setIcon(self.icons['attribute'])
             aItem.setData(QVariant(an))
@@ -129,9 +135,35 @@ class NetCDF3Model(QStandardItemModel):
             vItem.setData(QVariant(vn))
             vItem.ncItem = ('V', vv)
             fItem.appendRow(vItem)
-            for an,av in vv.attributes.items():
+            for an,av in ncVAttributes(vv).items():
                 aItem = QStandardItem(an)
                 aItem.setIcon(self.icons['attribute'])
                 aItem.setData(QVariant(an))
                 aItem.ncItem = ('A', av)
                 vItem.appendRow(aItem)
+
+
+_fSkipNames = ('close', 'flush', 'sync', 'createDimension', 'createVariable')
+def ncFAttributes(f):
+    """return a dictionary globals attributes"""
+    if hasattr(f, 'attributes'):
+        # seems to be a pupynere NetCDFFile
+        return f.attributes
+    d = {}
+    for a in dir(f):
+        if not a in _fSkipNames:
+            d[a] = getattr(f, a)
+    return d
+
+
+_vSkipNames = ('assignValue', 'getValue', 'typecode')
+def ncVAttributes(v):
+    """return a dictionary of attributes of a variable"""
+    if hasattr(v, 'attributes'):
+        # seems to be a pupynere NetCDFVariable
+        return f.attributes
+    d = {}
+    for a in dir(v):
+        if not a in _vSkipNames:
+            d[a] = getattr(v, a)
+    return d
