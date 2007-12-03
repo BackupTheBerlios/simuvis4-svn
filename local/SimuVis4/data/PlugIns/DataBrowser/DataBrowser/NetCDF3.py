@@ -26,18 +26,30 @@ class NetCDF3Browser(QWidget):
         self.layout = QVBoxLayout(self)
         self.layout.setSpacing(0)
         self.layout.setMargin(0)
+
         self.toolBar = QFrame(self)
         self.toolBarLayout = QHBoxLayout(self.toolBar)
         self.toolBarLayout.setMargin(2)
         self.toolBarLayout.setSpacing(2)
         self.layout.addWidget(self.toolBar)
+
         self.loadButton = QToolButton(self.toolBar)
         self.loadButton.setText(QCoreApplication.translate('NetCDF3', 'Open...'))
         self.loadButton.setIcon(QIcon(QPixmap(SimuVis4.Icons.fileOpen)))
         self.loadButton.setToolTip(QCoreApplication.translate('NetCDF3', 'Open a netCDF3 file'))
         self.toolBarLayout.addWidget(self.loadButton)
         self.connect(self.loadButton, SIGNAL('pressed()'), self.loadFile)
+
+        self.dropButton = QToolButton(self.toolBar)
+        self.dropButton.setText(QCoreApplication.translate('NetCDF3', 'Close All'))
+        self.dropButton.setIcon(QIcon(QPixmap(SimuVis4.Icons.clear)))
+        self.dropButton.setToolTip(QCoreApplication.translate('NetCDF3', 'Drop all open netCDF3 files'))
+        self.toolBarLayout.addWidget(self.dropButton)
+        self.connect(self.dropButton, SIGNAL('pressed()'), self.dropFiles)
+        self.dropButton.setEnabled(False)
+
         self.toolBarLayout.addStretch(100)
+
         self.splitter = QSplitter(self)
         self.splitter.setOrientation(Qt.Vertical)
         self.treeView = QTreeView(self.splitter)
@@ -64,6 +76,10 @@ class NetCDF3Browser(QWidget):
             else:
                 return
         self.model.addNcFile(fn)
+
+    def dropFiles(self):
+        # FIXME: ...
+        pass
 
     def itemAction(self, mi,):
         # FIXME: use a MIME-Handler here
