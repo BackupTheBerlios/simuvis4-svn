@@ -18,15 +18,15 @@ file_format  = 3
 
 
 # { name : (shortname, typestring, conversion func.), ...}
-variables = {'time'             : ('hy',     'i', 's',    lambda v: (v-0.5)*3600.0),
-            'air_pressure'      : ('p',      's', 'hPa',  lambda v: v),
-            'air_temperature'   : ('Ta',     'f', '°C',    lambda v: v),
-            'relative_humidity' : ('RH',     'f', '%',    lambda v: 0.01*v),
-            'beam_radiation'    : ('<G_Bh>', 'f', 'W/m²', lambda v: v),
-            'diffuse_radiation' : ('<G_Dh>', 'f', 'W/m²', lambda v: v),
-            'cloud_cover'       : ('N',      's', '1/8',  lambda v: v),
-            'wind_speed'        : ('FF',     'f', 'm/s',  lambda v: v),
-            'wind_direction'    : ('DD',     's', '°',  lambda v: v)}
+variables = {'time'             : ('hy',     'i', 's',     lambda v: (v-0.5)*3600.0),
+            'air_pressure'      : ('p',      's', 'hPa',   lambda v: v),
+            'air_temperature'   : ('Ta',     'f', 'C',     lambda v: v),
+            'relative_humidity' : ('RH',     'f', '%',     lambda v: 0.01*v),
+            'beam_radiation'    : ('<G_Bh>', 'f', 'W/m^2', lambda v: v),
+            'diffuse_radiation' : ('<G_Dh>', 'f', 'W/m^2', lambda v: v),
+            'cloud_cover'       : ('N',      's', '1/8',   lambda v: v),
+            'wind_speed'        : ('FF',     'f', 'm/s',   lambda v: v),
+            'wind_direction'    : ('DD',     's', 'deg',   lambda v: v)}
 
 
 mnHelpText = u"""Schritte in METEONORM 5:
@@ -139,7 +139,10 @@ def writeNcFile(data, fileName=None, oldStyle=1):
         t = variables[vn][1]
         v = f.createVariable(vn, t, ('time',))
         v[:] = data[vn].astype(t)
-        v.original_name = variables[vn][0]
+        oname = variables[vn][0]
+        if oname.startswith('<'): oname = oname[1:]
+        if oname.endswith('>'): oname = oname[:-1]
+        v.original_name = oname
         v.unit = variables[vn][2]
     f.sync()
     f.close()
