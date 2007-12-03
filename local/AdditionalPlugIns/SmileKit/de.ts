@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>Mn2NcDialog</name>
     <message>
@@ -112,12 +111,12 @@
 <context>
     <name>SmileKit</name>
     <message>
-        <location filename="Meteo2Nc.py" line="46"/>
+        <location filename="Meteo2Nc.py" line="45"/>
         <source>Select Meteonorm file to open</source>
         <translation>Wähle die zu öffnende Meteonorm-Datei</translation>
     </message>
     <message>
-        <location filename="Meteo2Nc.py" line="53"/>
+        <location filename="Meteo2Nc.py" line="52"/>
         <source>HowTo generate a Meteonorm-5 file</source>
         <translation>Anleitung zum Generieren einer Meteonorm-5-Datei</translation>
     </message>
@@ -167,7 +166,7 @@
         <translation>Konvertiere eine Meteonorm-Wetterdatei in das netCDF-Format</translation>
     </message>
     <message>
-        <location filename="Meteo2Nc.py" line="18"/>
+        <location filename="Meteo2Nc.py" line="17"/>
         <source>SmileKit: support for netCDF3 not found, Meteonorm file conversion will not work!</source>
         <translation>SmileKit: Unterstützung für netCDF3 nicht gefunden, Meteonorm-Dateikonvertierung wird nicht funktionieren!</translation>
     </message>
