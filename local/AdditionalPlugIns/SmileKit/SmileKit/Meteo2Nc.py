@@ -4,14 +4,18 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-from SimuVis4.SubWin import SubWindow
+import SimuVis4
 from PyQt4.QtGui import QWidget, QVBoxLayout, QProgressDialog, QFileDialog, QMessageBox, QCheckBox
 from PyQt4.QtCore import Qt, QCoreApplication, SIGNAL, QTimer
 
 from UI.Mn2NcDialog import Ui_Mn2NcDialog
 import SimuVis4.Globals as glb
 
-from MeteonormFile import readMnFile, writeNcFile, makeStatistics, version, mnHelpText
+try:
+    from MeteonormFile import readMnFile, writeNcFile, makeStatistics, version, mnHelpText
+except ImportError:
+    SimuVis4.Globals.error(QCoreApplication.translate('SmileKit',
+        'SmileKit: NetCDF3-Support not found, Meteonoem file conversion will not work!'))
 
 import os, time
 
@@ -128,10 +132,10 @@ class Meteo2NcWidget(QWidget, Ui_Mn2NcDialog):
         earthViewWindow.resize(400, 400)
 
 
-class Meteo2NcWindow(SubWindow):
+class Meteo2NcWindow(SimuVis4.SubWin.SubWindow):
 
     def __init__(self, parent):
-        SubWindow.__init__(self, parent)
+        SimuVis4.SubWin.SubWindow.__init__(self, parent)
         self.setWindowTitle(QCoreApplication.translate('SmileKit', 'Meteonorm weather import'))
         self.meteo2NcWidget = Meteo2NcWidget(self)
         self.setWidget(self.meteo2NcWidget)
