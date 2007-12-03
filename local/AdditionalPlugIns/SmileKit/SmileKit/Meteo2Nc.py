@@ -11,9 +11,8 @@ from PyQt4.QtCore import Qt, QCoreApplication, SIGNAL, QTimer
 from UI.Mn2NcDialog import Ui_Mn2NcDialog
 import SimuVis4.Globals as glb
 
-try:
-    from MeteonormFile import readMnFile, writeNcFile, makeStatistics, version, mnHelpText
-except ImportError:
+from MeteonormFile import readMnFile, writeNcFile, makeStatistics, version, mnHelpText, ncOk
+if not ncOk:
     SimuVis4.Globals.logger.error(QCoreApplication.translate('SmileKit',
         'SmileKit: support for netCDF3 not found, Meteonorm file conversion will not work!'))
 
@@ -74,7 +73,8 @@ class Meteo2NcWidget(QWidget, Ui_Mn2NcDialog):
         progressDlg.close()
         self.locationFrame.setEnabled(1)
         self.statisticsFrame.setEnabled(1)
-        self.ncFileFrame.setEnabled(1)
+        if ncOk:
+            self.ncFileFrame.setEnabled(1)
         self.statisticsButton.setCheckState(Qt.Unchecked)
         self.locNameInput.setText(r['name'])
         c = unicode(QCoreApplication.translate('SmileKit', "created %s from %s by Meteo2Nc.py (v%d)"))

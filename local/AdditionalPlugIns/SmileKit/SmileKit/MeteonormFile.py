@@ -10,10 +10,14 @@ try:
 except:
     import numpy as Numeric
 
-import Scientific
-from Scientific.IO.NetCDF import NetCDFFile
+try:
+    import Scientific
+    from Scientific.IO.NetCDF import NetCDFFile
+    ncOk = True
+except ImportError:
+    ncOk = False
 
-version = 3.1
+version = 3.2
 file_format  = 3
 
 
@@ -113,6 +117,8 @@ def readMnFile(fn, progress=progressDummy):
 
 
 def writeNcFile(data, fileName=None, oldStyle=1):
+    if not ncOk:
+        raise Exception('module Scientific.IO.NetCDF not found, writeNcFile() failed!')
     if not fileName:
         fileName = data['name']+'_weather.nc'
     f = NetCDFFile(fileName, 'w')
