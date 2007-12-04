@@ -189,7 +189,7 @@ class FigureManagerSV4( FigureManagerBase ):
     def destroy( self, *args ):
         if self.window._destroying: return
         self.window._destroying = True
-        self.window.close(True)
+        self.window.close()
 
 
 class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):

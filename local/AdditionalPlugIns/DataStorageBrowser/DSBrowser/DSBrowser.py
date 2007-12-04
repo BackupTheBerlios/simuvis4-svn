@@ -11,10 +11,11 @@ from PyQt4.QtGui import QWidget, QTreeView, QAbstractItemView, QStandardItemMode
 from PyQt4.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, SIGNAL, QCoreApplication
 from PyQt4.Qwt5 import QwtPlotCurve
 
-import matplotlib, pylab
-matplotlib.use("SV4Agg")
-
+from matplotlib.backends.backend_sv4agg import FigureCanvasSV4, FigureManagerSV4
 from datastorage.database import DataBaseRoot, Sensor
+
+cnt = SimuVis4.Misc.Counter(1)
+
 
 class DSBrowser(QWidget):
     """netCDF-Browser"""
@@ -119,6 +120,7 @@ class DSBrowser(QWidget):
         elif t == 'G':
             pass
         elif t == 'S':
+            # Sensor: show a new QwtPlot window 
             w = SimuVis4.Globals.mainWin.plugInManager['QwtPlot'].winManager.newWindow(n.path)
             curve = QwtPlotCurve(n.name)
             curve.setData(n.timegrid.getTimeArray(), n[:].filled())
@@ -127,10 +129,13 @@ class DSBrowser(QWidget):
             w.plot.replot()
             w.plot.zoomer.setZoomBase()
         elif t == 'C':
-            matplotlib.use("SV4Agg")
-            pylab.figure()
-            n.plotGUI()
-            pylab.show()
+            # Chart: show the chart 
+            n.figure.clf()
+            canvas = FigureCanvasSV4(n.figure)
+            manager = FigureManagerSV4(canvas, cnt())
+            n.makePlot(None)
+            canvas.draw()
+            manager.window.show()
 
 
 class DSModel(QStandardItemModel):
