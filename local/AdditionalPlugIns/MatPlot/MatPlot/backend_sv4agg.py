@@ -29,8 +29,10 @@ from matplotlib.mathtext import math_parse_s_ft2font
 from matplotlib.widgets import SubplotTool
 try:
     from backend_agg import FigureCanvasAgg
+    from backend_qt4 import SubplotToolQt
 except ImportError:
     from matplotlib.backends.backend_agg import FigureCanvasAgg
+    from matplotlib.backends.backend_qt4 import SubplotToolQt
 
 
 try:
@@ -101,7 +103,7 @@ class MatPlotWindow(SubWindowV):
         self.setMinimumSize(350, 300)
 
 
-    def printWindow(self, printer):
+    def printWindow(self, printer=None):
         # printing is done via SVG in a temporary file
         try:
             from PyQt4 import QtSvg
@@ -281,24 +283,13 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
         win = SubWindow(mainWin.workSpace)
         mainWin.workSpace.addSubWindow(win)
         win.setAttribute(QtCore.Qt.WA_DeleteOnClose)
-        win.setMinimumSize(200, 100)
         win.setWindowTitle(QtCore.QCoreApplication.translate('MatPlot', 'Subplot Configuration Tool'))
         image = os.path.join(imagepath,'matplotlib.png' )
         win.setWindowIcon(QtGui.QIcon(image))
-
-        toolfig = Figure(figsize=(6,3))
-        toolfig.subplots_adjust(top=0.9)
-        canvas = self._get_canvas(toolfig)
-        tool = SubplotTool(self.canvas.figure, toolfig)
-
-        canvas.setParent(win)
-        win.setWidget(canvas)
-        w = int (toolfig.bbox.width())
-        h = int (toolfig.bbox.height())
-
-        win.resize(w, h)
-        canvas.setFocus()
-
+        tool = SubplotToolQt(self.canvas.figure, win)
+        win.setWidget(tool)
+        win.setMinimumSize(300, 200)
+        win.setSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
         win.show()
 
     def _get_canvas(self, fig):
