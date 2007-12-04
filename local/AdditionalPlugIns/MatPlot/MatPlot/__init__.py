@@ -80,7 +80,6 @@ class PlugIn(SimplePlugIn):
         except:
             if cfg.getboolean(cfgsec, 'show_config_warning'):
                 QTimer().singleShot(8000, showConfigWarning)
-            #raise Exception('matplotlib does not yet support SV4')
         import backend_sv4agg
         self.backend_sv4agg = backend_sv4agg
         dpath = matplotlib.rcParams['datapath']
