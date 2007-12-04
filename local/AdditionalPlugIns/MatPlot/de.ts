@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>MatPlot</name>
     <message>
@@ -28,12 +29,12 @@ Bitte starte das Skript configure_matplotlib.py(im Ordner %s).Es werden dabei zw
 Nach einem Neustart von SimuVis4 solltest Du matplot/pylabin der PythonConsole (falls installiert) oder in Skripten nutzen können.</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="90"/>
+        <location filename="__init__.py" line="91"/>
         <source>&amp;MatPlot Test</source>
         <translation>&amp;MatPlot Test</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="91"/>
+        <location filename="__init__.py" line="92"/>
         <source>Show a matplotlib test window</source>
         <translation>Öffne ein Testfenster für matplotlib</translation>
     </message>
@@ -43,94 +44,104 @@ Nach einem Neustart von SimuVis4 solltest Du matplot/pylabin der PythonConsole (
         <translation>Informationen zur Konfiguration vom MatPlot-Plugin</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="88"/>
+        <location filename="backend_sv4agg.py" line="94"/>
         <source>Figure %d</source>
         <translation>Diagramm %d</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="199"/>
+        <location filename="backend_sv4agg.py" line="189"/>
         <source>Home</source>
         <translation>Startansicht</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="200"/>
+        <location filename="backend_sv4agg.py" line="190"/>
         <source>Reset original view</source>
         <translation>Setze Ansicht auf die Startansicht zurück</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="202"/>
+        <location filename="backend_sv4agg.py" line="192"/>
         <source>Back</source>
         <translation>Zurück</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="203"/>
+        <location filename="backend_sv4agg.py" line="193"/>
         <source>Back to  previous view</source>
         <translation>Zurück zur letzten Ansicht</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="205"/>
+        <location filename="backend_sv4agg.py" line="195"/>
         <source>Forward</source>
         <translation>Vorwärts</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="206"/>
+        <location filename="backend_sv4agg.py" line="196"/>
         <source>Forward to next view</source>
         <translation>Weiter zur nächsten Ansicht</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="209"/>
+        <location filename="backend_sv4agg.py" line="199"/>
         <source>Pan</source>
         <translation>Verschieben</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="210"/>
+        <location filename="backend_sv4agg.py" line="200"/>
         <source>Pan axes with left mouse, zoom with right</source>
         <translation>Verschiebe Achsen mit der linken Maustaste, zoome mit der rechten Taste</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="212"/>
+        <location filename="backend_sv4agg.py" line="202"/>
         <source>Zoom</source>
         <translation>Zoomen</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="213"/>
+        <location filename="backend_sv4agg.py" line="203"/>
         <source>Zoom to rectangle</source>
         <translation>Zoome auf Rechteckauswahl</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="216"/>
+        <location filename="backend_sv4agg.py" line="206"/>
         <source>Subplots</source>
         <translation>Unterdiagramme</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="217"/>
+        <location filename="backend_sv4agg.py" line="207"/>
         <source>Configure subplots</source>
         <translation>Konfiguriere Parameter für Unterdiagramme</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="219"/>
+        <location filename="backend_sv4agg.py" line="209"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="220"/>
+        <location filename="backend_sv4agg.py" line="210"/>
         <source>Save the figure</source>
         <translation>Speichere das Diagramm</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="281"/>
+        <location filename="backend_sv4agg.py" line="277"/>
         <source>Subplot Configuration Tool</source>
         <translation>Konfiguration von Unterdiagrammen</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="307"/>
+        <location filename="backend_sv4agg.py" line="293"/>
         <source>Select file to save</source>
         <translation>Wähle einen Namen der zu sichernden Datei</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="111"/>
+        <location filename="backend_sv4agg.py" line="455"/>
         <source>Print Document</source>
         <translation>Dokument Drucken</translation>
+    </message>
+    <message>
+        <location filename="backend_sv4agg.py" line="240"/>
+        <source>Print</source>
+        <translation>Drucken</translation>
+    </message>
+    <message>
+        <location filename="backend_sv4agg.py" line="242"/>
+        <source>Print the figure</source>
+        <translation>Drucke das Diagramm</translation>
     </message>
 </context>
 </TS>
