@@ -27,7 +27,11 @@ from matplotlib._pylab_helpers import Gcf
 from matplotlib.figure import Figure
 from matplotlib.mathtext import math_parse_s_ft2font
 from matplotlib.widgets import SubplotTool
-from backend_agg import FigureCanvasAgg
+try:
+    from backend_agg import FigureCanvasAgg
+except ImportError:
+    from matplotlib.backends.backend_agg import FigureCanvasAgg
+
 
 try:
     import SimuVis4

@@ -11,10 +11,11 @@ from PyQt4.QtGui import QWidget, QTreeView, QAbstractItemView, QStandardItemMode
 from PyQt4.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, SIGNAL, QCoreApplication
 from PyQt4.Qwt5 import QwtPlotCurve
 
-from matplotlib.backends.backend_sv4agg import FigureCanvasSV4, FigureManagerSV4
 from datastorage.database import DataBaseRoot, Sensor
 
-cnt = SimuVis4.Misc.Counter(1)
+mpl_backend = SimuVis4.Globals.plugInManager['MatPlot'].backend_sv4agg
+
+cnt = SimuVis4.Misc.Counter(1000)
 
 
 class DSBrowser(QWidget):
@@ -131,8 +132,8 @@ class DSBrowser(QWidget):
         elif t == 'C':
             # Chart: show the chart 
             n.figure.clf()
-            canvas = FigureCanvasSV4(n.figure)
-            manager = FigureManagerSV4(canvas, cnt())
+            canvas = mpl_backend.FigureCanvasSV4(n.figure)
+            manager = mpl_backend.FigureManagerSV4(canvas, cnt())
             n.makePlot(None)
             canvas.draw()
             manager.window.show()

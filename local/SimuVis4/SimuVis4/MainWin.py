@@ -188,6 +188,7 @@ class MainWindow(QMainWindow):
         progress(QCoreApplication.translate('MainWin', 'Starting plugin manager'))
         from SimuVis4.PlugInManager import PlugInManager
         self.plugInManager =  PlugInManager()
+        Globals.plugInManager = self.plugInManager
         self.plugInManager.loadAllFromFolder(cfg['main:system_plugin_path'])
         if cfg.has_option('main', 'user_plugin_path'):
             self.plugInManager.loadAllFromFolder(cfg['main:user_plugin_path'])
