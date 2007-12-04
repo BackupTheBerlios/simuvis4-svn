@@ -74,7 +74,9 @@ language = None
 
 import getopt
 if os.environ.has_key('SIMUVIS4_OPTIONS'):
-    for o in os.environ['SIMUVIS4_OPTIONS'].split():
+    tmp = os.environ['SIMUVIS4_OPTIONS'].split()
+    tmp.reverse()
+    for o in tmp:
         sys.argv.insert(1, o)
 sopt = 'hfme:c:l:'
 lopt  = ['help', 'fullscreen', 'maximized', 'execute=', 'config=', 'language=']
