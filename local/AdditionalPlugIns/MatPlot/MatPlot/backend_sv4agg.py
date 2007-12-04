@@ -106,26 +106,10 @@ class MatPlotWindow(SubWindowV):
     def printWindow(self, printer=None):
         # printing is done via SVG in a temporary file
         try:
-            from PyQt4 import QtSvg
+            self.canvas.print_dialog(printer)
         except ImportError:
             SubWindow.printWindow(self, printer)
             return
-        if not printer:
-            printer = QtGui.QPrinter()
-        printer.setPageSize(QtGui.QPrinter.A4)
-        dialog = QtGui.QPrintDialog(printer, self)
-        dialog.setWindowTitle(QtCore.QCoreApplication.translate('MatPlot', 'Print Document'))
-        if dialog.exec_() != QtGui.QDialog.Accepted:
-            return
-        painter = QtGui.QPainter(printer)
-        painter.setRenderHint(QtGui.QPainter.Antialiasing)
-        f, name = tempfile.mkstemp('.svg')
-        #os.close(f)
-        self.canvas.print_figure(name, dpi=300)
-        renderer = QtSvg.QSvgRenderer(name)
-        renderer.render(painter)
-        #FIXME: without this the printer gets destroyed to early ...
-        self.printer = printer 
 
 
     def saveWindow(self, fileName=None):
@@ -225,7 +209,7 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
         (QtCore.QCoreApplication.translate('MatPlot', 'Save'),
             QtCore.QCoreApplication.translate('MatPlot', 'Save the figure'),
             'filesave.png', 'save_figure'),
-        )
+    )
 
     def __init__(self, canvas, parent):
         self.canvas = canvas
@@ -251,6 +235,13 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
             button.setToolTip(tooltip_text)
             QtCore.QObject.connect( button, QtCore.SIGNAL('clicked()'), getattr(self, callback))
             self.layout.addWidget(button)
+
+        printButton = QtGui.QToolButton(self)
+        printButton.setText(QtCore.QCoreApplication.translate('MatPlot', 'Print'))
+        printButton.setIcon(QtGui.QIcon(QtGui.QPixmap(SimuVis4.Icons.filePrint)))
+        printButton.setToolTip(QtCore.QCoreApplication.translate('MatPlot', 'Print the figure'))
+        QtCore.QObject.connect(printButton, QtCore.SIGNAL('clicked()'), self.print_dialog)
+        self.layout.addWidget(printButton)
 
         self.locLabel = QtGui.QLabel(self)
         self.locLabel.setAlignment( QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter )
@@ -314,6 +305,9 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
         fileName = unicode(files[0])
         SimuVis4.Globals.defaultFolder, tmp = os.path.split(fileName)
         self.canvas.print_figure(fileName, dpi=300)
+
+    def print_dialog(self):
+        self.canvas.print_dialog()
 
 
 class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg ):
@@ -444,13 +438,39 @@ class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg ):
         l, t = bbox.ll().x().get(), bbox.ur().y().get()
         self.update(l, self.renderer.height-t, w, h)
 
-    def print_figure( self, filename, dpi=None, facecolor='w', edgecolor='w',
+    def print_figure(self, filename, dpi=None, facecolor='w', edgecolor='w',
                       orientation='portrait', **kwargs ):
         if dpi is None: dpi = matplotlib.rcParams['savefig.dpi']
         agg = self.switch_backends(FigureCanvasAgg)
         agg.print_figure(filename, dpi, facecolor, edgecolor, orientation,
                           **kwargs )
         self.figure.set_canvas(self)
+
+    def print_dialog(self, printer=None):
+        from PyQt4 import QtSvg
+        if not printer:
+            printer = QtGui.QPrinter()
+        printer.setPageSize(QtGui.QPrinter.A4)
+        dialog = QtGui.QPrintDialog(printer, self)
+        dialog.setWindowTitle(QtCore.QCoreApplication.translate('MatPlot', 'Print Document'))
+        if dialog.exec_() != QtGui.QDialog.Accepted:
+            return
+        painter = QtGui.QPainter(printer)
+        painter.setRenderHint(QtGui.QPainter.Antialiasing)
+        f, name = tempfile.mkstemp('.svg')
+        self.print_figure(name, dpi=300)
+        renderer = QtSvg.QSvgRenderer(name)
+        sBox = renderer.viewBox()
+        tBox = painter.viewport()
+        sRatio = sBox.width()/sBox.height()
+        tRatio = tBox.width()/tBox.height()
+        if sRatio > tRatio:
+            painter.scale(1.0, tRatio/sRatio)
+        else:
+            painter.scale(sRatio/tRatio, 1.0)
+        renderer.render(painter)
+        #FIXME: without this the printer gets destroyed to early ...
+        self.printer = printer
 
     def _get_key( self, event ):
         k = event.key()
