@@ -68,18 +68,48 @@ def sendCode(code, host, port):
         s.send(code)
         s.close()
         return True
-    except SocketError:
+    except:
         # FIXME: some error handling
         return False
 
 
 if __name__ == "__main__":
-    import sys, os, getopt
+    import sys, os, getopt, string
     host = '127.0.0.1'
     port = 12345
     gui = True
-    sopt = 'h:p:n'
-    lopt  = ['host=', 'port=', 'nowin']
+    app = os.path.split(sys.argv[0])[-1]
+    help = string.Template("""
+Usage: $app [options] [<scriptfiles>]
+Options include:
+    -h
+    --help
+        print this help and exit
+    -t hostname_or_ip
+    --target=hostname_or_ip
+        send to hostname or ip, default is (127.0.0.1) localhost
+    -p portnumber
+    --port=portnumber
+        use target portnumber, default is $defPort
+    -n
+    --nowin
+        send code immediately without showing a GUI window,
+        if no scriptfile is given stdin is read
+
+<scriptfiles> means one or more python files
+
+Examples:
+    $app -n -p 23456 foo.py
+        send foo.py to localhost, port 23456 immediately
+
+    $app --target=otherhost bar.py
+        send bar.py to otherhost, port $defPort using the GUI
+
+    someCommand | $app -n
+        send the output of someCommand immediately to localhost, port $defPort
+""").substitute(app=app, defPort=port)
+    sopt = 'ht:p:n'
+    lopt  = ['help', 'target=', 'port=', 'nowin']
     if not ('-n' in sys.argv or '--nowin' in sys.argv):
         # let Qt delete its specific options first
         app = QtGui.QApplication(sys.argv)
@@ -88,41 +118,29 @@ if __name__ == "__main__":
     try:
         opts, args = getopt.getopt(sys.argv[1:], sopt, lopt)
     except getopt.GetoptError:
-        print """
-Usage: %s [options] [<scriptfiles>]
-    options include:
-        -h hostname_or_ip
-        --host=hostname_or_ip
-            send to hostname or ip, default is 127.0.0.1
-        -p port
-        --port=portnumber
-            use portnumber, default is 12345
-        -n
-        --nowin
-            send code immediately without showing a window,
-            if no scriptfile is given stdin is read
-            
-    <scriptfiles> means one or more python files.
-""" % sys.argv[0]
+        print help
         sys.exit(2)
     for o, a in opts:
-        if o in ('-h', '--host'):
+        if o in ('-h', '--help'):
+            print help
+            sys.exit(0)
+        if o in ('-t', '--target'):
             host = a
         if o in ('-p', '--port'):
             port = int(a)
         if o in ('-n', '--nowin'):
             gui = False # should alraedy be set
     if args:
-        code = '\n'.join([open(f, 'r').read() for f in args])
+        code = os.linesep.join([open(f, 'r').read() for f in args])
     else:
         if not gui:
             code = sys.stdin.read()
         else:
-            code = "# Please enter code here!"
+            code = "# Please enter code here!" + os.linesep
     if not code:
-        print 'Empty pythonscript, will not send!'
+        print 'Not sending empty script, use -h or --help for help!'
         sys.exit(3)
-        
+
     if gui:
         mainWidget = SV4RemoteClientUI()
         mainWidget.codeInput.setText(code)
