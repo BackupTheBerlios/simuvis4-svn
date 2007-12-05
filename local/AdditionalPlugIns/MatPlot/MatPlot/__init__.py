@@ -14,6 +14,7 @@ from SimuVis4.SubWinManager import SubWinManager
 from PyQt4.QtGui import QAction, QIcon, QWidget, QMenu, QFileDialog, QMessageBox
 from PyQt4.QtCore import SIGNAL, QCoreApplication, QObject, QTimer
 
+mplMinVersion = '0.90'
 
 configWarningText = unicode(QCoreApplication.translate('MatPlot',
 """The MatPlot plugin enables matplotlib/pylab to be
@@ -37,26 +38,6 @@ PythonConsole plugin is active) or in scripts.""")
     ) % os.path.split(__file__)[0]
 
 
-testCode = """# matplotlib example from the original matplotlib distribution
-# Press CTRL-J in the text editor window to run this code!
-
-from pylab import *
-
-matplotlib.use('SV4Agg')
-
-figure(1, figsize=(8,8))
-ax = axes([0.1, 0.1, 0.8, 0.8])
-
-labels = 'Frogs', 'Hogs', 'Dogs', 'Logs'
-fracs = [15,30,45, 10]
-
-explode=(0, 0.05, 0, 0)
-pie(fracs, explode=explode, labels=labels, autopct='%1.1f%%', shadow=True)
-
-show()
-"""
-
-
 def showConfigWarning(*arg):
     QMessageBox.warning(SimuVis4.Globals.mainWin,
         QCoreApplication.translate('MatPlot', 'MatPlot plugin configuration info'),
@@ -74,6 +55,10 @@ class PlugIn(SimplePlugIn):
         cfg.set_def(cfgsec, 'show_config_warning', 'yes')
         glb = SimuVis4.Globals
         import matplotlib
+        if matplotlib.__version__ < mplMinVersion:
+            err = str(QCoreApplication.translate('MatPlot', 'MatPlot: need matplotlib version >= %s, but found %s')) % \
+                (mplMinVersion, matplotlib.__version__)
+            raise Exception(err)
         self.matplotlib = matplotlib
         try:
             matplotlib.use('SV4Agg')
@@ -95,12 +80,9 @@ class PlugIn(SimplePlugIn):
 
 
     def test(self):
-        textEditor = None
-        p = SimuVis4.Globals.mainWin.plugInManager
-        if p.hasPlugIn('TextEditor'):
-            textEditor = SimuVis4.Globals.mainWin.plugInManager.getPlugIn('TextEditor')
-        if textEditor:
-            w = textEditor.winManager.newWindow()
+        testCode = self.getFile('mpl_test_contour.py').read()
+        try:
+            w = SimuVis4.Globals.plugInManager['TextEditor'].winManager.newWindow('MatPlot test')
             w.textEdit.setText(testCode)
-        else:
-            SimuVis4.Globals.mainWin.executor.run(testCode)
+        except:
+            SimuVis4.Globals.executor.run(testCode)

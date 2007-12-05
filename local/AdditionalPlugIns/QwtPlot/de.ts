@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>QwtPlot</name>
     <message>
@@ -70,7 +71,7 @@
     <message>
         <location filename="QPlot.py" line="30"/>
         <source>QwtPlot: support for PyQt4.Qwt5.qplt in subwindows was successfully installed</source>
-        <translation>QwtPlot: Unterstützung für PyQt4.Qwt5.qplt in Unterfenstern wurde erfolghreich installiert</translation>
+        <translation>QwtPlot: Unterstützung für PyQt4.Qwt5.qplt in Unterfenstern wurde erfolgreich installiert</translation>
     </message>
     <message>
         <location filename="QPlot.py" line="34"/>
