@@ -58,20 +58,77 @@ class SV4RemoteClientUI(QtGui.QWidget):
         code = str(self.codeInput.toPlainText())
         host = str(self.hostInput.text())
         port = int(self.portInput.value())
-        try:
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.connect((host, port))
-            s.send(code)
-            s.close()
-        except SocketError:
-            # FIXME: some error handling
-            pass
+        sendCode(code, host, port)
+
+
+def sendCode(code, host, port):
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect((host, port))
+        s.send(code)
+        s.close()
+        return True
+    except SocketError:
+        # FIXME: some error handling
+        return False
+
 
 if __name__ == "__main__":
-    import sys, os
-    app = QtGui.QApplication(sys.argv)
-    mainWidget = SV4RemoteClientUI()
-    if len(sys.argv) > 1 and os.path.isfile(sys.argv[-1]):
-        mainWidget.codeInput.setText(open(sys.argv[-1], 'r').read())
-    mainWidget.show()
-    sys.exit(app.exec_())
+    import sys, os, getopt
+    host = '127.0.0.1'
+    port = 12345
+    gui = True
+    sopt = 'h:p:n'
+    lopt  = ['host=', 'port=', 'nowin']
+    if not ('-n' in sys.argv or '--nowin' in sys.argv):
+        # let Qt delete its specific options first
+        app = QtGui.QApplication(sys.argv)
+    else:
+        gui = False
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], sopt, lopt)
+    except getopt.GetoptError:
+        print """
+Usage: %s [options] [<scriptfiles>]
+    options include:
+        -h hostname_or_ip
+        --host=hostname_or_ip
+            send to hostname or ip, default is 127.0.0.1
+        -p port
+        --port=portnumber
+            use portnumber, default is 12345
+        -n
+        --nowin
+            send code immediately without showing a window,
+            if no scriptfile is given stdin is read
+            
+    <scriptfiles> means one or more python files.
+""" % sys.argv[0]
+        sys.exit(2)
+    for o, a in opts:
+        if o in ('-h', '--host'):
+            host = a
+        if o in ('-p', '--port'):
+            port = int(a)
+        if o in ('-n', '--nowin'):
+            gui = False # should alraedy be set
+    if args:
+        code = '\n'.join([open(f, 'r').read() for f in args])
+    else:
+        if not gui:
+            code = sys.stdin.read()
+        else:
+            code = "# Please enter code here!"
+    if not code:
+        print 'Empty pythonscript, will not send!'
+        sys.exit(3)
+        
+    if gui:
+        mainWidget = SV4RemoteClientUI()
+        mainWidget.codeInput.setText(code)
+        mainWidget.hostInput.setText(host)
+        mainWidget.portInput.setValue(port)
+        mainWidget.show()
+        sys.exit(app.exec_())
+    else:
+        sys.exit(not sendCode(code, host, port))
