@@ -22,15 +22,15 @@ def listen_tcp(port, queue, ipFilter):
     while not shutdownEvent.isSet():
         data = []
         try:
-            sys.stdout.flush()
             s.listen(1)
             conn, addr = s.accept()
+            conn.setblocking(True)
             sip, sport = addr
             if sip.startswith(ipFilter):
                 SimuVis4.Globals.logger.info(unicode(QCoreApplication.translate('RemoteControl',
                     'RemoteControl: accepting connection from %s, port %d')), sip, sport)
                 while 1:
-                    d = conn.recv(1024)
+                    d = conn.recv(4096)
                     if not d: break
                     data.append(d)
                 queue.put(''.join(data), True)
