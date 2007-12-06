@@ -341,7 +341,9 @@ class MainWindow(QMainWindow):
 
 
     def activeMdiChild(self):
-        return self.workSpace.activeSubWindow()
+        w = self.workSpace.activeSubWindow()
+        if w and w.isVisible():
+            return w
 
 
     def findMdiChild(self, name):
