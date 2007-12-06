@@ -69,6 +69,11 @@
         <source>DataBrowser: could not load browser for netCDF3</source>
         <translation>DataBrowser: konnte netCDF3-Browser nicht laden</translation>
     </message>
+    <message>
+        <location filename="NetCDF3.py" line="17"/>
+        <source>Scientific.IO.NetCDF not found, trying to use pupynere instead</source>
+        <translation>Scientific.IO.NetCDF nicht gefunden, pupynere wird stattdessen genutzt</translation>
+    </message>
 </context>
 <context>
     <name>ExceptionDialog</name>
@@ -407,7 +412,7 @@ h: diese Hilfe anzeigen
         <translation>Vorheriges Unterfenster aktivieren</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="156"/>
+        <location filename="MainWin.py" line="169"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
@@ -422,59 +427,59 @@ h: diese Hilfe anzeigen
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="138"/>
+        <location filename="MainWin.py" line="146"/>
         <source>&amp;File</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="147"/>
+        <location filename="MainWin.py" line="155"/>
         <source>&amp;Tools</source>
         <translation>&amp;Werkzeuge</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="149"/>
+        <location filename="MainWin.py" line="162"/>
         <source>&amp;Window</source>
         <translation>&amp;Fenster</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="152"/>
+        <location filename="MainWin.py" line="165"/>
         <source>&amp;PlugIns</source>
         <translation>&amp;PlugIns</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="205"/>
+        <location filename="MainWin.py" line="219"/>
         <source>Initializing Plugins</source>
         <translation>Initialisiere PlugIns</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="229"/>
+        <location filename="MainWin.py" line="243"/>
         <source>Main: startup succeeded</source>
         <translation>Hauptprogramm: Startvorgang beendet</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="244"/>
+        <location filename="MainWin.py" line="258"/>
         <source>Select file to execute</source>
         <translation>Wähle eine auszuführende Datei aus</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="250"/>
+        <location filename="MainWin.py" line="264"/>
         <source>Executing file %s</source>
         <translation>Führe Datei aus: %s</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="252"/>
+        <location filename="MainWin.py" line="266"/>
         <source>Loading aborted</source>
         <translation>Laden abgebrochen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="266"/>
+        <location filename="MainWin.py" line="280"/>
         <source>Main: uncatched internal exception: %s: %s:
 %s</source>
         <translation>Hauptprogramm: unbehandelte interne Ausnahme: %s: %s:
 %s</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="391"/>
+        <location filename="MainWin.py" line="405"/>
         <source>restarting on platform &quot;%s&quot; not yet supported</source>
         <translation>Neustart auf der Plattform &quot;%s&quot; wird nicht unterstützt</translation>
     </message>
@@ -519,27 +524,27 @@ h: diese Hilfe anzeigen
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="173"/>
+        <location filename="MainWin.py" line="186"/>
         <source>Starting logging system</source>
         <translation>Starte das Log-System</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="188"/>
+        <location filename="MainWin.py" line="201"/>
         <source>Starting plugin manager</source>
         <translation>Starte den Plugin-Manager</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="196"/>
+        <location filename="MainWin.py" line="210"/>
         <source>Starting plugin browser</source>
         <translation>Starte den Plugin-Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="213"/>
+        <location filename="MainWin.py" line="227"/>
         <source>Starting task browser</source>
         <translation>Starte den Task-Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="222"/>
+        <location filename="MainWin.py" line="236"/>
         <source>Starting help system</source>
         <translation>Starte das Hilfe-System</translation>
     </message>
@@ -554,37 +559,72 @@ h: diese Hilfe anzeigen
         <translation>Zeige die Homepage der Anwendung im Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="399"/>
+        <location filename="MainWin.py" line="421"/>
         <source>Main: shutdown complete</source>
         <translation>Hauptprogramm: shutdown beendet</translation>
+    </message>
+    <message>
+        <location filename="MainWin.py" line="136"/>
+        <source>Save config (personal)</source>
+        <translation>Konfiguration speichern (persönlich)</translation>
+    </message>
+    <message>
+        <location filename="MainWin.py" line="137"/>
+        <source>Save current configuration to personal file</source>
+        <translation>Speichere die aktuellen Einstellungen zur persönlichen Nutzung</translation>
+    </message>
+    <message>
+        <location filename="MainWin.py" line="140"/>
+        <source>Save config (system)</source>
+        <translation>Konfiguration speichern (systemweit)</translation>
+    </message>
+    <message>
+        <location filename="MainWin.py" line="141"/>
+        <source>Save current configuration to system, you will need need privileges for this</source>
+        <translation>Speichere die aktuellen Einstellungen zur systemweiten Nutzung</translation>
+    </message>
+    <message>
+        <location filename="MainWin.py" line="157"/>
+        <source>Configuration</source>
+        <translation>Einstellungen</translation>
     </message>
 </context>
 <context>
     <name>NetCDF3</name>
     <message>
-        <location filename="NetCDF3.py" line="67"/>
+        <location filename="NetCDF3.py" line="89"/>
         <source>netCDF3: Item clicked</source>
         <translation>netCDF3: Eintrag geklickt</translation>
     </message>
     <message>
-        <location filename="NetCDF3.py" line="68"/>
+        <location filename="NetCDF3.py" line="90"/>
         <source>You clicked an item in the netCDF3-browser</source>
         <translation>Du hast einen Eintrag im netCDF3-Browser geklickt</translation>
     </message>
     <message>
-        <location filename="NetCDF3.py" line="29"/>
+        <location filename="NetCDF3.py" line="37"/>
         <source>Open...</source>
         <translation>Öffnen...</translation>
     </message>
     <message>
-        <location filename="NetCDF3.py" line="31"/>
+        <location filename="NetCDF3.py" line="39"/>
         <source>Open a netCDF3 file</source>
         <translation>Öffne eine netCDF3-Datei</translation>
     </message>
     <message>
-        <location filename="NetCDF3.py" line="53"/>
+        <location filename="NetCDF3.py" line="71"/>
         <source>Select netCDF3 file to open</source>
         <translation>Wähle eine netCDF3-Datei zum Öffnen</translation>
+    </message>
+    <message>
+        <location filename="NetCDF3.py" line="44"/>
+        <source>Close All</source>
+        <translation>Alle schließen</translation>
+    </message>
+    <message>
+        <location filename="NetCDF3.py" line="46"/>
+        <source>Drop all open netCDF3 files</source>
+        <translation>Schließe alle geöffneten netCDF3-Dateien</translation>
     </message>
 </context>
 <context>
@@ -1015,52 +1055,52 @@ other contributors to free software projects.&lt;p&gt;
         <translation>Unbenanntes Unterfenster</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="44"/>
+        <location filename="SubWin.py" line="47"/>
         <source>Save Screenshot?</source>
         <translation>Ein Bildschirmfoto speichern?</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="48"/>
+        <location filename="SubWin.py" line="51"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="63"/>
+        <location filename="SubWin.py" line="66"/>
         <source>PNG - compressed image</source>
         <translation>PNG - komprimiertes Bild</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="64"/>
+        <location filename="SubWin.py" line="67"/>
         <source>JPEG - picture</source>
         <translation>JPEG - Bild</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="65"/>
+        <location filename="SubWin.py" line="68"/>
         <source>BMP - uncompressed bitmap</source>
         <translation>BMP - unkomprimierte Bitmap</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="68"/>
+        <location filename="SubWin.py" line="71"/>
         <source>Select name of file to save</source>
         <translation>Dateinamen und Format wählen</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="86"/>
+        <location filename="SubWin.py" line="89"/>
         <source>Could not save file!</source>
         <translation>Speichern fehlgeschlagen!</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="87"/>
+        <location filename="SubWin.py" line="90"/>
         <source>Writing failed! Make sure you have write permissions!</source>
         <translation>Schreiben der Datei fehlgeschlagen! Stelle sicher, dass die Schreibrechte ausreichen!</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="46"/>
+        <location filename="SubWin.py" line="49"/>
         <source>Widget</source>
         <translation>Widget</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="47"/>
+        <location filename="SubWin.py" line="50"/>
         <source>Window</source>
         <translation>Fenster</translation>
     </message>
@@ -1247,7 +1287,7 @@ not covered by another dialog or window!&lt;/p&gt;
         <translation>Aktuelle Datei ausführen</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="99"/>
+        <location filename="__init__.py" line="122"/>
         <source>Select file to open</source>
         <translation>Wähle eine zu öffnende Datei</translation>
     </message>
@@ -1260,6 +1300,26 @@ not covered by another dialog or window!&lt;/p&gt;
         <location filename="__init__.py" line="23"/>
         <source>Unnamed Textfile</source>
         <translation>Unbenannte Textdatei</translation>
+    </message>
+    <message>
+        <location filename="__init__.py" line="98"/>
+        <source>Edit config (personal)</source>
+        <translation>Konfiguration ändern (persönlich)</translation>
+    </message>
+    <message>
+        <location filename="__init__.py" line="100"/>
+        <source>Open personal configuration file in text editor</source>
+        <translation>Öffne persönliche Einstellungen im Texteditor</translation>
+    </message>
+    <message>
+        <location filename="__init__.py" line="104"/>
+        <source>Edit config (system)</source>
+        <translation>Konfiguration ändern (systemweit)</translation>
+    </message>
+    <message>
+        <location filename="__init__.py" line="106"/>
+        <source>Open system configuration file in text editor</source>
+        <translation>Öffne systemweite Einstellungen im Texteditor</translation>
     </message>
 </context>
 <context>

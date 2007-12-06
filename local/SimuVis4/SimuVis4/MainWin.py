@@ -133,6 +133,14 @@ class MainWindow(QMainWindow):
         self.helpHomepageAction.setStatusTip(QCoreApplication.translate('MainWin', 'Open application homepage in broweser'))
         self.connect(self.helpHomepageAction, SIGNAL("triggered()"), self.showHomepage)
 
+        self.configSavePersonalAction = QAction(QIcon(), QCoreApplication.translate('MainWin', 'Save config (personal)'), self)
+        self.configSavePersonalAction.setStatusTip(QCoreApplication.translate('MainWin', 'Save current configuration to personal file'))
+        self.connect(self.configSavePersonalAction, SIGNAL("triggered()"), self.saveConfigPersonal)
+
+        self.configSaveSystemAction = QAction(QIcon(), QCoreApplication.translate('MainWin', 'Save config (system)'), self)
+        self.configSaveSystemAction.setStatusTip(QCoreApplication.translate('MainWin', 'Save current configuration to system, you will need need privileges for this'))
+        self.connect(self.configSaveSystemAction, SIGNAL("triggered()"), self.saveConfigSystem)
+
 
     def _initMenus(self):
         self.fileMenu = self.menuBar().addMenu(QCoreApplication.translate('MainWin', '&File'))
@@ -145,6 +153,11 @@ class MainWindow(QMainWindow):
         self.fileMenu.addAction(self.fileExitAction)
 
         self.toolsMenu = self.menuBar().addMenu(QCoreApplication.translate('MainWin', '&Tools'))
+        if cfg.getboolean('main', 'show_config_actions'):
+            self.configMenu = QMenu(QCoreApplication.translate('MainWin', 'Configuration'))
+            self.configMenu.addAction(self.configSavePersonalAction)
+            self.configMenu.addAction(self.configSaveSystemAction)
+            self.toolsMenu.addMenu(self.configMenu)
 
         self.windowMenu = self.menuBar().addMenu(QCoreApplication.translate('MainWin', '&Window'))
         self.connect(self.windowMenu, SIGNAL("aboutToShow()"), self.prepareWindowMenu)
@@ -391,6 +404,14 @@ class MainWindow(QMainWindow):
         else:
             raise Errors.FeatureMissingError(unicode(QCoreApplication.translate('MainWin', 'restarting on platform "%s" not yet supported')) % sys.platform)
         os.execv(sys.executable, a)
+
+
+    def saveConfigPersonal(self):
+        Globals.config.write(open(Globals.personalConfigFile, 'w'))
+
+
+    def saveConfigSystem(self):
+        Globals.config.write(open(Globals.systemConfigFile, 'w'))
 
 
     def exitApplication(self):
