@@ -6,7 +6,7 @@
 
 import sys
 from PyQt4.QtGui import QAction, QIcon, QDockWidget
-from PyQt4.QtCore import SIGNAL, QCoreApplication
+from PyQt4.QtCore import SIGNAL, QCoreApplication, Qt
 from SimuVis4.SubWin import SubWindow
 from QPyShell import QPyShell
 
@@ -41,4 +41,8 @@ class PyConsoleDockWidget(QDockWidget):
         self.toggleViewAction().setText(QCoreApplication.translate('PyConsoleWindow', 'Python console'))
         self.toggleViewAction().setShortcut(QCoreApplication.translate('PyConsoleWindow', "Ctrl+D"))
         self.toggleViewAction().setStatusTip(QCoreApplication.translate('PyConsoleWindow', 'Python console'))
+        self.connect(self, SIGNAL("visibilityChanged(bool)"), self.showOrHide)
 
+    def showOrHide(self, b):
+        if b:
+            self.console.lineInput.setFocus(Qt.OtherFocusReason)
