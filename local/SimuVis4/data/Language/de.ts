@@ -729,44 +729,49 @@ h: diese Hilfe anzeigen
 <context>
     <name>PlugInManager</name>
     <message>
-        <location filename="PlugInManager.py" line="25"/>
+        <location filename="PlugInManager.py" line="67"/>
         <source>PlugInManager: trying to load plugin from: &quot;%s&quot;</source>
         <translation>PlugInManager: versuche, PlugIn von &quot;%s&quot; zu laden</translation>
     </message>
     <message>
-        <location filename="PlugInManager.py" line="32"/>
+        <location filename="PlugInManager.py" line="74"/>
         <source>PlugInManager: this is not a plugin: &quot;%s&quot;</source>
         <translation>PlugInManager: dies ist kein PlugIn: &quot;%s&quot;</translation>
     </message>
     <message>
-        <location filename="PlugInManager.py" line="34"/>
+        <location filename="PlugInManager.py" line="76"/>
         <source>PlugInManager: broken plugin in &quot;%s&quot;</source>
         <translation>PlugInManager: defektes PlugIn &quot;%s&quot;</translation>
     </message>
     <message>
-        <location filename="PlugInManager.py" line="40"/>
+        <location filename="PlugInManager.py" line="82"/>
         <source>PlugInManager: plugin &quot;%s&quot; with same or newer version is already registered from: &quot;%s&quot;</source>
         <translation>PlugInManager: PlugIn &quot;%s&quot; ist in gleicher oder neuerer Version bereits aus &quot;%s&quot; geladen</translation>
     </message>
     <message>
-        <location filename="PlugInManager.py" line="43"/>
+        <location filename="PlugInManager.py" line="85"/>
         <source>PlugInManager: plugin &quot;%s&quot; was marked to be ignored, skipping</source>
         <translation>PlugInManager: PlugIn &quot;%s&quot; soll ignoriert werden, überspringe es</translation>
     </message>
     <message>
-        <location filename="PlugInManager.py" line="83"/>
+        <location filename="PlugInManager.py" line="110"/>
         <source>PlugInManager: exception while loading the plugin: &quot;%s&quot;</source>
         <translation>PlugInManager: Ausnahme während des Ladens des PlugIns: &quot;%s&quot;</translation>
     </message>
     <message>
-        <location filename="PlugInManager.py" line="68"/>
+        <location filename="PlugInManager.py" line="95"/>
         <source>Initializing plugin: %s</source>
         <translation>Initialisiere das Plugin: %s</translation>
     </message>
     <message>
-        <location filename="PlugInManager.py" line="60"/>
+        <location filename="PlugInManager.py" line="30"/>
         <source>PlugInManager: plugin &quot;%s&quot; needs &quot;%s&quot; which is not provided, skipping</source>
         <translation>PlugInManager: PlugIn &quot;%s&quot; benötigt &quot;%s&quot;, welches nicht verfügbar ist, überspringe es</translation>
+    </message>
+    <message>
+        <location filename="PlugInManager.py" line="56"/>
+        <source>PlugInManager: plugin &quot;%s&quot; depends on broken plugins, skipping</source>
+        <translation>PlugInManager: PlugIn &quot;%s&quot; hängt von defekten PlugIns ab, überspringe es</translation>
     </message>
 </context>
 <context>

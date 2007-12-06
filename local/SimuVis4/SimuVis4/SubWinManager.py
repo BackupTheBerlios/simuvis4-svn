@@ -39,6 +39,6 @@ class SubWinManager(object):
 
     def closeWindow(self, w=None):
         if not w:
-            w = self.getActiveSubWindow()
+            w = self.getActiveWindow()
         if w:
             w.close()

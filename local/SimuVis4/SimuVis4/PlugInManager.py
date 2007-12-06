@@ -8,12 +8,54 @@
 
 
 import zipfile, os
+from sets import Set
 import Globals, PlugInProxy, Errors
 from PyQt4.QtCore import QCoreApplication
 
 logger = Globals.logger
 
 skipFolder = ('CVS', '.svn', '.devel', 'test')
+
+
+def filterPlugInList(pl):
+    """ return a list of plugins sorted to fulfill all dependencies"""
+    # first throw out all plugins with unfulfilled dependencies
+    prov = Set()
+    [prov.update(Set(p.provides)) for p in pl]
+    for p in pl:
+        req = Set(p.requires)
+        if not req.issubset(prov):
+            for miss in req.difference(prov):
+                logger.warning(unicode(QCoreApplication.translate('PlugInManager',
+                            'PlugInManager: plugin "%s" needs "%s" which is not provided, skipping')), p.name, miss)
+            pl.remove(p)
+    # then sort list roughly by amount of requirements
+    pl.sort(lambda a,b: cmp(len(b.requires), len(a.requires)))
+    # and finally put all elements in a new list
+    new = []
+    oldLen = len(pl)+1
+    while pl and len(pl) < oldLen:
+        oldLen = len(pl)
+        p = pl.pop()
+        if not new:
+            new.append(p)
+        else:
+            found = False
+            requires = Set(p.requires)
+            for i in range(len(new)+1):
+                provides = Set()
+                [provides.update(Set(x.provides)) for x in new[:i]]
+                if requires.issubset(provides):
+                    found = True
+                    new.insert(i, p)
+                    break
+            if not found:
+                pl.insert(0, p)
+    for p in pl:
+        logger.warning(unicode(QCoreApplication.translate('PlugInManager',
+                            'PlugInManager: plugin "%s" depends on broken plugins, skipping')), p.name)
+    return new
+
 
 class PlugInManager:
 
@@ -48,22 +90,7 @@ class PlugInManager:
         [self.loadSingle(os.path.join(path, f)) for f in os.listdir(path) if not f in skipFolder]
 
     def initializePlugIns(self, prg=None):
-        plist = self.plugIns.values()
-        pro = []
-        for pi in plist:
-            pro += pi.provides
-        # first throw out all plugins with unfulfilled dependencies
-        for pi in plist:
-            for p in pi.requires:
-                if not p in pro:
-                    logger.warning(unicode(QCoreApplication.translate('PlugInManager',
-                        'PlugInManager: plugin "%s" needs "%s" which is not provided, skipping')), pi.name, p)
-                    plist.remove(pi)
-                    break
-        # first sort by number of dependencies
-        plist.sort(cmp = lambda a,b: cmp(len(a.requires), len(b.requires)))
-        # FIXME: should sort list to meet exact dependencies!
-        # now initialize plugins
+        plist = filterPlugInList(self.plugIns.values())
         for p in plist:
             prg(unicode(QCoreApplication.translate('PlugInManager', 'Initializing plugin: %s')) % p.name)
             if p.state < 2:
