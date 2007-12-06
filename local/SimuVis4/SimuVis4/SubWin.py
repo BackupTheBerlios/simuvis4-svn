@@ -35,7 +35,10 @@ class SubWindow(QMdiSubWindow):
         self.setWindowTitle(QCoreApplication.translate('SubWindow', 'Unnamed Subwindow'))
         self.toggleVisibleAction = QAction(self)
         self.toggleVisibleAction.setCheckable(True)
-        self.connect(self.toggleVisibleAction, SIGNAL("toggled(bool)"), self.setVisible)
+        # for windows that will simply hide on a closeEvent
+        self.hideOnClose = False
+        self.connect(self.toggleVisibleAction, SIGNAL("triggered(bool)"), self.setVisible)
+        self.hideOnClose = False
         # FIXME: make close(), hide(), show*() change the actions state!
 
 
@@ -85,6 +88,13 @@ class SubWindow(QMdiSubWindow):
             QMessageBox.critical(self,
                 QCoreApplication.translate('SubWindow', 'Could not save file!'),
                 QCoreApplication.translate('SubWindow', 'Writing failed! Make sure you have write permissions!'))
+
+    def closeEvent(self, e):
+        if self.hideOnClose:
+            self.toggleVisibleAction.toggle()
+            self.hide()
+        else:
+            e.accept()
 
 
 
