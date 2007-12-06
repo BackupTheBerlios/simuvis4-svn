@@ -81,6 +81,7 @@ class PlugInManager:
             return p()
         except:
             logger.exception(unicode(QCoreApplication.translate('PlugInManager', 'PlugInManager: exception while loading the plugin: "%s"')), name)
+        return None
 
     def getInteractive(self, name):
         try:
