@@ -100,10 +100,10 @@ Options include:
 
 Examples:
     $app -n -p 23456 foo.py
-        send foo.py to localhost, port 23456 immediately
+        send contents of foo.py to localhost, port 23456 immediately
 
-    $app --target=otherhost bar.py
-        send bar.py to otherhost, port $defPort using the GUI
+    $app --target=otherhost foo.py bar.py
+        send contents of foo.py and bar.py to otherhost, port $defPort using the GUI
 
     someCommand | $app -n
         send the output of someCommand immediately to localhost, port $defPort
