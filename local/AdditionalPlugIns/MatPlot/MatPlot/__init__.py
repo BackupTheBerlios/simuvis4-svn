@@ -15,6 +15,7 @@ from PyQt4.QtGui import QAction, QIcon, QWidget, QMenu, QFileDialog, QMessageBox
 from PyQt4.QtCore import SIGNAL, QCoreApplication, QObject, QTimer
 
 mplMinVersion = '0.90'
+mplMaxVersion = '0.91'
 
 configWarningText = unicode(QCoreApplication.translate('MatPlot',
 """The MatPlot plugin enables matplotlib/pylab to be
@@ -55,9 +56,9 @@ class PlugIn(SimplePlugIn):
         cfg.set_def(cfgsec, 'show_config_warning', 'yes')
         glb = SimuVis4.Globals
         import matplotlib
-        if matplotlib.__version__ < mplMinVersion:
-            err = str(QCoreApplication.translate('MatPlot', 'MatPlot: need matplotlib version >= %s, but found %s')) % \
-                (mplMinVersion, matplotlib.__version__)
+        if matplotlib.__version__ < mplMinVersion or matplotlib.__version__ > mplMaxVersion:
+            err = str(QCoreApplication.translate('MatPlot', 'MatPlot: need matplotlib version between %s and %s, but found %s')) % \
+                (mplMinVersion, mplMaxVersion, matplotlib.__version__)
             raise Exception(err)
         self.matplotlib = matplotlib
         try:

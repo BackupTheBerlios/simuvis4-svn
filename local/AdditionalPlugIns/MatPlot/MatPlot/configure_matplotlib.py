@@ -31,8 +31,15 @@ else:
 """
 
 import matplotlib, matplotlib.backends
+modules = [matplotlib, matplotlib.backends]
+try:
+    import matplotlib.rcsetup
+    modules.append(matplotlib.rcsetup)
+except ImportError:
+    pass
 
-for ff in [matplotlib.__file__, matplotlib.backends.__file__]:
+for m in modules:
+    ff = m.__file__
     if ff.endswith('.pyo') or ff.endswith('.pyc'):
         ff = ff[:-1]
     if not os.path.exists(ff):
