@@ -4,7 +4,7 @@
 <context>
     <name>MatPlot</name>
     <message>
-        <location filename="__init__.py" line="38"/>
+        <location filename="__init__.py" line="39"/>
         <source>The MatPlot plugin enables matplotlib/pylab to be
 used from within SimuVis4. Unfortinately some manual
 intervention is necessary for this to work. This has
@@ -29,17 +29,17 @@ Bitte starte das Skript configure_matplotlib.py(im Ordner %s).Es werden dabei zw
 Nach einem Neustart von SimuVis4 solltest Du matplot/pylabin der PythonConsole (falls installiert) oder in Skripten nutzen können.</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="76"/>
+        <location filename="__init__.py" line="77"/>
         <source>&amp;MatPlot Test</source>
         <translation>&amp;MatPlot Test</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="77"/>
+        <location filename="__init__.py" line="78"/>
         <source>Show a matplotlib test window</source>
         <translation>Öffne ein Testfenster für matplotlib</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="43"/>
+        <location filename="__init__.py" line="44"/>
         <source>MatPlot plugin configuration info</source>
         <translation>Informationen zur Konfiguration vom MatPlot-Plugin</translation>
     </message>
@@ -144,9 +144,9 @@ Nach einem Neustart von SimuVis4 solltest Du matplot/pylabin der PythonConsole (
         <translation>Drucke das Diagramm</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="59"/>
-        <source>MatPlot: need matplotlib version &gt;= %s, but found %s</source>
-        <translation>MatPlot: benötige matplotlib in Version &gt;= %s, es wurde aber nur %s gefunden</translation>
+        <location filename="__init__.py" line="60"/>
+        <source>MatPlot: need matplotlib version between %s and %s, but found %s</source>
+        <translation>MatPlot: matplotlib in Version zwischen %s und %s benötigt, vorhanden ist %s</translation>
     </message>
 </context>
 </TS>
