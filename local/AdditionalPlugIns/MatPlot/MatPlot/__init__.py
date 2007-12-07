@@ -15,7 +15,7 @@ from PyQt4.QtGui import QAction, QIcon, QWidget, QMenu, QFileDialog, QMessageBox
 from PyQt4.QtCore import SIGNAL, QCoreApplication, QObject, QTimer
 
 mplMinVersion = '0.90'
-mplMaxVersion = '0.91'
+mplMaxVersion = '0.91.1'
 
 configWarningText = unicode(QCoreApplication.translate('MatPlot',
 """The MatPlot plugin enables matplotlib/pylab to be

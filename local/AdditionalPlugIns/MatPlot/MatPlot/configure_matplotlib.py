@@ -55,6 +55,8 @@ for m in modules:
         open(ff+'.new', 'w').write(c.replace("'Qt4Agg'", "'Qt4Agg', 'SV4Agg'"))
         if doit:
             print "Moving %s\n  to %s" % (ff, ffold)
+            if os.path.exists(ffold):
+                os.unlink(ffold)
             os.rename(ff, ffold)
             print "Moving %s\n  to %s" % (ffnew, ff)
             os.rename(ffnew, ff)
