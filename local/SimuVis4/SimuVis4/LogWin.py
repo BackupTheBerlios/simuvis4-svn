@@ -11,20 +11,20 @@ from UI.LogView import Ui_LogViewWidget
 from logging import *
 import Globals, Errors, Icons, os
 
-# FIXME: levels dynamisch bestimmen?
 levels = (DEBUG, INFO, WARNING, ERROR, CRITICAL)
 levelInfo = [(getLevelName(l), l) for l in levels]
 
-# FIXME: hier noch einen schoenen HTML-Formatter basteln
-# messages in list-buffer halten ?
 
 class TextBrowserHandler(Handler):
 
-    def setBrowser(self, b):
+    def setBrowser(self, b, w):
         self.browser = b
+        self.win = w
 
     def emit(self, r):
+        # FIXME: add a nicer formatter here
         self.browser.append(self.format(r))
+        # self.win.raise_() FIXME: set a raise-level here
 
 
 class LogViewWidget(QWidget, Ui_LogViewWidget):
@@ -48,7 +48,7 @@ class LogWindow(SubWindow):
         self.setWidget(self.logView)
         self.logView.ThresholdSelector.addItems([l[0] for l in levelInfo])
         self.handler = TextBrowserHandler()
-        self.handler.setBrowser(self.logView.TextArea)
+        self.handler.setBrowser(self.logView.TextArea, self)
         self.logView.ThresholdSelector.setCurrentIndex(0)
         self.setThreshold(0)
         self.connect(self.logView.SaveButton, SIGNAL("pressed()"), self.saveWindow)
@@ -61,7 +61,8 @@ class LogWindow(SubWindow):
 
 
     def setThreshold(self, t):
-        self.handler.setLevel(levelInfo[t][1]-1)
+        l = levelInfo[t][1]
+        Globals.logger.setLevel(l)
 
 
     def printWindow(self, printer=None):
