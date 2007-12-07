@@ -1,3 +1,7 @@
+###
+### this Example seems to fail with mazplotlib 0.91.1
+###
+
 from vtk import *
 
 import matplotlib
