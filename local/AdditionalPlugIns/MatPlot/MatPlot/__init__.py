@@ -35,8 +35,8 @@ backend_sv4agg.py to matplotlib.
 
 After a restart of SimuVis4 you should be able to
 use matplotlib/pylab in the python console (if the
-PythonConsole plugin is active) or in scripts.""")
-    ) % os.path.split(__file__)[0]
+PythonConsole plugin is active) or in scripts."""
+)) % os.path.split(__file__)[0]
 
 
 def showConfigWarning(*arg):
