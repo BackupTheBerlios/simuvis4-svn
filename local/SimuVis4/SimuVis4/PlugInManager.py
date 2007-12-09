@@ -64,14 +64,14 @@ class PlugInManager:
         self.ignoreList = Globals.config['main:ignore_plugins'].split()
 
     def loadSingle(self, path):
-        logger.info(unicode(QCoreApplication.translate('PlugInManager', 'PlugInManager: trying to load plugin from: "%s"')), path)
+        logger.debug(unicode(QCoreApplication.translate('PlugInManager', 'PlugInManager: trying to load plugin from: "%s"')), path)
         try:
             if zipfile.is_zipfile(path):
                 p = PlugInProxy.PlugInZipProxy(path)
             elif os.path.isdir(path):
                 p = PlugInProxy.PlugInFolderProxy(path)
             else:
-                logger.error(unicode(QCoreApplication.translate('PlugInManager', 'PlugInManager: this is not a plugin: "%s"')), path)
+                logger.warning(unicode(QCoreApplication.translate('PlugInManager', 'PlugInManager: this is not a plugin: "%s"')), path)
         except:
             logger.exception(unicode(QCoreApplication.translate('PlugInManager', 'PlugInManager: broken plugin in "%s"')), path)
             return
@@ -82,7 +82,7 @@ class PlugInManager:
                 logger.warning(unicode(QCoreApplication.translate('PlugInManager', 'PlugInManager: plugin "%s" with same or newer version is already registered from: "%s"')), n, o.path)
                 return
         if n in self.ignoreList:
-            logger.warning(unicode(QCoreApplication.translate('PlugInManager', 'PlugInManager: plugin "%s" was marked to be ignored, skipping')), n)
+            logger.info(unicode(QCoreApplication.translate('PlugInManager', 'PlugInManager: plugin "%s" was marked to be ignored, skipping')), n)
             return
         self.plugIns[n] = p
 

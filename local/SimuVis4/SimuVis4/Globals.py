@@ -100,8 +100,8 @@ config.set_def('main', 'ignore_plugins', 'DummyPlugIn')
 config.set_def('main', 'log_file', '.SV4.log')
 config.set_def('main', 'disable_log_window', 'no')
 config.set_def('main', 'hide_log_window', 'yes')
-config.set_def('main', 'log_threshold', str(logging.INFO))
-config.set_def('main', 'log_raise_level', str(logging.CRITICAL))
+config.set_def('main', 'log_threshold', 'INFO')
+config.set_def('main', 'log_raise_level', 'CRITICAL')
 
 config.set_def('main', 'disable_task_browser', 'yes')
 config.set_def('main', 'hide_task_browser', 'yes')
@@ -134,7 +134,14 @@ config.set_def('main', 'user_work_path', os.getcwd())
 
 defaultFolder = config['main:user_work_path']
 
-logger.setLevel(config.getint('main', 'log_threshold'))
+logLevels = {
+    'DEBUG':    logging.DEBUG,
+    'INFO':     logging.INFO,
+    'WARNING':  logging.WARNING,
+    'ERROR':    logging.ERROR,
+    'CRITICAL': logging.CRITICAL
+}
+logger.setLevel(logLevels.get(config['main:log_threshold'], logging.INFO))
 logFile = config.get('main', 'log_file')
 if logFile:
     from logging import FileHandler

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -259,42 +258,42 @@ h: diese Hilfe anzeigen
 <context>
     <name>LogWindow</name>
     <message>
-        <location filename="LogWin.py" line="45"/>
+        <location filename="LogWin.py" line="48"/>
         <source>Log Messages</source>
         <translation>Log Nachrichten</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="58"/>
+        <location filename="LogWin.py" line="69"/>
         <source>&amp;Log window</source>
         <translation>&amp;Logfenster</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="59"/>
+        <location filename="LogWin.py" line="70"/>
         <source>Ctrl+L</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="60"/>
+        <location filename="LogWin.py" line="71"/>
         <source>Log window</source>
         <translation>Logfenster</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="71"/>
+        <location filename="LogWin.py" line="82"/>
         <source>Print Document</source>
         <translation>Dokument Drucken</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="82"/>
+        <location filename="LogWin.py" line="93"/>
         <source>Select name of file to save</source>
         <translation>Dateinamen und Format wählen</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="106"/>
+        <location filename="LogWin.py" line="117"/>
         <source>Could not save file!</source>
         <translation>Speichern fehlgeschlagen!</translation>
     </message>
     <message>
-        <location filename="LogWin.py" line="107"/>
+        <location filename="LogWin.py" line="118"/>
         <source>Writing failed! Make sure you have write permissions!</source>
         <translation>Schreiben der Datei fehlgeschlagen! Stelle sicher, dass die Schreibrechte ausreichen!</translation>
     </message>
@@ -479,7 +478,7 @@ h: diese Hilfe anzeigen
 %s</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="405"/>
+        <location filename="MainWin.py" line="407"/>
         <source>restarting on platform &quot;%s&quot; not yet supported</source>
         <translation>Neustart auf der Plattform &quot;%s&quot; wird nicht unterstützt</translation>
     </message>
@@ -559,7 +558,7 @@ h: diese Hilfe anzeigen
         <translation>Zeige die Homepage der Anwendung im Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="421"/>
+        <location filename="MainWin.py" line="423"/>
         <source>Main: shutdown complete</source>
         <translation>Hauptprogramm: shutdown beendet</translation>
     </message>

@@ -36,7 +36,7 @@ def listen_tcp(port, queue, ipFilter):
                 queue.put(''.join(data), True)
                 conn.close()
             else:
-                SimuVis4.Globals.logger.warning(unicode(QCoreApplication.translate('RemoteControl',
+                SimuVis4.Globals.logger.error(unicode(QCoreApplication.translate('RemoteControl',
                     'RemoteControl: refusing connection from %s, port %d')), sip, sport)
         except socket.timeout:
             pass

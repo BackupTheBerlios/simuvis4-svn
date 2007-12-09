@@ -11,18 +11,16 @@ from UI.LogView import Ui_LogViewWidget
 from logging import *
 import Globals, Errors, Icons, os
 
-levels = (DEBUG, INFO, WARNING, ERROR, CRITICAL)
-levelInfo = [(getLevelName(l), l) for l in levels]
 
 class TextBrowserHandler(Handler):
 
     def setBrowser(self, b, w):
         self.browser = b
         self.win = w
-        self.raiseLevel = Globals.config.getint('main', 'log_raise_level')
+        self.raiseLevel = Globals.logLevels.get(Globals.config['main:log_raise_level'], CRITICAL)
+        self.setFormatter(Formatter('<b>%(levelname)s</b> (<i>%(module)s</i>): %(message)s'))
 
     def emit(self, r):
-        # FIXME: add a nicer formatter here
         self.browser.append(self.format(r))
         if r.levelno >= self.raiseLevel:
             if not self.win.isVisible():
@@ -51,11 +49,19 @@ class LogWindow(SubWindow):
         self.setMinimumSize(500, 100)
         self.logView = LogViewWidget(self)
         self.setWidget(self.logView)
-        self.logView.ThresholdSelector.addItems([l[0] for l in levelInfo])
+        tmp = Globals.logLevels.items()
+        tmp.sort(lambda a,b: cmp(a[1], b[1]))
+        self.levels = [l[0] for l in tmp]
+        self.logView.ThresholdSelector.addItems(self.levels)
         self.handler = TextBrowserHandler()
         self.handler.setBrowser(self.logView.TextArea, self)
-        self.logView.ThresholdSelector.setCurrentIndex(0)
-        self.setThreshold(0)
+        try:
+            i = self.levels.index(Globals.config['main:log_threshold'])
+            self.logView.ThresholdSelector.setCurrentIndex(i)
+            self.setThreshold(i)
+        except:
+            self.logView.ThresholdSelector.setCurrentIndex(0)
+            self.setThreshold(0)
         self.connect(self.logView.SaveButton, SIGNAL("pressed()"), self.saveWindow)
         self.connect(self.logView.ThresholdSelector, SIGNAL("activated(int)"), self.setThreshold)
         self.hideOnClose = True
@@ -66,9 +72,8 @@ class LogWindow(SubWindow):
 
 
     def setThreshold(self, t):
-        l = levelInfo[t][1]
+        l = Globals.logLevels[self.levels[t]]
         Globals.logger.setLevel(l)
-
 
     def printWindow(self, printer=None):
         if not printer:

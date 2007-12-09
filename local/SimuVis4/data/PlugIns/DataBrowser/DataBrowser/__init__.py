@@ -37,5 +37,5 @@ class PlugIn(SimplePlugIn):
                 browser.netCDF3Browser = NetCDF3.NetCDF3Browser()
                 browser.toolBox.addItem(browser.netCDF3Browser, 'netCDF 3')
             except ImportError:
-                SimuVis4.Globals.logger.warning(unicode(QCoreApplication.translate('DataBrowser',
+                SimuVis4.Globals.logger.error(unicode(QCoreApplication.translate('DataBrowser',
                     'DataBrowser: could not load browser for netCDF3')))
