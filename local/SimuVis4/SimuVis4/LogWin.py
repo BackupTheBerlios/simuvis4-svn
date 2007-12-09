@@ -14,17 +14,22 @@ import Globals, Errors, Icons, os
 levels = (DEBUG, INFO, WARNING, ERROR, CRITICAL)
 levelInfo = [(getLevelName(l), l) for l in levels]
 
-
 class TextBrowserHandler(Handler):
 
     def setBrowser(self, b, w):
         self.browser = b
         self.win = w
+        self.raiseLevel = Globals.config.getint('main', 'log_raise_level')
 
     def emit(self, r):
         # FIXME: add a nicer formatter here
         self.browser.append(self.format(r))
-        # self.win.raise_() FIXME: set a raise-level here
+        if r.levelno >= self.raiseLevel:
+            if not self.win.isVisible():
+                self.win.toggleVisibleAction.setChecked(True)
+            if self.win.isMinimized():
+                self.win.showNormal()
+            self.win.raise_()
 
 
 class LogViewWidget(QWidget, Ui_LogViewWidget):

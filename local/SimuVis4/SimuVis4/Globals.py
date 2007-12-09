@@ -101,6 +101,7 @@ config.set_def('main', 'log_file', '.SV4.log')
 config.set_def('main', 'disable_log_window', 'no')
 config.set_def('main', 'hide_log_window', 'yes')
 config.set_def('main', 'log_threshold', str(logging.INFO))
+config.set_def('main', 'log_raise_level', str(logging.CRITICAL))
 
 config.set_def('main', 'disable_task_browser', 'yes')
 config.set_def('main', 'hide_task_browser', 'yes')
