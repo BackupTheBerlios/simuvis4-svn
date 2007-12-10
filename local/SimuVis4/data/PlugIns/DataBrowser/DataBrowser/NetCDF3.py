@@ -9,6 +9,7 @@ from PyQt4.QtGui import QWidget, QTreeView, QAbstractItemView, QStandardItemMode
     QVBoxLayout, QHBoxLayout, QSplitter, QTextBrowser, QMessageBox, QToolButton, QIcon, QPixmap, \
     QFrame, QFileDialog
 from PyQt4.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, SIGNAL, QCoreApplication
+from cgi import escape
 
 try:
     from Scientific.IO.NetCDF import NetCDFFile
@@ -98,7 +99,7 @@ class NetCDF3Browser(QWidget):
             p, f = os.path.split(name)
             txt = "<i>File </i><b>%s</b><br> in %s" % (f, p)
         elif t == 'A':
-            txt = "<i>Attribute </i><b>%s:</b><br>%s" % (name, unicode(nc))
+            txt = "<i>Attribute </i><b>%s:</b><br>%s" % (name, unicode(escape(nc)))
         elif t == 'D':
             txt = "<i>Dimension </i><b>%s:</b><br>%s" % (name, str(nc))
         elif t == 'V':

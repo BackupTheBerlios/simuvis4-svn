@@ -11,8 +11,10 @@ from PyQt4.QtGui import QWidget, QTextCursor, QPrintDialog, QPrinter,\
     QHBoxLayout, QVBoxLayout, QLabel, QLineEdit, QToolButton, QSpacerItem, \
     QSizePolicy, QPushButton, QToolButton, QIcon, QPixmap
 from PyQt4.QtCore import SIGNAL, Qt, QSize, QCoreApplication
+from cgi import escape
 from code import InteractiveInterpreter
 from Completer import Completer
+
 
 enterXPM = [
     "16 16 5 1",
@@ -143,9 +145,8 @@ line by line. Please use spaces instead of tabs for indentation!
 
 def formatPyLine(l):
     """format a python command line for the output buffer"""
-    # FIXME: escape characters with special meaning in HTML
     tmp = l.lstrip(' ')
-    return '&bull;' * (len(l)-len(tmp)) + tmp
+    return '&bull;' * (len(l)-len(tmp)) + escape(tmp)
 
 
 class QPyShell(QWidget):
@@ -302,7 +303,7 @@ class QPyShell(QWidget):
 
     def write(self, s):
         self.cursor.movePosition(QTextCursor.End)
-        self.outputBrowser.insertPlainText(s)
+        self.outputBrowser.insertPlainText(escape(s))
         self.cursor.movePosition(QTextCursor.End)
         self.outputBrowser.ensureCursorVisible()
 

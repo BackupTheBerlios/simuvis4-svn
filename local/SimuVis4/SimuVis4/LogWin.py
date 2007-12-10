@@ -8,8 +8,22 @@ from PyQt4.QtGui import QWidget, QPixmap, QIcon, QDialog, QPrintDialog, QMessage
 from PyQt4.QtCore import SIGNAL, QCoreApplication
 from SubWin import SubWindow
 from UI.LogView import Ui_LogViewWidget
-from logging import *
+from logging import Handler, Formatter, CRITICAL
+from cgi import escape
 import Globals, Errors, Icons, os
+
+
+class TextBrowserFormatter(Formatter):
+
+    def color(self, l):
+        g = int(255.0/CRITICAL*(max(CRITICAL-l, 0)))
+        r = 255-g
+        b = 0
+        return "#%02x%02x%02x" % (r, g, b)
+
+    def format(self, r):
+        return '<font color="%s"><b>%s</b> (<i>%s</i>):</font> %s' % (self.color(r.levelno), r.levelname,
+            r.module or '[...]', escape(r.message))
 
 
 class TextBrowserHandler(Handler):
@@ -18,7 +32,7 @@ class TextBrowserHandler(Handler):
         self.browser = b
         self.win = w
         self.raiseLevel = Globals.logLevels.get(Globals.config['main:log_raise_level'], CRITICAL)
-        self.setFormatter(Formatter('<b>%(levelname)s</b> (<i>%(module)s</i>): %(message)s'))
+        self.setFormatter(TextBrowserFormatter())
 
     def emit(self, r):
         self.browser.append(self.format(r))

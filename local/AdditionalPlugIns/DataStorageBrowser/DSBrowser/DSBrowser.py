@@ -10,6 +10,7 @@ from PyQt4.QtGui import QWidget, QTreeView, QAbstractItemView, QStandardItemMode
     QFrame, QFileDialog, QPen
 from PyQt4.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, SIGNAL, QCoreApplication
 from PyQt4.Qwt5 import QwtPlotCurve
+from cgi import escape
 
 from datastorage.database import DataBaseRoot, Sensor
 
@@ -87,7 +88,7 @@ def formatMetaData(n):
         return ""
     l = [metaDataStartInfo]
     for k in keys:
-        l.append(metaDataLineInfo.substitute(name=k, value=n.getMetaData(k)))
+        l.append(metaDataLineInfo.substitute(name=k, value=escape(str(n.getMetaData(k)))))
     l.append(metaDataEndInfo)
     return '\n'.join(l)
 
@@ -176,13 +177,13 @@ class DSBrowser(QWidget):
         txt = ""
         if t == 'R':
             # FIXME: no metadata?
-            txt = rootInfo.substitute(name=n.name, title=n.title, folder=n.h5dir, projects=len(n)) #+ formatMetaData(n)
+            txt = rootInfo.substitute(name=n.name, title=escape(n.title), folder=n.h5dir, projects=len(n)) #+ formatMetaData(n)
         elif t == 'P':
-            txt = projectInfo.substitute(name=n.name, title=n.title, groups=len(n)) + formatMetaData(n)
+            txt = projectInfo.substitute(name=n.name, title=escape(n.title), groups=len(n)) + formatMetaData(n)
         elif t == 'G':
-            txt = groupInfo.substitute(name=n.name, title=n.title, sensors=len(n), charts=len(n.charts)) + formatMetaData(n)
+            txt = groupInfo.substitute(name=n.name, title=escape(n.title), sensors=len(n), charts=len(n.charts)) + formatMetaData(n)
         elif t == 'S':
-            txt = sensorInfo.substitute(name=n.name, title=n.title, start=n.timegrid.start, stop=n.timegrid.stop,
+            txt = sensorInfo.substitute(name=n.name, title=escape(n.title), start=n.timegrid.start, stop=n.timegrid.stop,
                 step=n.timegrid.step, length=n.datalen()) + formatMetaData(n)
         elif t == 'C':
             txt = chartInfo.substitute(name=n.name)
