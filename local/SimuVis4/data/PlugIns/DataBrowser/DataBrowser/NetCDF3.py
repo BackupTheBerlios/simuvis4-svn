@@ -99,7 +99,7 @@ class NetCDF3Browser(QWidget):
             p, f = os.path.split(name)
             txt = "<i>File </i><b>%s</b><br> in %s" % (f, p)
         elif t == 'A':
-            txt = "<i>Attribute </i><b>%s:</b><br>%s" % (name, unicode(escape(nc)))
+            txt = "<i>Attribute </i><b>%s:</b><br>%s" % (name, escape(unicode(nc)))
         elif t == 'D':
             txt = "<i>Dimension </i><b>%s:</b><br>%s" % (name, str(nc))
         elif t == 'V':
