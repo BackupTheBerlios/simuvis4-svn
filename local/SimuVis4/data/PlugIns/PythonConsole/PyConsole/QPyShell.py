@@ -287,9 +287,9 @@ class QPyShell(QWidget):
             self.history_i = -1
             self.cursor.movePosition(QTextCursor.End)
             if not self.cmdBuffer:
-                self.outputBrowser.append('<hr>|<b>&nbsp;%s</b><br>' % formatPyLine(line))
+                self.cursor.insertHtml('<b>|&gt;&gt;&gt;&nbsp;%s</b><br>' % formatPyLine(line))
             else:
-                self.outputBrowser.append('|<b>&nbsp;%s</b><br>' % formatPyLine(line))
+                self.cursor.insertHtml('<b>|.&nbsp;.&nbsp;.&nbsp;&nbsp;%s</b><br>' % formatPyLine(line))
             self.cursor.movePosition(QTextCursor.End)
             self.outputBrowser.ensureCursorVisible()
         self.cmdBuffer.append(line)
@@ -301,11 +301,21 @@ class QPyShell(QWidget):
             self.promptLabel.setText('>>>')
 
 
-    def write(self, s):
+    def appendHtml(self, txt):
         self.cursor.movePosition(QTextCursor.End)
-        self.outputBrowser.insertPlainText(escape(s))
+        self.cursor.insertHtml(txt)
         self.cursor.movePosition(QTextCursor.End)
         self.outputBrowser.ensureCursorVisible()
+
+
+    def appendText(self, txt):
+        self.cursor.movePosition(QTextCursor.End)
+        self.outputBrowser.insertPlainText(txt)
+        self.cursor.movePosition(QTextCursor.End)
+        self.outputBrowser.ensureCursorVisible()
+
+
+    write = appendText
 
 
     def keyPressEvent(self, event):
@@ -408,14 +418,13 @@ class QPyShell(QWidget):
         elif n_comp < self.showCompletionLimit:
             tmp = list(completions)
             tmp.sort()
-            txt = '<font color="#0000ff">[%s]</font>' % ', '.join(tmp)
-            self.outputBrowser.append(txt)
+            self.appendHtml('<font color="#0000ff">[%s]</font>' % ', '.join(tmp))
             # get common prefix ... stolen from the python cookbook
             pref = tmp[0][:([min([x[0]==elem for elem in x]) for x in zip(*tmp)]+[0]).index(0)]
             if len(pref) > (cur-s):
                 self.lineInput.insert(pref[cur-s:])
         else:
-            self.outputBrowser.append(unicode(QCoreApplication.translate("QPyShell",
+            self.appendHtml(unicode(QCoreApplication.translate("QPyShell",
                 '<font color="#0000ff">[Too many completions: %d]</font>')) % n_comp)
 
 
