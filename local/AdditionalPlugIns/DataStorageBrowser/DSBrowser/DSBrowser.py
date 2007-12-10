@@ -4,7 +4,7 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-import SimuVis4, os, Icons
+import SimuVis4, os, Icons, string
 from PyQt4.QtGui import QWidget, QTreeView, QAbstractItemView, QStandardItemModel, QStandardItem, \
     QVBoxLayout, QHBoxLayout, QSplitter, QTextBrowser, QMessageBox, QToolButton, QIcon, QPixmap, \
     QFrame, QFileDialog, QPen
@@ -13,9 +13,83 @@ from PyQt4.Qwt5 import QwtPlotCurve
 
 from datastorage.database import DataBaseRoot, Sensor
 
-mpl_backend = SimuVis4.Globals.plugInManager['MatPlot'].backend_sv4agg
+mplBackend = SimuVis4.Globals.plugInManager['MatPlot'].backend_sv4agg
+mplWinCount = SimuVis4.Misc.Counter(1000)
 
-cnt = SimuVis4.Misc.Counter(1000)
+
+rootInfo = string.Template(str(QCoreApplication.translate('DataStorageBrowser', """
+<h3>Root $name</h3>
+<table border="1">
+<tr><td>Title</td><td>$title</td></tr>
+<tr><td>Folder</td><td>$folder</td></tr>
+<tr><td>Projects</td><td>$projects</td></tr>
+</table>
+""")))
+
+
+projectInfo = string.Template(str(QCoreApplication.translate('DataStorageBrowser', """
+<h3>Project $name</h3>
+<table border="1">
+<tr><td>Title</td><td>$title</td></tr>
+<tr><td>Groups</td><td>$groups</td></tr>
+</table>
+""")))
+
+
+groupInfo = string.Template(str(QCoreApplication.translate('DataStorageBrowser', """
+<h3>Group $name</h3>
+<table border="1">
+<tr><td>Title</td><td>$title</td></tr>
+<tr><td>Sensors</td><td>$sensors</td></tr>
+<tr><td>Charts</td><td>$charts</td></tr>
+</table>
+""")))
+
+
+sensorInfo = string.Template(str(QCoreApplication.translate('DataStorageBrowser', """
+<h3>Sensor $name</h3>
+<table border="1">
+<tr><td>Title</td><td>$title</td></tr>
+<tr><td>Start</td><td>$start</td></tr>
+<tr><td>Stop</td><td>$stop</td></tr>
+<tr><td>Step</td><td>$step</td></tr>
+<tr><td>Length</td><td>$length</td></tr>
+</table>
+Double click on the sensor item to show a chart!
+""")))
+
+
+chartInfo = string.Template(str(QCoreApplication.translate('DataStorageBrowser', """
+<h3>Chart $name</h3>
+Double click on the chart item to show!
+""")))
+
+
+metaDataStartInfo = str(QCoreApplication.translate('DataStorageBrowser', """
+<h4>Metadata</h4>
+<table border="1">
+"""))
+
+
+metaDataLineInfo = string.Template("""
+<tr><td>$name</td><td>$value</td></tr>
+""")
+
+
+metaDataEndInfo = """
+</table>
+"""
+
+
+def formatMetaData(n):
+    keys = n.getMetaKeys()
+    if not keys:
+        return ""
+    l = [metaDataStartInfo]
+    for k in keys:
+        l.append(metaDataLineInfo.substitute(name=k, value=n.getMetaData(k)))
+    l.append(metaDataEndInfo)
+    return '\n'.join(l)
 
 
 class DSBrowser(QWidget):
@@ -98,18 +172,21 @@ class DSBrowser(QWidget):
 
     def showItem(self, mi, pr):
         t, n = self.node(mi)
+        print t, dir(n)
+        txt = ""
         if t == 'R':
-            pass
+            # FIXME: no metadata?
+            txt = rootInfo.substitute(name=n.name, title=n.title, folder=n.h5dir, projects=len(n)) #+ formatMetaData(n)
         elif t == 'P':
-            pass
+            txt = projectInfo.substitute(name=n.name, title=n.title, groups=len(n)) + formatMetaData(n)
         elif t == 'G':
-            pass
+            txt = groupInfo.substitute(name=n.name, title=n.title, sensors=len(n), charts=len(n.charts)) + formatMetaData(n)
         elif t == 'S':
-            txt = "<b>%s:</b><br>Start: %d<br>Stop: %d<br>Step: %d<br>Len: %d" % \
-                (n.name, n.timegrid.start, n.timegrid.stop, n.timegrid.step, n.datalen())
-            self.textBrowser.setText(txt)
+            txt = sensorInfo.substitute(name=n.name, title=n.title, start=n.timegrid.start, stop=n.timegrid.stop,
+                step=n.timegrid.step, length=n.datalen()) + formatMetaData(n)
         elif t == 'C':
-            pass
+            txt = chartInfo.substitute(name=n.name)
+        self.textBrowser.setText(txt)
 
 
     def itemAction(self, mi):
@@ -132,8 +209,8 @@ class DSBrowser(QWidget):
         elif t == 'C':
             # Chart: show the chart 
             n.figure.clf()
-            canvas = mpl_backend.FigureCanvasSV4(n.figure)
-            manager = mpl_backend.FigureManagerSV4(canvas, cnt())
+            canvas = mplBackend.FigureCanvasSV4(n.figure)
+            manager = mplBackend.FigureManagerSV4(canvas, mplWinCount())
             n.makePlot(None)
             canvas.draw()
             manager.window.show()
@@ -156,11 +233,10 @@ class DSModel(QStandardItemModel):
             'graph'       : QIcon(QPixmap(Icons.graph))
         }
 
-
     def addDatabase(self, folder):
         db = DataBaseRoot(folder)
         self.databases[folder] = db
-        dbItem = QStandardItem(folder)
+        dbItem = QStandardItem(db.name)
         dbItem.setData(QVariant("R|%s" % folder))
         dbItem.setIcon(self.icons['database'])
         self.rootItem.appendRow(dbItem)
@@ -173,7 +249,6 @@ class DSModel(QStandardItemModel):
             item.setData(QVariant("P|%s|%s" % (dbf, v.path)))
             parent.appendRow(item)
             self._addProject(v, item, dbf)
-
 
     def _addProject(self, pr, parent, dbf):
         for k, v in pr.items():
