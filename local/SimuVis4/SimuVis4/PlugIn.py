@@ -18,8 +18,9 @@ class SimplePlugIn:
         self._translator = None
         self._loaded = False
         self.name = name
-        self.load()
-        self._loaded = True
+        self._loaded = self.load()
+        if not self._loaded:
+            raise SimuVis4.Errors.PlugInError()
 
 
     def initTranslations(self):

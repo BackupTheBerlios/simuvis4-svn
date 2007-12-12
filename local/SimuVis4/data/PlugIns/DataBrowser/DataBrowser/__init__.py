@@ -39,3 +39,4 @@ class PlugIn(SimplePlugIn):
             except ImportError:
                 SimuVis4.Globals.logger.error(unicode(QCoreApplication.translate('DataBrowser',
                     'DataBrowser: could not load browser for netCDF3')))
+        return True

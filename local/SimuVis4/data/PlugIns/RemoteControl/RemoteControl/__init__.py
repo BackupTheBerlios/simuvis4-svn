@@ -27,21 +27,21 @@ class PlugIn(SimplePlugIn):
         cfg.set_def(cfgsec, 'raise_mainwindow', 'yes')
         cfg.set_def(cfgsec, 'raise_use_hack', 'no')
         glb = SimuVis4.Globals
-        if cfg.has_option(cfgsec, 'tcp_port'):
-            tcpPort  = cfg.getint(cfgsec, 'tcp_port')
-            qSize    = cfg.getint(cfgsec, 'cmd_queue_size')
-            ipFilter = cfg.get(cfgsec, 'ip_filter')
-            if tcpPort:
-                from Receiver import CodeReceiver
-                self.receiver = CodeReceiver(tcpPort, qSize, ipFilter, cfg.getboolean(cfgsec, 'raise_mainwindow'),
-                    cfg.getboolean(cfgsec, 'raise_use_hack'))
-                self.toggleAction = QAction(glb.mainWin)
-                self.toggleAction.setText(QCoreApplication.translate('RemoteControl', 'Remote control active'))
-                self.toggleAction.setCheckable(True)
-                QObject.connect(self.toggleAction, SIGNAL("toggled(bool)"), self.receiver.setEnabled)
-                if cfg.has_option(cfgsec, 'start_enabled'):
-                    self.toggleAction.setChecked(cfg.getboolean(cfgsec, 'start_enabled'))
-                glb.mainWin.plugInMenu.addAction(self.toggleAction)
+        tcpPort  = cfg.getint(cfgsec, 'tcp_port')
+        qSize    = cfg.getint(cfgsec, 'cmd_queue_size')
+        ipFilter = cfg.get(cfgsec, 'ip_filter')
+        from Receiver import CodeReceiver
+        self.receiver = CodeReceiver(tcpPort, qSize, ipFilter, cfg.getboolean(cfgsec, 'raise_mainwindow'),
+            cfg.getboolean(cfgsec, 'raise_use_hack'))
+        self.toggleAction = QAction(glb.mainWin)
+        self.toggleAction.setText(QCoreApplication.translate('RemoteControl', 'Remote control active'))
+        self.toggleAction.setCheckable(True)
+        QObject.connect(self.toggleAction, SIGNAL("toggled(bool)"), self.receiver.setEnabled)
+        if cfg.has_option(cfgsec, 'start_enabled'):
+            self.toggleAction.setChecked(cfg.getboolean(cfgsec, 'start_enabled'))
+        glb.mainWin.plugInMenu.addAction(self.toggleAction)
+        return True        
+                
 
     def unload(self, fast):
         if self.receiver:

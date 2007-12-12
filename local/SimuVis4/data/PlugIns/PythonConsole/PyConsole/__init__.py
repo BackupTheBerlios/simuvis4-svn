@@ -54,6 +54,7 @@ class PlugIn(SimplePlugIn):
         if cfg.getboolean(cfgsec, 'use_history'):
             histF = os.path.join(glb.homePath, '.SV4PyCon.his')
         self.consoleWindow.console.initInterpreter(loc=glb.__dict__, historyFile=histF)
+        return True
 
 
     def unload(self, fast):

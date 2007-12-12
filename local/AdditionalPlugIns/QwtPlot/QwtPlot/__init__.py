@@ -36,6 +36,8 @@ class PlugIn(SimplePlugIn):
         testAction.setStatusTip(QCoreApplication.translate('QwtPlot', 'Show a new Qwt test window'))
         QWidget.connect(testAction, SIGNAL("triggered()"), self.test)
         SimuVis4.Globals.mainWin.plugInMenu.addAction(testAction)
+        return True
+
 
     def test(self):
         from math import sin, cos

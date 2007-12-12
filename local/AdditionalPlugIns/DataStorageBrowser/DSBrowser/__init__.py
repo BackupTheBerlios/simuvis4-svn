@@ -29,6 +29,8 @@ class PlugIn(SimplePlugIn):
             SimuVis4.Globals.dataBrowser.toolBox.addItem(dsbrowser, 'DataStorage')
             if cfg.has_option(cfgsec, 'default_database'):
                 dsbrowser.loadDatabase(cfg.get(cfgsec, 'default_database'))
+            return True
         except ImportError:
             SimuVis4.Globals.logger.error(unicode(QCoreApplication.translate('DataStorageBrowser',
                 'DataStorageBrowser: could not load module datastorage, check paths!')))
+            return False

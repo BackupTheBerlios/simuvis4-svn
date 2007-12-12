@@ -15,6 +15,8 @@ class PlugIn(SimplePlugIn):
         import Widgets, Quantities
         self.Widgets = Widgets
         self.Quantities = Quantities
+        return True
+
 
     def test():
         ws = SimuVis4.Globals.mainWin.workSpace

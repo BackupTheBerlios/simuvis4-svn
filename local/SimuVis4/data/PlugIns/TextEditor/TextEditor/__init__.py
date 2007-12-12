@@ -22,6 +22,7 @@ class PlugIn(SimplePlugIn):
         self.winManager = TextEditorManager(SimuVis4.Globals.mainWin.workSpace, TextEditorWindow.TextEditorWindow,
             QCoreApplication.translate('TextEditor', "Unnamed Textfile"), winIcon)
         self.winManager.initMain(SimuVis4.Globals.mainWin)
+        return True
 
 
     def unload(self, fast):

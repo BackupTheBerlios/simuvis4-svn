@@ -12,7 +12,7 @@ import Globals, os, weakref
 
 # FIXME: make this work !
 
-states = {-1: "ERROR", 0: "UNKNOWN", 1: "LOADED", 2: "INITIALIZED"}
+states = {0: "UNKNOWN", 1: "LOADED", 2: "INITIALIZED", 3: "ERROR"}
 
 class PlugInBrowserWidget(QWidget, Ui_PlugInBrowserWidget):
     def __init__(self, parent):

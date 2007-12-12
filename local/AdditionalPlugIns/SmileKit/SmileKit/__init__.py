@@ -25,6 +25,7 @@ class PlugIn(SimplePlugIn):
         QObject.connect(mn2ncAction, SIGNAL("triggered()"), self.showMn2NcWindow)
         self.menu.addAction(mn2ncAction)
         SimuVis4.Globals.mainWin.plugInMenu.addMenu(self.menu)
+        return True
 
 
     def showMn2NcWindow(self):

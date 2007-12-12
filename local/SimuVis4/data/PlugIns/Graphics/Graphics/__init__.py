@@ -27,6 +27,7 @@ class PlugIn(SimplePlugIn):
         testAction.setStatusTip(QCoreApplication.translate('Graphics', 'Show a new graphics window'))
         QWidget.connect(testAction, SIGNAL("triggered()"), self.test)
         SimuVis4.Globals.mainWin.plugInMenu.addAction(testAction)
+        return True
 
 
     def unload(self, fast):

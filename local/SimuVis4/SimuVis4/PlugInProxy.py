@@ -49,8 +49,9 @@ class PlugInFolderProxy:
         return open(os.path.join(self.path, path), mode)
 
     def init(self):
+        if self.state != 0:
+            return
         sys.path.insert(0, self.path)
-        self.state = -1
         try:
             m = __import__(self.package)
             self.state = 1
@@ -58,8 +59,8 @@ class PlugInFolderProxy:
             self.state = 2
             logger.info(unicode(QCoreApplication.translate('PlugIn', 'PlugIn: %s: successfully initialized')), self.name)
         except:
-            logger.exception(unicode(QCoreApplication.translate('PlugIn', 'PlugIn: %s: error while initializing plugin')), self.name)
-            self.state = -1
+            logger.error(unicode(QCoreApplication.translate('PlugIn', 'PlugIn: %s: error while initializing plugin')), self.name)
+            self.state = 3
             self.plugIn = None
         del sys.path[0]
 

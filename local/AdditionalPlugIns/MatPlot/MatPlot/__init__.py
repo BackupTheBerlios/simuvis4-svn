@@ -59,7 +59,7 @@ class PlugIn(SimplePlugIn):
         if matplotlib.__version__ < mplMinVersion or matplotlib.__version__ > mplMaxVersion:
             SimuVis4.Globals.logger.error(unicode(QCoreApplication.translate('MatPlot', 'MatPlot: need matplotlib version between %s and %s, but found %s')) % \
                 (mplMinVersion, mplMaxVersion, matplotlib.__version__))
-        return False
+            return False
         self.matplotlib = matplotlib
         try:
             matplotlib.use('SV4Agg')
