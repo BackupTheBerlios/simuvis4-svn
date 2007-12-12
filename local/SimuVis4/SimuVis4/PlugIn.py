@@ -23,7 +23,7 @@ class SimplePlugIn:
 
 
     def initTranslations(self):
-        if self._glb.language:
+        if self._glb.language and self._glb.language != 'en':
             try:
                 self._translator = QTranslator()
                 self._qm = self.getFile('%s.qm' % self._glb.language).read()
