@@ -18,7 +18,7 @@ mplBackend = SimuVis4.Globals.plugInManager['MatPlot'].backend_sv4agg
 mplWinCount = SimuVis4.Misc.Counter(1000)
 
 
-rootInfo = string.Template(str(QCoreApplication.translate('DataStorageBrowser', """
+rootInfo = string.Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
 <h3>Root $name</h3>
 <table border="1">
 <tr><td>Title</td><td>$title</td></tr>
@@ -28,7 +28,7 @@ rootInfo = string.Template(str(QCoreApplication.translate('DataStorageBrowser', 
 """)))
 
 
-projectInfo = string.Template(str(QCoreApplication.translate('DataStorageBrowser', """
+projectInfo = string.Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
 <h3>Project $name</h3>
 <table border="1">
 <tr><td>Title</td><td>$title</td></tr>
@@ -37,7 +37,7 @@ projectInfo = string.Template(str(QCoreApplication.translate('DataStorageBrowser
 """)))
 
 
-groupInfo = string.Template(str(QCoreApplication.translate('DataStorageBrowser', """
+groupInfo = string.Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
 <h3>Group $name</h3>
 <table border="1">
 <tr><td>Title</td><td>$title</td></tr>
@@ -47,7 +47,7 @@ groupInfo = string.Template(str(QCoreApplication.translate('DataStorageBrowser',
 """)))
 
 
-sensorInfo = string.Template(str(QCoreApplication.translate('DataStorageBrowser', """
+sensorInfo = string.Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
 <h3>Sensor $name</h3>
 <table border="1">
 <tr><td>Title</td><td>$title</td></tr>
@@ -60,13 +60,13 @@ Double click on the sensor item to show a chart!
 """)))
 
 
-chartInfo = string.Template(str(QCoreApplication.translate('DataStorageBrowser', """
+chartInfo = string.Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
 <h3>Chart $name</h3>
 Double click on the chart item to show!
 """)))
 
 
-metaDataStartInfo = str(QCoreApplication.translate('DataStorageBrowser', """
+metaDataStartInfo = unicode(QCoreApplication.translate('DataStorageBrowser', """
 <h4>Metadata</h4>
 <table border="1">
 """))
@@ -88,7 +88,7 @@ def formatMetaData(n):
         return ""
     l = [metaDataStartInfo]
     for k in keys:
-        l.append(metaDataLineInfo.substitute(name=k, value=escape(str(n.getMetaData(k)))))
+        l.append(metaDataLineInfo.substitute(name=k, value=escape(unicode(n.getMetaData(k)))))
     l.append(metaDataEndInfo)
     return '\n'.join(l)
 

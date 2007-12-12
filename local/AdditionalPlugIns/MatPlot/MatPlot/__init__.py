@@ -57,9 +57,9 @@ class PlugIn(SimplePlugIn):
         glb = SimuVis4.Globals
         import matplotlib
         if matplotlib.__version__ < mplMinVersion or matplotlib.__version__ > mplMaxVersion:
-            err = str(QCoreApplication.translate('MatPlot', 'MatPlot: need matplotlib version between %s and %s, but found %s')) % \
-                (mplMinVersion, mplMaxVersion, matplotlib.__version__)
-            raise Exception(err)
+            SimuVis4.Globals.logger.error(unicode(QCoreApplication.translate('MatPlot', 'MatPlot: need matplotlib version between %s and %s, but found %s')) % \
+                (mplMinVersion, mplMaxVersion, matplotlib.__version__))
+        return False
         self.matplotlib = matplotlib
         try:
             matplotlib.use('SV4Agg')
@@ -78,6 +78,7 @@ class PlugIn(SimplePlugIn):
         testAction.setStatusTip(QCoreApplication.translate('MatPlot', 'Show a matplotlib test window'))
         QWidget.connect(testAction, SIGNAL("triggered()"), self.test)
         SimuVis4.Globals.mainWin.plugInMenu.addAction(testAction)
+        return True
 
 
     def test(self):
