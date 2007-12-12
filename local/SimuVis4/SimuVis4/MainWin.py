@@ -12,6 +12,7 @@ from PyQt4.QtCore import *
 
 from UI.ExceptionDialog import Ui_ExceptionDialog
 from About import AboutDlg
+from cgi import escape
 
 cfg    = Globals.config
 logger = Globals.logger
@@ -284,14 +285,8 @@ class MainWindow(QMainWindow):
                 self.connect(self.exceptionDlg.ExitButton, SIGNAL("pressed()"), self.exitApplication)
                 self.connect(self.exceptionDlg.KillButton, SIGNAL("pressed()"), self.killApplication)
                 self.connect(self.exceptionDlg.RestartButton, SIGNAL("pressed()"), self.restartApplication)
-            et = unicode(t)
-            if et.find('<type ') == 0:
-                et = et[7:-2]
-            elif et.find('<class ') == 0:
-                et = et[8:-2]
-            txt = '<font color="#ff0000"><b>%s: </b><i>%s</i><br></font><i>(%s)</i>' % (et, t.__doc__, v)
             self.exceptionDlg.MainLabel.clear()
-            self.exceptionDlg.MainLabel.setText(txt)
+            self.exceptionDlg.MainLabel.setText('<font color="#ff0000"><b>%s: </b><i>%s</i><br></font><i>(%s)</i>' % (escape(unicode(t)), escape(t.__doc__), v))
             self.exceptionDlg.TracebackView.clear()
             self.exceptionDlg.TracebackView.append(tbtmp)
             self.exceptionDlg.show()

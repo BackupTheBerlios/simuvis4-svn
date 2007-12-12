@@ -55,7 +55,7 @@ class SV4RemoteClientUI(QtGui.QWidget):
         self.sendButton.setText(QtGui.QApplication.translate("SV4ClientRC", "Send", None, QtGui.QApplication.UnicodeUTF8))
 
     def run(self):
-        code = str(self.codeInput.toPlainText())
+        code = unicode(self.codeInput.toPlainText())
         host = str(self.hostInput.text())
         port = int(self.portInput.value())
         sendCode(code, host, port)

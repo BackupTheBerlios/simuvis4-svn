@@ -23,7 +23,7 @@ class TextBrowserFormatter(Formatter):
 
     def format(self, r):
         return '<font color="%s"><b>%s</b> (<i>%s</i>):</font> %s' % (self.color(r.levelno), r.levelname,
-            r.module or '[...]', escape(r.message))
+            r.module or '[...]', escape(unicode(r.message)))
 
 
 class TextBrowserHandler(Handler):

@@ -14,7 +14,7 @@ from cgi import escape
 try:
     from Scientific.IO.NetCDF import NetCDFFile
 except ImportError:
-    SimuVis4.Globals.logger.warning(str(QCoreApplication.translate('DataBrowser',
+    SimuVis4.Globals.logger.warning(unicode(QCoreApplication.translate('DataBrowser',
         'Scientific.IO.NetCDF not found, trying to use pupynere instead')))
     from pupynere import NetCDFFile
 
