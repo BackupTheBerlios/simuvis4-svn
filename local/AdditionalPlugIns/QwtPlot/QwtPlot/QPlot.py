@@ -26,9 +26,9 @@ try:
     PyQt4.Qwt5.qplt.Plot  = Plot
     PyQt4.Qwt5.qplt.IPlot = Plot
 
-    SimuVis4.Globals.logger.info(QCoreApplication.translate('QwtPlot',
-        'QwtPlot: support for PyQt4.Qwt5.qplt in subwindows was successfully installed'))
+    SimuVis4.Globals.logger.info(unicode(QCoreApplication.translate('QwtPlot',
+        'QwtPlot: support for PyQt4.Qwt5.qplt in subwindows was successfully installed')))
 
 except ImportError:
-    SimuVis4.Globals.logger.info(QCoreApplication.translate('QwtPlot',
-        'QwtPlot: PyQt4.Qwt5.qplt not found, skipped subwindow support'))
+    SimuVis4.Globals.logger.info(unicode(QCoreApplication.translate('QwtPlot',
+        'QwtPlot: PyQt4.Qwt5.qplt not found, skipped subwindow support')))

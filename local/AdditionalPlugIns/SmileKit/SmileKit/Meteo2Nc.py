@@ -13,8 +13,8 @@ import SimuVis4.Globals as glb
 
 from MeteonormFile import readMnFile, writeNcFile, makeStatistics, version, mnHelpText, ncOk
 if not ncOk:
-    SimuVis4.Globals.logger.error(QCoreApplication.translate('SmileKit',
-        'SmileKit: support for netCDF3 not found, Meteonorm file conversion will not work!'))
+    SimuVis4.Globals.logger.error(unicode(QCoreApplication.translate('SmileKit',
+        'SmileKit: support for netCDF3 not found, Meteonorm file conversion will not work!')))
 
 import os, time
 
