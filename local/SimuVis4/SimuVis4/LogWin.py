@@ -10,7 +10,7 @@ from SubWin import SubWindow
 from UI.LogView import Ui_LogViewWidget
 from logging import Handler, Formatter, CRITICAL
 from cgi import escape
-import Globals, Errors, Icons, os
+import Globals, Errors, Icons, os, traceback
 
 
 class TextBrowserFormatter(Formatter):
@@ -22,8 +22,13 @@ class TextBrowserFormatter(Formatter):
         return "#%02x%02x%02x" % (r, g, b)
 
     def format(self, r):
-        return '<font color="%s"><b>%s</b> (<i>%s</i>):</font> %s' % (self.color(r.levelno), r.levelname,
+        txt = '<font color="%s"><b>%s</b> (<i>%s</i>):</font> %s' % (self.color(r.levelno), r.levelname,
             r.module or '[...]', escape(unicode(r.message)))
+        if r.exc_info:
+            t, v, tb = r.exc_info
+            txt += '<br><b>Exception %s: </b><i>%s</i><br><i>(%s)</i>' % (escape(unicode(t)), escape(t.__doc__), v)
+            txt += '<br><pre>%s</pre>' % ''.join(traceback.format_tb(tb))
+        return txt
 
 
 class TextBrowserHandler(Handler):
@@ -36,6 +41,7 @@ class TextBrowserHandler(Handler):
 
     def emit(self, r):
         self.browser.append(self.format(r))
+        self.browser.ensureCursorVisible()
         if r.levelno >= self.raiseLevel:
             if not self.win.isVisible():
                 self.win.toggleVisibleAction.setChecked(True)
