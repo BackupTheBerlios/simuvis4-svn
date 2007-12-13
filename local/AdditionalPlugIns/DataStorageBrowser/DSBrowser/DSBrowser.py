@@ -130,6 +130,7 @@ class DSBrowser(QWidget):
         self.treeView = QTreeView(self.splitter)
         self.treeView.setAlternatingRowColors(True)
         self.treeView.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.treeView.setContextMenuPolicy(Qt.CustomContextMenu)
         self.textBrowser = QTextBrowser(self.splitter)
         self.layout.addWidget(self.splitter)
         self.splitter.setStretchFactor(0, 85)
@@ -140,6 +141,7 @@ class DSBrowser(QWidget):
         self.treeView.expandAll()
         self.connect(self.treeView.selectionModel(), SIGNAL("currentChanged(QModelIndex, QModelIndex)"), self.showItem)
         self.connect(self.treeView, SIGNAL("doubleClicked(QModelIndex)"), self.itemAction)
+        self.connect(self.treeView, SIGNAL("customContextMenuRequested(QPoint)"), self.showContextMenu)
 
 
     def loadDatabase(self, dn=None):
@@ -215,6 +217,12 @@ class DSBrowser(QWidget):
             n.makePlot(starttime=n.sensorgroup.start)
             canvas.draw()
             manager.window.show()
+
+    def showContextMenu(self, pos):
+        mi = self.treeView.indexAt(pos)
+        # FIXME: more to come here...
+        # print self.node(mi)
+
 
 
 class DSModel(QStandardItemModel):
