@@ -6,7 +6,7 @@
 
 import Globals, Icons, Errors, UI
 
-import sys, os, traceback
+import sys, os, traceback, logging
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
@@ -380,7 +380,6 @@ class MainWindow(QMainWindow):
 
     def propagateShutdown(self):
         """Ask all components if a shutdown is ok """
-        # FIXME: more shutdown propagation!
         if self.plugInManager.shutdownOk():
             self.plugInManager.shutdown()
         else:
@@ -394,10 +393,10 @@ class MainWindow(QMainWindow):
         e, a = Globals.exeFile, Globals.exeArgs
         if sys.platform.startswith('linux'):
             a[0] = e
-            a.insert(0, 'python')
+            a.insert(0, sys.executable)
         elif sys.platform == 'win32':
             a[0] = '"%s"' % e
-            a.insert(0, 'python')
+            a.insert(0, sys.executable)
         else:
             raise Errors.FeatureMissingError(unicode(QCoreApplication.translate('MainWin', 'restarting on platform "%s" not yet supported')) % sys.platform)
         os.execv(sys.executable, a)
@@ -416,8 +415,7 @@ class MainWindow(QMainWindow):
             # FIXME: hide shutdown-related exception like logger-IOError on windows
             self.hideExceptions = True
             logger.info(QCoreApplication.translate('MainWin', 'Main: shutdown complete'))
-            #Globals.application.closeAllWindows()
-
+            logging.shutdown()
 
     def closeEvent(self, e):
         self.exitApplication()
