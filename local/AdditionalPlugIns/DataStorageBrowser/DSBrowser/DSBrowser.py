@@ -173,11 +173,10 @@ class DSBrowser(QWidget):
 
     def showItem(self, mi, pr):
         t, n = self.node(mi)
-        print t, dir(n)
         txt = ""
         if t == 'R':
             # FIXME: no metadata?
-            txt = rootInfo.substitute(name=n.name, title=escape(n.title), folder=n.h5dir, projects=len(n)) #+ formatMetaData(n)
+            txt = rootInfo.substitute(name=n.name, title=escape(n.title), folder=n.h5dir, projects=len(n)) # + formatMetaData(n)
         elif t == 'P':
             txt = projectInfo.substitute(name=n.name, title=escape(n.title), groups=len(n)) + formatMetaData(n)
         elif t == 'G':
@@ -212,7 +211,8 @@ class DSBrowser(QWidget):
             n.figure.clf()
             canvas = mplBackend.FigureCanvasSV4(n.figure)
             manager = mplBackend.FigureManagerSV4(canvas, mplWinCount())
-            n.makePlot(None)
+            n.setTimeslice(100*86400)
+            n.makePlot(starttime=n.sensorgroup.start)
             canvas.draw()
             manager.window.show()
 
