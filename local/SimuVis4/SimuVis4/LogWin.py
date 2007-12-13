@@ -22,12 +22,12 @@ class TextBrowserFormatter(Formatter):
         return "#%02x%02x%02x" % (r, g, b)
 
     def format(self, r):
-        txt = '<font color="%s"><b>%s</b> (<i>%s</i>):</font> %s' % (self.color(r.levelno), r.levelname,
-            r.module or '[...]', escape(unicode(r.message)))
         if r.exc_info:
-            t, v, tb = r.exc_info
-            txt += '<br><b>Exception %s: </b><i>%s</i><br><i>(%s)</i>' % (escape(unicode(t)), escape(t.__doc__), v)
-            txt += '<br><pre>%s</pre>' % ''.join(traceback.format_tb(tb))
+            txt = '<font color="#0000ff"><b>EXCEPTION:</b></font> %s <pre>%s</pre>' % (escape(unicode(r.message)),
+                self.formatException(r.exc_info))
+        else:
+            txt = '<font color="%s"><b>%s</b> (<i>%s</i>):</font> %s' % (self.color(r.levelno), r.levelname,
+                r.module or '[...]', escape(unicode(r.message)))
         return txt
 
 
