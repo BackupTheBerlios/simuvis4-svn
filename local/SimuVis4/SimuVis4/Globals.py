@@ -19,7 +19,7 @@ if os.path.isfile(__file__):
 
 
 from logging.handlers import MemoryHandler
-logger = logging.getLogger('main')
+logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 # startLogBufffer will cache logging events until the LogWindow is initialized
 startLogBuffer = MemoryHandler(100)
