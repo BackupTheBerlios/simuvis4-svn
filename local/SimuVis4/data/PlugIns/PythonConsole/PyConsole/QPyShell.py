@@ -287,9 +287,9 @@ class QPyShell(QWidget):
             self.history_i = -1
             self.cursor.movePosition(QTextCursor.End)
             if not self.cmdBuffer:
-                self.cursor.insertHtml('<b>|&gt;&gt;&gt;&nbsp;%s</b><br>' % formatPyLine(line))
+                self.cursor.insertHtml('<br><b>|&gt;&gt;&gt;&nbsp;%s</b><br>' % formatPyLine(line))
             else:
-                self.cursor.insertHtml('<b>|.&nbsp;.&nbsp;.&nbsp;&nbsp;%s</b><br>' % formatPyLine(line))
+                self.cursor.insertHtml('<br><b>|.&nbsp;.&nbsp;.&nbsp;&nbsp;%s</b><br>' % formatPyLine(line))
             self.cursor.movePosition(QTextCursor.End)
             self.outputBrowser.ensureCursorVisible()
         self.cmdBuffer.append(line)
