@@ -278,7 +278,7 @@ class MainWindow(QMainWindow):
             f = open(self.saveLastException, 'w')
             f.write('%s\n%s\n%s\n' % (t,v,tbtmp))
             f.close()
-        logger.error(unicode(QCoreApplication.translate('MainWin', 'Main: uncatched internal exception: %s: %s:\n%s')), t, v, tbtmp)
+        #logger.exception(unicode(QCoreApplication.translate('MainWin', 'Main: uncatched internal exception')))
         if not self.hideExceptions:
             if not hasattr(self, 'exceptionDlg'):
                 self.exceptionDlg = ExceptionDialog(self)

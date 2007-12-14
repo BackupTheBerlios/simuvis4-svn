@@ -5,10 +5,10 @@
 # this file is part of the SimuVis4 framework
 """
 SimuVis4 is a package containing the main part of the SimuVis 4 framework.
-Have a look at "http://dezentral.de/soft/SimuVis4/" for details.
+Have a look at "http://simuvis.de/" for details.
 """
 
-__version__ = '4.01a'
+__version__ = '4.0'
 __author__ = 'Joerg Raedler <jr@j-raedler.de>'
 
 

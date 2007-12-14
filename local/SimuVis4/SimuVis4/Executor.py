@@ -9,6 +9,7 @@
 
 from PyQt4.QtGui import QProgressDialog
 from PyQt4.QtCore import SIGNAL, QCoreApplication
+from compiler import compile
 
 import os, threading, sys
 import Misc, Globals
@@ -17,8 +18,9 @@ logger = Globals.logger
 
 globalNameSpace = Globals.__dict__ # gobals()
 
-def _execute(s):
-    exec s in globalNameSpace
+def _execute(s, name):
+    o = compile(str(s), str(name), 'single')
+    exec o in globalNameSpace
 
 
 class Executor(object):
@@ -46,8 +48,13 @@ class Executor(object):
         logger.info(unicode(QCoreApplication.translate('Executor', 'Executor: running code "%s"')), name)
         self.preRun(name)
         try:
-            _execute(c)
-        finally:
+            _execute(c, name)
+        except:
+            logger.exception("")
+            Globals.mainWin.showException(*sys.exc_info())
+            self.postRun(name)
+            self.cancelFlag = False
+        else:
             self.postRun(name)
             self.cancelFlag = False
 
