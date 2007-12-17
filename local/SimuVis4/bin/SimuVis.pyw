@@ -122,29 +122,26 @@ glb.exeFile = exeFile
 glb.exeArgs = exeArgs
 
 
-# i18n
-# Qt-style translations
-translator = qtcore.QTranslator()
-application.installTranslator(translator)
-glb.translator = translator
+# i18n - install translators
 if language or glb.config.has_option('main', 'i18n_language'):
     if not language:
         language = glb.config.get('main', 'i18n_language')
     if not language == 'en':
-        qtLanguagePath = str(qtcore.QLibraryInfo.location(qtcore.QLibraryInfo.TranslationsPath))
-        qtQmFile = os.path.join(qtLanguagePath, 'qt_%s.qm' % language)
-        if os.path.exists(qtQmFile):
-            translator.load(qtQmFile)
-        languagePath = glb.config.get('main', 'system_language_path')
-        qmFile = os.path.join(languagePath, '%s.qm' % language)
-        if os.path.exists(qmFile):
-            translator.load(qmFile)
+        translator = qtcore.QTranslator()
+        if translator.load('qt_%s' % language, qtcore.QLibraryInfo.location(qtcore.QLibraryInfo.TranslationsPath)):
+            application.installTranslator(translator)
+        else:
+            glb.logger.warning('Main: Qt4\'s translation for "%s" not found, some dialogs will be untranslated', language)
+        translator = qtcore.QTranslator()
+        if translator.load(language, glb.config.get('main', 'system_language_path')):
+            application.installTranslator(translator)
         else:
             glb.logger.error('Main: translation "%s" not found, falling back to default language', language)
     glb.language = language
 else:
     glb.language = None
 
+# splash
 if glb.config.has_option('main', 'disable_splash') and not glb.config.getboolean('main', 'disable_splash'):
     splash = os.path.join(glb.config.get('main', 'system_picture_path'), glb.config.get('main', 'splash_image'))
     if os.path.isfile(splash):

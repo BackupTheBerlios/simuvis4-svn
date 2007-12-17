@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ -d .devel ]; then
-  PY=$(find . -type f -iname "*.py")
+  PY=$(find . -type f -iname "*.py" -or -iname "*.pyw")
   LANGUAGES="de"
   LANGPATH="data/Language"
   for L in $LANGUAGES; do
