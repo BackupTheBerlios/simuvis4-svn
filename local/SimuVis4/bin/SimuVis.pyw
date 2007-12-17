@@ -30,7 +30,7 @@ Usage: %s [options]
             use language lang if available
 """ % sys.argv[0]
 
-svn_revision = 180 # this line is changed automagically by mark_svn_rev.py
+svn_revision = 184 # this line is changed automagically by mark_svn_rev.py
 version_info = (4, 0, svn_revision)
 version_string = '4.0.%03d' % svn_revision
 
@@ -131,6 +131,10 @@ if language or glb.config.has_option('main', 'i18n_language'):
     if not language:
         language = glb.config.get('main', 'i18n_language')
     if not language == 'en':
+        qtLanguagePath = str(qtcore.QLibraryInfo.location(qtcore.QLibraryInfo.TranslationsPath))
+        qtQmFile = os.path.join(qtLanguagePath, 'qt_%s.qm' % language)
+        if os.path.exists(qtQmFile):
+            translator.load(qtQmFile)
         languagePath = glb.config.get('main', 'system_language_path')
         qmFile = os.path.join(languagePath, '%s.qm' % language)
         if os.path.exists(qmFile):
