@@ -88,7 +88,10 @@ def new_figure_manager( num, *args, **kwargs ):
 
 class WheelScrollArea(QtGui.QScrollArea):
     def wheelEvent(self, e):
-        if not self.widgetResizable():
+        if self.widgetResizable():
+            e.ignore()
+            return
+        if e.modifiers() & QtCore.Qt.ControlModifier:
             d = e.delta()
             e.accept()
             # FIXME: adjust speed
@@ -97,7 +100,7 @@ class WheelScrollArea(QtGui.QScrollArea):
             s = w.size()
             w.resize(int(f*s.width()), int(f*s.height()))
         else:
-            e.ignore()
+            QtGui.QScrollArea.wheelEvent(self, e)
 
 
 
@@ -269,7 +272,7 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
         wheelButton.setChecked(False)
         wheelButton.setText(QtCore.QCoreApplication.translate('MatPlot', 'Wheel Zoom'))
         wheelButton.setIcon(QtGui.QIcon(QtGui.QPixmap(SimuVis4.Icons.magnify)))
-        wheelButton.setToolTip(QtCore.QCoreApplication.translate('MatPlot', 'when activated, canvas can be zoomed with mouse wheel'))
+        wheelButton.setToolTip(QtCore.QCoreApplication.translate('MatPlot', 'when activated, canvas can be zoomed with CTRL-MouseWheel'))
         QtCore.QObject.connect(wheelButton, QtCore.SIGNAL('toggled(bool)'), self.enableWheelZoom)
         self.layout.addWidget(wheelButton)
 
