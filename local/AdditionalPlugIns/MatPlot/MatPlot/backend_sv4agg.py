@@ -85,6 +85,22 @@ def new_figure_manager( num, *args, **kwargs ):
     return FigureManagerSV4( canvas, num )
 
 
+
+class WheelScrollArea(QtGui.QScrollArea):
+    def wheelEvent(self, e):
+        if not self.widgetResizable():
+            d = e.delta()
+            e.accept()
+            # FIXME: adjust speed
+            f = (1000.0-d)/1000.0
+            w = self.widget()
+            s = w.size()
+            w.resize(int(f*s.width()), int(f*s.height()))
+        else:
+            e.ignore()
+
+
+
 class MatPlotWindow(SubWindowV):
     def setup(self, canvas, num):
         mainWin.workSpace.addSubWindow(self)
@@ -95,11 +111,16 @@ class MatPlotWindow(SubWindowV):
         image = os.path.join(imagepath,'matplotlib.png')
         self.setWindowIcon(QtGui.QIcon(image))
 
+        self.scrollArea = WheelScrollArea(self)
+        self.scrollArea.setWidgetResizable(True)
+        self.mainLayout.addWidget(self.scrollArea, 1)
+
         self.canvas = canvas
+        self.canvas.mplWindow = self
         canvas.setParent(self)
-        canvas.setFocusPolicy( QtCore.Qt.ClickFocus )
+        canvas.setFocusPolicy(QtCore.Qt.ClickFocus)
         canvas.setFocus()
-        self.mainLayout.addWidget(canvas, 1)
+        self.scrollArea.setWidget(self.canvas)
         self.setMinimumSize(350, 300)
 
 
@@ -116,7 +137,7 @@ class MatPlotWindow(SubWindowV):
         self.toolbar.save_figure()
 
 
-class FigureManagerSV4( FigureManagerBase ):
+class FigureManagerSV4(FigureManagerBase):
     """
     Public attributes
 
@@ -215,7 +236,6 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
         self.canvas = canvas
         QtGui.QWidget.__init__(self, parent)
 
-        # Layout toolbar buttons horizontally.
         self.layout = QtGui.QHBoxLayout( self )
         self.layout.setMargin(0)
         self.layout.setSpacing(0)
@@ -243,11 +263,24 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
         QtCore.QObject.connect(printButton, QtCore.SIGNAL('clicked()'), self.print_dialog)
         self.layout.addWidget(printButton)
 
+        self.layout.addSpacing(8)
+        wheelButton = QtGui.QToolButton(self)
+        wheelButton.setCheckable(True)
+        wheelButton.setChecked(False)
+        wheelButton.setText(QtCore.QCoreApplication.translate('MatPlot', 'Wheel Zoom'))
+        wheelButton.setIcon(QtGui.QIcon(QtGui.QPixmap(SimuVis4.Icons.magnify)))
+        wheelButton.setToolTip(QtCore.QCoreApplication.translate('MatPlot', 'when activated, canvas can be zoomed with mouse wheel'))
+        QtCore.QObject.connect(wheelButton, QtCore.SIGNAL('toggled(bool)'), self.enableWheelZoom)
+        self.layout.addWidget(wheelButton)
+
         self.locLabel = QtGui.QLabel(self)
         self.locLabel.setAlignment( QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter )
         self.locLabel.setSizePolicy(QtGui.QSizePolicy(QtGui.QSizePolicy.Ignored,
                                                       QtGui.QSizePolicy.Ignored))
         self.layout.addWidget(self.locLabel, 1)
+
+    def enableWheelZoom(self, b):
+        self.canvas.mplWindow.scrollArea.setWidgetResizable(not b)
 
     def dynamic_update(self):
         self.canvas.draw()
