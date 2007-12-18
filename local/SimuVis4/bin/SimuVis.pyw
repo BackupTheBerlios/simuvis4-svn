@@ -127,9 +127,9 @@ if language or glb.config.has_option('main', 'i18n_language'):
     if not language:
         language = glb.config.get('main', 'i18n_language')
     if not language == 'en':
-        translator = qtcore.QTranslator()
-        if translator.load('qt_%s' % language, qtcore.QLibraryInfo.location(qtcore.QLibraryInfo.TranslationsPath)):
-            application.installTranslator(translator)
+        translatorQt = qtcore.QTranslator()
+        if translatorQt.load('qt_%s' % language, qtcore.QLibraryInfo.location(qtcore.QLibraryInfo.TranslationsPath)):
+            application.installTranslator(translatorQt)
         else:
             glb.logger.warning('Main: Qt4\'s translation for "%s" not found, some dialogs will be untranslated', language)
         translator = qtcore.QTranslator()
