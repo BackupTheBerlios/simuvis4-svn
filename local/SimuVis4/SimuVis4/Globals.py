@@ -111,6 +111,7 @@ config.set_def('main', 'hide_plugin_browser', 'yes')
 
 config.set_def('main', 'disable_help_browser', 'no')
 config.set_def('main', 'help_browser_external', 'no')
+config.set_def('main', 'help_server_port', '34568')
 
 if platform == 'win32':
     # FIXME: there's an error on windows when exiting, somewhere in the logging system...
