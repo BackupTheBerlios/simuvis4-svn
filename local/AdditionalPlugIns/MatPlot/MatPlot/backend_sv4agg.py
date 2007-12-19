@@ -46,7 +46,7 @@ except:
 from PyQt4 import QtCore, QtGui
 
 
-backend_version = "0.2.0"
+backend_version = "0.3.0"
 
 imagepath = matplotlib.rcParams['datapath']
 tmp = os.path.join(imagepath, 'images')
@@ -77,12 +77,12 @@ def show():
     if figManager != None:
         figManager.canvas.draw()
 
-def new_figure_manager( num, *args, **kwargs ):
+def new_figure_manager(num, *args, **kwargs):
     """ Create a new figure manager instance """
     FigureClass = kwargs.pop('FigureClass', Figure)
-    thisFig = FigureClass( *args, **kwargs )
-    canvas = FigureCanvasSV4( thisFig )
-    return FigureManagerSV4( canvas, num )
+    thisFig = FigureClass(*args, **kwargs)
+    canvas = FigureCanvasSV4(thisFig)
+    return FigureManagerSV4(canvas, num)
 
 
 
@@ -93,12 +93,12 @@ class WheelScrollArea(QtGui.QScrollArea):
             return
         if e.modifiers() & QtCore.Qt.ControlModifier:
             d = e.delta()
-            e.accept()
             # FIXME: adjust speed
-            f = (1000.0-d)/1000.0
+            f = (1000.0+d)/1000.0
             w = self.widget()
             s = w.size()
             w.resize(int(f*s.width()), int(f*s.height()))
+            e.accept()
         else:
             QtGui.QScrollArea.wheelEvent(self, e)
 
@@ -150,8 +150,8 @@ class FigureManagerSV4(FigureManagerBase):
     window      : The qt.QMainWindow 
     """
 
-    def __init__( self, canvas, num ):
-        FigureManagerBase.__init__( self, canvas, num )
+    def __init__(self, canvas, num):
+        FigureManagerBase.__init__(self, canvas, num)
         self.canvas = canvas
 
         window = MatPlotWindow(mainWin.workSpace)
@@ -159,8 +159,8 @@ class FigureManagerSV4(FigureManagerBase):
         self.window = window
 
 
-        QtCore.QObject.connect(window, QtCore.SIGNAL( 'destroyed()' ),
-                            self._widgetclosed )
+        QtCore.QObject.connect(window, QtCore.SIGNAL('destroyed()'),
+                            self._widgetclosed)
         window._destroying = False
 
         toolbar = self._get_toolbar(canvas, window)
@@ -175,12 +175,12 @@ class FigureManagerSV4(FigureManagerBase):
             window.setMinimumSize(200, 200)
             window.show()
 
-        def notify_axes_change( fig ):
+        def notify_axes_change(fig):
            # This will be called whenever the current axes is changed
            if self.toolbar != None: self.toolbar.update()
-           self.canvas.figure.add_axobserver( notify_axes_change )
+           self.canvas.figure.add_axobserver(notify_axes_change)
 
-    def _widgetclosed( self ):
+    def _widgetclosed(self):
         if self.window._destroying: return
         self.window._destroying = True
         Gcf.destroy(self.num)
@@ -200,13 +200,13 @@ class FigureManagerSV4(FigureManagerBase):
         """set the canvas size in pixels"""
         self.window.resize(width, height)
 
-    def destroy( self, *args ):
+    def destroy(self, *args):
         if self.window._destroying: return
         self.window._destroying = True
         self.window.close()
 
 
-class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
+class NavigationToolbar2SV4(NavigationToolbar2, QtGui.QWidget):
     # list of toolitems to add to the toolbar, format is:
     # text, tooltip_text, image_file, callback(str)
     toolitems = (
@@ -239,11 +239,11 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
         self.canvas = canvas
         QtGui.QWidget.__init__(self, parent)
 
-        self.layout = QtGui.QHBoxLayout( self )
+        self.layout = QtGui.QHBoxLayout(self)
         self.layout.setMargin(0)
         self.layout.setSpacing(0)
 
-        NavigationToolbar2.__init__( self, canvas )
+        NavigationToolbar2.__init__(self, canvas)
 
     def _init_toolbar(self):
         for text, tooltip_text, image_file, callback in self.toolitems:
@@ -256,7 +256,7 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
             button.setText(text)
             button.setIcon(QtGui.QIcon(image))
             button.setToolTip(tooltip_text)
-            QtCore.QObject.connect( button, QtCore.SIGNAL('clicked()'), getattr(self, callback))
+            QtCore.QObject.connect(button, QtCore.SIGNAL('clicked()'), getattr(self, callback))
             self.layout.addWidget(button)
 
         printButton = QtGui.QToolButton(self)
@@ -288,12 +288,12 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
     def dynamic_update(self):
         self.canvas.draw()
 
-    def set_message( self, s ):
+    def set_message(self, s):
         self.locLabel.setText(s)
 
-    def set_cursor( self, cursor ):
+    def set_cursor(self, cursor):
         QtGui.QApplication.restoreOverrideCursor()
-        QtGui.QApplication.setOverrideCursor( QtGui.QCursor( cursord[cursor] ) )
+        QtGui.QApplication.setOverrideCursor(QtGui.QCursor(cursord[cursor]))
 
     def draw_rubberband( self, event, x0, y0, x1, y1 ):
         height = self.canvas.figure.bbox.height()
@@ -303,8 +303,8 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
         w = abs(x1 - x0)
         h = abs(y1 - y0)
 
-        rect = [ int(val)for val in min(x0,x1), min(y0, y1), w, h ]
-        self.canvas.drawRectangle( rect )
+        rect = [int(val)for val in min(x0,x1), min(y0, y1), w, h]
+        self.canvas.drawRectangle(rect)
 
     def configure_subplots(self):
         win = SubWindow(mainWin.workSpace)
@@ -346,19 +346,19 @@ class NavigationToolbar2SV4( NavigationToolbar2, QtGui.QWidget ):
         self.canvas.print_dialog()
 
 
-class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg ):
+class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg):
     keyvald = { QtCore.Qt.Key_Control : 'control',
                 QtCore.Qt.Key_Shift : 'shift',
                 QtCore.Qt.Key_Alt : 'alt',
                }
     # left 1, middle 2, right 3
     buttond = {1:1, 2:3, 4:2}
-    def __init__( self, figure ):
+    def __init__(self, figure):
 
-        QtGui.QWidget.__init__( self )
-        FigureCanvasAgg.__init__( self, figure )
+        QtGui.QWidget.__init__(self)
+        FigureCanvasAgg.__init__(self, figure)
         self.figure = figure
-        self.setMouseTracking( True )
+        self.setMouseTracking(True)
 
         w,h = self.get_width_height()
         self.resize( w, h )
@@ -367,36 +367,36 @@ class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg ):
         self.replot = True
         self.pixmap = QtGui.QPixmap()
 
-    def mousePressEvent( self, event ):
+    def mousePressEvent(self, event):
         x = event.pos().x()
         # flipy so y=0 is bottom of canvas
         y = self.figure.bbox.height() - event.pos().y()
         button = self.buttond[event.button()]
         FigureCanvasAgg.button_press_event( self, x, y, button )
 
-    def mouseMoveEvent( self, event ):
+    def mouseMoveEvent(self, event):
         x = event.x()
         # flipy so y=0 is bottom of canvas
         y = self.figure.bbox.height() - event.y()
         FigureCanvasAgg.motion_notify_event( self, x, y )
 
-    def mouseReleaseEvent( self, event ):
+    def mouseReleaseEvent(self, event):
         x = event.x()
         # flipy so y=0 is bottom of canvas
         y = self.figure.bbox.height() - event.y()
         button = self.buttond[event.button()]
-        FigureCanvasAgg.button_release_event( self, x, y, button )
+        FigureCanvasAgg.button_release_event(self, x, y, button)
         self.draw()
 
-    def keyPressEvent( self, event ):
-        key = self._get_key( event )
-        FigureCanvasAgg.key_press_event(self, key )
-
-    def keyReleaseEvent( self, event ):
+    def keyPressEvent(self, event):
         key = self._get_key(event)
-        FigureCanvasAgg.key_release_event( self, key )
+        FigureCanvasAgg.key_press_event(self, key)
 
-    def resizeEvent( self, e ):
+    def keyReleaseEvent(self, event):
+        key = self._get_key(event)
+        FigureCanvasAgg.key_release_event(self, key)
+
+    def resizeEvent(self, e):
         QtGui.QWidget.resizeEvent( self, e)
         w = e.size().width()
         h = e.size().height()
@@ -406,15 +406,15 @@ class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg ):
         self.figure.set_size_inches( winch, hinch )
         self.draw()
 
-    def resize( self, w, h ):
+    def resize(self, w, h):
         QtGui.QWidget.resize( self, w, h )
 
     def drawRectangle( self, rect ):
         self.rect = rect
         self.drawRect = True
-        self.repaint( )
+        self.repaint()
 
-    def paintEvent( self, e ):
+    def paintEvent(self, e):
         """
         Draw to the Agg backend and then copy the image to the qt.drawable.
         In Qt, all drawing should be done inside of here when a widget is
@@ -439,13 +439,13 @@ class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg ):
                 qImage = QtGui.QImage(stringBuffer, self.renderer.width,
                                        self.renderer.height,
                                        QtGui.QImage.Format_ARGB32)
-                self.pixmap = self.pixmap.fromImage( qImage )
-            p.drawPixmap( QtCore.QPoint( 0, 0 ), self.pixmap )
+                self.pixmap = self.pixmap.fromImage(qImage)
+            p.drawPixmap(QtCore.QPoint(0, 0), self.pixmap)
 
             # draw the zoom rectangle to the QPainter
-            if ( self.drawRect ):
-                p.setPen( QtGui.QPen( QtCore.Qt.black, 1, QtCore.Qt.DotLine ) )
-                p.drawRect( self.rect[0], self.rect[1], self.rect[2], self.rect[3] )
+            if (self.drawRect):
+                p.setPen(QtGui.QPen(QtCore.Qt.black, 1, QtCore.Qt.DotLine))
+                p.drawRect(self.rect[0], self.rect[1], self.rect[2], self.rect[3])
 
         # we are blitting here
         else:
@@ -455,14 +455,14 @@ class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg ):
             reg = self.copy_from_bbox(bbox)
             stringBuffer = reg.to_string()
             qImage = QtGui.QImage(stringBuffer, w, h, QtGui.QImage.Format_ARGB32)
-            self.pixmap = self.pixmap.fromImage( qImage )
+            self.pixmap = self.pixmap.fromImage(qImage)
             p.drawPixmap(QtCore.QPoint(l, self.renderer.height-t), self.pixmap)
 
         p.end()
         self.replot = False
         self.drawRect = False
 
-    def draw( self ):
+    def draw(self):
         """ Draw the figure when xwindows is ready for the update """
         self.replot = True
         self.update( )

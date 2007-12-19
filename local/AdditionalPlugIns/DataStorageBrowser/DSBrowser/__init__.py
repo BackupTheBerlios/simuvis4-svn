@@ -23,14 +23,15 @@ class PlugIn(SimplePlugIn):
         # cfg.set_def(cfgsec, 'default_database', '/net/Dezentral/Projekte/Angebote/ISE_DataStorage-GUI/nmd/datastorage/wetter')
         if cfg.has_option(cfgsec, 'datastorage_path'):
             sys.path.append(cfg.get(cfgsec, 'datastorage_path'))
-        try:
+        # FIXME: disabled while developing, get Exceptions in logger
+        if 1: #try:
             import DSBrowser
             dsbrowser = DSBrowser.DSBrowser()
             SimuVis4.Globals.dataBrowser.toolBox.addItem(dsbrowser, 'DataStorage')
             if cfg.has_option(cfgsec, 'default_database'):
                 dsbrowser.loadDatabase(cfg.get(cfgsec, 'default_database'))
             return True
-        except ImportError:
+        else: #except ImportError:
             SimuVis4.Globals.logger.error(unicode(QCoreApplication.translate('DataStorageBrowser',
                 'DataStorageBrowser: could not load module datastorage, check paths!')))
             return False

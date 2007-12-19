@@ -1,14 +1,12 @@
 #
 # This example is from the original matplotlib distribution.
-# 
 # Press CTRL-J in the TextEditor window to execute it.
 #
-'''
-Illustrate simple contour plotting, contours on an image with
-a colorbar for the contours, and labelled contours.
+# Illustrate simple contour plotting, contours on an image with
+# a colorbar for the contours, and labelled contours.
+#
+# See also contour_image.py.
 
-See also contour_image.py.
-'''
 from pylab import *
 
 rcParams['xtick.direction'] = 'out'

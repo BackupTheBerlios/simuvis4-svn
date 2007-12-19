@@ -12,11 +12,9 @@ from PyQt4.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, SIGNAL, 
 from PyQt4.Qwt5 import QwtPlotCurve
 from cgi import escape
 
+from DSChartMpl import showChartMplWindow
+
 from datastorage.database import DataBaseRoot, Sensor
-
-mplBackend = SimuVis4.Globals.plugInManager['MatPlot'].backend_sv4agg
-mplWinCount = SimuVis4.Misc.Counter(1000)
-
 
 rootInfo = string.Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
 <h3>Root $name</h3>
@@ -209,14 +207,9 @@ class DSBrowser(QWidget):
             w.plot.replot()
             w.plot.zoomer.setZoomBase()
         elif t == 'C':
-            # Chart: show the chart 
-            n.figure.clf()
-            canvas = mplBackend.FigureCanvasSV4(n.figure)
-            manager = mplBackend.FigureManagerSV4(canvas, mplWinCount())
-            n.setTimeslice(100*86400)
-            n.makePlot(starttime=n.sensorgroup.start)
-            canvas.draw()
-            manager.window.show()
+            # Chart: show the chart
+            showChartMplWindow(n)
+
 
     def showContextMenu(self, pos):
         mi = self.treeView.indexAt(pos)
