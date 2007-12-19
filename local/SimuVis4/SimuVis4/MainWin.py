@@ -4,7 +4,7 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-import Globals, Icons, Errors, UI
+import Globals, Icons, Errors, UI, HelpBrowser
 
 import sys, os, traceback, logging
 from PyQt4.QtGui import *
@@ -121,10 +121,11 @@ class MainWindow(QMainWindow):
         self.winPreviousAction.setStatusTip(QCoreApplication.translate('MainWin', "Move the focus to the previous window"))
         self.connect(self.winPreviousAction, SIGNAL("triggered()"), self.workSpace.activatePreviousSubWindow)
 
-        self.helpAction = QAction(QIcon(QPixmap(Icons.help)), QCoreApplication.translate('MainWin', '&Help'), self)
-        self.helpAction.setShortcut(QCoreApplication.translate('MainWin', "F1"))
-        self.helpAction.setStatusTip(QCoreApplication.translate('MainWin', 'Help'))
-        self.connect(self.helpAction, SIGNAL("triggered()"), self.help)
+        if not cfg.getboolean('main', 'disable_help_browser'):
+            self.helpAction = QAction(QIcon(QPixmap(Icons.help)), QCoreApplication.translate('MainWin', '&Help'), self)
+            self.helpAction.setShortcut(QCoreApplication.translate('MainWin', "F1"))
+            self.helpAction.setStatusTip(QCoreApplication.translate('MainWin', 'Help'))
+            self.connect(self.helpAction, SIGNAL("triggered()"), self.help)
 
         self.helpAboutAction = QAction(QIcon(), QCoreApplication.translate('MainWin', '&About ...'), self)
         self.helpAboutAction.setStatusTip(QCoreApplication.translate('MainWin', 'Info about this application'))
@@ -168,7 +169,8 @@ class MainWindow(QMainWindow):
         self.menuBar().addSeparator()
 
         self.helpMenu = self.menuBar().addMenu(QCoreApplication.translate('MainWin', '&Help'))
-        self.helpMenu.addAction(self.helpAction)
+        if not cfg.getboolean('main', 'disable_help_browser'):
+            self.helpMenu.addAction(self.helpAction)
         self.helpMenu.addAction(self.helpHomepageAction)
         self.helpMenu.addAction(self.helpAboutAction)
         # do it one time so the actions are registered at the main window
@@ -233,11 +235,6 @@ class MainWindow(QMainWindow):
             if not cfg.getboolean('main', 'hide_task_browser'):
                 self.taskBrowserWin.toggleAction.setChecked(True)
 
-        if not cfg.getboolean('main', 'disable_help_browser'):
-            progress(QCoreApplication.translate('MainWin', 'Starting help system'))
-            from SimuVis4.HelpBrowser import HelpBrowser
-            self.helpBrowser = HelpBrowser(self.workSpace)
-            self.workSpace.addSubWindow(self.helpBrowser)
         else:
             self.helpBrowser = None
 
@@ -267,9 +264,8 @@ class MainWindow(QMainWindow):
                 self.statusBar().showMessage(QCoreApplication.translate('MainWin', 'Loading aborted'), 5000)
 
 
-    def help(self, context=None, topic=None):
-        if self.helpBrowser:
-            self.helpBrowser.showHelp(context, topic)
+    def help(self):
+        HelpBrowser.showHelp()
 
 
     def showException(self, t, v, tb):

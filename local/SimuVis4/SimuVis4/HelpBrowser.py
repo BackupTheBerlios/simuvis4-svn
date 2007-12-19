@@ -4,25 +4,33 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-from PyQt4.QtGui import QWidget, QIcon, QPixmap
+from PyQt4.QtGui import QWidget, QIcon, QPixmap, QTextBrowser
 from PyQt4.QtCore import QCoreApplication, QObject, SIGNAL, QUrl
 from SubWin import SubWindow
-from UI.HelpBrowser import Ui_HelpBrowserWidget
-import Globals, os
+import Globals, os, webbrowser
 
-helpFilePath = os.path.join(Globals.config['main:system_help_path'], Globals.config['main:i18n_language'])
-if not os.path.isdir(helpFilePath):
-    helpFilePath = os.path.join(Globals.config['main:system_help_path'], 'en')
+externalBrowser = Globals.config.getboolean('main', 'help_browser_external')
 
-# FIXME: this is far from being complete ...
+helpPath = os.path.join(Globals.config['main:system_help_path'], Globals.config['main:i18n_language'])
+if not os.path.isdir(helpPath):
+    helpPath = os.path.join(Globals.config['main:system_help_path'], 'en')
+helpURL = 'file://' + os.path.join(helpPath, 'index.html')
 
-class HelpBrowserWidget(QWidget, Ui_HelpBrowserWidget):
+helpBrowser = None
 
-    def __init__(self, parent):
-        QWidget.__init__(self, parent)
-        self.setupUi(self)
-        self.textBrowser.setSearchPaths([helpFilePath])
-        self.textBrowser.setSource(QUrl('index.html'))
+### FIXME: Add a small webserver here
+
+
+def showHelp(url=helpURL):
+    global helpBrowser
+    if externalBrowser:
+        webbrowser.open(url, autoraise=1)
+    else:
+        if not helpBrowser:
+            helpBrowser = HelpBrowser(Globals.mainWin.workSpace)
+            Globals.mainWin.workSpace.addSubWindow(helpBrowser)
+        helpBrowser.browser.setSource(QUrl(url))
+        helpBrowser.show()
 
 
 class HelpBrowser(SubWindow):
@@ -32,13 +40,5 @@ class HelpBrowser(SubWindow):
         icon = QIcon(QPixmap(os.path.join(Globals.config['main:system_picture_path'], 'help.xpm')))
         self.setWindowIcon(icon)
         self.setWindowTitle(QCoreApplication.translate('HelpBrowser', 'Help Browser'))
-        self.browser = HelpBrowserWidget(self)
+        self.browser = QTextBrowser(self)
         self.setWidget(self.browser)
-        QObject.connect(self.browser.closeButton, SIGNAL("pressed()"), self.close)
-
-    def showHelp(self, context=None, topic=None):
-        self.show()
-        #FIXME: show topic
-
-    def addSource(self, context, document):
-        pass
