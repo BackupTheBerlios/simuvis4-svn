@@ -21,7 +21,7 @@ useExternalBrowser = True
 
 helpPath   = os.path.join(Globals.config['main:system_help_path'], Globals.config['main:i18n_language'])
 helpPathEn = os.path.join(Globals.config['main:system_help_path'], 'en')
-helpURL = 'http://127.0.0.1:%d/simuvis/index.txt' % Globals.config.getint('main', 'help_server_port')
+helpURL = 'http://127.0.0.1:%d/simuvis/index.html' % Globals.config.getint('main', 'help_server_port')
 
 internalBrowser = None
 serverThread = None
@@ -50,6 +50,13 @@ class HelpRequestHandler(BaseHTTPRequestHandler):
         elif unit == 'python':
             mt, c = self.getPython(words[1:])
         elif unit == 'quit':
+            self.send_response(200)
+            c = "Shutting down..."
+            self.send_header("Content-type", "text/plain")
+            self.send_header("Content-Length", len(c))
+            self.end_headers()
+            self.wfile.write(c)
+            self.wfile.close()
             sys.exit(0)
         if not c:
             self.send_error(404, "File not found")
@@ -110,7 +117,10 @@ def startServer():
 def stopServer():
     global serverThread
     if serverThread:
-        urllib.urlretrieve('http://127.0.0.1:%d/quit' % Globals.config.getint('main', 'help_server_port'))
+        try:
+            urllib.urlretrieve('http://127.0.0.1:%d/quit' % Globals.config.getint('main', 'help_server_port'))
+        except:
+            pass
     serverThread = None
 
 
