@@ -376,6 +376,7 @@ class MainWindow(QMainWindow):
 
     def propagateShutdown(self):
         """Ask all components if a shutdown is ok """
+        HelpBrowser.stopServer()
         if self.plugInManager.shutdownOk():
             self.plugInManager.shutdown()
         else:
@@ -412,6 +413,7 @@ class MainWindow(QMainWindow):
             self.hideExceptions = True
             logger.info(QCoreApplication.translate('MainWin', 'Main: shutdown complete'))
             logging.shutdown()
+
 
     def closeEvent(self, e):
         self.exitApplication()

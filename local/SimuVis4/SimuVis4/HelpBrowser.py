@@ -4,26 +4,26 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-import Globals, sys, os, webbrowser, threading, mimetypes, posixpath, urllib, urlparse
-from PyQt4.QtGui import QWidget, QIcon, QPixmap, QTextBrowser
+import Globals, sys, os, threading, mimetypes, posixpath, urllib, urlparse
+from PyQt4.QtGui import QWidget, QIcon, QPixmap, QTextBrowser, QDesktopServices
 from PyQt4.QtCore import QCoreApplication, QUrl
 from SubWin import SubWindow
 from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
 try:
     from docutils.core import publish_string
+    from docutils.writer import html4css1
 except ImportError:
     publish_string = None
 
-useExternalBrowser = Globals.config.getboolean('main', 'help_browser_external')
+## FIXME: internal browser disabled for now
+##useExternalBrowser = Globals.config.getboolean('main', 'help_browser_external')
+useExternalBrowser = True
 
-helpPath = os.path.join(Globals.config['main:system_help_path'], Globals.config['main:i18n_language'])
-if not os.path.isdir(helpPath):
-    helpPath = os.path.join(Globals.config['main:system_help_path'], 'en')
-#helpURL = 'file://' + os.path.join(helpPath, 'index.html')
-helpURL = 'http://127.0.0.1:%d/simuvis/index.html' % Globals.config.getint('main', 'help_server_port')
+helpPath   = os.path.join(Globals.config['main:system_help_path'], Globals.config['main:i18n_language'])
+helpPathEn = os.path.join(Globals.config['main:system_help_path'], 'en')
+helpURL = 'http://127.0.0.1:%d/simuvis/index.txt' % Globals.config.getint('main', 'help_server_port')
 
 internalBrowser = None
-
 serverThread = None
 
 
@@ -62,16 +62,18 @@ class HelpRequestHandler(BaseHTTPRequestHandler):
 
 
     def getMain(self, w):
-        p = os.path.join(helpPath,*w)
+        p = os.path.join(helpPath, *w)
         if not os.path.exists(p):
-            return None, None
+            p = os.path.join(helpPathEn, *w)
+            if not os.path.exists(p):
+                return None, None
         base, ext = os.path.splitext(p)
         mimetype = self.mimeType(ext)
         p = open(p, 'rb').read()
-        print base, ext
-        if ext == 'txt' and publish_string:
-            mimetype = 'text/html'
-            p = publish_string(p)
+        # FIXME: on-the-fly processing of rest
+        #if ext == '.txt' and publish_string:
+        #    mimetype = 'text/html'
+        #    p = publish_string(p, writer=html4css1.Writer())
         return mimetype, p
 
 
@@ -84,6 +86,7 @@ class HelpRequestHandler(BaseHTTPRequestHandler):
 
 
     def mimeType(self, ext):
+        # FIXME: !
         return 'text/html' 
 
     def log_message(self, fmt, *args):
@@ -117,7 +120,7 @@ def showHelp(url=helpURL):
     if not serverThread:
         startServer()
     if useExternalBrowser:
-        webbrowser.open(url, autoraise=1)
+        QDesktopServices.openUrl(QUrl(url))
     else:
         if not internalBrowser:
             internalBrowser = HelpBrowser(Globals.mainWin.workSpace)
@@ -136,3 +139,4 @@ class HelpBrowser(SubWindow):
         self.setWindowTitle(QCoreApplication.translate('HelpBrowser', 'Help Browser'))
         self.browser = QTextBrowser(self)
         self.setWidget(self.browser)
+        # FIXME: need to implement open external URLs
