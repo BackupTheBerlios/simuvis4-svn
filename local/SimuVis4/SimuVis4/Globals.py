@@ -128,7 +128,7 @@ config.set_def('main', 'system_data_path', dataPath)
 config.set_def('main', 'system_plugin_path', os.path.join(dataPath, 'PlugIns'))
 config.set_def('main', 'system_picture_path', os.path.join(dataPath, 'Pictures'))
 config.set_def('main', 'system_language_path', os.path.join(dataPath, 'Language'))
-config.set_def('main', 'system_help_path', os.path.join(dataPath, 'Help'))
+config.set_def('main', 'system_help_path', os.path.join(dataPath, 'Doc'))
 
 config.set_def('main', 'user_plugin_path', os.path.join(mainModule.baseDir, '..', 'AdditionalPlugIns'))
 
