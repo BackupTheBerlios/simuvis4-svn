@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -204,32 +205,9 @@ h: diese Hilfe anzeigen
 <context>
     <name>HelpBrowser</name>
     <message>
-        <location filename="HelpBrowser.py" line="34"/>
+        <location filename="HelpBrowser.py" line="149"/>
         <source>Help Browser</source>
         <translation>Hilfe-Browser</translation>
-    </message>
-</context>
-<context>
-    <name>HelpBrowserWidget</name>
-    <message>
-        <location filename="HelpBrowser.py" line="66"/>
-        <source>Help Browser</source>
-        <translation>Hilfe-Browser</translation>
-    </message>
-    <message>
-        <location filename="HelpBrowser.py" line="67"/>
-        <source>Topic</source>
-        <translation>Thema</translation>
-    </message>
-    <message>
-        <location filename="HelpBrowser.py" line="71"/>
-        <source>SimuVis4</source>
-        <translation>SimuVis4</translation>
-    </message>
-    <message>
-        <location filename="HelpBrowser.py" line="72"/>
-        <source>Close</source>
-        <translation>Schließen</translation>
     </message>
 </context>
 <context>
@@ -411,67 +389,67 @@ h: diese Hilfe anzeigen
         <translation>Vorheriges Unterfenster aktivieren</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="170"/>
+        <location filename="MainWin.py" line="171"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="125"/>
+        <location filename="MainWin.py" line="126"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="126"/>
+        <location filename="MainWin.py" line="127"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="147"/>
+        <location filename="MainWin.py" line="148"/>
         <source>&amp;File</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="156"/>
+        <location filename="MainWin.py" line="157"/>
         <source>&amp;Tools</source>
         <translation>&amp;Werkzeuge</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="163"/>
+        <location filename="MainWin.py" line="164"/>
         <source>&amp;Window</source>
         <translation>&amp;Fenster</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="166"/>
+        <location filename="MainWin.py" line="167"/>
         <source>&amp;PlugIns</source>
         <translation>&amp;PlugIns</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="220"/>
+        <location filename="MainWin.py" line="222"/>
         <source>Initializing Plugins</source>
         <translation>Initialisiere PlugIns</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="244"/>
+        <location filename="MainWin.py" line="241"/>
         <source>Main: startup succeeded</source>
         <translation>Hauptprogramm: Startvorgang beendet</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="259"/>
+        <location filename="MainWin.py" line="256"/>
         <source>Select file to execute</source>
         <translation>Wähle eine auszuführende Datei aus</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="265"/>
+        <location filename="MainWin.py" line="262"/>
         <source>Executing file %s</source>
         <translation>Führe Datei aus: %s</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="267"/>
+        <location filename="MainWin.py" line="264"/>
         <source>Loading aborted</source>
         <translation>Laden abgebrochen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="401"/>
+        <location filename="MainWin.py" line="398"/>
         <source>restarting on platform &quot;%s&quot; not yet supported</source>
         <translation>Neustart auf der Plattform &quot;%s&quot; wird nicht unterstützt</translation>
     </message>
@@ -481,12 +459,12 @@ h: diese Hilfe anzeigen
         <translation>Skript &amp;ausführen</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="129"/>
+        <location filename="MainWin.py" line="130"/>
         <source>&amp;About ...</source>
         <translation>Ü&amp;ber ...</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="130"/>
+        <location filename="MainWin.py" line="131"/>
         <source>Info about this application</source>
         <translation>Information über diese Anwendung</translation>
     </message>
@@ -516,67 +494,62 @@ h: diese Hilfe anzeigen
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="187"/>
+        <location filename="MainWin.py" line="189"/>
         <source>Starting logging system</source>
         <translation>Starte das Log-System</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="202"/>
+        <location filename="MainWin.py" line="204"/>
         <source>Starting plugin manager</source>
         <translation>Starte den Plugin-Manager</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="211"/>
+        <location filename="MainWin.py" line="213"/>
         <source>Starting plugin browser</source>
         <translation>Starte den Plugin-Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="228"/>
+        <location filename="MainWin.py" line="230"/>
         <source>Starting task browser</source>
         <translation>Starte den Task-Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="237"/>
-        <source>Starting help system</source>
-        <translation>Starte das Hilfe-System</translation>
-    </message>
-    <message>
-        <location filename="MainWin.py" line="133"/>
+        <location filename="MainWin.py" line="134"/>
         <source>Open homepage</source>
         <translation>Öffne Homepage</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="134"/>
+        <location filename="MainWin.py" line="135"/>
         <source>Open application homepage in broweser</source>
         <translation>Zeige die Homepage der Anwendung im Browser</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="417"/>
+        <location filename="MainWin.py" line="414"/>
         <source>Main: shutdown complete</source>
         <translation>Hauptprogramm: shutdown beendet</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="137"/>
+        <location filename="MainWin.py" line="138"/>
         <source>Save config (personal)</source>
         <translation>Konfiguration speichern (persönlich)</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="138"/>
+        <location filename="MainWin.py" line="139"/>
         <source>Save current configuration to personal file</source>
         <translation>Speichere die aktuellen Einstellungen zur persönlichen Nutzung</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="141"/>
+        <location filename="MainWin.py" line="142"/>
         <source>Save config (system)</source>
         <translation>Konfiguration speichern (systemweit)</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="142"/>
+        <location filename="MainWin.py" line="143"/>
         <source>Save current configuration to system, you will need need privileges for this</source>
         <translation>Speichere die aktuellen Einstellungen zur systemweiten Nutzung</translation>
     </message>
     <message>
-        <location filename="MainWin.py" line="158"/>
+        <location filename="MainWin.py" line="159"/>
         <source>Configuration</source>
         <translation>Einstellungen</translation>
     </message>
@@ -827,7 +800,7 @@ h: diese Hilfe anzeigen
 <context>
     <name>PyConsoleWindow</name>
     <message>
-        <location filename="PyConsoleWindow.py" line="43"/>
+        <location filename="__init__.py" line="43"/>
         <source>Python console</source>
         <translation>Python-Konsole</translation>
     </message>
@@ -1360,7 +1333,7 @@ not covered by another dialog or window!&lt;/p&gt;
         <translation>Zeitsignal-Generator</translation>
     </message>
     <message>
-        <location filename="Widgets.py" line="74"/>
+        <location filename="TimeSignalWidget.py" line="194"/>
         <source>Run!</source>
         <translation>Los!</translation>
     </message>

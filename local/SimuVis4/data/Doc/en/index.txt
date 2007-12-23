@@ -2,8 +2,16 @@
  SimuVis4
 ==========
 
-Sorry, this documentation does not yet exist.
+Documentation
+=============
 
-Please read the documentation at http://simuvis.de/ instead!
+The documentation is still incomplete, but I'm working on it.
 
-
+* License - the GNU General Public License (v2)
+* Platform - platforms and requirements to use SimuVis
+* Installation - installing SimuVis
+* Configuration - configuring SimuVis
+* Starting - executables and commandline switches
+* Scripts - run python code in SimuVis
+* PlugIns - extend SimuVis with plugins
+* Future Plans - features to implement in future versions
