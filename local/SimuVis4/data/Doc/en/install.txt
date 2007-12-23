@@ -1,0 +1,23 @@
+Installation
+============
+ 
+1. Prepare the system
+---------------------
+Please read the instructions for Linux_ and Windows_.
+
+2. Install SimuVis
+------------------
+Once completed SimuVis will support the distutils features to package and install
+python applications (RPM, Installer, Egg etc.).
+
+For now you may checkout the code from SVN. The configuration has default
+values to enable running directly from the development tree.
+
+SVN-checkout usually works with:
+
+::
+
+  svn checkout https://svn.origo.ethz.ch/simuvis
+
+.. _Linux: linux.html
+.. _Windows: windows.html

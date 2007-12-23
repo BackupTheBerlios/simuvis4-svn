@@ -1,0 +1,27 @@
+Platform
+========
+
+General
+-------
+SimuVis is completely coded in python. It uses the PyQt4 toolkit for the whole
+GUI part and will run on every platform where PyQt4 is available. At the moment
+this includes Linux_, Windows_ and `MacOS X`_.
+Running on `MacOS X`_ is currently untested and incomplete, but I hope to get this working soon.
+
+Please read the special instructions for Linux_ and Windows_.
+
+Requirements
+------------
+* a python interpreter from http://www.python.org/, version 2.4 or better
+* PyQt4 from http://www.riverbankcomputing.co.uk/pyqt/, version 4.3 or better
+
+Additional software
+-------------------
+* PyQwt5
+* VTK
+* matplotlib
+* pycdf
+
+.. _Linux: linux.html
+.. _Windows: windows.html
+.. _MacOS X: macosx.html

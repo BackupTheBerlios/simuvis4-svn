@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
-<title>SimuVis4</title>
+<title>Scripts</title>
 <style type="text/css">
 
 /*
@@ -290,22 +290,36 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="simuvis4">
-<h1 class="title">SimuVis4</h1>
-<h2 class="subtitle" id="documentation-index">Documentation index</h2>
-<p><em>The documentation is still incomplete, but I'm working on it.</em></p>
+<div class="document" id="scripts">
+<h1 class="title">Scripts</h1>
+<p>SimuVis can run ordinary python scripts. These scripts get executed in the global
+namespace and have complete access to the whole application. You may extend, reduce or
+completely change the SimuVis application at runtime.</p>
+<p>A script may be:</p>
 <ul class="simple">
-<li><a class="reference" href="about.html">About</a> - general information</li>
-<li><a class="reference" href="license.html">License</a> - the GNU General Public License (v2)</li>
-<li><a class="reference" href="platform.html">Platform</a> - platforms and requirements to use SimuVis</li>
-<li><a class="reference" href="install.html">Installation</a> - installing SimuVis</li>
-<li><a class="reference" href="config.html">Configuration</a> - configuring SimuVis</li>
-<li><a class="reference" href="start.html">Starting</a> - executables and commandline switches</li>
-<li><a class="reference" href="script.html">Scripts</a> - run python code in SimuVis</li>
-<li><a class="reference" href="plugin.html">PlugIns</a> - extend SimuVis with plugins</li>
-<li><a class="reference" href="future.html">Future Plans</a> - features to implement in future versions</li>
-<li><a class="reference" href="devel.html">Development</a> - the development of SimuVis</li>
+<li>run at startup with the -e commandline switch</li>
+<li>executed at any time with via menu or CTRL-E</li>
+<li>interactively entered with the <a class="reference" href="/plugin/PythonConsole/index.html">PythonConsole</a> plugin</li>
+<li>loaded, entered and edited in a <a class="reference" href="/plugin/TextEditor/index.html">TextEditor</a> window and executed with CTRL-J</li>
+<li>send from other applications and even other computers with the <a class="reference" href="/plugin/RemoteControl/index.html">RemoteControl</a> plugin</li>
 </ul>
+<div class="section">
+<h1><a id="important-facts-to-keep-in-mind" name="important-facts-to-keep-in-mind">Important facts to keep in mind</a></h1>
+<div class="section">
+<h2><a id="blocking" name="blocking">Blocking</a></h2>
+<p>Scripts are run in the main application loop and must not block for a long time. If your
+script blocks the whole application will block and you have to kill SimuVis manually!</p>
+</div>
+<div class="section">
+<h2><a id="security" name="security">Security</a></h2>
+<p>There is no restriction what the code may do. You may execute code that deletes
+all your data, kills your cat or burns your house. You are responsible for all
+wanted and unwanted effects of the code.</p>
+<p><strong>IN NO EVENT SHALL THE AUTHORS OR CONTRIBUTORS OF SIMUVIS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES CAUSED BY THE
+EXECUTION OF PYTHON CODE IN SIMUVIS.</strong></p>
+</div>
+</div>
 </div>
 </body>
 </html>

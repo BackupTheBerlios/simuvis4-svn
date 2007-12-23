@@ -1,0 +1,67 @@
+Starting
+========
+
+The main file is called SimuVis.pyw. If you are not using Windows, you may rename it to
+SimuVis.py.
+
+Commandline switches
+--------------------
+
+SimuVis4 switches
+~~~~~~~~~~~~~~~~~
+All switches and options have a long and a short form. You may freely mix both.
+
+-h or --help
+    print a short help and exit
+
+-f or --fullscreen
+    start in fullscreen mode, you may toggle this mode with F11 at any time
+
+-m or --maximized
+    start with maximized window
+
+-e script or --execute=script
+    run the python script 'script' at startup
+
+-c inifile or --config=inifile
+    load 'inifile' instead of system and user configfiles
+
+-l lang or --language=lang
+    use language 'lang' if available, currently only en and de are supported
+
+Qt's switches
+~~~~~~~~~~~~~
+There are some switches common to all applications using Qt. Please look at the
+`Qt documentation`_ for details.
+One of the most important switches is ``--style=mystyle`` with mystyle being one of motif,
+windows, platinum or one of the additional styles installed.
+
+Example
+~~~~~~~
+Starting SimuVis with the commandline
+
+::
+
+    SimuVis.pyw --execute=mystart.py -l de -m
+
+will give a maximized window in german language and execute the script mystart.py at startup.
+
+Environment
+-----------
+
+You may set the variable ``SIMUVIS4_OPTIONS`` to contain one or more of the explained switches.
+
+Example
+~~~~~~~
+
+Users of Windows XP can set the variable to the value ``-style=plastique`` to get a nicer look and feel.
+Linux user may add the line
+
+::
+
+    export SIMUVIS4_OPTIONS="--language=en --fullscreen"
+
+to their ``~/.bash_profile`` to let SimuVis start in english and fullscreen mode by default.
+
+
+.. _Qt documentation: http://doc.trolltech.com/4.3/qapplication.html#QApplication

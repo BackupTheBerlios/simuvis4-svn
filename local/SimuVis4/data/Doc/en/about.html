@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
-<title>SimuVis4</title>
+<title>About SimuVis</title>
 <style type="text/css">
 
 /*
@@ -290,22 +290,60 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="simuvis4">
-<h1 class="title">SimuVis4</h1>
-<h2 class="subtitle" id="documentation-index">Documentation index</h2>
-<p><em>The documentation is still incomplete, but I'm working on it.</em></p>
+<div class="document" id="about-simuvis">
+<h1 class="title">About SimuVis</h1>
+<p>SimuVis in its current implementation SimuVis4 is a framework and an interactive
+application for data handling, visualisation and simulations. It's based on python as the
+programming language, Qt for the GUI, Qwt for charts and VTK for 3D scenes.
+Currently it runs on Linux, Windows (both tested) and MacOS X (untested).</p>
+<p>SimuVis4 is released as OpenSource. The GUI is available in english and german, more
+languages can be added easily.</p>
+<div class="section">
+<h1><a id="target-audience" name="target-audience">Target Audience</a></h1>
+<p>I develop SimuVis for my needs and the projects I'm working on. SimuVis should be useful:</p>
 <ul class="simple">
-<li><a class="reference" href="about.html">About</a> - general information</li>
-<li><a class="reference" href="license.html">License</a> - the GNU General Public License (v2)</li>
-<li><a class="reference" href="platform.html">Platform</a> - platforms and requirements to use SimuVis</li>
-<li><a class="reference" href="install.html">Installation</a> - installing SimuVis</li>
-<li><a class="reference" href="config.html">Configuration</a> - configuring SimuVis</li>
-<li><a class="reference" href="start.html">Starting</a> - executables and commandline switches</li>
-<li><a class="reference" href="script.html">Scripts</a> - run python code in SimuVis</li>
-<li><a class="reference" href="plugin.html">PlugIns</a> - extend SimuVis with plugins</li>
-<li><a class="reference" href="future.html">Future Plans</a> - features to implement in future versions</li>
-<li><a class="reference" href="devel.html">Development</a> - the development of SimuVis</li>
+<li>for the python programmer as a visual shell</li>
+<li>for the developer of scientific applications as a framework</li>
+<li>for the scientists as a tool for programming, data analysis and visualisation or a GUI for simulations</li>
 </ul>
+</div>
+<div class="section">
+<h1><a id="architecture" name="architecture">Architecture</a></h1>
+<p>The SimuVis application is a typical MDI application written in PyQt. It can be custimized
+by the following mechanisms:</p>
+<ul class="simple">
+<li>configuration files: system-wide, user-specific and explicit</li>
+<li>python scripts running inside the application with unlimited access to the whole program</li>
+<li>plugins to extend the programs abilities</li>
+</ul>
+<p>Because all parts are written in the python language and there's no artificial border
+between the parts of the program you may completely change or adjust the whole
+applications functionality and appearance. You may so this even while the program is
+running and use scripts or a comfortable shell window.</p>
+</div>
+<div class="section">
+<h1><a id="history" name="history">History</a></h1>
+<p>The history of SimuVis started in 2001. I wrote a couple of python scripts using VTK to
+visualise simulation results of solarthermal systems and buildings as colored 3D animations.
+To ease this process an more general and modular application was developed. VTK was used as
+the 3D-toolkit, the GUI was switched from Tkinter to Gtk+. We called this application
+SimuVis and used it in some scientific projects.</p>
+<p>The version SimuVis2 was based on Qt2 and later Qt3 because of its nicer API and the
+existence of the powerful Qwt toolkit. SimuVis3 came to life only as a prototype.
+The technical base of SimuVis4 is the new Qt4 and Qwt5 with its excellent python
+bindings PyQt and PyQwt and still VTK for 3D things.
+The application concept has changed a lot since the beginning. First versions were
+focused on a (possibly animated) 3D scene, other elements were attached to 3D
+objects. With the new MDI interface, different ways to browse and manipulate data can
+coexist and can be used alternatively.</p>
+<div class="section">
+<h2><a id="name" name="name">Name</a></h2>
+<p>The origin of the name is should be obvious: a tool for <strong>Simu</strong> lation and <strong>Vis</strong> ualisation.
+Please note that there is another software called SimuVis as part of the <a class="reference" href="http://www.eviz.org">e-viz</a> project.
+When I started my SimuVis project and used the name frequently, there was no reference to
+other projects with this name found on the internet.</p>
+</div>
+</div>
 </div>
 </body>
 </html>

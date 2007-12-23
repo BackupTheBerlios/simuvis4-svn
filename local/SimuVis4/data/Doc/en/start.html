@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
-<title>SimuVis4</title>
+<title>Starting</title>
 <style type="text/css">
 
 /*
@@ -290,22 +290,59 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="simuvis4">
-<h1 class="title">SimuVis4</h1>
-<h2 class="subtitle" id="documentation-index">Documentation index</h2>
-<p><em>The documentation is still incomplete, but I'm working on it.</em></p>
-<ul class="simple">
-<li><a class="reference" href="about.html">About</a> - general information</li>
-<li><a class="reference" href="license.html">License</a> - the GNU General Public License (v2)</li>
-<li><a class="reference" href="platform.html">Platform</a> - platforms and requirements to use SimuVis</li>
-<li><a class="reference" href="install.html">Installation</a> - installing SimuVis</li>
-<li><a class="reference" href="config.html">Configuration</a> - configuring SimuVis</li>
-<li><a class="reference" href="start.html">Starting</a> - executables and commandline switches</li>
-<li><a class="reference" href="script.html">Scripts</a> - run python code in SimuVis</li>
-<li><a class="reference" href="plugin.html">PlugIns</a> - extend SimuVis with plugins</li>
-<li><a class="reference" href="future.html">Future Plans</a> - features to implement in future versions</li>
-<li><a class="reference" href="devel.html">Development</a> - the development of SimuVis</li>
-</ul>
+<div class="document" id="starting">
+<h1 class="title">Starting</h1>
+<p>The main file is called SimuVis.pyw. If you are not using Windows, you may rename it to
+SimuVis.py.</p>
+<div class="section">
+<h1><a id="commandline-switches" name="commandline-switches">Commandline switches</a></h1>
+<div class="section">
+<h2><a id="simuvis4-switches" name="simuvis4-switches">SimuVis4 switches</a></h2>
+<p>All switches and options have a long and a short form. You may freely mix both.</p>
+<dl class="docutils">
+<dt>-h or --help</dt>
+<dd>print a short help and exit</dd>
+<dt>-f or --fullscreen</dt>
+<dd>start in fullscreen mode, you may toggle this mode with F11 at any time</dd>
+<dt>-m or --maximized</dt>
+<dd>start with maximized window</dd>
+<dt>-e script or --execute=script</dt>
+<dd>run the python script 'script' at startup</dd>
+<dt>-c inifile or --config=inifile</dt>
+<dd>load 'inifile' instead of system and user configfiles</dd>
+<dt>-l lang or --language=lang</dt>
+<dd>use language 'lang' if available, currently only en and de are supported</dd>
+</dl>
+</div>
+<div class="section">
+<h2><a id="qt-s-switches" name="qt-s-switches">Qt's switches</a></h2>
+<p>There are some switches common to all applications using Qt. Please look at the
+<a class="reference" href="http://doc.trolltech.com/4.3/qapplication.html#QApplication">Qt documentation</a> for details.
+One of the most important switches is <tt class="docutils literal"><span class="pre">--style=mystyle</span></tt> with mystyle being one of motif,
+windows, platinum or one of the additional styles installed.</p>
+</div>
+<div class="section">
+<h2><a id="example" name="example">Example</a></h2>
+<p>Starting SimuVis with the commandline</p>
+<pre class="literal-block">
+SimuVis.pyw --execute=mystart.py -l de -m
+</pre>
+<p>will give a maximized window in german language and execute the script mystart.py at startup.</p>
+</div>
+</div>
+<div class="section">
+<h1><a id="environment" name="environment">Environment</a></h1>
+<p>You may set the variable <tt class="docutils literal"><span class="pre">SIMUVIS4_OPTIONS</span></tt> to contain one or more of the explained switches.</p>
+<div class="section">
+<h2><a id="id1" name="id1">Example</a></h2>
+<p>Users of Windows XP can set the variable to the value <tt class="docutils literal"><span class="pre">-style=plastique</span></tt> to get a nicer look and feel.
+Linux user may add the line</p>
+<pre class="literal-block">
+export SIMUVIS4_OPTIONS=&quot;--language=en --fullscreen&quot;
+</pre>
+<p>to their <tt class="docutils literal"><span class="pre">~/.bash_profile</span></tt> to let SimuVis start in english and fullscreen mode by default.</p>
+</div>
+</div>
 </div>
 </body>
 </html>

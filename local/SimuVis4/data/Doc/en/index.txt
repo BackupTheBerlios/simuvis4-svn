@@ -2,16 +2,31 @@
  SimuVis4
 ==========
 
-Documentation
-=============
+Documentation index
+===================
+*The documentation is still incomplete, but I'm working on it.*
 
-The documentation is still incomplete, but I'm working on it.
+* About_ - general information
+* License_ - the GNU General Public License (v2)
+* Platform_ - platforms and requirements to use SimuVis
+* Installation_ - installing SimuVis
+* Configuration_ - configuring SimuVis
+* Starting_ - executables and commandline switches
+* Scripts_ - run python code in SimuVis
+* PlugIns_ - extend SimuVis with plugins
+* `Future Plans`_ - features to implement in future versions
+* Development_ - the development of SimuVis
 
-* License - the GNU General Public License (v2)
-* Platform - platforms and requirements to use SimuVis
-* Installation - installing SimuVis
-* Configuration - configuring SimuVis
-* Starting - executables and commandline switches
-* Scripts - run python code in SimuVis
-* PlugIns - extend SimuVis with plugins
-* Future Plans - features to implement in future versions
+
+.. _About: about.html
+.. _License: license.html
+.. _Platform: platform.html
+.. _Installation: install.html
+.. _Configuration: config.html
+.. _Starting: start.html
+.. _Scripts: script.html
+.. _PlugIns: plugin.html
+.. _Future Plans: future.html
+.. _Development: devel.html
+
+
