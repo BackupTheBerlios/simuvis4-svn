@@ -1,9 +1,0 @@
-==========
- SimuVis4
-==========
-
-Sorry, die Dokumentation existiert leider noch nicht.
-
-Bitte lese die Dokumentation auf http://simuvis.de/ stattdessen!
-
-
