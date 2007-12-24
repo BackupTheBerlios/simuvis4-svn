@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -200,14 +199,6 @@ h: diese Hilfe anzeigen
         <location filename="__init__.py" line="55"/>
         <source>Press &quot;h&quot; for help!</source>
         <translation>Drücke &quot;h&quot; für Hilfe!</translation>
-    </message>
-</context>
-<context>
-    <name>HelpBrowser</name>
-    <message>
-        <location filename="HelpBrowser.py" line="149"/>
-        <source>Help Browser</source>
-        <translation>Hilfe-Browser</translation>
     </message>
 </context>
 <context>
