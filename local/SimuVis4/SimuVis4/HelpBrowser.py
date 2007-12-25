@@ -4,17 +4,31 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-import Globals, sys, os, threading, mimetypes, posixpath, urllib, urlparse
+import Globals, sys, os, mimetypes, string
 from PyQt4.QtGui import QDesktopServices
 from PyQt4.QtCore import QCoreApplication, QUrl, QString, QRegExp, QDateTime, SIGNAL
 from PyQt4.QtNetwork import QTcpServer, QTcpSocket, QHostAddress
+from cgi import escape
 
-helpPath   = os.path.join(Globals.config['main:system_help_path'], Globals.config['main:i18n_language'])
+lang = Globals.config['main:i18n_language']
+helpPath   = os.path.join(Globals.config['main:system_help_path'], lang)
 helpPathEn = os.path.join(Globals.config['main:system_help_path'], 'en')
-helpURL = 'http://127.0.0.1:%d/simuvis/index.html' % Globals.config.getint('main', 'help_server_port')
+helpURL = 'http://127.0.0.1:%d/' % Globals.config.getint('main', 'help_server_port')
 
 helpServer = None
 
+# some templates
+piDocStart = """
+<p><table border="1">
+"""
+
+piDocLine = string.Template(unicode("""
+<tr><td><a href="/plugin/$name/index.html">$name</a></td><td>$descr</td></tr>
+"""))
+
+piDocEnd = """
+</table></p>
+"""
 
 
 class HelpServer(QTcpServer):
@@ -92,7 +106,18 @@ class HelpServer(QTcpServer):
 
 
     def getIndex(self):
-        return 'text/plain', 'Dummy - sorry'
+        p = os.path.join(helpPath, 'mainIndexTemplate.html')
+        if not os.path.exists(p):
+            p = os.path.join(helpPathEn, 'mainIndexTemplate.html')
+            if not os.path.exists(p):
+                return None, None
+        c = open(p, 'rb').read()
+        piLines = [piDocLine.substitute(name=escape(n), descr=escape(pi.description)) \
+            for n,pi in Globals.plugInManager.plugIns.items()]
+        piLines.insert(0, piDocStart)
+        piLines.append(piDocEnd)
+        c = c.replace('PLUGIN_DOC_PLACEHOLDER', '\n'.join(piLines))
+        return 'text/html', c.encode('utf8')
 
 
     def getSimuVis(self, w):
@@ -102,104 +127,29 @@ class HelpServer(QTcpServer):
             if not os.path.exists(p):
                 return None, None
         base, ext = os.path.splitext(p)
-        mimetype = self.mimeType(ext)
-        p = open(p, 'rb').read()
-        return mimetype, p
+        mimetype = mimetypes.types_map.get(ext, 'application/octet-stream')
+        c = open(p, 'rb').read()
+        return mimetype, c
 
 
     def getPlugIn(self, w):
-        return 'text/plain', 'Dummy - sorry!'
+        pi = Globals.plugInManager.plugIns[w[0]]
+        base, ext = os.path.splitext(w[-1])
+        mimetype = mimetypes.types_map.get(ext, 'application/octet-stream')
+        c = None
+        try:
+            c = pi.openFile(os.path.join('Doc', lang, *w[1:])).read()
+        except:
+            try:
+                c = pi.openFile(os.path.join('Doc', 'en', *w[1:])).read()
+            except:
+                pass
+        return mimetype, c
 
 
     def getPython(self, w):
         return 'text/plain', 'Dummy - sorry'
 
-
-    def mimeType(self, ext):
-        # FIXME: !
-        return 'text/html'
-
-
-# paths should be:
-# / for main index page
-# /simuvis/path_under_doc_path
-# /plugin/FooBar/path_under_module_doc
-# /python/module
-# /quit - quit the server thread
-#class HelpRequestHandler(BaseHTTPRequestHandler):
-    #protocol_version = "HTTP/1.0"
-
-    #def do_GET(self):
-        #"""Serve a GET request."""
-        #path = urlparse.urlparse(self.path)[2]
-        #path = posixpath.normpath(urllib.unquote(path))
-        #words = path.split('/')
-        #words = filter(None, words)
-        #if len(words) == 0:
-            ## show index page
-            #mt, c = self.getIndex()
-        #else:
-            #unit = words[0].lower()
-            #c = None
-            #if unit == 'simuvis':
-                ## show simuvis main documentation
-                #mt, c = self.getSimuVis(words[1:])
-            #elif unit == 'plugin':
-                ## show plugin documentation
-                #mt, c = self.getPlugIn(words[1:])
-            #elif unit == 'python':
-                ## show python documentation
-                #mt, c = self.getPython(words[1:])
-            #elif unit == 'quit':
-                ## make some kind of shutdown ...
-                #self.send_response(200)
-                #c = "Shutting down..."
-                #self.send_header("Content-type", "text/plain")
-                #self.send_header("Content-Length", len(c))
-                #self.end_headers()
-                #self.wfile.write(c)
-                #self.wfile.close()
-                #sys.exit(0)
-        #if not c:
-            #self.send_error(404, "File not found")
-            #return
-        #self.send_response(200)
-        #self.send_header("Content-type", mt)
-        #self.send_header("Content-Length", len(c))
-        #self.end_headers()
-        #self.wfile.write(c)
-
-
-    #def getIndex(self):
-        #return 'text/plain', 'Dummy - sorry'
-
-
-    #def getSimuVis(self, w):
-        #p = os.path.join(helpPath, *w)
-        #if not os.path.exists(p):
-            #p = os.path.join(helpPathEn, *w)
-            #if not os.path.exists(p):
-                #return None, None
-        #base, ext = os.path.splitext(p)
-        #mimetype = self.mimeType(ext)
-        #p = open(p, 'rb').read()
-        #return mimetype, p
-
-
-    #def getPlugIn(self, w):
-        #return 'text/plain', 'Dummy - sorry!'
-
-
-    #def getPython(self, w):
-        #return 'text/plain', 'Dummy - sorry'
-
-
-    #def mimeType(self, ext):
-        ## FIXME: !
-        #return 'text/html' 
-
-    #def log_message(self, fmt, *args):
-        #Globals.logger.debug('Help: Server: %s', fmt % args)
 
 
 def startServer():
