@@ -35,12 +35,12 @@ class HelpServer(QTcpServer):
 
     def __init__(self, port=Globals.config.getint('main', 'help_server_port')):
         QTcpServer.__init__(self)
-        self.disabled = False
+        self.enabled = True
         self.listen(QHostAddress(QHostAddress.LocalHost), port)
 
 
     def incomingConnection(self, socket):
-        if self.disabled:
+        if not self.enabled:
             return
         s = QTcpSocket(self)
         self.connect(s, SIGNAL('readyRead()'), self.readClient)
@@ -48,16 +48,12 @@ class HelpServer(QTcpServer):
         s.setSocketDescriptor(socket)
 
 
-    def pause(self):
-        self.disabled = True
-
-
-    def resume(self):
-        self.disabled = False
+    def setEnabled(self, e):
+        self.enabled = e
 
 
     def readClient(self):
-        if self.disabled:
+        if not self.enabled:
             return
         s = self.sender()
         if s.canReadLine():
@@ -159,7 +155,7 @@ def startServer():
 
 def stopServer():
     global helpServer
-    helpServer.pause()
+    #helpServer.setEnabled(False)
     del helpServer
     helpServer = None
 

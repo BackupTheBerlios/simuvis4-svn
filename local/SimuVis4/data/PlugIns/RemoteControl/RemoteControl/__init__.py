@@ -22,7 +22,6 @@ class PlugIn(SimplePlugIn):
             cfg.add_section(cfgsec)
         cfg.set_def(cfgsec, 'start_enabled', 'yes')
         cfg.set_def(cfgsec, 'tcp_port', '12345')
-        cfg.set_def(cfgsec, 'cmd_queue_size', '1')
         cfg.set_def(cfgsec, 'ip_filter', '127.0.0.1')
         cfg.set_def(cfgsec, 'raise_mainwindow', 'yes')
         cfg.set_def(cfgsec, 'raise_use_hack', 'no')
@@ -31,8 +30,11 @@ class PlugIn(SimplePlugIn):
         qSize    = cfg.getint(cfgsec, 'cmd_queue_size')
         ipFilter = cfg.get(cfgsec, 'ip_filter')
         from Receiver import CodeReceiver
-        self.receiver = CodeReceiver(tcpPort, qSize, ipFilter, cfg.getboolean(cfgsec, 'raise_mainwindow'),
+        self.receiver = CodeReceiver(tcpPort, ipFilter, cfg.getboolean(cfgsec, 'raise_mainwindow'),
             cfg.getboolean(cfgsec, 'raise_use_hack'))
+        if not self.receiver.isListening():
+            SimuVis4.Globals.logger.exception(unicode(QCoreApplication.translate('RemoteControl',
+                'RemoteControl: could not start TCP listener at port %s')), tcpPort)
         self.toggleAction = QAction(glb.mainWin)
         self.toggleAction.setText(QCoreApplication.translate('RemoteControl', 'Remote control active'))
         self.toggleAction.setCheckable(True)
@@ -45,5 +47,5 @@ class PlugIn(SimplePlugIn):
 
     def unload(self, fast):
         if self.receiver:
-            self.receiver.shutdown()
+            del self.receiver
             self.receiver = None

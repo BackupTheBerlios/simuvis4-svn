@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>AboutDialog</name>
     <message>
@@ -922,44 +923,54 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
 <context>
     <name>RemoteControl</name>
     <message>
-        <location filename="Receiver.py" line="81"/>
+        <location filename="Receiver.py" line="65"/>
         <source>RemoteControl: trying to run code:</source>
         <translation>RemoteControl: versuche, Code auszuführen: </translation>
     </message>
     <message>
-        <location filename="Receiver.py" line="31"/>
+        <location filename="Receiver-alt.py" line="31"/>
         <source>RemoteControl: accepting connection from %s, port %d</source>
         <translation>RemoteControl: akzeptiere Verbindung von %s, Port %d</translation>
     </message>
     <message>
-        <location filename="Receiver.py" line="40"/>
+        <location filename="Receiver-alt.py" line="40"/>
         <source>RemoteControl: refusing connection from %s, port %d</source>
         <translation>RemoteControl: lehne Verbindung von %s, Port %d ab</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="37"/>
+        <location filename="__init__.py" line="39"/>
         <source>Remote control active</source>
         <translation>Fernsteuerung aktiv</translation>
     </message>
     <message>
-        <location filename="Receiver.py" line="20"/>
+        <location filename="__init__.py" line="37"/>
         <source>RemoteControl: could not start TCP listener at port %s</source>
         <translation>RemoteControl: konnte TCP Empfänger auf Port %s nicht starten</translation>
     </message>
     <message>
-        <location filename="Receiver.py" line="52"/>
+        <location filename="Receiver-alt.py" line="52"/>
         <source>RemoteControl: starting thread for TCP listener at port %s</source>
         <translation>RemoteControl: starte Thread für den TCP Empfänger auf Port %s</translation>
     </message>
     <message>
-        <location filename="Receiver.py" line="72"/>
+        <location filename="Receiver-alt.py" line="72"/>
         <source>RemoteControl: Could not stop receiver!</source>
         <translation>RemoteControl: Konnte Empfänger nicht stoppen!</translation>
     </message>
     <message>
-        <location filename="Receiver.py" line="73"/>
+        <location filename="Receiver-alt.py" line="73"/>
         <source>Stopping the receiver thread of the RemoteContol plugin failed!</source>
         <translation>Das Stoppen des Threads für den TCP-Empfänger ist fehlgeschlagen!</translation>
+    </message>
+    <message>
+        <location filename="Receiver.py" line="38"/>
+        <source>RemoteControl: accepting connection from %s, port %s</source>
+        <translation>RemoteControl: akzeptiere Verbindung von %s, Port %s</translation>
+    </message>
+    <message>
+        <location filename="Receiver.py" line="43"/>
+        <source>RemoteControl: refusing connection from %s, port %s</source>
+        <translation>RemoteControl: lehne Verbindung von %s, Port %s ab</translation>
     </message>
 </context>
 <context>
