@@ -1,8 +1,8 @@
 #!/bin/sh
 if [ -d .devel ]; then
-  for pi in *; do
-    if [ -f $pi/PLUGIN.INI ]; then
-      BASE="$pi/Doc"
+  for PI in ./*; do
+    if [ -f $PI/PLUGIN.INI ]; then
+      BASE="$PI/Doc"
       for LANG in $(ls $BASE); do
         P=$BASE/$LANG
         OPT="--language=$LANG --prune=$P/.svn"
