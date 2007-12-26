@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
-<title>Documentation</title>
+<title>PlugIn: MatPlot</title>
 <style type="text/css">
 
 /*
@@ -290,9 +290,72 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="documentation">
-<h1 class="title">Documentation</h1>
-<p>Sorry, this documentation item is not yet filled with information.</p>
+<div class="document" id="plugin-matplot">
+<h1 class="title">PlugIn: MatPlot</h1>
+<p>The plugin MatPlot provides support for the matplotlib in SimuVis. There's a special
+matplotlib backend which opens plot windows as MDI subwindows in SimuVis. Unfortunately
+this backend can't be added dynamically to be used with pylab. Some matplotlib files
+need to be changed and one file needs to be copied. There's a helper script to ease
+this process.</p>
+<p>In combination with the <a class="reference" href="/plugin/PythonConsole/index.html">PythonConsole</a>, <a class="reference" href="/plugin/TextEditor/index.html">TextEditor</a> or <a class="reference" href="/plugin/RemoteControl/index.html">RemoteControl</a> in combination
+with your favourite text editor you may conveniently use the pylab interface to
+matplotlib. You should use the backend 'SV4Agg' for interactice matplot sessions
+(<tt class="docutils literal"><span class="pre">matplotlib.use('SV4Agg'</span></tt>) is set by default in SimuVis4). The window appearance
+was choosen to be as close as possible to the other backends. In fact, the SV4Agg
+backend is a slightly modified version of the Qt4Agg backend shipped with matplotlib.
+You may use the backend manually, even if you did not change the matplot installation.
+You will get the classes FigureManagerSV4, NavigationToolbar2SV4 and FigureCanvasSV4
+from the plugin:</p>
+<pre class="literal-block">
+...
+mpl_backend = SimuVis4.Globals.plugInManager['MatPlot'].backend_sv4agg
+canvas = mpl_backend.FigureCanvasSV4(figure)
+...
+</pre>
+<div class="section">
+<h1><a id="versions" name="versions">Versions</a></h1>
+<p>This plugin is tested with matplotlib 0.90.1 and 0.91.1 on linux and windows.</p>
+</div>
+<div class="section">
+<h1><a id="known-problems" name="known-problems">Known Problems</a></h1>
+<ul class="simple">
+<li>Printing with CTRL-P or the print button will save the figure to an SVG file
+and load it for rendering. This may result in figures missing some contents but gives
+you the well-known print dialog. If the result is bad, please save a figure
+to a PDF file and print it manually.</li>
+<li>pylab.show() will show all existing figures. If some module used matlab/pylab
+to render but didn't show the figures yet, calling <tt class="docutils literal"><span class="pre">pylab.show()</span></tt> may popup several
+(maybe empty) windows. You may get this with <a class="reference" href="/plugin/DataStorageBrowser/index.html">DataStorageBrowser</a>.</li>
+<li>In matplotlib 0.91.1 it seems impossible to switch backends with <tt class="docutils literal"><span class="pre">matplotlib.use(backend)</span></tt>.</li>
+</ul>
+</div>
+<div class="section">
+<h1><a id="configuration" name="configuration">Configuration</a></h1>
+<p>In a <a class="reference" href="/simuvis/config.html">configfile</a> you may use the following items:</p>
+<pre class="literal-block">
+[matplot]
+# bool: show a warning when the backend is not installed for pylab
+show_config_warning = yes
+</pre>
+</div>
+<div class="section">
+<h1><a id="interaction" name="interaction">Interaction</a></h1>
+<img alt="Screenshot1.png" src="Screenshot1.png" />
+<p>The first seven buttons in the toolbar are identical to the buttons in most interactive
+matplotlib backends. Two additional buttons provide the following functions:</p>
+<div class="section">
+<h2><a id="printing" name="printing">Printing</a></h2>
+<p>The Print button or CTRL-P opens the well known print dialog, which lets you choose
+papers size, orientation and other settings. See known problems above for details.</p>
+</div>
+<div class="section">
+<h2><a id="canvas-zoom" name="canvas-zoom">Canvas Zoom</a></h2>
+<p>When this button is activated, the size of the plot canvas is not bound to the window size.
+You may use the wheel of your mouse to zoom while holding the CTRL key. As soon as this
+mode is decativated (by pressing this key) the plot canvas will again fit the whole window.
+<strong>Be careful when zooming, it may need some time and a lot of memory!</strong></p>
+</div>
+</div>
 </div>
 </body>
 </html>
