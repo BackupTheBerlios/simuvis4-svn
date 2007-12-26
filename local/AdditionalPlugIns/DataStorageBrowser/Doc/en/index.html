@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
-<title>Documentation</title>
+<title>PlugIn: DataStorageBrowser</title>
 <style type="text/css">
 
 /*
@@ -290,9 +290,30 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="documentation">
-<h1 class="title">Documentation</h1>
-<p>Sorry, this documentation item is not yet filled with information.</p>
+<div class="document" id="plugin-datastoragebrowser">
+<h1 class="title">PlugIn: DataStorageBrowser</h1>
+<p>This plugin provides a browser for databases in the datastorage format.
+It plugs into the sidebar/dockwidget provided be the <a class="reference" href="/plugin/DataBrowser/index.html">DataBrowser</a> plugin.</p>
+<div class="section">
+<h1><a id="configuration" name="configuration">Configuration</a></h1>
+<p>In a <a class="reference" href="/simuvis/config.html">configfile</a> you may use the following items:</p>
+<pre class="literal-block">
+[datastoragebrowser]
+# path, optional: path to the folder containing the datastorage package,
+# if not installed in PYTHONPATH
+datastorage_path = /home/horst/lib/
+# path, optional: database to open at startup (folder containing h5 files)
+default_database = /home/horst/weather
+</pre>
+</div>
+<div class="section">
+<h1><a id="interaction" name="interaction">Interaction</a></h1>
+<p>Selecting an item in the treeview shows some information in the info area at the
+bottom of the browser. Double-clicking a sensor will open a <a class="reference" href="/plugin/QwtPlot/index.html">QwtPlot</a> window with
+the sensors data. Double-clicking a chart will open a <a class="reference" href="/plugin/MatPlot/index.html">MatPlot</a> window containing
+the chart.</p>
+<p>...more will come soon...</p>
+</div>
 </div>
 </body>
 </html>

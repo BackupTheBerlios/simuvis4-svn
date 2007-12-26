@@ -1,6 +1,33 @@
+============================
+ PlugIn: DataStorageBrowser
+============================
 
-Documentation
+This plugin provides a browser for databases in the datastorage format.
+It plugs into the sidebar/dockwidget provided be the DataBrowser_ plugin.
+
+Configuration
 =============
+In a configfile_ you may use the following items:
 
-Sorry, this documentation item is not yet filled with information.
+::
 
+    [datastoragebrowser]
+    # path, optional: path to the folder containing the datastorage package,
+    # if not installed in PYTHONPATH
+    datastorage_path = /home/horst/lib/
+    # path, optional: database to open at startup (folder containing h5 files)
+    default_database = /home/horst/weather
+ 
+Interaction
+===========
+Selecting an item in the treeview shows some information in the info area at the
+bottom of the browser. Double-clicking a sensor will open a QwtPlot_ window with
+the sensors data. Double-clicking a chart will open a MatPlot_ window containing
+the chart.
+
+...more will come soon...
+
+.. _DataBrowser: /plugin/DataBrowser/index.html
+.. _QwtPlot: /plugin/QwtPlot/index.html
+.. _MatPlot: /plugin/MatPlot/index.html
+.. _configfile: /simuvis/config.html
