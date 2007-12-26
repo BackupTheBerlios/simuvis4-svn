@@ -1,6 +1,11 @@
+====================
+ PlugIn: TextEditor
+====================
+TextEditor provides basic text editing capabilities in multiple windows.
+You may open, edit and save ordinary text files with the usual key combinations.
+When you press *'CTRL-J'* in an active editor window the contents is executes
+as a python script_ in SimuVis. Make sure there's no line containing
+``os.system('format c:')`` or ``os.system('rm -Rf /')`` by accident.
 
-Documentation
-=============
-
-Sorry, this documentation item is not yet filled with information.
-
+.. _configfile: /simuvis/config.html
+.. _script: /simuvis/script.html
