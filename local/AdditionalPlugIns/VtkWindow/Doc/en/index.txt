@@ -1,6 +1,11 @@
+===================
+ PlugIn: VtkWindow
+===================
+VTK_ - the visualisation toolkit - is a large library of components for
+visualisation in 3D. It has a pipeline concept to handle and convert data and
+uses OpenGL to render.
 
-Documentation
-=============
+This plugin enables you to show vtk windows in SimuVis4 and provides some helper classes.
+More documentation will follow soon.
 
-Sorry, this documentation item is not yet filled with information.
-
+.. _VTK: http://www.vtk.org/
