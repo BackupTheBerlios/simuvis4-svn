@@ -1,6 +1,5 @@
-
-Documentation
-=============
-
-Sorry, this documentation item is not yet filled with information.
-
+==================
+ PlugIn: SmileKit
+==================
+SmileKit provides some helper classes and dialogs for the simulation package SMILE.
+Documentation will follow soon.
