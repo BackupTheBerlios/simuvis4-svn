@@ -1,6 +1,7 @@
+==================
+ PlugIn: Graphics
+==================
+The Graphics plugin provides some support for QGraphicsView and related things.
 
-Documentation
-=============
-
-Sorry, this documentation item is not yet filled with information.
+Documentation will follow soon.
 
