@@ -1,6 +1,48 @@
+=======================
+ PlugIn: PythonConsole
+=======================
+The plugin provides an interactive python console with a one-line input and formatted output.
+The output may be printed or saved to a file.
 
-Documentation
+The namespace is the global namespace of the application, you have access to all objects
+of the running application!
+
+When the plugin is loaded, all output to stdout (from ``print`` or ``sys.stdout.write()``)
+will go to the console, not to a terminal. There can by only one console, either as a
+DockWidget or as MDI-Subwindow. The status of the console window is usually toggled
+with *'CTRL-D'*.
+
+Configuration
 =============
+In a configfile_ you may use the following items:
 
-Sorry, this documentation item is not yet filled with information.
+::
 
+    [pythonconsole]
+    # bool: use a history file to store commandline inputs between sessions
+    use_history = yes
+    # bool: come as a dockwidget instead of MDI
+    dockwidget = yes
+    # bool: show window at startup
+    show = no
+    # bool: show maximized when showing
+    show_maximized = yes
+    # bool: show minimized when showing
+    show_minimized = no
+
+Screenshots
+===========
+
+As dockwidget
+-------------
+A dockwidget can be docked to the mainwindow (like a toolbar) or freely positioned on the screen.
+
+.. image:: Screenshot1.png
+
+As MDI-Window
+-------------
+
+.. image:: Screenshot2.png
+
+
+.. _configfile: /simuvis/config.html
