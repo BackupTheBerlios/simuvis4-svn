@@ -93,8 +93,17 @@ class HelpServer(QTcpServer):
                 mt, c = self.getPython(words[1:])
         if not c:
             s.writeData("HTTP/1.0 404 File Not Found\r\n")
-            return
-        s.writeData("HTTP/1.0 200 Ok\r\n")
+            mt = 'text/html'
+            p = os.path.join(helpPath, 'errorTemplate.html')
+            if not os.path.exists(p):
+                p = os.path.join(helpPathEn, 'errorTemplate.html')
+            if not os.path.exists(p):
+                c = '<head></head><body>404 - File not found!</body>'
+            else:
+                c = open(p, 'rb').read()
+                c = c.replace('FAILED_ADDRESS', path)
+        else:
+            s.writeData("HTTP/1.0 200 Ok\r\n")
         s.writeData("Content-type: %s;\r\n" % mt)
         s.writeData("Content-Length: %s;\r\n" % len(c))
         s.writeData("\r\n")
@@ -151,6 +160,7 @@ class HelpServer(QTcpServer):
 def startServer():
     global helpServer
     helpServer = HelpServer()
+
 
 
 def stopServer():

@@ -1,0 +1,16 @@
+======================================
+ SimuVis4 Help - 404 - File not Found
+======================================
+
+**Sorry, the requested file was not found!**
+
+URL: FAILED_ADDRESS
+
+This may be caused by:
+
+* a link to a PlugIn that is not installed or not active
+* an error in the cross references of the documentation
+
+Please go back to the main index_.
+
+.. _index: /
