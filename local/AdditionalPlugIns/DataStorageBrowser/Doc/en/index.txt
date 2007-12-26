@@ -1,7 +1,6 @@
 ============================
  PlugIn: DataStorageBrowser
 ============================
-
 This plugin provides a browser for databases in the datastorage format.
 It plugs into the sidebar/dockwidget provided be the DataBrowser_ plugin.
 
