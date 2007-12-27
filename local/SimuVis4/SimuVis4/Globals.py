@@ -103,9 +103,6 @@ config.set_def('main', 'hide_log_window', 'yes')
 config.set_def('main', 'log_threshold', 'INFO')
 config.set_def('main', 'log_raise_level', 'CRITICAL')
 
-config.set_def('main', 'disable_task_browser', 'yes')
-config.set_def('main', 'hide_task_browser', 'yes')
-
 config.set_def('main', 'disable_plugin_browser', 'no')
 config.set_def('main', 'hide_plugin_browser', 'yes')
 
