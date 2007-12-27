@@ -10,7 +10,7 @@ from PyQt4.QtCore import QCoreApplication, QUrl, QString, QRegExp, QDateTime, SI
 from PyQt4.QtNetwork import QTcpServer, QTcpSocket, QHostAddress
 from cgi import escape
 
-lang = Globals.config['main:i18n_language']
+lang = Globals.language or Globals.config['main:i18n_language']
 helpPath   = os.path.join(Globals.config['main:system_help_path'], lang)
 helpPathEn = os.path.join(Globals.config['main:system_help_path'], 'en')
 helpURL = 'http://127.0.0.1:%d/' % Globals.config.getint('main', 'help_server_port')

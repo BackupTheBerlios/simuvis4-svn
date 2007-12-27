@@ -226,18 +226,6 @@ class MainWindow(QMainWindow):
         self.executor = ExecutorQt()
         Globals.executor = self.executor
 
-        if not cfg.getboolean('main', 'disable_task_browser'):
-            progress(QCoreApplication.translate('MainWin', 'Starting task browser'))
-            from SimuVis4.TaskBrowser import TaskBrowser
-            self.taskBrowserWin = TaskBrowser(self.workSpace)
-            self.workSpace.addSubWindow(self.taskBrowserWin)
-            self.toolsMenu.addAction(self.taskBrowserWin.toggleVisibleAction)
-            if not cfg.getboolean('main', 'hide_task_browser'):
-                self.taskBrowserWin.toggleAction.setChecked(True)
-
-        else:
-            self.helpBrowser = None
-
         logger.info(QCoreApplication.translate('MainWin', 'Main: startup succeeded'))
 
         if splashScreen:
