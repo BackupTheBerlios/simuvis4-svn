@@ -51,11 +51,16 @@ looks like this:
 .. image:: SV4ClientRC.png
 
 Try this:
-# start SimuVis4, make sure RemoteControl is running
-# start SV4ClientRC.pyw
-# check host and port settings, enter "print 1/0" and execute it by pressing Send
-# SimuVis4 should show the exception dialog with a ZeroDivisionError
-# ignore the exception and try something more complex
+
+#. start SimuVis4, make sure RemoteControl is running
+
+#. start SV4ClientRC.pyw
+
+#. check host and port settings, enter "print 1/0" and execute it by pressing Send
+
+#. SimuVis4 should show the exception dialog with a ZeroDivisionError
+
+#. ignore the exception and try something more complex
 
 Usage:
 ~~~~~~
