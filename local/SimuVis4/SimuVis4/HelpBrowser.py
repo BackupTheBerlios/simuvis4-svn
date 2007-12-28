@@ -143,10 +143,10 @@ class HelpServer(QTcpServer):
         mimetype = mimetypes.types_map.get(ext, 'application/octet-stream')
         c = None
         try:
-            c = pi.openFile(os.path.join('Doc', lang, *w[1:])).read()
+            c = pi.openFile(os.path.join('Doc', lang, *w[1:]), 'rb').read()
         except:
             try:
-                c = pi.openFile(os.path.join('Doc', 'en', *w[1:])).read()
+                c = pi.openFile(os.path.join('Doc', 'en', *w[1:]), 'rb').read()
             except:
                 pass
         return mimetype, c
