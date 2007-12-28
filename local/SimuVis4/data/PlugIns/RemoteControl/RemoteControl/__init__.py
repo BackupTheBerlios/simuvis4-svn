@@ -27,7 +27,6 @@ class PlugIn(SimplePlugIn):
         cfg.set_def(cfgsec, 'raise_use_hack', 'no')
         glb = SimuVis4.Globals
         tcpPort  = cfg.getint(cfgsec, 'tcp_port')
-        qSize    = cfg.getint(cfgsec, 'cmd_queue_size')
         ipFilter = cfg.get(cfgsec, 'ip_filter')
         from Receiver import CodeReceiver
         self.receiver = CodeReceiver(tcpPort, ipFilter, cfg.getboolean(cfgsec, 'raise_mainwindow'),
