@@ -1,9 +1,6 @@
 =====================
  PlugIn: DataBrowser
 =====================
-
-Sorry, this documentation item is not yet filled with information.
-
 This plugin provides a common area for browsing data organised in lists and
 trees. It appears as a dockwidget in the main window which can be toggled with
 *'CTRL-B'*. The different types of data are organised in a toolbox, every toolbox
