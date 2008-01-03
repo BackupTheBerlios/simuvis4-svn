@@ -1,12 +1,3 @@
-<?xml version="1.0" encoding="ascii" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ascii" />
-<meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
-<title>Linux</title>
-<style type="text/css">
-
 /*
 :Authors: Ian Bicking, Michael Foord
 :Contact: fuzzyman@voidspace.org.uk
@@ -144,35 +135,3 @@ h1 tt, h2 tt, h3 tt, h4 tt, h5 tt, h6 tt {
 code, tt {
   color: #000066;
 }
-
-</style>
-</head>
-<body>
-<div class="document" id="linux">
-<h1 class="title">Linux</h1>
-<p>If you use Linux, it should not be to hard to install the required software packages.
-Please use the package manager for your distribution.</p>
-<div class="section">
-<h1><a id="debian" name="debian">Debian</a></h1>
-<p>For debian (and probably for derived distributions like ubuntu) there are .deb packages
-available for the required additional software. You must have these packages (and the
-packages required by these pakages, but apt will manage the dependencies for you):</p>
-<ul class="simple">
-<li>python2.4 or python2.5</li>
-<li>python-qt4 version 4.3 or newer</li>
-</ul>
-<p>To get all plugins working, you should install these packages:</p>
-<ul class="simple">
-<li>python-qwt5-qt4</li>
-<li>python-scientific</li>
-<li>python-matplotlib</li>
-<li>python-vtk</li>
-</ul>
-</div>
-<div class="section">
-<h1><a id="suse" name="suse">SuSE</a></h1>
-<p>information coming soon</p>
-</div>
-</div>
-</body>
-</html>

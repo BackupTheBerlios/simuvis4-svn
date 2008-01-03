@@ -1,8 +1,8 @@
 #!/bin/sh
 if [ -d .devel ]; then
-  GOPT="--input-encoding=UTF-8 --output-encoding=ascii --output-encoding-error-handler=xmlcharrefreplace"
   # main doc
   BASE="data/Doc"
+  GOPT="--input-encoding=UTF-8 --output-encoding=ascii --output-encoding-error-handler=xmlcharrefreplace --stylesheet-path=$BASE/style.css"
   for LANG in $(ls $BASE); do
     P=$BASE/$LANG
     OPT="$GOPT --language=$LANG --prune=$P/.svn"
