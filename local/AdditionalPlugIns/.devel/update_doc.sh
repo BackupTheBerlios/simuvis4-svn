@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ -d .devel ]; then
-  GOPT="--input-encoding=UTF-8 --output-encoding=ascii --output-encoding-error-handler=xmlcharrefreplace"
+  GOPT="--input-encoding=UTF-8 --output-encoding=ascii --output-encoding-error-handler=xmlcharrefreplace --stylesheet-path=../SimuVis4/data/Doc/style.css"
   for PI in ./*; do
     if [ -f $PI/PLUGIN.INI ]; then
       BASE="$PI/Doc"
