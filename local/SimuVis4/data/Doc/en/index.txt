@@ -3,7 +3,7 @@
 ==========
 
 Documentation index
-===================
+-------------------
 *The documentation is still incomplete, but I'm working on it.*
 
 * About_ - general information

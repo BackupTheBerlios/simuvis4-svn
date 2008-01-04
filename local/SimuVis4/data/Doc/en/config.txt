@@ -1,5 +1,6 @@
-Configuration
-=============
+===============
+ Configuration
+===============
 SimuVis by default searches for a sytem-wide and a personal configuration file in the
 INI-format. Alternatively you may specify a configuration file on the commandline.
 During startup default configuration values are set and used for items not found

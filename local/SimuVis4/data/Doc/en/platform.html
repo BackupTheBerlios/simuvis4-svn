@@ -4,18 +4,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ascii" />
 <meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
-<title>Platform</title>
+<title>Platforms</title>
 <style type="text/css">
 
 /*
-:Authors: Ian Bicking, Michael Foord
-:Contact: fuzzyman@voidspace.org.uk
-:Date: 2005/08/26 
-:Version: 0.1.0
-:Copyright: This stylesheet has been placed in the public domain.
-
 Stylesheet for Docutils.
-Based on ``blue_box.css`` by Ian Bicking
+Based on ``voidspace.css``,``blue_box.css`` by Ian Bicking
 and ``html4css1.css`` revision 1.46.
 */
 
@@ -23,6 +17,7 @@ and ``html4css1.css`` revision 1.46.
 
 body {
   font-family: Arial, sans-serif;
+  font-size: 12px;
 }
 
 em, i {
@@ -80,31 +75,34 @@ div.warning p.admonition-title {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: Helvetica, Arial, sans-serif;
-  border: thin solid black;
+  /* border: thin solid black; */
   /* This makes the borders rounded on Mozilla, which pleases me */
-  -moz-border-radius: 8px;
+  /* -moz-border-radius: 8px; */
   padding: 4px;
 }
 
 h1 {
   background-color: #444499;
   color: #ffffff;
-  border: medium solid black;
+  /* border: thin solid black; */
+  font-size: 16px;
 }
 
 h1 a.toc-backref, h2 a.toc-backref { 
-  color: #ffffff;
+  color: #ffff00;
 }
 
 h2 {
   background-color: #666666;
   color: #ffffff;
-  border: medium solid black;
+  /* border: thin solid black; */
+  font-size: 14px;
 }
 
 h3, h4, h5, h6 {
   background-color: #cccccc;
   color: #000000;
+  font-size: 12px;
 }
 
 h3 a.toc-backref, h4 a.toc-backref, h5 a.toc-backref, 
@@ -115,9 +113,9 @@ h6 a.toc-backref {
 h1.title {
   text-align: center;
   background-color: #444499;
-  color: #eeeeee;
-  border: thick solid black;
-  -moz-border-radius: 20px;
+  color: #ffff00;
+  /* border: thin solid yellow; */
+  /* -moz-border-radius: 20px; */
 }
 
 table.footnote {
@@ -129,7 +127,7 @@ table.citation {
 }
 
 pre.literal-block, pre.doctest-block {
-  border: thin black solid;
+  border: thin solid black;
   padding: 5px;
 }
 
@@ -148,8 +146,8 @@ code, tt {
 </style>
 </head>
 <body>
-<div class="document" id="platform">
-<h1 class="title">Platform</h1>
+<div class="document" id="platforms">
+<h1 class="title">Platforms</h1>
 <div class="section">
 <h1><a id="general" name="general">General</a></h1>
 <p>SimuVis is completely coded in python. It uses the PyQt4 toolkit for the whole

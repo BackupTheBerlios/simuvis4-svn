@@ -1,5 +1,6 @@
-Scripts
-=======
+=========
+ Scripts
+=========
 
 SimuVis can run ordinary python scripts. These scripts get executed in the global
 namespace and have complete access to the whole application. You may extend, reduce or

@@ -1,5 +1,6 @@
-Future Plans
-============
+==============
+ Future Plans
+==============
 
 ToDo List
 ---------

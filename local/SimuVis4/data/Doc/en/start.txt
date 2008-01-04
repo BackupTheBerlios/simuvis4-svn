@@ -1,5 +1,6 @@
-Starting
-========
+==========
+ Starting
+==========
 
 The main file is called SimuVis.pyw. If you are not using Windows, you may rename it to
 SimuVis.py.

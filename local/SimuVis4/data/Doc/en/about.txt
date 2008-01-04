@@ -1,7 +1,6 @@
-
-About SimuVis
-=============
-
+===============
+ About SimuVis
+===============
 SimuVis in its current implementation SimuVis4 is a framework and an interactive
 application for data handling, visualisation and simulations. It's based on python as the
 programming language, Qt for the GUI, Qwt for charts and VTK for 3D scenes.

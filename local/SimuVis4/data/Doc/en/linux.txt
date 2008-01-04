@@ -1,5 +1,6 @@
-Linux
-=====
+===================
+ SimuVis4 on Linux
+===================
 If you use Linux, it should not be to hard to install the required software packages.
 Please use the package manager for your distribution.
 

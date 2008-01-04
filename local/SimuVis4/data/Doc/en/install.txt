@@ -1,5 +1,6 @@
-Installation
-============
+==============
+ Installation
+==============
  
 1. Prepare the system
 ---------------------
