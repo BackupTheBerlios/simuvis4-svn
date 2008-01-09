@@ -25,9 +25,7 @@ class SubWindow(QMdiSubWindow):
 
     def __init__(self, parent):
         QMdiSubWindow.__init__(self, parent)
-        self.mainWidget = QWidget(self)
-        self.setWidget(self.mainWidget)
-        self.mainLayout = QVBoxLayout(self.mainWidget)
+        self.mainLayout = QVBoxLayout(self)
         self.mainLayout.setMargin(0)
         self.mainLayout.setSpacing(4)
         icon = os.path.join(Globals.config['main:system_picture_path'], 'subwin.xpm')
