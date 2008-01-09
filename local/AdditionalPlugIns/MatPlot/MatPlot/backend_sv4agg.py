@@ -61,9 +61,7 @@ cursord = {
     }
 
 def draw_if_interactive():
-    """
-    Is called after every pylab drawing command
-    """
+    """Is called after every pylab drawing command """
     if matplotlib.is_interactive():
         figManager =  Gcf.get_active()
         if figManager != None:

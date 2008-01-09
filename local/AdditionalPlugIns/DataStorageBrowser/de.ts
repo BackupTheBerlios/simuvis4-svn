@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>DSChartMplToolBar</name>
     <message>
-        <location filename="DSChartMplToolBar.py" line="87"/>
+        <location filename="DSChartMplToolBar.py" line="89"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="91"/>
+        <location filename="DSChartMplToolBar.py" line="93"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Verdana&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -16,12 +17,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="92"/>
+        <location filename="DSChartMplToolBar.py" line="94"/>
         <source>|&lt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="96"/>
+        <location filename="DSChartMplToolBar.py" line="98"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Verdana&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -29,12 +30,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="97"/>
+        <location filename="DSChartMplToolBar.py" line="99"/>
         <source>&lt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="101"/>
+        <location filename="DSChartMplToolBar.py" line="103"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Verdana&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -42,12 +43,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="102"/>
+        <location filename="DSChartMplToolBar.py" line="104"/>
         <source>&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="106"/>
+        <location filename="DSChartMplToolBar.py" line="108"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Verdana&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -55,17 +56,17 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="107"/>
+        <location filename="DSChartMplToolBar.py" line="109"/>
         <source>&gt;|</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="108"/>
+        <location filename="DSChartMplToolBar.py" line="110"/>
         <source>Start:</source>
         <translation>Start:</translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="112"/>
+        <location filename="DSChartMplToolBar.py" line="114"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Verdana&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -73,12 +74,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="113"/>
+        <location filename="DSChartMplToolBar.py" line="115"/>
         <source>Length:</source>
         <translation>Länge:</translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="117"/>
+        <location filename="DSChartMplToolBar.py" line="119"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Verdana&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -86,7 +87,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="121"/>
+        <location filename="DSChartMplToolBar.py" line="123"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Verdana&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -94,32 +95,32 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="122"/>
+        <location filename="DSChartMplToolBar.py" line="125"/>
         <source>Hours</source>
         <translation>Stunden</translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="123"/>
+        <location filename="DSChartMplToolBar.py" line="126"/>
         <source>Days</source>
         <translation>Tage</translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="124"/>
+        <location filename="DSChartMplToolBar.py" line="127"/>
         <source>Weeks</source>
         <translation>Wochen</translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="125"/>
+        <location filename="DSChartMplToolBar.py" line="128"/>
         <source>Months</source>
         <translation>Monate</translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="126"/>
+        <location filename="DSChartMplToolBar.py" line="129"/>
         <source>Years</source>
         <translation>Jahre</translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="130"/>
+        <location filename="DSChartMplToolBar.py" line="133"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Verdana&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -127,12 +128,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="DSChartMplToolBar.py" line="131"/>
+        <location filename="DSChartMplToolBar.py" line="134"/>
         <source>»</source>
         <translation>»</translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="135"/>
+        <location filename="DSChartMplToolBar.py" line="138"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Verdana&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -140,9 +141,14 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSChartMplToolBar.py" line="136"/>
+        <location filename="DSChartMplToolBar.py" line="139"/>
         <source> s</source>
         <translation> s</translation>
+    </message>
+    <message>
+        <location filename="DSChartMplToolBar.py" line="124"/>
+        <source>Minutes</source>
+        <translation>Minuten</translation>
     </message>
 </context>
 <context>
@@ -173,7 +179,7 @@ p, li { white-space: pre-wrap; }
         <translation>Schließe alle geöffneten Datenbanken</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="148"/>
+        <location filename="DSBrowser.py" line="149"/>
         <source>Select a folder containing a datastorage database</source>
         <translation>Wähle einen Ordner, der eine datastorage-Datenbank enthält</translation>
     </message>

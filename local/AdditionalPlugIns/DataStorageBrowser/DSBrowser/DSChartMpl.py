@@ -4,8 +4,8 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-import SimuVis4
-from PyQt4.QtGui import QWidget
+import SimuVis4, Icons
+from PyQt4.QtGui import QWidget, QIcon, QPixmap
 from PyQt4.QtCore import QTimer, SIGNAL, QDateTime
 from UI.DSChartMplToolBar import Ui_DSChartMplToolBar
 
@@ -26,6 +26,11 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
         self.LengthUnitInput.setCurrentIndex(2)
         self.startTime = 0
         self.blockUpdates = True
+        self.GoStartButton.setIcon(QIcon(QPixmap(Icons.goStart)))
+        self.GoBackButton.setIcon(QIcon(QPixmap(Icons.goBack)))
+        self.GoForwardButton.setIcon(QIcon(QPixmap(Icons.goForward)))
+        self.GoEndButton.setIcon(QIcon(QPixmap(Icons.goEnd)))
+        self.AnimationButton.setIcon(QIcon(QPixmap(Icons.animation)))
         self.connect(self.LengthInput, SIGNAL('valueChanged(int)'), self.lengthChanged)
         self.connect(self.LengthUnitInput, SIGNAL('activated(int)'), self.lengthUnitChanged)
         self.connect(self.StartInput, SIGNAL('dateTimeChanged(QDateTime)'), self.startChanged)
@@ -121,6 +126,8 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
 def showChartMplWindow(chart):
     canvas = mplBackend.FigureCanvasSV4(chart.figure)
     manager = mplBackend.FigureManagerSV4(canvas, mplWinCount())
+    manager.window.setMinimumSize(800,600)
+    manager.window.setWindowTitle('%s (%s)' % (chart.name, chart.sensorgroup.path))
     manager.window.dsToolBar = ChartToolBar(manager.window)
     manager.window.dsToolBar.setChartCanvas(chart, canvas)
     manager.window.mainLayout.insertWidget(0, manager.window.dsToolBar, 0)

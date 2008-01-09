@@ -151,7 +151,7 @@
         <translation>Die netCDF-Datei wurde erfolgreich gespeichert!</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="23"/>
+        <location filename="Meteo2Nc.py" line="139"/>
         <source>Meteonorm weather import</source>
         <translation>Meteonorm Wetterdaten-Import</translation>
     </message>
