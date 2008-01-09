@@ -49,6 +49,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle(cfg['main:application_name'])
 
         self.workSpace = QMdiArea(self)
+        self.workSpace.setOption(QMdiArea.DontMaximizeSubWindowOnActivation, True)
         if cfg.has_option('main',  'background_image'):
             bgFile = os.path.join(cfg['main:system_picture_path'], cfg['main:background_image'])
             if os.path.exists(bgFile):
