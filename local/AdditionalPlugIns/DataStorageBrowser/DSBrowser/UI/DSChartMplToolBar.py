@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './DataStorageBrowser/DSBrowser/UI/DSChartMplToolBar.ui'
 #
-# Created: Wed Dec 19 11:40:07 2007
+# Created: Wed Jan  9 14:57:06 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,10 +12,11 @@ from PyQt4 import QtCore, QtGui
 class Ui_DSChartMplToolBar(object):
     def setupUi(self, DSChartMplToolBar):
         DSChartMplToolBar.setObjectName("DSChartMplToolBar")
-        DSChartMplToolBar.resize(QtCore.QSize(QtCore.QRect(0,0,649,33).size()).expandedTo(DSChartMplToolBar.minimumSizeHint()))
+        DSChartMplToolBar.resize(QtCore.QSize(QtCore.QRect(0,0,576,31).size()).expandedTo(DSChartMplToolBar.minimumSizeHint()))
 
         self.hboxlayout = QtGui.QHBoxLayout(DSChartMplToolBar)
-        self.hboxlayout.setContentsMargins(-1,3,3,3)
+        self.hboxlayout.setSpacing(2)
+        self.hboxlayout.setMargin(1)
         self.hboxlayout.setObjectName("hboxlayout")
 
         self.GoStartButton = QtGui.QToolButton(DSChartMplToolBar)
@@ -62,6 +63,7 @@ class Ui_DSChartMplToolBar(object):
 
         self.AnimationButton = QtGui.QToolButton(DSChartMplToolBar)
         self.AnimationButton.setCheckable(True)
+        self.AnimationButton.setArrowType(QtCore.Qt.NoArrow)
         self.AnimationButton.setObjectName("AnimationButton")
         self.hboxlayout.addWidget(self.AnimationButton)
 
@@ -119,6 +121,7 @@ class Ui_DSChartMplToolBar(object):
         "p, li { white-space: pre-wrap; }\n"
         "</style></head><body style=\" font-family:\'Verdana\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
         "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Select unit of step length</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+        self.LengthUnitInput.addItem(QtGui.QApplication.translate("DSChartMplToolBar", "Minutes", None, QtGui.QApplication.UnicodeUTF8))
         self.LengthUnitInput.addItem(QtGui.QApplication.translate("DSChartMplToolBar", "Hours", None, QtGui.QApplication.UnicodeUTF8))
         self.LengthUnitInput.addItem(QtGui.QApplication.translate("DSChartMplToolBar", "Days", None, QtGui.QApplication.UnicodeUTF8))
         self.LengthUnitInput.addItem(QtGui.QApplication.translate("DSChartMplToolBar", "Weeks", None, QtGui.QApplication.UnicodeUTF8))
