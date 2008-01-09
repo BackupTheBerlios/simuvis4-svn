@@ -49,9 +49,12 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
         self.LengthInput.setValue(100)
         self.LengthUnitInput.setCurrentIndex(2)
         self.startTime = chart.sensorgroup.start
-        dt =QDateTime()
-        dt.setTime_t(self.startTime)
-        self.StartInput.setDateTime(dt)
+        mindt =QDateTime()
+        mindt.setTime_t(self.startTime)
+        self.StartInput.setDateTime(mindt)
+        maxdt = QDateTime()
+        maxdt.setTime_t(chart.sensorgroup.stop)
+        self.StartInput.setDateRange(mindt.date(), maxdt.date())
         self.blockUpdates = False
         self.showChart()
 
