@@ -129,6 +129,7 @@ class DSBrowser(QWidget):
         self.treeView.setAlternatingRowColors(True)
         self.treeView.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.treeView.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.treeView.setAutoExpandDelay(500)
         self.textBrowser = QTextBrowser(self.splitter)
         self.layout.addWidget(self.splitter)
         self.splitter.setStretchFactor(0, 85)
@@ -152,6 +153,7 @@ class DSBrowser(QWidget):
             else:
                 return
         self.model.addDatabase(dn)
+        self.treeView.expandToDepth(1)
 
 
     def dropDatabases(self):
