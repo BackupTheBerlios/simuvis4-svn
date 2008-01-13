@@ -161,16 +161,22 @@ simple keystroke.</p>
 <p>In a <a class="reference" href="/simuvis/config.html">configfile</a> you may use the following items:</p>
 <pre class="literal-block">
 [remotecontrol]
+
 # int: port to listen
 tcp_port = 12345
+
 # int: size of sommand queue, if unsure, use 1
 cmd_queue_size = 1
+
 # bool: start with remote command execution enabled
 start_enabled = yes
+
 # string: allow local connections only, can be shorter like 192.168.
 ip_filter = 127.0.0.1
+
 # bool: raise mainwindow when executing code
 raise_mainwindow = yes
+
 # bool: use hide/show hack when raising doesn't work properly
 raise_use_hack = yes
 </pre>

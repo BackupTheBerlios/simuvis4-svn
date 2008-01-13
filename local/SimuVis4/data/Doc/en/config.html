@@ -179,60 +179,88 @@ files using the <a class="reference" href="/plugin/TextEditor/index.html">TextEd
 in the section main affect the main program. PlugIns use own sections in the same files.</p>
 <pre class="literal-block">
 [main]
+
 # string: the application name
 application_name = SimuVis4
+
 # filename: the icon to use, relative to system_picture_path
 application_icon = Icon16.png
+
 # filename: the background image to use, relative to system_picture_path
 background_image = background.png
+
 # bool: disable main menu, should create own menu via startup scripts
 disable_main_menu = no
+
 # bool: disable splash screen
 disable_splash = no
+
 # bool: disable internal help browser
 disable_help_browser = no
+
 # bool: disable internal log window
 disable_log_window = no
+
 # bool: disable internal plugin browser
 disable_plugin_browser = no
+
 # bool: disable internal task browser
 disable_task_browser = yes
+
 # bool: hide python exceptions from the user
 hide_exceptions = no
+
 # bool: hide the log window at startup
 hide_log_window = yes
+
 # bool: hide the plugin browser at startup
 hide_plugin_browser = yes
+
 # bool: hide the task browser at startup
 hide_task_browser = yes
+
 # string[2]: set language, should be 'en' or 'de' for now
 i18n_language = de
+
 # list of words: names of plugins to ignore
 ignore_plugins = DummyPlugIn DataStorageBrowser
+
 # path: log to this file
 log_file = /home/horst/.SV4.log
+
 # string: dont log below this level, one of DEBUG, INFO, WARNING, ERROR or CRITICAL
 log_threshold = INFO
+
 # string: raise log window when logging at this level or higher
 log_raise_level = CRITICAL
+
 # bool: save configuration at exit (not yet implemented!)
 save_config = no
+
 # bool: show menu items to edit and save configuration
 show_config_actions = yes
+
 # filename: splash image, relativ to system_picture_path
 splash_image = splash1.png
+
 # path: path to SimuVis data (image, translations, plugins)
 system_data_path = /home/horst/simuvis/SimuVis4/data
+
 # path: path to help files
 system_help_path = /home/horst/simuvis/SimuVis4/data/Help
+
 # path: path to translations
 system_language_path = /home/horst/simuvis/SimuVis4/data/Language
+
 # path: path to pictures and images
 system_picture_path = /home/horst/simuvis/SimuVis4/data/Pictures
+
 # path: path plugins
 system_plugin_path = /home/horst/simuvis/SimuVis4/data/PlugIns
+
 # path: path to additional plugins
 user_plugin_path = /home/horst/simuvis/SimuVis4/../AdditionalPlugIns
+
 # path: start working in this folder
 user_work_path = /home/horst
 </pre>

@@ -19,14 +19,19 @@ In a configfile_ you may use the following items:
 ::
 
     [pythonconsole]
+    
     # bool: use a history file to store commandline inputs between sessions
     use_history = yes
+    
     # bool: come as a dockwidget instead of MDI
     dockwidget = yes
+    
     # bool: show window at startup
     show = no
+    
     # bool: show maximized when showing
     show_maximized = yes
+    
     # bool: show minimized when showing
     show_minimized = no
 

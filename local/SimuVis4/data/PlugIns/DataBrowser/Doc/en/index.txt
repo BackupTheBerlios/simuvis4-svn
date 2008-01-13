@@ -18,8 +18,10 @@ In a configfile_ you may use the following items:
 ::
 
     [databrowser]
+    
     # bool: show browser dockwidget at startup
     show = no
+    
     # bool: show netcdf3 browser
     netcdf3_browser = yes
 
