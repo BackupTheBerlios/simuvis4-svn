@@ -11,12 +11,17 @@ In a configfile_ you may use the following items:
 ::
 
     [datastoragebrowser]
+
     # path, optional: path to the folder containing the datastorage package,
     # if not installed in PYTHONPATH
     datastorage_path = /home/horst/lib/
+
     # path, optional: database to open at startup (folder containing h5 files)
     default_database = /home/horst/weather
- 
+
+    # bool: show chart subwindows maximized
+    show_chart_maximized = no
+
 Interaction
 ===========
 Selecting an item in the treeview shows some information in the info area at the

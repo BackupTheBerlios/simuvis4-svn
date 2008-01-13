@@ -7,14 +7,18 @@
 import SimuVis4, os, Icons, string
 from PyQt4.QtGui import QWidget, QTreeView, QAbstractItemView, QStandardItemModel, QStandardItem, \
     QVBoxLayout, QHBoxLayout, QSplitter, QTextBrowser, QMessageBox, QToolButton, QIcon, QPixmap, \
-    QFrame, QFileDialog, QPen
+    QFrame, QFileDialog, QPen, QMenu
 from PyQt4.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, SIGNAL, QCoreApplication
-from PyQt4.Qwt5 import QwtPlotCurve
 from cgi import escape
 
 from DSChartMpl import showChartMplWindow
+from DSPlotQwt import showQwtPlotWindow
+from DSMetadata import addMetadata, editMetadata
+from DSAddChartMpl import showAddChartWizard
 
 from datastorage.database import DataBaseRoot, Sensor
+
+showChartMaximized = SimuVis4.Globals.config.getboolean('datastoragebrowser', 'show_chart_maximized')
 
 rootInfo = string.Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
 <h3>Root $name</h3>
@@ -91,9 +95,16 @@ def formatMetaData(n):
     return '\n'.join(l)
 
 
-class DSBrowser(QWidget):
-    """netCDF-Browser"""
 
+class DSBrowser(QWidget):
+    """browser for datastorage databases
+       Nodes are identified by a string, containing fields separated by '|'.
+       - first filed is a capital letter:
+       'R'oot, 'P'roject, sensor'G'roup, 'S'ensor and 'C'hart
+       - second field is the database folder
+       - third filed is the path of the node in the database
+       - for charts the fourth field is the chart name (third is path of sensorgroup in this case)
+    """
     def __init__(self):
         QWidget.__init__(self)
         self.layout = QVBoxLayout(self)
@@ -132,8 +143,8 @@ class DSBrowser(QWidget):
         self.treeView.setAutoExpandDelay(500)
         self.textBrowser = QTextBrowser(self.splitter)
         self.layout.addWidget(self.splitter)
-        self.splitter.setStretchFactor(0, 85)
-        self.splitter.setStretchFactor(1, 15)
+        self.splitter.setStretchFactor(0, 60)
+        self.splitter.setStretchFactor(1, 40)
         self.model = DSModel()
         self.treeView.setModel(self.model)
         self.treeView.setSortingEnabled(True)
@@ -141,9 +152,12 @@ class DSBrowser(QWidget):
         self.connect(self.treeView.selectionModel(), SIGNAL("currentChanged(QModelIndex, QModelIndex)"), self.showItem)
         self.connect(self.treeView, SIGNAL("doubleClicked(QModelIndex)"), self.itemAction)
         self.connect(self.treeView, SIGNAL("customContextMenuRequested(QPoint)"), self.showContextMenu)
+        self.selectedNode = None
+        self.selectedItem = None
 
 
     def loadDatabase(self, dn=None):
+        """load a database"""
         if not dn:
             dn = QFileDialog.getExistingDirectory(self, QCoreApplication.translate('DataStorageBrowser',
                 "Select a folder containing a datastorage database"), SimuVis4.Globals.defaultFolder)
@@ -157,11 +171,12 @@ class DSBrowser(QWidget):
 
 
     def dropDatabases(self):
-        # FIXME: ...
+        # FIXME: implement it
         pass
 
 
     def node(self, mi):
+        """get the type of the node and the node for a model index"""
         item = self.model.itemFromIndex(mi)
         p = str(item.data().toString()).split('|')
         if p[0] == 'R': # root
@@ -174,6 +189,7 @@ class DSBrowser(QWidget):
 
 
     def showItem(self, mi, pr):
+        """show the item at model index mi"""
         t, n = self.node(mi)
         txt = ""
         if t == 'R':
@@ -192,6 +208,7 @@ class DSBrowser(QWidget):
 
 
     def itemAction(self, mi):
+        """default action (on doubleclick) for item at model index mi"""
         t, n = self.node(mi)
         if t == 'R':
             pass
@@ -200,23 +217,64 @@ class DSBrowser(QWidget):
         elif t == 'G':
             pass
         elif t == 'S':
-            # Sensor: show a new QwtPlot window 
-            w = SimuVis4.Globals.mainWin.plugInManager['QwtPlot'].winManager.newWindow(n.path)
-            curve = QwtPlotCurve(n.name)
-            curve.setData(n.timegrid.getTimeArray(), n[:].filled())
-            curve.setPen(QPen(Qt.blue))
-            curve.attach(w.plot)
-            w.plot.replot()
-            w.plot.zoomer.setZoomBase()
+            print n
+            self.showQwtPlot(n)
         elif t == 'C':
-            # Chart: show the chart
-            showChartMplWindow(n)
+            self.showMplChart(n)
 
 
     def showContextMenu(self, pos):
+        """show context menu for item at pos"""
         mi = self.treeView.indexAt(pos)
-        # FIXME: more to come here...
-        # print self.node(mi)
+        t, n = self.node(mi)
+        self.selectedNode = n
+        self.selectedItem = mi
+        m = QMenu()
+        if t in 'RPGS':
+            # add metadata functions
+            p = m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Edit metadata'), self.editMetadata)
+            p = m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Add metadata'), self.addMetadata)
+        if t == 'R':
+            pass
+        elif t == 'P':
+            pass
+        elif t == 'G':
+            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Add Chart'), self.addChart)
+        elif t == 'S':
+            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Plot (Qwt)'), self.showQwtPlot)
+        elif t == 'C':
+            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Show Chart'), self.showMplChart)
+        a = m.exec_(self.treeView.mapToGlobal(pos))
+
+
+    def showMplChart(self, node=None):
+        if node is None:
+            node = self.selectedNode
+        showChartMplWindow(node, maximized=showChartMaximized)
+
+
+    def showQwtPlot(self, node=None):
+        if node is None:
+            node = self.selectedNode
+        showQwtPlotWindow(node, maximized=showChartMaximized)
+
+
+    def editMetadata(self, node=None):
+        if node is None:
+            node = self.selectedNode
+        editMetadata(node)
+
+
+    def addMetadata(self, node=None):
+        if node is None:
+            node = self.selectedNode
+        addMetadata(node)
+
+
+    def addChart(self, node=None):
+        if node is None:
+            node = self.selectedNode
+        showAddChartWizard(node)
 
 
 

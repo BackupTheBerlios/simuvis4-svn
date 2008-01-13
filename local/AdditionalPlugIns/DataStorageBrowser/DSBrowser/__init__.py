@@ -19,8 +19,10 @@ class PlugIn(SimplePlugIn):
         cfgsec = self.name.lower()
         if not cfg.has_section(cfgsec):
             cfg.add_section(cfgsec)
+        cfg.set_def(cfgsec, 'show_chart_maximized', 'yes')
         # cfg.set_def(cfgsec, 'datastorage_path', '/net/Dezentral/Projekte/Angebote/ISE_DataStorage-GUI/nmd/')
         # cfg.set_def(cfgsec, 'default_database', '/net/Dezentral/Projekte/Angebote/ISE_DataStorage-GUI/nmd/datastorage/wetter')
+
         if cfg.has_option(cfgsec, 'datastorage_path'):
             sys.path.append(cfg.get(cfgsec, 'datastorage_path'))
         # FIXME: disabled while developing, get Exceptions in logger

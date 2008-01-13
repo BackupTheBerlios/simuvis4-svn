@@ -46,8 +46,7 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
     def setChartCanvas(self, chart, canvas):
         self.chart = chart
         self.canvas = canvas
-        self.LengthInput.setValue(100)
-        self.LengthUnitInput.setCurrentIndex(2)
+        # FIXME: get a hint on the start time and display interval - from datastorage?
         self.startTime = chart.sensorgroup.start
         mindt =QDateTime()
         mindt.setTime_t(self.startTime)
@@ -55,8 +54,10 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
         maxdt = QDateTime()
         maxdt.setTime_t(chart.sensorgroup.stop)
         self.StartInput.setDateRange(mindt.date(), maxdt.date())
+        self.LengthInput.setValue(100)
+        self.LengthUnitInput.setCurrentIndex(2)
         self.blockUpdates = False
-        self.showChart()
+        self.updateChart()
 
 
     def go(self, p, rel=True):
@@ -64,7 +65,6 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
             t = self.StartInput.dateTime().toTime_t()
         else:
             t = 0
-        # FIXME: check to not leave the data time range
         dt = QDateTime()
         dt.setTime_t(t + p)
         self.StartInput.setDateTime(dt)
@@ -107,32 +107,38 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
 
     def startChanged(self, dt):
         self.startTime = dt.toTime_t()
-        self.showChart()
+        self.updateChart()
 
 
     def setTimeslice(self, ts):
         if not ts == self.chart.timeslice:
+            maxdt = QDateTime()
+            maxdt.setTime_t(self.chart.sensorgroup.stop-ts)
+            self.StartInput.setMaximumDate(maxdt.date())
             self.chart.setTimeslice(ts)
-            self.showChart()
+            self.updateChart()
 
 
-    def showChart(self):
+    def updateChart(self):
         if self.blockUpdates:
             return
         self.chart.figure.clf()
-        ## print "|||", self.startTime, self.chart.timeslice
         self.chart.makePlot(self.startTime)
         self.canvas.draw()
 
 
 
-def showChartMplWindow(chart):
+def showChartMplWindow(chart, maximized=False):
     canvas = mplBackend.FigureCanvasSV4(chart.figure)
     manager = mplBackend.FigureManagerSV4(canvas, mplWinCount())
-    manager.window.setMinimumSize(800,600)
-    manager.window.setWindowTitle('%s (%s)' % (chart.name, chart.sensorgroup.path))
-    manager.window.dsToolBar = ChartToolBar(manager.window)
-    manager.window.dsToolBar.setChartCanvas(chart, canvas)
-    manager.window.mainLayout.insertWidget(0, manager.window.dsToolBar, 0)
-    manager.window.show()
+    w = manager.window
+    w.setMinimumSize(800, 600)
+    w.setWindowTitle('%s (%s)' % (chart.name, chart.sensorgroup.path))
+    w.dsToolBar = ChartToolBar(w)
+    w.dsToolBar.setChartCanvas(chart, canvas)
+    w.mainLayout.insertWidget(0, w.dsToolBar, 0)
+    if maximized:
+        w.showMaximized()
+    else:
+        w.show()
 

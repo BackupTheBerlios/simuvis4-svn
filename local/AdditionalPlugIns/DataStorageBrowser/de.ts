@@ -154,37 +154,37 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DataStorageBrowser</name>
     <message>
-        <location filename="__init__.py" line="36"/>
+        <location filename="__init__.py" line="38"/>
         <source>DataStorageBrowser: could not load module datastorage, check paths!</source>
         <translation>DataStorageBrowser: konnte Modul datastorage nicht importieren, kontrolliere die Einstellungen!</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="110"/>
+        <location filename="DSBrowser.py" line="121"/>
         <source>Open...</source>
         <translation>Öffnen...</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="112"/>
+        <location filename="DSBrowser.py" line="123"/>
         <source>Open a datastorage database</source>
         <translation>Öffne eine datastorage-Datenbank</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="117"/>
+        <location filename="DSBrowser.py" line="128"/>
         <source>Close All</source>
         <translation>Alle schließen</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="119"/>
+        <location filename="DSBrowser.py" line="130"/>
         <source>Drop all open databases</source>
         <translation>Schließe alle geöffneten Datenbanken</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="149"/>
+        <location filename="DSBrowser.py" line="163"/>
         <source>Select a folder containing a datastorage database</source>
         <translation>Wähle einen Ordner, der eine datastorage-Datenbank enthält</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="26"/>
+        <location filename="DSBrowser.py" line="30"/>
         <source>
 &lt;h3&gt;Root $name&lt;/h3&gt;
 &lt;table border=&quot;1&quot;&gt;
@@ -196,7 +196,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="35"/>
+        <location filename="DSBrowser.py" line="39"/>
         <source>
 &lt;h3&gt;Project $name&lt;/h3&gt;
 &lt;table border=&quot;1&quot;&gt;
@@ -207,7 +207,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="45"/>
+        <location filename="DSBrowser.py" line="49"/>
         <source>
 &lt;h3&gt;Group $name&lt;/h3&gt;
 &lt;table border=&quot;1&quot;&gt;
@@ -219,7 +219,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="58"/>
+        <location filename="DSBrowser.py" line="62"/>
         <source>
 &lt;h3&gt;Sensor $name&lt;/h3&gt;
 &lt;table border=&quot;1&quot;&gt;
@@ -234,7 +234,7 @@ Double click on the sensor item to show a chart!
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="64"/>
+        <location filename="DSBrowser.py" line="68"/>
         <source>
 &lt;h3&gt;Chart $name&lt;/h3&gt;
 Double click on the chart item to show!
@@ -242,12 +242,37 @@ Double click on the chart item to show!
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="70"/>
+        <location filename="DSBrowser.py" line="74"/>
         <source>
 &lt;h4&gt;Metadata&lt;/h4&gt;
 &lt;table border=&quot;1&quot;&gt;
 </source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="235"/>
+        <source>Edit metadata</source>
+        <translation>Editiere Metadaten</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="236"/>
+        <source>Add metadata</source>
+        <translation>Metadaten hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="242"/>
+        <source>Add Chart</source>
+        <translation>Chart hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="244"/>
+        <source>Plot (Qwt)</source>
+        <translation>Plotten (Qwt)</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="246"/>
+        <source>Show Chart</source>
+        <translation>Chart anzeigen</translation>
     </message>
 </context>
 </TS>
