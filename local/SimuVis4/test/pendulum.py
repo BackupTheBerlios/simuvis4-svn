@@ -74,7 +74,7 @@ class GPendulum(Graphics.Items.ItemGroupBase):
     def contextMenuEvent(self, e):
         e.accept()
         m = QMenu()
-        p = m.addAction("Properties");
+        p = m.addAction("Properties")
         a = m.exec_(e.screenPos())
         if a == p:
             dlg = SimTools.Widgets.SimpleQuantitiesDialog(mainWin, 'Pendulum properties')

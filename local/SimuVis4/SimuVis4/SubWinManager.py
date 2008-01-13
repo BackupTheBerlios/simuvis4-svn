@@ -4,7 +4,7 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-import SimuVis4.Misc
+from Misc import Counter
 
 class SubWinManager(object):
 
@@ -13,7 +13,7 @@ class SubWinManager(object):
         self.subWinClass = subWinClass
         self.winName = winName
         self.winIcon = winIcon
-        self.counter = SimuVis4.Misc.Counter(1)
+        self.counter = Counter(1)
         self.windows = []
 
     def getActiveWindow(self):

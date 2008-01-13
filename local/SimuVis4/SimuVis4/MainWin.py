@@ -48,6 +48,9 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(QIcon(QPixmap(iconFile)))
         self.setWindowTitle(cfg['main:application_name'])
 
+        self.setCorner(Qt.TopLeftCorner, Qt.LeftDockWidgetArea)
+        self.setCorner(Qt.BottomLeftCorner, Qt.LeftDockWidgetArea)
+
         self.workSpace = QMdiArea(self)
         self.workSpace.setOption(QMdiArea.DontMaximizeSubWindowOnActivation, True)
         if cfg.has_option('main',  'background_image'):
