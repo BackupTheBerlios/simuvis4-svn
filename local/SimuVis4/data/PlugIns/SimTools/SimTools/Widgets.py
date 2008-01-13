@@ -7,13 +7,14 @@
 from time import time
 from SimuVis4.SubWin import SubWindow
 from PyQt4.QtGui import QApplication, QDialog, QDialogButtonBox, QVBoxLayout, QGridLayout, QLabel, QLineEdit,\
-    QComboBox, QSpinBox, QDoubleSpinBox, QWidget, QCheckBox
-from PyQt4.QtCore import QCoreApplication, QTimer, SIGNAL, Qt, QObject
+    QComboBox, QSpinBox, QDoubleSpinBox, QWidget, QCheckBox, QScrollArea, QFrame, QTextEdit,\
+    QListWidget, QAbstractItemView, QDateTimeEdit
+from PyQt4.QtCore import QCoreApplication, QTimer, SIGNAL, Qt, QObject, QDateTime
 
 from UI.TimeSignalWidget import Ui_TimeSignalWidget
 from UI.ProcessDlg import Ui_ProcessDlg
 
-from Quantities import Text, Choice, Float, Integer, Bool
+from Quantities import Text, MLText, Choice, MultiChoice, Float, Integer, Bool, DateTime
 from Process import Process
 
 
@@ -96,38 +97,36 @@ class TimeSignalWindow(SubWindow):
 
 
 
-class SimpleQuantitiesDialog(QDialog):
+class QuantityWidget(QWidget):
 
-    def __init__(self, parent=None, windowTitle=''):
-        QDialog.__init__(self, parent)
+    def __init__(self, parent=None):
+        QWidget.__init__(self, parent)
+        self.setMinimumSize(300, 100)
+        self.gridLayout = QGridLayout(self)
         self.quantities = []
         self.qwidgets   = []
-        self.mainLayout = QVBoxLayout(self)
-        self.gridLayout = QGridLayout()
-        self.mainLayout.addLayout(self.gridLayout)
-        self.buttonBox =  QDialogButtonBox(self)
-        self.buttonBox.setOrientation(Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel | QDialogButtonBox.NoButton | QDialogButtonBox.Ok)
-        self.mainLayout.addWidget(self.buttonBox)
-        QObject.connect(self.buttonBox, SIGNAL("accepted()"), self.accept)
-        QObject.connect(self.buttonBox, SIGNAL("rejected()"), self.reject)
-        self.setWindowTitle(windowTitle)
-
-    def addQuantity(self, *l):
-        self.addQuantities(l)
 
     def addQuantities(self, l):
+        """add a list of quantities"""
         for q in l:
             i = len(self.quantities)
             self.quantities.append(q)
             l = QLabel(self)
-            l.setText(q.descr or q.name)
+            l.setText(q.name)
+            l.setToolTip(q.descr)
             self.gridLayout.addWidget(l, i, 0, 1, 1)
-            if q.__class__ == Text:
+            cls = q.__class__
+            if cls == Text:
                 w = QLineEdit(self)
                 if q.maxLen: w.setMaxLength(q.maxLen)
+                print q.v
                 w.setText(q.v)
-            elif q.__class__ == Choice:
+            if cls == MLText:
+                w = QTextEdit(self)
+                w.setAcceptRichText(False)
+                w.setMinimumSize(100,60)
+                w.setText(q.v)
+            elif cls == Choice:
                 w = QComboBox(self)
                 c = [unicode(x) for x in q.choices]
                 c.sort()
@@ -135,44 +134,118 @@ class SimpleQuantitiesDialog(QDialog):
                 idx = w.findText(unicode(q.v))
                 if idx >= 0:
                     w.setCurrentIndex(idx)
-            elif q.__class__ == Bool:
+            elif cls == MultiChoice:
+                w = QListWidget(self)
+                w.setMinimumSize(100,60)
+                w.setSelectionMode(QAbstractItemView.MultiSelection)
+                c = [unicode(x) for x in q.choices]
+                c.sort()
+                v = [unicode(x) for x in q.v]
+                for ii, s in enumerate(c):
+                    w.addItem(s)
+                    if s in v:
+                        w.item(ii).setSelected(True)
+            elif cls == Bool:
                 w = QCheckBox(self)
                 if q.v:
                     w.setCheckState(Qt.Checked)
                 else:
                     w.setCheckState(Qt.Unchecked)
-            elif q.__class__ == Integer:
+            elif cls == Integer:
                 w = QSpinBox(self)
-                w.setMinimum(q.min)
-                w.setMaximum(q.max)
-                w.setSingleStep(q.step or 0.01)
+                if q.min is not None:
+                    w.setMinimum(q.min)
+                if q.max is not None:
+                    w.setMaximum(q.max)
+                if q.step is not None:
+                    w.setSingleStep(q.step or 0.01)
                 if q.unit: w.setSuffix(' '+q.unit)
                 w.setValue(q.v)
-            elif q.__class__ == Float:
+            elif cls == Float:
                 w = QDoubleSpinBox(self)
-                w.setMinimum(q.min)
-                w.setMaximum(q.max)
+                if q.min is not None:
+                    w.setMinimum(q.min)
+                if q.max is not None:
+                    w.setMaximum(q.max)
                 w.setSingleStep(q.step or 0.01)
                 if q.unit: w.setSuffix(' '+q.unit)
                 w.setValue(q.v)
+            elif cls == DateTime:
+                w = QDateTimeEdit(self)
+                w.setCalendarPopup(True)
+                dt = QDateTime()
+                dt.setTime_t(q.v)
+                w.setDateTime(dt)
+                if q.min is not None:
+                    mindt = QDateTime()
+                    mindt.setTime_t(q.min)
+                    w.setMinimumDate(mindt.date())
+                if q.max is not None:
+                    maxdt = QDateTime()
+                    maxdt.setTime_t(q.max)
+                    w.setMaximumDate(mindt.date())
+            l.setBuddy(w)
+            w.setToolTip(q.descr)
             self.gridLayout.addWidget(w, i, 1, 1, 1)
             self.qwidgets.append(w)
 
-    def accept(self):
+    def applyChanges(self):
         for i in range(len(self.quantities)):
             q = self.quantities[i]
             w = self.qwidgets[i]
-            if q.__class__ == Text:
+            cls = q.__class__
+            if cls == Text:
                 q.set(unicode(w.text()))
-            elif q.__class__ == Choice:
-                # FIXME: handle non-strings
+            elif cls == MLText:
+                q.set(unicode(w.toPlainText()))
+            elif cls == Choice:
                 q.set(unicode(w.currentText()))
-            elif q.__class__ == Bool:
+            elif cls == MultiChoice:
+                q.set([unicode(ii.text()) for ii in w.selectedItems()])
+            elif cls == Bool:
                 q.set(w.checkState() == Qt.Checked)
+            elif cls == DateTime:
+                q.set(w.dateTime().toTime_t())
             else:
                 q.set(w.value()) # Integer, Float
-        QDialog.accept(self)
 
+
+
+class SimpleQuantitiesDialog(QDialog):
+    """Simple dialog to display and change quantities"""
+
+    def __init__(self, parent=None, windowTitle='', scrolling=False):
+        QDialog.__init__(self, parent)
+        self.mainLayout = QVBoxLayout(self)
+        if scrolling:
+            # FIXME: doesn't work for some reason
+            self.scrollArea = QScrollArea(self)
+            self.mainLayout.addWidget(self.scrollArea)
+            self.quantityWidget = QuantityWidget(self.scrollArea)
+            self.scrollArea.setWidget(self.quantityWidget)
+            self.scrollArea.setWidgetResizable(False)
+        else:
+            self.quantityWidget = QuantityWidget(self)
+            self.mainLayout.addWidget(self.quantityWidget)
+        self.buttonBox =  QDialogButtonBox(self)
+        self.buttonBox.setOrientation(Qt.Horizontal)
+        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel | QDialogButtonBox.NoButton | QDialogButtonBox.Ok)
+        self.mainLayout.addWidget(self.buttonBox)
+        QObject.connect(self.buttonBox, SIGNAL('accepted()'), self.accept)
+        QObject.connect(self.buttonBox, SIGNAL('rejected()'), self.reject)
+        self.setWindowTitle(windowTitle)
+
+    def addQuantity(self, *l):
+        """add one or more quantities"""
+        self.addQuantities(l)
+
+    def addQuantities(self, l):
+        """add a list of quantities"""
+        self.quantityWidget.addQuantities(l)
+
+    def accept(self):
+        self.quantityWidget.applyChanges()
+        QDialog.accept(self)
 
 
 

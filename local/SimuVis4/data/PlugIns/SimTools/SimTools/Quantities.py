@@ -12,85 +12,180 @@ class Quantity:
 
     mimetype = "applicaton/x-sv4-quantity"
 
+    def __init__(self):
+        self.editable = True
+        self._v = None
+
     def __repr__(self):
-        return '<%s name="%s" v="%s"/>' % (self.__class__, self.name, self.v)
+        return '<%s name="%s" v="%s"/>' % (self.__class__, self.name, self._v)
+
+    def set(self, v):
+        self._v = v
+
+    def get(self):
+        return self._v
+
+    v = property(get, set)
+
 
 
 class Text(Quantity):
     """string quantity """
 
     def __init__(self, name, v=None, **kwarg):
+        Quantity.__init__(self)
         self.name = name
-        self.v = unicode(v)
+        self._v = unicode(v)
         self.descr = kwarg.get('descr', '')
         self.maxLen = kwarg.get('maxLen', None)
 
     def set(self, v):
         if self.maxLen and len(v) > self.maxLen:
             v = v[:maxLen]
-        self.v = unicode(v)
+        self._v = unicode(v)
+
+    v = property(Quantity.get, set)
+
+
+
+class MLText(Text):
+    """multiline string quantity """
+
+    pass
+
 
 
 class Choice(Quantity):
     """quantity which value can be one out of a list"""
     def __init__(self, name, v=None, choices=None, **kwarg):
+        Quantity.__init__(self)
         self.name = name
-        self.v = v
+        self._v = v
         self.descr = kwarg.get('descr', '')
         self.choices = Set(choices)
 
     def set(self, v):
         if v in self.choices:
-            self.v = v
+            self._v = v
+
+    v = property(Quantity.get, set)
+
+
+
+class MultiChoice(Quantity):
+    """quantity which value can be one or more out of a list"""
+    def __init__(self, name, v=None, choices=None, **kwarg):
+        Quantity.__init__(self)
+        self.name = name
+        self._v = Set(v)
+        self.descr = kwarg.get('descr', '')
+        self.choices = Set(choices)
+
+    def set(self, v):
+        v = Set(v)
+        if v.issubset(self.choices):
+            self._v = v
+
+    v = property(Quantity.get, set)
+
 
 
 class Bool(Quantity):
     """boolean quantity"""
 
     def __init__(self, name, v=None, **kwarg):
+        Quantity.__init__(self)
         self.name = name
-        self.v = bool(v)
+        self._v = bool(v)
         self.descr = kwarg.get('descr', '')
 
     def set(self, v):
-        self.v = bool(v)
+        self._v = bool(v)
+
+    v = property(Quantity.get, set)
 
 
-class ScalarNumberQuantity(Quantity):
-    """quantity with a numeric value, unit and others"""
+
+class Integer(Quantity):
+    """integer quantity"""
 
     def __init__(self, name, v=None, **kwarg):
+        Quantity.__init__(self)
         self.name = name
-        self.v = v
+        self._v = int(v)
         self.descr = kwarg.get('descr', '')
-        self.min = kwarg.get('min', -1e+6)
-        self.max = kwarg.get('max', 1e+6)
-        self.step = kwarg.get('step', 1e-2)
+        self.min = kwarg.get('min', None)
+        self.max = kwarg.get('max', None)
+        self.step = kwarg.get('step', None)
         self.unit = kwarg.get('unit', None)
 
     def __float__(self):
-        return float(self.v)
+        return float(self._v)
 
     def __int__(self):
-        return int(self.v)
+        return int(self._v)
 
     def set(self, v):
-        self.v = v
+        self._v = int(v)
 
     def add(self, v):
-        self.set(self.v + v)
+        self.set(self._v + v)
+
+    v = property(Quantity.get, set)
 
 
-class Integer(ScalarNumberQuantity):
-    """integer quantity"""
 
-    def set(self, v):
-        self.v = int(v)
-
-
-class Float(ScalarNumberQuantity):
+class Float(Quantity):
     """float quantity"""
 
-    def set(self, v):
-        self.v = float(v)
+    def __init__(self, name, v=None, **kwarg):
+        Quantity.__init__(self)
+        self.name = name
+        self._v = float(v)
+        self.descr = kwarg.get('descr', '')
+        self.min = kwarg.get('min', None)
+        self.max = kwarg.get('max', None)
+        self.step = kwarg.get('step', None)
+        self.unit = kwarg.get('unit', None)
 
+    def __float__(self):
+        return float(self._v)
+
+    def __int__(self):
+        return int(self._v)
+
+    def set(self, v):
+        self._v = float(v)
+
+    def add(self, v):
+        self.set(self._v + v)
+
+    v = property(Quantity.get, set)
+
+
+
+class DateTime(Quantity):
+    """integer quantity"""
+
+    def __init__(self, name, v=None, **kwarg):
+        Quantity.__init__(self)
+        self.name = name
+        self._v = int(v)
+        self.descr = kwarg.get('descr', 'date and time')
+        self.min = kwarg.get('min', None)
+        self.max = kwarg.get('max', None)
+        self.unit = kwarg.get('unit', 's')
+
+    def __float__(self):
+        return float(self._v)
+
+    def __int__(self):
+        return int(self._v)
+
+    def set(self, v):
+        self._v = int(v)
+
+    def add(self, v):
+        self.set(self._v + v)
+
+    v = property(Quantity.get, set)
