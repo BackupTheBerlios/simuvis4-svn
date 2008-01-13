@@ -47,6 +47,7 @@ In a configfile_ you may use the following items:
 ::
 
     [matplot]
+    
     # bool: show a warning when the backend is not installed for pylab
     show_config_warning = yes
 
