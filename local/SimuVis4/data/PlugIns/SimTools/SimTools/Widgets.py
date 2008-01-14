@@ -8,8 +8,8 @@ from time import time
 from SimuVis4.SubWin import SubWindow
 from PyQt4.QtGui import QApplication, QDialog, QDialogButtonBox, QVBoxLayout, QGridLayout, QLabel, QLineEdit,\
     QComboBox, QSpinBox, QDoubleSpinBox, QWidget, QCheckBox, QScrollArea, QFrame, QTextEdit,\
-    QListWidget, QAbstractItemView, QDateTimeEdit
-from PyQt4.QtCore import QCoreApplication, QTimer, SIGNAL, Qt, QObject, QDateTime
+    QListWidget, QAbstractItemView, QDateTimeEdit, QHBoxLayout, QSizePolicy
+from PyQt4.QtCore import QCoreApplication, QTimer, SIGNAL, Qt, QObject, QDateTime, QSize, QRect
 
 from UI.TimeSignalWidget import Ui_TimeSignalWidget
 from UI.ProcessDlg import Ui_ProcessDlg
@@ -87,6 +87,7 @@ class TimeSignalWidget(QWidget, Ui_TimeSignalWidget):
             f(val)
 
 
+
 class TimeSignalWindow(SubWindow):
 
     def __init__(self, parent):
@@ -101,18 +102,19 @@ class QuantityWidget(QWidget):
 
     def __init__(self, parent=None):
         QWidget.__init__(self, parent)
-        self.setMinimumSize(300, 100)
+        self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
         self.gridLayout = QGridLayout(self)
         self.quantities = []
         self.qwidgets   = []
 
     def addQuantities(self, l):
-        """add a list of quantities"""
+        """set the list of quantities"""
         for q in l:
             i = len(self.quantities)
             self.quantities.append(q)
             l = QLabel(self)
             l.setText(q.name)
+            l.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
             l.setToolTip(q.descr)
             self.gridLayout.addWidget(l, i, 0, 1, 1)
             cls = q.__class__
@@ -124,7 +126,6 @@ class QuantityWidget(QWidget):
             if cls == MLText:
                 w = QTextEdit(self)
                 w.setAcceptRichText(False)
-                w.setMinimumSize(100,60)
                 w.setText(q.v)
             elif cls == Choice:
                 w = QComboBox(self)
@@ -136,7 +137,6 @@ class QuantityWidget(QWidget):
                     w.setCurrentIndex(idx)
             elif cls == MultiChoice:
                 w = QListWidget(self)
-                w.setMinimumSize(100,60)
                 w.setSelectionMode(QAbstractItemView.MultiSelection)
                 c = [unicode(x) for x in q.choices]
                 c.sort()
@@ -186,8 +186,11 @@ class QuantityWidget(QWidget):
                     w.setMaximumDate(mindt.date())
             l.setBuddy(w)
             w.setToolTip(q.descr)
+            w.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
             self.gridLayout.addWidget(w, i, 1, 1, 1)
             self.qwidgets.append(w)
+        self.adjustSize()
+
 
     def applyChanges(self):
         for i in range(len(self.quantities)):
@@ -208,17 +211,20 @@ class QuantityWidget(QWidget):
                 q.set(w.dateTime().toTime_t())
             else:
                 q.set(w.value()) # Integer, Float
-
+        return self.quantities
 
 
 class SimpleQuantitiesDialog(QDialog):
     """Simple dialog to display and change quantities"""
 
-    def __init__(self, parent=None, windowTitle='', scrolling=False):
+    def __init__(self, parent=None, windowTitle='', scrolling=True, text=''):
         QDialog.__init__(self, parent)
         self.mainLayout = QVBoxLayout(self)
+        if text:
+            self.textLabel = QLabel(self)
+            self.textLabel.setText(text)
+            self.mainLayout.addWidget(self.textLabel)
         if scrolling:
-            # FIXME: doesn't work for some reason
             self.scrollArea = QScrollArea(self)
             self.mainLayout.addWidget(self.scrollArea)
             self.quantityWidget = QuantityWidget(self.scrollArea)
@@ -235,16 +241,13 @@ class SimpleQuantitiesDialog(QDialog):
         QObject.connect(self.buttonBox, SIGNAL('rejected()'), self.reject)
         self.setWindowTitle(windowTitle)
 
-    def addQuantity(self, *l):
-        """add one or more quantities"""
-        self.addQuantities(l)
-
     def addQuantities(self, l):
-        """add a list of quantities"""
+        """set the list of quantities"""
         self.quantityWidget.addQuantities(l)
 
     def accept(self):
-        self.quantityWidget.applyChanges()
+        """after dialog closes, quantity list is available as self.result"""
+        self.result = self.quantityWidget.applyChanges()
         QDialog.accept(self)
 
 

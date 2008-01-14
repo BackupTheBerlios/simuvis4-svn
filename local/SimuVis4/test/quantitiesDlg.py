@@ -16,8 +16,9 @@ q6 = Q.MLText('mltext', 'default text\non two\nlines', descr='some multiline tex
 q7 = Q.MultiChoice('mchoice', (tmp[3], tmp[7]), descr='choose one or more', choices=tmp)
 q8 = Q.DateTime('datetime', int(time.time()), descr='date and time')
 
-dlg = SimTools.Widgets.SimpleQuantitiesDialog(mainWin, windowTitle='Test')
-dlg.addQuantity(q1, q2, q3, q4, q5, q6, q7, q8)
+txt = "Test of Quantities from SimTools"
+dlg = SimTools.Widgets.SimpleQuantitiesDialog(mainWin, windowTitle='Test', text=txt, scrolling=True)
+dlg.addQuantities((q1, q2, q3, q4, q5, q6, q7, q8))
 dlg.exec_()
 
 print q1, q2, q3, q4, q5, q6, q7, q8
