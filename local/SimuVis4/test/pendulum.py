@@ -77,7 +77,8 @@ class GPendulum(Graphics.Items.ItemGroupBase):
         p = m.addAction("Properties")
         a = m.exec_(e.screenPos())
         if a == p:
-            dlg = SimTools.Widgets.SimpleQuantitiesDialog(mainWin, 'Pendulum properties')
+            dlg = SimTools.Widgets.SimpleQuantitiesDialog(mainWin, 'Pendulum properties',
+                text='Change physical properties', scrolling=False)
             dlg.addQuantities(self.quantities)
             dlg.exec_()
 

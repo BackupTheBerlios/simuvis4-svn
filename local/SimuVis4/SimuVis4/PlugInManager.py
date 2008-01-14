@@ -72,6 +72,7 @@ class PlugInManager:
                 p = PlugInProxy.PlugInFolderProxy(path)
             else:
                 logger.warning(unicode(QCoreApplication.translate('PlugInManager', 'PlugInManager: this is not a plugin: "%s"')), path)
+                return
         except:
             logger.exception(unicode(QCoreApplication.translate('PlugInManager', 'PlugInManager: broken plugin in "%s"')), path)
             return
