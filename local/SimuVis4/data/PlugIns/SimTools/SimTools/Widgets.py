@@ -8,7 +8,7 @@ from time import time
 from SimuVis4.SubWin import SubWindow
 from PyQt4.QtGui import QApplication, QDialog, QDialogButtonBox, QVBoxLayout, QGridLayout, QLabel, QLineEdit,\
     QComboBox, QSpinBox, QDoubleSpinBox, QWidget, QCheckBox, QScrollArea, QFrame, QTextEdit,\
-    QListWidget, QAbstractItemView, QDateTimeEdit, QHBoxLayout, QSizePolicy, QPushButton
+    QListWidget, QAbstractItemView, QDateTimeEdit, QHBoxLayout, QSizePolicy, QToolButton
 from PyQt4.QtCore import QCoreApplication, QTimer, SIGNAL, Qt, QObject, QDateTime, QSize, QRect
 
 from UI.TimeSignalWidget import Ui_TimeSignalWidget
@@ -16,6 +16,18 @@ from UI.ProcessDlg import Ui_ProcessDlg
 
 from Quantities import Text, MLText, Choice, MultiChoice, Float, Integer, Bool, DateTime
 from Process import Process
+
+
+quantityClasses = {
+    unicode(QCoreApplication.translate('QuantitiesDialog', 'Simple Text')): Text,
+    unicode(QCoreApplication.translate('QuantitiesDialog', 'Multiline Text')): MLText,
+    unicode(QCoreApplication.translate('QuantitiesDialog', 'Single Choice')): Choice,
+    unicode(QCoreApplication.translate('QuantitiesDialog', 'Multiple Choice')): MultiChoice,
+    unicode(QCoreApplication.translate('QuantitiesDialog', 'Boolean')): Bool,
+    unicode(QCoreApplication.translate('QuantitiesDialog', 'Integer')): Integer,
+    unicode(QCoreApplication.translate('QuantitiesDialog', 'Float')): Float,
+    unicode(QCoreApplication.translate('QuantitiesDialog', 'Date+Time')): DateTime
+}
 
 
 class TimeSignalWidget(QWidget, Ui_TimeSignalWidget):
@@ -122,12 +134,14 @@ class QuantityWidget(QWidget):
             cls = q.__class__
             if cls == Text:
                 w = QLineEdit(self)
+                w.setMinimumSize(300, 30)
                 if q.maxLen: w.setMaxLength(q.maxLen)
                 print q.v
                 w.setText(q.v)
-            if cls == MLText:
+            elif cls == MLText:
                 w = QTextEdit(self)
                 w.setAcceptRichText(False)
+                w.setMinimumSize(300, 60)
                 w.setText(q.v)
             elif cls == Choice:
                 w = QComboBox(self)
@@ -140,6 +154,7 @@ class QuantityWidget(QWidget):
             elif cls == MultiChoice:
                 w = QListWidget(self)
                 w.setSelectionMode(QAbstractItemView.MultiSelection)
+                w.setMinimumSize(100, 60)
                 c = [unicode(x) for x in q.choices]
                 c.sort()
                 v = [unicode(x) for x in q.v]
@@ -188,7 +203,8 @@ class QuantityWidget(QWidget):
                     w.setMaximumDate(mindt.date())
             l.setBuddy(w)
             w.setToolTip(q.descr)
-            w.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
+            w.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
+            w.adjustSize()
             self.gridLayout.addWidget(w, i, 1, 1, 1)
             self.qwidgets.append(w)
         self.adjustSize()
@@ -196,7 +212,7 @@ class QuantityWidget(QWidget):
 
     def delQuantities(self, *names):
         """delete Quantities by name, widgets get disabled but not deleted"""
-        qq = [q for q in self.quantities if q.name in names]
+        qq = [q for q in self.quantities if q and q.name in names]
         for q in qq:
             i = self.quantities.index(q)
             self.quantities[i] = None
@@ -225,6 +241,7 @@ class QuantityWidget(QWidget):
                 else:
                     q.set(w.value()) # Integer, Float
         return [q for q in self.quantities if q is not None]
+
 
 
 class SimpleQuantitiesDialog(QDialog):
@@ -272,27 +289,58 @@ class ComplexQuantitiesDialog(SimpleQuantitiesDialog):
         SimpleQuantitiesDialog.__init__(self, parent, windowTitle, scrolling, text)
         self.editButtonLayout = QHBoxLayout()
         self.mainLayout.insertLayout(2, self.editButtonLayout)
-        self.addButton = QPushButton(self)
-        self.addButton.setText('Add')
+        self.addButton = QToolButton(self)
+        self.addButton.setText(QCoreApplication.translate('QuantitiesDialog', 'Add'))
         self.editButtonLayout.addWidget(self.addButton)
-        self.delButton = QPushButton(self)
-        self.delButton.setText('Delete')
+        self.delButton = QToolButton(self)
+        self.delButton.setText(QCoreApplication.translate('QuantitiesDialog', 'Delete'))
         self.editButtonLayout.addWidget(self.delButton)
         self.editButtonLayout.addStretch(100)
-        self.connect(self.addButton, SIGNAL('pressed()'), self.newQuantities)
+        self.connect(self.addButton, SIGNAL('pressed()'), self.newQuantity)
         self.connect(self.delButton, SIGNAL('pressed()'), self.delQuantities)
 
-    def newQuantities(self):
-        pass
+
+    def newQuantity(self):
+        N = Text('Name', 'new_item', maxLen=100)
+        D = Text('Description', '-empty-', maxLen=300)
+        clsNames = quantityClasses.keys()
+        T = Choice('Type', clsNames[0], choices=clsNames,
+            descr=QCoreApplication.translate('QuantitiesDialog', 'Select type'))
+        txt = QCoreApplication.translate('QuantitiesDialog', 'Select name, description and type')
+        dlg = SimpleQuantitiesDialog(self, windowTitle=QCoreApplication.translate('QuantitiesDialog',
+            'New Item'), text=txt, scrolling=False)
+        dlg.addQuantities((N, D, T))
+        if not dlg.exec_():
+            return
+        name = dlg.result[0].v
+        while name in [q.name for q in self.quantityWidget.quantities if q]:
+            name = name + 'X'
+        descr = dlg.result[1].v
+        cls = quantityClasses[dlg.result[2].v]
+        if cls in [Choice, MultiChoice]:
+            C = MLText('choices', '')
+            txt = QCoreApplication.translate('QuantitiesDialog', 'Enter choices (one per line)')
+            dlg = SimpleQuantitiesDialog(self, windowTitle=QCoreApplication.translate('QuantitiesDialog',
+                'Choices'), text=txt, scrolling=False)
+            dlg.addQuantities((C,))
+            if dlg.exec_():
+                choices = [c for c in dlg.result[0].v.split('\n') if c]
+                self.quantityWidget.addQuantities((cls(name, descr=descr, choices=choices), ))
+        else:
+            self.quantityWidget.addQuantities((cls(name, descr=descr), ))
+
 
     def delQuantities(self):
         qnames = [q.name for q in self.quantityWidget.quantities if q is not None]
-        Q = MultiChoice('', [], choices=qnames, descr='Quantities to delete')
-        dlg = SimpleQuantitiesDialog(self, windowTitle='Delete following items')
+        Q = MultiChoice('Items', [], choices=qnames, descr=QCoreApplication.translate('QuantitiesDialog',
+            'Quantities to delete'))
+        txt = QCoreApplication.translate('QuantitiesDialog', 'Select items to delete')
+        dlg = SimpleQuantitiesDialog(self, windowTitle=QCoreApplication.translate('QuantitiesDialog',
+            'Delete items'), text=txt, scrolling=False)
         dlg.addQuantities((Q,))
-        dlg.exec_()
-        delNames = dlg.result[0].v
-        self.quantityWidget.delQuantities(*delNames)
+        if dlg.exec_():
+            delNames = dlg.result[0].v
+            self.quantityWidget.delQuantities(*delNames)
 
 
 

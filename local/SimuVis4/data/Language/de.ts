@@ -921,6 +921,99 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
     </message>
 </context>
 <context>
+    <name>QuantitiesDialog</name>
+    <message>
+        <location filename="Widgets.py" line="293"/>
+        <source>Add</source>
+        <translation>Neu</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="296"/>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="308"/>
+        <source>Select type</source>
+        <translation>Typ wählen</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="310"/>
+        <source>Select name, description and type</source>
+        <translation>Wähle Name, Beschreibung und Typ</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="311"/>
+        <source>New Item</source>
+        <translation>Neuer Eintrag</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="323"/>
+        <source>Enter choices (one per line)</source>
+        <translation>Auswahlmöglichkeiten eingeben (zeilenweise)</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="324"/>
+        <source>Choices</source>
+        <translation>Auswahl</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="336"/>
+        <source>Quantities to delete</source>
+        <translation>Zu löschende Einträge</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="338"/>
+        <source>Select items to delete</source>
+        <translation>Wähle Einträge zum Löschen aus</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="339"/>
+        <source>Delete items</source>
+        <translation>Einträge löschen</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="22"/>
+        <source>Simple Text</source>
+        <translation>Einfacher Text</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="23"/>
+        <source>Multiline Text</source>
+        <translation>Mehrzeiliger Text</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="24"/>
+        <source>Single Choice</source>
+        <translation>Einfache Auswahl</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="25"/>
+        <source>Multiple Choice</source>
+        <translation>Mehrfachauswahl</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="26"/>
+        <source>Boolean</source>
+        <translation>Wahrheitswert</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="27"/>
+        <source>Integer</source>
+        <translation>Ganzzahl</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="28"/>
+        <source>Float</source>
+        <translation>Fließkommazahl</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="29"/>
+        <source>Date+Time</source>
+        <translation>Datum+Uhrzeit</translation>
+    </message>
+</context>
+<context>
     <name>RemoteControl</name>
     <message>
         <location filename="Receiver.py" line="65"/>
@@ -974,12 +1067,12 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
 <context>
     <name>SimTools</name>
     <message>
-        <location filename="Widgets.py" line="93"/>
+        <location filename="Widgets.py" line="107"/>
         <source>Time signal Generator</source>
         <translation>Zeitsignal-Generator</translation>
     </message>
     <message>
-        <location filename="Widgets.py" line="192"/>
+        <location filename="Widgets.py" line="360"/>
         <source>Process</source>
         <translation>Prozess</translation>
     </message>
@@ -1030,62 +1123,62 @@ other contributors to free software projects.&lt;p&gt;
 <context>
     <name>SubWindow</name>
     <message>
-        <location filename="SubWin.py" line="33"/>
+        <location filename="SubWin.py" line="31"/>
         <source>Unnamed Subwindow</source>
         <translation>Unbenanntes Unterfenster</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="45"/>
+        <location filename="SubWin.py" line="43"/>
         <source>Save Screenshot?</source>
         <translation>Ein Bildschirmfoto speichern?</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="49"/>
+        <location filename="SubWin.py" line="47"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="64"/>
+        <location filename="SubWin.py" line="62"/>
         <source>PNG - compressed image</source>
         <translation>PNG - komprimiertes Bild</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="65"/>
+        <location filename="SubWin.py" line="63"/>
         <source>JPEG - picture</source>
         <translation>JPEG - Bild</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="66"/>
+        <location filename="SubWin.py" line="64"/>
         <source>BMP - uncompressed bitmap</source>
         <translation>BMP - unkomprimierte Bitmap</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="69"/>
+        <location filename="SubWin.py" line="67"/>
         <source>Select name of file to save</source>
         <translation>Dateinamen und Format wählen</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="87"/>
+        <location filename="SubWin.py" line="85"/>
         <source>Could not save file!</source>
         <translation>Speichern fehlgeschlagen!</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="88"/>
+        <location filename="SubWin.py" line="86"/>
         <source>Writing failed! Make sure you have write permissions!</source>
         <translation>Schreiben der Datei fehlgeschlagen! Stelle sicher, dass die Schreibrechte ausreichen!</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="47"/>
+        <location filename="SubWin.py" line="45"/>
         <source>Widget</source>
         <translation>Widget</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="48"/>
+        <location filename="SubWin.py" line="46"/>
         <source>Window</source>
         <translation>Fenster</translation>
     </message>
     <message>
-        <location filename="SubWin.py" line="22"/>
+        <location filename="SubWin.py" line="23"/>
         <source>&lt;p&gt;This window can&apos;t be printed, but you
 may save a screenshot instead.&lt;/p&gt;
 
@@ -1334,7 +1427,7 @@ not covered by another dialog or window!&lt;/p&gt;
         <translation>--</translation>
     </message>
     <message>
-        <location filename="Widgets.py" line="68"/>
+        <location filename="Widgets.py" line="81"/>
         <source>Stop!</source>
         <translation>Stop!</translation>
     </message>

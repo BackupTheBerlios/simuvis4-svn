@@ -74,7 +74,7 @@ class Choice(Quantity):
 
 class MultiChoice(Quantity):
     """quantity which value can be one or more out of a list"""
-    def __init__(self, name, v=None, choices=None, **kwarg):
+    def __init__(self, name, v=(), choices=None, **kwarg):
         Quantity.__init__(self)
         self.name = name
         self._v = Set(v)
@@ -93,7 +93,7 @@ class MultiChoice(Quantity):
 class Bool(Quantity):
     """boolean quantity"""
 
-    def __init__(self, name, v=None, **kwarg):
+    def __init__(self, name, v=True, **kwarg):
         Quantity.__init__(self)
         self.name = name
         self._v = bool(v)
@@ -109,7 +109,7 @@ class Bool(Quantity):
 class Integer(Quantity):
     """integer quantity"""
 
-    def __init__(self, name, v=None, **kwarg):
+    def __init__(self, name, v=0, **kwarg):
         Quantity.__init__(self)
         self.name = name
         self._v = int(v)
@@ -138,7 +138,7 @@ class Integer(Quantity):
 class Float(Quantity):
     """float quantity"""
 
-    def __init__(self, name, v=None, **kwarg):
+    def __init__(self, name, v=0.0, **kwarg):
         Quantity.__init__(self)
         self.name = name
         self._v = float(v)
@@ -167,7 +167,7 @@ class Float(Quantity):
 class DateTime(Quantity):
     """integer quantity"""
 
-    def __init__(self, name, v=None, **kwarg):
+    def __init__(self, name, v=0, **kwarg):
         Quantity.__init__(self)
         self.name = name
         self._v = int(v)
@@ -189,3 +189,4 @@ class DateTime(Quantity):
         self.set(self._v + v)
 
     v = property(Quantity.get, set)
+
