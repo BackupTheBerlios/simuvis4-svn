@@ -8,7 +8,7 @@ from time import time
 from SimuVis4.SubWin import SubWindow
 from PyQt4.QtGui import QApplication, QDialog, QDialogButtonBox, QVBoxLayout, QGridLayout, QLabel, QLineEdit,\
     QComboBox, QSpinBox, QDoubleSpinBox, QWidget, QCheckBox, QScrollArea, QFrame, QTextEdit,\
-    QListWidget, QAbstractItemView, QDateTimeEdit, QHBoxLayout, QSizePolicy
+    QListWidget, QAbstractItemView, QDateTimeEdit, QHBoxLayout, QSizePolicy, QPushButton
 from PyQt4.QtCore import QCoreApplication, QTimer, SIGNAL, Qt, QObject, QDateTime, QSize, QRect
 
 from UI.TimeSignalWidget import Ui_TimeSignalWidget
@@ -106,6 +106,7 @@ class QuantityWidget(QWidget):
         self.gridLayout = QGridLayout(self)
         self.quantities = []
         self.qwidgets   = []
+        self.qlabels = []
 
     def addQuantities(self, l):
         """set the list of quantities"""
@@ -113,6 +114,7 @@ class QuantityWidget(QWidget):
             i = len(self.quantities)
             self.quantities.append(q)
             l = QLabel(self)
+            self.qlabels.append(l)
             l.setText(q.name)
             l.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
             l.setToolTip(q.descr)
@@ -192,26 +194,37 @@ class QuantityWidget(QWidget):
         self.adjustSize()
 
 
+    def delQuantities(self, *names):
+        """delete Quantities by name, widgets get disabled but not deleted"""
+        qq = [q for q in self.quantities if q.name in names]
+        for q in qq:
+            i = self.quantities.index(q)
+            self.quantities[i] = None
+            self.qwidgets[i].setEnabled(False)
+            self.qlabels[i].setEnabled(False)
+
+
     def applyChanges(self):
         for i in range(len(self.quantities)):
             q = self.quantities[i]
-            w = self.qwidgets[i]
-            cls = q.__class__
-            if cls == Text:
-                q.set(unicode(w.text()))
-            elif cls == MLText:
-                q.set(unicode(w.toPlainText()))
-            elif cls == Choice:
-                q.set(unicode(w.currentText()))
-            elif cls == MultiChoice:
-                q.set([unicode(ii.text()) for ii in w.selectedItems()])
-            elif cls == Bool:
-                q.set(w.checkState() == Qt.Checked)
-            elif cls == DateTime:
-                q.set(w.dateTime().toTime_t())
-            else:
-                q.set(w.value()) # Integer, Float
-        return self.quantities
+            if q is not None:
+                w = self.qwidgets[i]
+                cls = q.__class__
+                if cls == Text:
+                    q.set(unicode(w.text()))
+                elif cls == MLText:
+                    q.set(unicode(w.toPlainText()))
+                elif cls == Choice:
+                    q.set(unicode(w.currentText()))
+                elif cls == MultiChoice:
+                    q.set([unicode(ii.text()) for ii in w.selectedItems()])
+                elif cls == Bool:
+                    q.set(w.checkState() == Qt.Checked)
+                elif cls == DateTime:
+                    q.set(w.dateTime().toTime_t())
+                else:
+                    q.set(w.value()) # Integer, Float
+        return [q for q in self.quantities if q is not None]
 
 
 class SimpleQuantitiesDialog(QDialog):
@@ -220,10 +233,9 @@ class SimpleQuantitiesDialog(QDialog):
     def __init__(self, parent=None, windowTitle='', scrolling=True, text=''):
         QDialog.__init__(self, parent)
         self.mainLayout = QVBoxLayout(self)
-        if text:
-            self.textLabel = QLabel(self)
-            self.textLabel.setText(text)
-            self.mainLayout.addWidget(self.textLabel)
+        self.textLabel = QLabel(self)
+        self.textLabel.setText(text)
+        self.mainLayout.addWidget(self.textLabel)
         if scrolling:
             self.scrollArea = QScrollArea(self)
             self.mainLayout.addWidget(self.scrollArea)
@@ -240,6 +252,7 @@ class SimpleQuantitiesDialog(QDialog):
         QObject.connect(self.buttonBox, SIGNAL('accepted()'), self.accept)
         QObject.connect(self.buttonBox, SIGNAL('rejected()'), self.reject)
         self.setWindowTitle(windowTitle)
+        self.result = None
 
     def addQuantities(self, l):
         """set the list of quantities"""
@@ -249,6 +262,37 @@ class SimpleQuantitiesDialog(QDialog):
         """after dialog closes, quantity list is available as self.result"""
         self.result = self.quantityWidget.applyChanges()
         QDialog.accept(self)
+
+
+
+class ComplexQuantitiesDialog(SimpleQuantitiesDialog):
+    """complex dialog to display, change, add or delete quantities"""
+
+    def __init__(self, parent=None, windowTitle='', scrolling=True, text=''):
+        SimpleQuantitiesDialog.__init__(self, parent, windowTitle, scrolling, text)
+        self.editButtonLayout = QHBoxLayout()
+        self.mainLayout.insertLayout(2, self.editButtonLayout)
+        self.addButton = QPushButton(self)
+        self.addButton.setText('Add')
+        self.editButtonLayout.addWidget(self.addButton)
+        self.delButton = QPushButton(self)
+        self.delButton.setText('Delete')
+        self.editButtonLayout.addWidget(self.delButton)
+        self.editButtonLayout.addStretch(100)
+        self.connect(self.addButton, SIGNAL('pressed()'), self.newQuantities)
+        self.connect(self.delButton, SIGNAL('pressed()'), self.delQuantities)
+
+    def newQuantities(self):
+        pass
+
+    def delQuantities(self):
+        qnames = [q.name for q in self.quantityWidget.quantities if q is not None]
+        Q = MultiChoice('', [], choices=qnames, descr='Quantities to delete')
+        dlg = SimpleQuantitiesDialog(self, windowTitle='Delete following items')
+        dlg.addQuantities((Q,))
+        dlg.exec_()
+        delNames = dlg.result[0].v
+        self.quantityWidget.delQuantities(*delNames)
 
 
 

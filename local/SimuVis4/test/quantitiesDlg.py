@@ -1,5 +1,5 @@
 import time
-SimTools = mainWin.plugInManager.getPlugIn('SimTools')
+SimTools = plugInManager.getPlugIn('SimTools')
 if not SimTools:
     from SimuVis4.Errors import PlugInMissingError
     raise PlugInMissingError("Could not find PlugIn SimTools!")
