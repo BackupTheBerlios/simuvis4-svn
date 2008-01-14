@@ -200,7 +200,7 @@ class QuantityWidget(QWidget):
                 if q.max is not None:
                     maxdt = QDateTime()
                     maxdt.setTime_t(q.max)
-                    w.setMaximumDate(mindt.date())
+                    w.setMaximumDate(maxdt.date())
             l.setBuddy(w)
             w.setToolTip(q.descr)
             w.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
@@ -317,7 +317,7 @@ class ComplexQuantitiesDialog(SimpleQuantitiesDialog):
             name = name + 'X'
         descr = dlg.result[1].v
         cls = quantityClasses[dlg.result[2].v]
-        if cls in [Choice, MultiChoice]:
+        if cls in (Choice, MultiChoice):
             C = MLText('choices', '')
             txt = QCoreApplication.translate('QuantitiesDialog', 'Enter choices (one per line)')
             dlg = SimpleQuantitiesDialog(self, windowTitle=QCoreApplication.translate('QuantitiesDialog',
@@ -326,6 +326,50 @@ class ComplexQuantitiesDialog(SimpleQuantitiesDialog):
             if dlg.exec_():
                 choices = [c for c in dlg.result[0].v.split('\n') if c]
                 self.quantityWidget.addQuantities((cls(name, descr=descr, choices=choices), ))
+        elif cls == Float:
+            # FIXME: adjust fMin, fMax
+            fMin = -1e+10
+            fMax =  1e+10
+            MIN = Float('min', fMin, min=fMin, max=fMax)
+            MAX = Float('max', fMax, min=fMin, max=fMax)
+            STEP = Float('step', 1, min=0, max=fMax)
+            txt = QCoreApplication.translate('QuantitiesDialog', 'Enter properties')
+            dlg = SimpleQuantitiesDialog(self, windowTitle=QCoreApplication.translate('QuantitiesDialog',
+                'Properties'), text=txt, scrolling=False)
+            dlg.addQuantities((MIN, MAX, STEP))
+            if dlg.exec_():
+                self.quantityWidget.addQuantities((Float(name, descr=descr, min=MIN.v, max=MAX.v, step=STEP.v), ))
+        elif cls == Integer:
+            # FIXME: adjust iMin, iMax
+            iMin = -1e+5
+            iMax =  1e+5
+            MIN = Integer('min', iMin, min=iMin, max=iMax)
+            MAX = Integer('max', iMax, min=iMin, max=iMax)
+            STEP = Integer('step', 1, min=0, max=iMax)
+            txt = QCoreApplication.translate('QuantitiesDialog', 'Enter properties')
+            dlg = SimpleQuantitiesDialog(self, windowTitle=QCoreApplication.translate('QuantitiesDialog',
+                'Properties'), text=txt, scrolling=False)
+            dlg.addQuantities((MIN, MAX, STEP))
+            if dlg.exec_():
+                self.quantityWidget.addQuantities((Integer(name, descr=descr, min=MIN.v, max=MAX.v, step=STEP.v), ))
+        elif cls == DateTime:
+            tMax = 2147483647
+            MIN = DateTime('min', 0, min=0, max=tMax)
+            MAX = DateTime('max', tMax, min=0, max=tMax)
+            txt = QCoreApplication.translate('QuantitiesDialog', 'Enter properties')
+            dlg = SimpleQuantitiesDialog(self, windowTitle=QCoreApplication.translate('QuantitiesDialog',
+                'Properties'), text=txt, scrolling=False)
+            dlg.addQuantities((MIN, MAX))
+            if dlg.exec_():
+                self.quantityWidget.addQuantities((DateTime(name, descr=descr, min=MIN.v, max=MAX.v), ))
+        elif cls in (Text, MLText):
+            ML = Integer('maxLen', 1000, min=0, max=1e+5, step=1)
+            txt = QCoreApplication.translate('QuantitiesDialog', 'Enter properties')
+            dlg = SimpleQuantitiesDialog(self, windowTitle=QCoreApplication.translate('QuantitiesDialog',
+                'Properties'), text=txt, scrolling=False)
+            dlg.addQuantities((ML,))
+            if dlg.exec_():
+                self.quantityWidget.addQuantities((cls(name, descr=descr, maxLen=ML.v), ))
         else:
             self.quantityWidget.addQuantities((cls(name, descr=descr), ))
 

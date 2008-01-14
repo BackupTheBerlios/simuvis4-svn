@@ -32,7 +32,7 @@ class Quantity:
 class Text(Quantity):
     """string quantity """
 
-    def __init__(self, name, v=None, **kwarg):
+    def __init__(self, name, v='', **kwarg):
         Quantity.__init__(self)
         self.name = name
         self._v = unicode(v)
@@ -114,9 +114,15 @@ class Integer(Quantity):
         self.name = name
         self._v = int(v)
         self.descr = kwarg.get('descr', '')
-        self.min = kwarg.get('min', None)
-        self.max = kwarg.get('max', None)
-        self.step = kwarg.get('step', None)
+        self.min = None
+        self.max = None
+        self.step = None
+        if 'min' in kwarg:
+            self.min = int(kwarg['min'])
+        if 'max' in kwarg:
+            self.max = int(kwarg['max'])
+        if 'step' in kwarg:
+            self.step = int(kwarg['step'])
         self.unit = kwarg.get('unit', None)
 
     def __float__(self):
@@ -143,9 +149,15 @@ class Float(Quantity):
         self.name = name
         self._v = float(v)
         self.descr = kwarg.get('descr', '')
-        self.min = kwarg.get('min', None)
-        self.max = kwarg.get('max', None)
-        self.step = kwarg.get('step', None)
+        self.min = None
+        self.max = None
+        self.step = None
+        if 'min' in kwarg:
+            self.min = float(kwarg['min'])
+        if 'max' in kwarg:
+            self.max = float(kwarg['max'])
+        if 'step' in kwarg:
+            self.step = float(kwarg['step'])
         self.unit = kwarg.get('unit', None)
 
     def __float__(self):
@@ -172,8 +184,12 @@ class DateTime(Quantity):
         self.name = name
         self._v = int(v)
         self.descr = kwarg.get('descr', 'date and time')
-        self.min = kwarg.get('min', None)
-        self.max = kwarg.get('max', None)
+        self.min = None
+        self.max = None
+        if 'min' in kwarg:
+            self.min = int(kwarg['min'])
+        if 'max' in kwarg:
+            self.max = int(kwarg['max'])
         self.unit = kwarg.get('unit', 's')
 
     def __float__(self):
