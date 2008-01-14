@@ -250,29 +250,29 @@ Double click on the chart item to show!
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="235"/>
+        <location filename="DSBrowser.py" line="234"/>
         <source>Edit metadata</source>
         <translation>Editiere Metadaten</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="236"/>
-        <source>Add metadata</source>
-        <translation>Metadaten hinzufügen</translation>
-    </message>
-    <message>
-        <location filename="DSBrowser.py" line="242"/>
+        <location filename="DSBrowser.py" line="240"/>
         <source>Add Chart</source>
         <translation>Chart hinzufügen</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="244"/>
+        <location filename="DSBrowser.py" line="242"/>
         <source>Plot (Qwt)</source>
         <translation>Plotten (Qwt)</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="246"/>
+        <location filename="DSBrowser.py" line="244"/>
         <source>Show Chart</source>
         <translation>Chart anzeigen</translation>
+    </message>
+    <message>
+        <location filename="DSMetadata.py" line="34"/>
+        <source>Edit metadata of %s</source>
+        <translation>Ändere Metadaten von %s</translation>
     </message>
 </context>
 </TS>

@@ -13,7 +13,7 @@ from cgi import escape
 
 from DSChartMpl import showChartMplWindow
 from DSPlotQwt import showQwtPlotWindow
-from DSMetadata import addMetadata, editMetadata
+from DSMetadata import editMetadata
 from DSAddChartMpl import showAddChartWizard
 
 from datastorage.database import DataBaseRoot, Sensor
@@ -231,9 +231,7 @@ class DSBrowser(QWidget):
         self.selectedItem = mi
         m = QMenu()
         if t in 'RPGS':
-            # add metadata functions
             p = m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Edit metadata'), self.editMetadata)
-            p = m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Add metadata'), self.addMetadata)
         if t == 'R':
             pass
         elif t == 'P':
@@ -263,12 +261,6 @@ class DSBrowser(QWidget):
         if node is None:
             node = self.selectedNode
         editMetadata(node)
-
-
-    def addMetadata(self, node=None):
-        if node is None:
-            node = self.selectedNode
-        addMetadata(node)
 
 
     def addChart(self, node=None):

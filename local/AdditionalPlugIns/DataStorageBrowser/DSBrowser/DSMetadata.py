@@ -5,14 +5,12 @@
 # this file is part of the SimuVis4 framework
 
 import SimuVis4, numpy
+
+from PyQt4.QtCore import QCoreApplication
+
 SimTools = SimuVis4.Globals.plugInManager.getPlugIn('SimTools')
 Quantities = SimTools.Quantities
-#QuantitiesDialog = SimTools.Widgets.SimpleQuantitiesDialog
 QuantitiesDialog = SimTools.Widgets.ComplexQuantitiesDialog
-
-
-def addMetadata(node):
-    pass
 
 
 def editMetadata(node):
@@ -21,22 +19,26 @@ def editMetadata(node):
     for k in kk:
         v = node.getMetaData(k)
         t = type(v)
-        if t == numpy.string_:
-            qq.append(Quantities.Text(str(k), v))
-        elif t == numpy.bool_:
+        if t in (str, unicode, numpy.string_):
+            qq.append(Quantities.Text(unicode(k), v))
+        elif t in (bool, numpy.bool_):
             qq.append(Quantities.Bool(str(k), not not v))
+        elif t in (int, ):
+            qq.append(Quantities.Integer(str(k), v))
+        elif t in (float, ):
+            qq.append(Quantities.Float(str(k), v))
         else:
             # FIXME: other data types
             pass
     title = '%s: Metadata' % node.path
-    txt = 'Edit metadata of %s' % node.path
+    txt = unicode(QCoreApplication.translate('DataStorageBrowser', 'Edit metadata of %s')) % node.path
     dlg = QuantitiesDialog(SimuVis4.Globals.mainWin, windowTitle=title, text=txt, scrolling=True)
     dlg.addQuantities(qq)
-    dlg.exec_()
+    if not dlg.exec_():
+        return
     res = dlg.result
-    #md = {}
-    #for q in res:
-    #    md[q.name] = q.v
-    #node.setMetaData(md)
-    # FIXME: type conversion, delete metadata ... ?
-    
+    md = {}
+    for q in res:
+        md[q.name] = q.v
+    node.setMetaData(md)
+    # FIXME: type conversion ?
