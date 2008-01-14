@@ -15,7 +15,7 @@ def showQwtPlotWindow(n, maximized=False):
     if maximized:
         w.showMaximized()
     curve = QwtPlotCurve(n.name)
-    curve.setData(n.timegrid.getTimeArray(), n[:].filled())
+    curve.setData(n.timegrid.getTimeArray(), n[:].filled(0.0))
     curve.setPen(QPen(Qt.blue))
     curve.attach(w.plot)
     w.setMinimumSize(800, 600)
