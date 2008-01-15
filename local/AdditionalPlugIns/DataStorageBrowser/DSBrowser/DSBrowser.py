@@ -14,7 +14,7 @@ from cgi import escape
 from DSChartMpl import showChartMplWindow
 from DSPlotQwt import showQwtPlotWindow
 from DSMetadata import editMetadata
-from DSAddChartMpl import showAddChartWizard
+from DSAddChartMpl import showNewChartWizard
 
 from datastorage.database import DataBaseRoot, Sensor
 
@@ -237,7 +237,7 @@ class DSBrowser(QWidget):
         elif t == 'P':
             pass
         elif t == 'G':
-            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Add Chart'), self.addChart)
+            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Add Chart'), self.newChart)
         elif t == 'S':
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Plot (Qwt)'), self.showQwtPlot)
         elif t == 'C':
@@ -263,10 +263,10 @@ class DSBrowser(QWidget):
         editMetadata(node)
 
 
-    def addChart(self, node=None):
+    def newChart(self, node=None):
         if node is None:
             node = self.selectedNode
-        showAddChartWizard(node)
+        showNewChartWizard(node)
 
 
 
