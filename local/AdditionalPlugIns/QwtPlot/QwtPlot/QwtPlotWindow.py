@@ -22,7 +22,7 @@ class QwtPlotE(QwtPlot):
         self.setCanvasBackground(Qt.white)
         self.legend = QwtLegend()
         self.legend.setItemMode(QwtLegend.ClickableItem)
-        self.insertLegend(self.legend, QwtPlot.RightLegend)
+        self.insertLegend(self.legend, QwtPlot.TopLegend)
         self.grid = QwtPlotGrid()
         self.grid.attach(self)
         self.grid.setPen(QPen(Qt.black, 0, Qt.DotLine))
