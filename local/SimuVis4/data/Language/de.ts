@@ -55,17 +55,17 @@
 <context>
     <name>DataBrowser</name>
     <message>
-        <location filename="__init__.py" line="28"/>
+        <location filename="__init__.py" line="29"/>
         <source>Ctrl+B</source>
         <translation>Ctrl+B</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="33"/>
+        <location filename="__init__.py" line="35"/>
         <source>Filesystem</source>
         <translation>Dateisystem</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="41"/>
+        <location filename="__init__.py" line="43"/>
         <source>DataBrowser: could not load browser for netCDF3</source>
         <translation>DataBrowser: konnte netCDF3-Browser nicht laden</translation>
     </message>
@@ -696,27 +696,27 @@ h: diese Hilfe anzeigen
         <translation>PlugInManager: dies ist kein PlugIn: &quot;%s&quot;</translation>
     </message>
     <message>
-        <location filename="PlugInManager.py" line="76"/>
+        <location filename="PlugInManager.py" line="77"/>
         <source>PlugInManager: broken plugin in &quot;%s&quot;</source>
         <translation>PlugInManager: defektes PlugIn &quot;%s&quot;</translation>
     </message>
     <message>
-        <location filename="PlugInManager.py" line="82"/>
+        <location filename="PlugInManager.py" line="83"/>
         <source>PlugInManager: plugin &quot;%s&quot; with same or newer version is already registered from: &quot;%s&quot;</source>
         <translation>PlugInManager: PlugIn &quot;%s&quot; ist in gleicher oder neuerer Version bereits aus &quot;%s&quot; geladen</translation>
     </message>
     <message>
-        <location filename="PlugInManager.py" line="85"/>
+        <location filename="PlugInManager.py" line="86"/>
         <source>PlugInManager: plugin &quot;%s&quot; was marked to be ignored, skipping</source>
         <translation>PlugInManager: PlugIn &quot;%s&quot; soll ignoriert werden, überspringe es</translation>
     </message>
     <message>
-        <location filename="PlugInManager.py" line="110"/>
+        <location filename="PlugInManager.py" line="111"/>
         <source>PlugInManager: exception while loading the plugin: &quot;%s&quot;</source>
         <translation>PlugInManager: Ausnahme während des Ladens des PlugIns: &quot;%s&quot;</translation>
     </message>
     <message>
-        <location filename="PlugInManager.py" line="95"/>
+        <location filename="PlugInManager.py" line="96"/>
         <source>Initializing plugin: %s</source>
         <translation>Initialisiere das Plugin: %s</translation>
     </message>
@@ -797,7 +797,7 @@ h: diese Hilfe anzeigen
         <translation>Python-Konsole</translation>
     </message>
     <message>
-        <location filename="PyConsoleWindow.py" line="42"/>
+        <location filename="PyConsoleWindow.py" line="44"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
@@ -958,17 +958,17 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
         <translation>Auswahl</translation>
     </message>
     <message>
-        <location filename="Widgets.py" line="336"/>
+        <location filename="Widgets.py" line="380"/>
         <source>Quantities to delete</source>
         <translation>Zu löschende Einträge</translation>
     </message>
     <message>
-        <location filename="Widgets.py" line="338"/>
+        <location filename="Widgets.py" line="382"/>
         <source>Select items to delete</source>
         <translation>Wähle Einträge zum Löschen aus</translation>
     </message>
     <message>
-        <location filename="Widgets.py" line="339"/>
+        <location filename="Widgets.py" line="383"/>
         <source>Delete items</source>
         <translation>Einträge löschen</translation>
     </message>
@@ -1011,6 +1011,16 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
         <location filename="Widgets.py" line="29"/>
         <source>Date+Time</source>
         <translation>Datum+Uhrzeit</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="368"/>
+        <source>Enter properties</source>
+        <translation>Ändere Eigenschaften</translation>
+    </message>
+    <message>
+        <location filename="Widgets.py" line="369"/>
+        <source>Properties</source>
+        <translation>Eigenschaften</translation>
     </message>
 </context>
 <context>
@@ -1072,7 +1082,7 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
         <translation>Zeitsignal-Generator</translation>
     </message>
     <message>
-        <location filename="Widgets.py" line="360"/>
+        <location filename="Widgets.py" line="404"/>
         <source>Process</source>
         <translation>Prozess</translation>
     </message>
