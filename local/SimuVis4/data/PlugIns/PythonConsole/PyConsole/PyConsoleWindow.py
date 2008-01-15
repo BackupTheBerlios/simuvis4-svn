@@ -38,6 +38,8 @@ class PyConsoleDockWidget(QDockWidget):
         self.console = QPyShell(self)
         self.setWidget(self.console)
         self.setMinimumSize(600, 200)
+        self.setFeatures(QDockWidget.DockWidgetClosable | QDockWidget.DockWidgetMovable |
+            QDockWidget.DockWidgetFloatable | QDockWidget.DockWidgetVerticalTitleBar)
         self.toggleViewAction().setText(QCoreApplication.translate('PyConsoleWindow', 'Python console'))
         self.toggleViewAction().setShortcut(QCoreApplication.translate('PyConsoleWindow', "Ctrl+D"))
         self.toggleViewAction().setStatusTip(QCoreApplication.translate('PyConsoleWindow', 'Python console'))

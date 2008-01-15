@@ -17,14 +17,8 @@ class Browser(QDockWidget):
         self.setFeatures(QDockWidget.DockWidgetClosable | QDockWidget.DockWidgetMovable |
             QDockWidget.DockWidgetFloatable | QDockWidget.DockWidgetVerticalTitleBar)
         self.setMinimumSize(350, 500)
-        self.frame = QFrame(self)
-        #self.frame.setFrameStyle(QFrame.Panel)
-        self.setWidget(self.frame)
-        self.frameLayout = QVBoxLayout(self.frame)
-        self.frameLayout.setMargin(0)
-        self.frameLayout.setSpacing(0)
-        self.toolBox = QToolBox(self.frame)
-        self.frameLayout.addWidget(self.toolBox, 1)
+        self.toolBox = QToolBox(self)
+        self.setWidget(self.toolBox)
 
 
 class FileSystemBrowser(QTreeView):

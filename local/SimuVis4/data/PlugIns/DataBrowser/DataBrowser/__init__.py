@@ -19,6 +19,7 @@ class PlugIn(SimplePlugIn):
             cfg.add_section(cfgsec)
         cfg.set_def(cfgsec, 'show', 'yes')
         cfg.set_def(cfgsec, 'netcdf3_browser', 'yes')
+        cfg.set_def(cfgsec, 'filesystem_browser', 'yes')
         glb = SimuVis4.Globals
         import Browser
         browser = Browser.Browser()
@@ -29,8 +30,9 @@ class PlugIn(SimplePlugIn):
         glb.mainWin.plugInMenu.addAction(toggleAction)
         if not cfg.getboolean(cfgsec, 'show'):
             browser.hide()
-        browser.fileSystemBrowser = Browser.FileSystemBrowser()
-        browser.toolBox.addItem(browser.fileSystemBrowser, QCoreApplication.translate('DataBrowser', "Filesystem"))
+        if cfg.getboolean(cfgsec, 'filesystem_browser'):
+            browser.fileSystemBrowser = Browser.FileSystemBrowser()
+            browser.toolBox.addItem(browser.fileSystemBrowser, QCoreApplication.translate('DataBrowser', "Filesystem"))
         if cfg.getboolean(cfgsec, 'netcdf3_browser'):
             try:
                 import NetCDF3
