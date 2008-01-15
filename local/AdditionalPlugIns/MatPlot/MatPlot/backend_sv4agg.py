@@ -25,7 +25,6 @@ from matplotlib.backend_bases import RendererBase, GraphicsContextBase, \
      FigureManagerBase, FigureCanvasBase, NavigationToolbar2, cursors
 from matplotlib._pylab_helpers import Gcf
 from matplotlib.figure import Figure
-## from matplotlib.mathtext import math_parse_s_ft2font
 from matplotlib.widgets import SubplotTool
 try:
     from backend_agg import FigureCanvasAgg
@@ -257,22 +256,22 @@ class NavigationToolbar2SV4(NavigationToolbar2, QtGui.QWidget):
             QtCore.QObject.connect(button, QtCore.SIGNAL('clicked()'), getattr(self, callback))
             self.layout.addWidget(button)
 
-        printButton = QtGui.QToolButton(self)
-        printButton.setText(QtCore.QCoreApplication.translate('MatPlot', 'Print'))
-        printButton.setIcon(QtGui.QIcon(QtGui.QPixmap(SimuVis4.Icons.filePrint)))
-        printButton.setToolTip(QtCore.QCoreApplication.translate('MatPlot', 'Print the figure'))
-        QtCore.QObject.connect(printButton, QtCore.SIGNAL('clicked()'), self.print_dialog)
-        self.layout.addWidget(printButton)
+        self.printButton = QtGui.QToolButton(self)
+        self.printButton.setText(QtCore.QCoreApplication.translate('MatPlot', 'Print'))
+        self.printButton.setIcon(QtGui.QIcon(QtGui.QPixmap(SimuVis4.Icons.filePrint)))
+        self.printButton.setToolTip(QtCore.QCoreApplication.translate('MatPlot', 'Print the figure'))
+        QtCore.QObject.connect(self.printButton, QtCore.SIGNAL('clicked()'), self.print_dialog)
+        self.layout.addWidget(self.printButton)
 
         self.layout.addSpacing(8)
-        wheelButton = QtGui.QToolButton(self)
-        wheelButton.setCheckable(True)
-        wheelButton.setChecked(False)
-        wheelButton.setText(QtCore.QCoreApplication.translate('MatPlot', 'Wheel Zoom'))
-        wheelButton.setIcon(QtGui.QIcon(QtGui.QPixmap(SimuVis4.Icons.magnify)))
-        wheelButton.setToolTip(QtCore.QCoreApplication.translate('MatPlot', 'when activated, canvas can be zoomed with CTRL-MouseWheel'))
-        QtCore.QObject.connect(wheelButton, QtCore.SIGNAL('toggled(bool)'), self.enableWheelZoom)
-        self.layout.addWidget(wheelButton)
+        self.wheelButton = QtGui.QToolButton(self)
+        self.wheelButton.setCheckable(True)
+        self.wheelButton.setChecked(False)
+        self.wheelButton.setText(QtCore.QCoreApplication.translate('MatPlot', 'Wheel Zoom'))
+        self.wheelButton.setIcon(QtGui.QIcon(QtGui.QPixmap(SimuVis4.Icons.magnify)))
+        self.wheelButton.setToolTip(QtCore.QCoreApplication.translate('MatPlot', 'when activated, canvas can be zoomed with CTRL-MouseWheel'))
+        QtCore.QObject.connect(self.wheelButton, QtCore.SIGNAL('toggled(bool)'), self.enableWheelZoom)
+        self.layout.addWidget(self.wheelButton)
 
         self.locLabel = QtGui.QLabel(self)
         self.locLabel.setAlignment( QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter )

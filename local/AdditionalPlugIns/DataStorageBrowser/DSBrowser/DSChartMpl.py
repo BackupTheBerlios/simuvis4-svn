@@ -14,6 +14,8 @@ mplWinCount = SimuVis4.Misc.Counter(1000)
 
 unitFactors = [60, 3600, 86400, 604800, 2592000, 31536000]
 
+showOriginalSize = SimuVis4.Globals.config.getboolean('datastoragebrowser', 'show_chart_original_size')
+
 
 class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
 
@@ -22,8 +24,6 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
         self.setupUi(self)
         self.timer = QTimer(self)
         self.timer.setInterval(5000)
-        self.LengthInput.setValue(1)
-        self.LengthUnitInput.setCurrentIndex(2)
         self.startTime = 0
         self.blockUpdates = True
         self.GoStartButton.setIcon(QIcon(QPixmap(Icons.goStart)))
@@ -46,16 +46,28 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
     def setChartCanvas(self, chart, canvas):
         self.chart = chart
         self.canvas = canvas
-        # FIXME: get a hint on the start time and display interval - from datastorage?
-        self.startTime = chart.sensorgroup.start
-        mindt =QDateTime()
-        mindt.setTime_t(self.startTime)
-        self.StartInput.setDateTime(mindt)
-        maxdt = QDateTime()
-        maxdt.setTime_t(chart.sensorgroup.stop)
-        self.StartInput.setDateRange(mindt.date(), maxdt.date())
-        self.LengthInput.setValue(100)
-        self.LengthUnitInput.setCurrentIndex(2)
+        slc = chart.standardSlice
+        self.startTime = chart.sensorgroup.stop - slc
+        dt = QDateTime()
+        dt.setTime_t(self.startTime)
+        self.StartInput.setDateTime(dt)
+        mindt = QDateTime()
+        mindt.setTime_t(chart.sensorgroup.start)
+        self.StartInput.setMinimumDate(mindt.date())
+        # try to guess unit*factor from slice
+        uF = unitFactors[:]
+        uF.reverse()
+        for f in uF:
+            if not slc % f:
+                print slc, f
+                self.LengthUnitInput.setCurrentIndex(unitFactors.index(f))
+                self.LengthInput.setValue(slc / f)
+                self.setTimeslice(slc)
+                break
+        else:
+            self.LengthInput.setValue(1)
+            self.LengthUnitInput.setCurrentIndex(3)
+            self.setTimeslice(unitFactors[3])
         self.blockUpdates = False
         self.updateChart()
 
@@ -137,6 +149,10 @@ def showChartMplWindow(chart, maximized=False):
     w.dsToolBar = ChartToolBar(w)
     w.dsToolBar.setChartCanvas(chart, canvas)
     w.mainLayout.insertWidget(0, w.dsToolBar, 0)
+    if showOriginalSize and chart.options['size']:
+        w.toolbar.wheelButton.setChecked(True)
+        x, y = chart.options['size']
+        w.canvas.resize(x, y)
     if maximized:
         w.showMaximized()
     else:
