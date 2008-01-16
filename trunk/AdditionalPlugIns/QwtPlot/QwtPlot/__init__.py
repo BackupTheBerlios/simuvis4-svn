@@ -24,8 +24,9 @@ class PlugIn(SimplePlugIn):
         if not cfg.has_section(cfgsec):
             cfg.add_section(cfgsec)
         glb = SimuVis4.Globals
-        import QwtPlotWindow, QPlot
+        import QwtPlotWindow, QPlot, MaskedArray
         self.QwtPlotWindow = QwtPlotWindow
+        self.MaskedArray = MaskedArray
         xpm = QPixmap()
         xpm.loadFromData(self.getFile('plotwin.xpm').read())
         winIcon = QIcon(xpm)
