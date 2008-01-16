@@ -8,54 +8,16 @@ import SimuVis4, Icons
 from PyQt4.QtGui import QWizard, QWizardPage, QHBoxLayout, QVBoxLayout, QListWidget, QLabel,\
     QLineEdit, QFrame, QPixmap, QTextEdit
 from PyQt4.QtCore import Qt, SIGNAL, QCoreApplication
+import DSChartTemplates
+
+chartTemplates = DSChartTemplates.templateList[:]
 
 SimTools = SimuVis4.Globals.plugInManager.getPlugIn('SimTools')
-SQ = SimTools.Quantities
 
-
-
-class ChartTemplate(object):
-    """class to hold information on one type of chart: name, description, etc..."""
-    def __init__(self):
-        self.name = ''
-        self.chartName = ''
-        self.previewImage = None
-        self.description = ''
-        self.properties = []
-        self.sensorInfo = {}
-        self.sensors = {}
-
-    def create(self, sensorgroup):
-        #FXIME: add code here actually create the chart
-        pass
-
-
-class FooChart(ChartTemplate):
-    def __init__(self):
-        self.name = 'Carpet foo'
-        self.chartName = 'FooCarpet'
-        self.previewImage = None
-        self.description = 'Foo carpet chart - Foo carpet chart - Foo carpet chart - Foo carpet chart'
-        self.properties = [SQ.Integer('foo', 3), SQ.Float('bar', 4.0)]
-        self.sensorInfo = {'bla': 1, 'fasel': 2}
-        self.sensors = {}
-
-
-class BarChart(ChartTemplate):
-    def __init__(self):
-        self.name = 'Carpet bar'
-        self.chartName = 'BarCarpet'
-        self.previewImage = None
-        self.description = 'Bar carpet chart - Bar carpet chart - Bar carpet chart - Bar carpet chart'
-        x = [("bla_%d" % i) for i in range(8)]
-        self.properties = [SQ.Integer('bla', 3), SQ.Choice('fasel', x[0], choices=x)]
-        self.sensorInfo = {'bla': 1, 'fasel': 2}
-        self.sensors = {}
-
-
-
-allChartTemplates = [FooChart(), BarChart()]
-
+def reloadTemplates():
+    global chartTemplates
+    reload(DSChartTemplates)
+    chartTemplates = DSChartTemplates.templateList[:]
 
 
 class NewChartPage0(QWizardPage):
@@ -63,6 +25,7 @@ class NewChartPage0(QWizardPage):
     def __init__(self, parent):
         QWizardPage.__init__(self, parent)
         self.setTitle(QCoreApplication.translate('DataStorageBrowser', 'Select type/template of chart'))
+        self.setFinalPage(True)
         self.mainLayout = QVBoxLayout()
         self.setLayout(self.mainLayout)
         layout0 = QHBoxLayout()
@@ -84,33 +47,41 @@ class NewChartPage0(QWizardPage):
         self.nameInput = QLineEdit(self)
         layout1.addWidget(self.nameInput)
         self.mainLayout.addLayout(layout1)
-        for t in allChartTemplates:
+        for t in chartTemplates:
             self.templateSelect.addItem(t.name)
         self.registerField('templateNumber', self.templateSelect, 'currentRow')
         self.registerField('chartName', self.nameInput, 'text')
         self.connect(self.templateSelect, SIGNAL("currentRowChanged(int)"), self.templateChanged)
 
     def templateChanged(self, i):
-        t = allChartTemplates[i]
+        t = chartTemplates[i]
         self.templateInfo.setPlainText(t.description)
         if t.previewImage:
             self.templatePreview.setPixmap(QPixmap(t.previewImage))
         self.nameInput.setText(t.chartName)
 
+    def validatePage(self):
+        i, x = self.field('templateNumber').toInt()
+        chartTemplates[i].chartName = self.field('chartName').toString()
+        return True
+
+
 
 class NewChartPage1(QWizardPage):
     """WizardPage to adjust chart properties"""
-    def __init__(self, parent):
+    def __init__(self, parent, sensorgroup):
         QWizardPage.__init__(self, parent)
         self.setTitle(QCoreApplication.translate('DataStorageBrowser', 'Adjust chart properties'))
         self.mainLayout = QVBoxLayout()
         self.setLayout(self.mainLayout)
         self.quantityWidget = None
+        self.sensorgroup = sensorgroup
 
 
     def initializePage(self):
         i, x = self.field('templateNumber').toInt()
-        tmpl = allChartTemplates[i]
+        tmpl = chartTemplates[i]
+        tmpl.setSensorgroup(self.sensorgroup)
         if self.quantityWidget is not None:
             self.mainLayout.removeWidget(self.quantityWidget)
             self.quantityWidget.hide()
@@ -121,28 +92,24 @@ class NewChartPage1(QWizardPage):
         self.adjustSize()
 
 
-class NewChartPage2(QWizardPage):
-    """WizardPage to adjust attach sensors to chart"""
-    def __init__(self, parent):
-        QWizardPage.__init__(self, parent)
-        self.setTitle(QCoreApplication.translate('DataStorageBrowser', 'Apply sensors to chart'))
-
-
 
 class NewChartWizard(QWizard):
 
-    def __init__(self, parent):
+    def __init__(self, parent, sensorgroup):
         QWizard.__init__(self, parent)
         self.setWindowTitle(QCoreApplication.translate('DataStorageBrowser', 'Add a new chart'))
-        self.page0 = NewChartPage0(self)
-        self.addPage(self.page0);
-        self.page1 = NewChartPage1(self)
-        self.addPage(self.page1);
-        self.page2 = NewChartPage2(self)
-        self.addPage(self.page2);
+        self.addPage(NewChartPage0(self))
+        self.addPage(NewChartPage1(self, sensorgroup))
 
 
 
 def showNewChartWizard(sensorgroup):
-    wiz = NewChartWizard(SimuVis4.Globals.mainWin)
-    wiz.exec_()
+    wiz = NewChartWizard(SimuVis4.Globals.mainWin, sensorgroup)
+    wiz.sensorgroup = sensorgroup
+    if not wiz.exec_():
+        return False
+    i, x = wiz.field('templateNumber').toInt()
+    template = chartTemplates[i]
+    template.makeChart(sensorgroup)
+    sensorgroup.root.flush()
+    return True
