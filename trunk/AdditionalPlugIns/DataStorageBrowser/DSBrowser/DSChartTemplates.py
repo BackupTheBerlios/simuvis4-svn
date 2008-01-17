@@ -14,12 +14,8 @@ from datastorage.graphics.matplot_matrix import MatplotMatrix
 from datastorage.graphics.carpetplot_matrix import CarpetPlotMatrix
 from datastorage.graphics.carpetplot import CarpetPlot
 
-
-minute = 60
-hour   = 60*minute
-day    = 24*hour
-week   = 7*day
-year   = 365*day
+timeValues = [60, 3600, 86400, 604800, 2592000, 31536000]
+timeNames = ['Minute', 'Hour', 'Day', 'Week', 'Month', 'Year']
 
 
 class ChartTemplate(object):
@@ -28,9 +24,9 @@ class ChartTemplate(object):
     """
     def __init__(self):
         self.name = ''
-        self.chartName = ''
-        self.previewImage = ''
-        self.description = ''
+        self.chartName = '-unnamed-'
+        self.previewImage = 'default.png'
+        self.description = 'Only for subclassing - this template should never be used directly!'
         self.sensorgroup = None
         self.init()
 
@@ -52,8 +48,10 @@ class ChartTemplate(object):
     def makeChart(self, sensorgroup):
         if sensorgroup != self.sensorgroup:
             self.setSensorgroup(sensorgroup)
-        self.createChart()
+        chart = self.createChart()
+        self.sensorgroup.addChart(chart)
         self.sensorgroup.flush()
+        return chart
 
     def init(self):
         """overwrite this to set name, description, previewImage etc.
@@ -90,6 +88,7 @@ class WeatherData(ChartTemplate):
         self.name = 'Weather data matrix'
         self.chartName = 'WeatherData'
         self.description = """this is a matrix chart of some weather data ..."""
+        self.previewImage = 'WeatherData.png'
 
     def setup(self):
         self.defProp(Q.Text('Title', self.chartName, maxLen=100, descr='title of the chart'))
@@ -98,10 +97,10 @@ class WeatherData(ChartTemplate):
             if not s in self.sensorNames:
                 sensors.remove(s)
         self.defProp(Q.MultiChoice('Sensors', sensors, choices=self.sensorNames, descr='sensors to plot'))
-        self.defProp(Q.Integer('Standard slice', 86400, min=60, max=year, descr='standard slice in plot'))
+        self.defProp(Q.Float('Y-axis end', 0.8, min=0.0, max=1.0, descr=' ??? '))
+        self.defProp(Q.Choice('Standard slice', timeNames[2], choices=timeNames, descr='standard slice in plot'))
         self.defProp(Q.Integer('Canvas width', 1000, min=200, max=5000, descr='standard width of plot'))
         self.defProp(Q.Integer('Canvas height', 800, min=200, max=5000, descr='standard height of plot'))
-        self.defProp(Q.Float('Y-axis end', 0.8, min=0.0, max=1.0, descr=' ??? '))
 
     def createChart(self):
         sensors = [[str(s)] for s in self['Sensors']]
@@ -109,8 +108,8 @@ class WeatherData(ChartTemplate):
         chart = MatplotLineMatrix(title=self['Title'], name=self.chartName,
             yaxis_end=self['Y-axis end'], size=canvasSize)
         chart.setSensorNames([[]], sensors)
-        chart.setStandardSlice(self['Standard slice'])
-        self.sensorgroup.addChart(chart)
+        chart.setStandardSlice(timeValues[timeNames.index(self['Standard slice'])])
+        return chart
 
 
 
@@ -120,6 +119,7 @@ class ConsumptionCarpet(ChartTemplate):
         self.name = 'Consumption carpet chart'
         self.chartName = 'ConsumptionCarpet'
         self.description = """this is a consumption carpet chart ..."""
+        self.previewImage = 'ConsumptionCarpet.png'
 
     def setup(self):
         self.defProp(Q.Text('Title', self.chartName, maxLen=100, descr='title of the chart'))
@@ -128,11 +128,11 @@ class ConsumptionCarpet(ChartTemplate):
             if not s in self.sensorNames:
                 sensors.remove(s)
         self.defProp(Q.MultiChoice('Sensors', sensors, choices=self.sensorNames, descr='sensors to plot'))
-        self.defProp(Q.Integer('Standard slice', 86400, min=60, max=year, descr='standard slice in plot'))
-        self.defProp(Q.Integer('Canvas width', 1000, min=200, max=5000, descr='standard width of plot'))
-        self.defProp(Q.Integer('Canvas height',1600, min=200, max=5000, descr='standard height of plot'))
         self.defProp(Q.Float('Y-axis end', 0.85, min=0.0, max=1.0, descr=' ??? '))
         self.defProp(Q.Float('Y-axis gap', 0.04, min=0.0, max=1.0, descr=' ??? '))
+        self.defProp(Q.Choice('Standard slice', timeNames[2], choices=timeNames, descr='standard slice in plot'))
+        self.defProp(Q.Integer('Canvas width', 1000, min=200, max=5000, descr='standard width of plot'))
+        self.defProp(Q.Integer('Canvas height',1600, min=200, max=5000, descr='standard height of plot'))
 
     def createChart(self):
         sensors = list([str(s)] for s in self['Sensors'])
@@ -140,8 +140,8 @@ class ConsumptionCarpet(ChartTemplate):
         chart = CarpetPlotMatrix(name=self.chartName, xaxis_end=self['Y-axis end'],
             yaxis_gap=self['Y-axis gap'], title=self['Title'], size=canvasSize)
         chart.setSensorNames([[]], sensors)
-        chart.setStandardSlice(self['Standard slice'])
-        self.sensorgroup.addChart(chart)
+        chart.setStandardSlice(timeValues[timeNames.index(self['Standard slice'])])
+        return chart
 
 
 
@@ -151,11 +151,12 @@ class dtDistrictHeat(ChartTemplate):
         self.name = 'dt District Heat'
         self.chartName = 'dt_DistrictHeat'
         self.description = """another chart ... who cares?"""
+        self.previewImage = 'dtDistrictHeat.png'
 
     def setup(self):
         self.defProp(Q.Text('Title', self.chartName, maxLen=100, descr='title of the chart'))
         self.defProp(Q.Choice('Sensor', 'dT_fw_threshold', choices=self.sensorNames, descr='sensors to plot'))
-        self.defProp(Q.Integer('Standard slice', 86400, min=60, max=year, descr='standard slice in plot'))
+        self.defProp(Q.Choice('Standard slice', timeNames[2], choices=timeNames, descr='standard slice in plot'))
 
     def createChart(self):
         from matplotlib import rc
@@ -169,9 +170,8 @@ class dtDistrictHeat(ChartTemplate):
         rc('ytick', labelsize=16)
         chart = CarpetPlot(name=self.chartName, title=self['Title'])
         chart.setSensorNames(None, [[str(self['Sensor'])]])
-        chart.setStandardSlice(self['Standard slice'])
-        self.sensorgroup.addChart(chart)
-
+        chart.setStandardSlice(timeValues[timeNames.index(self['Standard slice'])])
+        return chart
 
 #####################################################################
 #### End of user defined ChartTemplates

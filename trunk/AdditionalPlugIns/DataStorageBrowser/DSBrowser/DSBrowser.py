@@ -153,7 +153,7 @@ class DSBrowser(QWidget):
         self.connect(self.treeView, SIGNAL("doubleClicked(QModelIndex)"), self.itemAction)
         self.connect(self.treeView, SIGNAL("customContextMenuRequested(QPoint)"), self.showContextMenu)
         self.selectedNode = None
-        self.selectedItem = None
+        self.selectedMI = None
 
 
     def loadDatabase(self, dn=None):
@@ -175,22 +175,9 @@ class DSBrowser(QWidget):
         pass
 
 
-    def node(self, mi):
-        """get the type of the node and the node for a model index"""
-        item = self.model.itemFromIndex(mi)
-        p = str(item.data().toString()).split('|')
-        if p[0] == 'R': # root
-            x = self.model.databases[p[1]]
-        elif p[0] in 'PGS': # project, group, sensor
-            x = self.model.databases[p[1]].find(p[2])
-        elif p[0] == 'C': # chart
-            x = self.model.databases[p[1]].find(p[2]).charts[p[3]]
-        return p[0], x
-
-
     def showItem(self, mi, pr):
         """show the item at model index mi"""
-        t, n = self.node(mi)
+        t, n = self.model.dsNode(mi)
         txt = ""
         if t == 'R':
             # FIXME: no metadata?
@@ -209,7 +196,7 @@ class DSBrowser(QWidget):
 
     def itemAction(self, mi):
         """default action (on doubleclick) for item at model index mi"""
-        t, n = self.node(mi)
+        t, n = self.model.dsNode(mi)
         if t == 'R':
             pass
         elif t == 'P':
@@ -226,9 +213,9 @@ class DSBrowser(QWidget):
     def showContextMenu(self, pos):
         """show context menu for item at pos"""
         mi = self.treeView.indexAt(pos)
-        t, n = self.node(mi)
+        t, n = self.model.dsNode(mi)
         self.selectedNode = n
-        self.selectedItem = mi
+        self.selectedMI = mi
         m = QMenu()
         if t in 'RPGS':
             p = m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Edit metadata'), self.editMetadata)
@@ -241,7 +228,8 @@ class DSBrowser(QWidget):
         elif t == 'S':
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Plot (Qwt)'), self.showQwtPlot)
         elif t == 'C':
-            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Show Chart'), self.showMplChart)
+            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Show'), self.showMplChart)
+            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Delete'), self.deleteItem)
         a = m.exec_(self.treeView.mapToGlobal(pos))
 
 
@@ -263,11 +251,17 @@ class DSBrowser(QWidget):
         editMetadata(node)
 
 
-    def newChart(self, node=None):
-        if node is None:
-            node = self.selectedNode
-        showNewChartWizard(node)
+    def newChart(self, mi=None):
+        """add a chart to sensorgroup at mi using the wizard"""
+        if mi is None:
+            mi = self.selectedMI
+        showNewChartWizard(self.model, mi)
 
+    def deleteItem(self, mi=None):
+        """delete the item at mi"""
+        if mi is None:
+            mi = self.selectedMI
+        self.model.deleteItem(mi)
 
 
 class DSModel(QStandardItemModel):
@@ -287,32 +281,40 @@ class DSModel(QStandardItemModel):
             'graph'       : QIcon(QPixmap(Icons.graph))
         }
 
+
     def addDatabase(self, folder):
+        """add the database at folder to the model"""
         db = DataBaseRoot(folder)
         self.databases[folder] = db
         dbItem = QStandardItem(db.name)
         dbItem.setData(QVariant("R|%s" % folder))
         dbItem.setIcon(self.icons['database'])
         self.rootItem.appendRow(dbItem)
-        self._addDB(db, dbItem, folder)
+        self._processDB(db, dbItem, folder)
 
-    def _addDB(self, db, parent, dbf):
+
+    def _processDB(self, db, parent, dbf):
+        """process the database and add its child nodes"""
         for k, v in db.items():
             item = QStandardItem(k)
             item.setIcon(self.icons['project'])
             item.setData(QVariant("P|%s|%s" % (dbf, v.path)))
             parent.appendRow(item)
-            self._addProject(v, item, dbf)
+            self._processProject(v, item, dbf)
 
-    def _addProject(self, pr, parent, dbf):
+
+    def _processProject(self, pr, parent, dbf):
+        """process the project and add its child nodes"""
         for k, v in pr.items():
             item = QStandardItem(k)
             item.setIcon(self.icons['sensorgroup'])
             item.setData(QVariant("G|%s|%s" % (dbf, v.path)))
             parent.appendRow(item)
-            self._addSensorGroup(v, item, dbf)
+            self._processSensorGroup(v, item, dbf)
 
-    def _addSensorGroup(self, sg, parent, dbf):
+
+    def _processSensorGroup(self, sg, parent, dbf):
+        """process the sensorgroup and add its child nodes"""
         for k, v in sg.items():
             item = QStandardItem(k)
             item.setIcon(self.icons['sensor'])
@@ -323,3 +325,46 @@ class DSModel(QStandardItemModel):
             item.setIcon(self.icons['graph'])
             item.setData(QVariant("C|%s|%s|%s" % (dbf, sg.path, k)))
             parent.appendRow(item)
+
+
+    def dsFolder(self, mi):
+        """get the database folder name for a model index"""
+        return str(self.itemFromIndex(mi).data().toString()).split('|')[1]
+
+
+    def dsNode(self, mi):
+        """get the type of the node and the node for a model index"""
+        item = self.itemFromIndex(mi)
+        p = str(item.data().toString()).split('|')
+        if p[0] == 'R': # root
+            x = self.databases[p[1]]
+        elif p[0] in 'PGS': # project, group, sensor
+            x = self.databases[p[1]].find(p[2])
+        elif p[0] == 'C': # chart
+            x = self.databases[p[1]].find(p[2]).charts[p[3]]
+        return p[0], x
+
+
+    def addChart(self, chart, mi):
+        """add a new chart to sensorgroup item at mi"""
+        t, sensorgroup = self.dsNode(mi)
+        if not chart.name in sensorgroup.charts:
+                sensorgroup.addChart(chart)
+                sensorgroup.flush()
+        chItem = QStandardItem(chart.name)
+        chItem.setIcon(self.icons['graph'])
+        chItem.setData(QVariant("C|%s|%s|%s" % (self.dsFolder(mi), sensorgroup.path, chart.name)))
+        self.itemFromIndex(mi).appendRow(chItem)
+
+
+    def deleteItem(self, mi):
+        """delete the model item at mi and delete corresponding node from database"""
+        t, node = self.dsNode(mi)
+        item = self.itemFromIndex(mi)
+        if t == 'C':
+            node.sensorgroup.removeChart(node.name)
+            node.sensorgroup.flush()
+        # FIXME: remove sensors, sensorgroups or projects ?
+        else:
+            return
+        item.parent().removeRow(item.row())

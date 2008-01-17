@@ -4,7 +4,7 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-import SimuVis4, Icons
+import SimuVis4, Icons, os
 from PyQt4.QtGui import QWizard, QWizardPage, QHBoxLayout, QVBoxLayout, QListWidget, QLabel,\
     QLineEdit, QFrame, QPixmap, QTextEdit
 from PyQt4.QtCore import Qt, SIGNAL, QCoreApplication
@@ -19,6 +19,9 @@ def reloadTemplates():
     reload(DSChartTemplates)
     chartTemplates = DSChartTemplates.templateList[:]
 
+    myself.getFile(os.path.join('previewImages', name)).read()
+
+
 
 class NewChartPage0(QWizardPage):
     """WizardPage to select chart type and name"""
@@ -32,7 +35,9 @@ class NewChartPage0(QWizardPage):
         self.templateSelect = QListWidget(self)
         layout0.addWidget(self.templateSelect)
         self.templatePreview = QLabel(self)
+        self.templatePreview.setScaledContents(True)
         self.templatePreview.setMinimumSize(200, 200)
+        self.templatePreview.setMaximumSize(200, 200)
         self.templatePreview.setFrameStyle(QFrame.Panel|QFrame.Sunken)
         layout0.addWidget(self.templatePreview)
         self.mainLayout.addLayout(layout0)
@@ -51,18 +56,23 @@ class NewChartPage0(QWizardPage):
             self.templateSelect.addItem(t.name)
         self.registerField('templateNumber', self.templateSelect, 'currentRow')
         self.registerField('chartName', self.nameInput, 'text')
+        self.ownPlugIn = SimuVis4.Globals.plugInManager['DataStorageBrowser']
         self.connect(self.templateSelect, SIGNAL("currentRowChanged(int)"), self.templateChanged)
 
     def templateChanged(self, i):
         t = chartTemplates[i]
         self.templateInfo.setPlainText(t.description)
-        if t.previewImage:
-            self.templatePreview.setPixmap(QPixmap(t.previewImage))
         self.nameInput.setText(t.chartName)
+        if t.previewImage:
+            xpm = QPixmap()
+            path = os.path.join('previewImages', t.previewImage)
+            data = self.ownPlugIn.getFile(path).read()
+            xpm.loadFromData(data)
+            self.templatePreview.setPixmap(xpm)
 
     def validatePage(self):
         i, x = self.field('templateNumber').toInt()
-        chartTemplates[i].chartName = self.field('chartName').toString()
+        chartTemplates[i].chartName = str(self.field('chartName').toString())
         return True
 
 
@@ -103,14 +113,13 @@ class NewChartWizard(QWizard):
 
 
 
-def showNewChartWizard(sensorgroup):
+def showNewChartWizard(model, mi):
+    t, sensorgroup = model.dsNode(mi)
     wiz = NewChartWizard(SimuVis4.Globals.mainWin, sensorgroup)
     wiz.sensorgroup = sensorgroup
     if not wiz.exec_():
-        return False
+        return
     i, x = wiz.field('templateNumber').toInt()
     template = chartTemplates[i]
-    template.makeChart(sensorgroup)
-    #sensorgroup.root.flush()
-    sensorgroup.root.close()
-    return True
+    chart = template.makeChart(sensorgroup)
+    model.addChart(chart, mi)
