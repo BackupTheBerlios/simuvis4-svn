@@ -111,5 +111,6 @@ def showNewChartWizard(sensorgroup):
     i, x = wiz.field('templateNumber').toInt()
     template = chartTemplates[i]
     template.makeChart(sensorgroup)
-    sensorgroup.root.flush()
+    #sensorgroup.root.flush()
+    sensorgroup.root.close()
     return True

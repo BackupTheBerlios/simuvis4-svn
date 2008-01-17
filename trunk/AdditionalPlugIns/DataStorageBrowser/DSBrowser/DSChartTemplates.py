@@ -4,7 +4,7 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-import SimuVis4
+import SimuVis4, sys, types
 SimTools = SimuVis4.Globals.plugInManager.getPlugIn('SimTools')
 Q = SimTools.Quantities
 
@@ -53,20 +53,36 @@ class ChartTemplate(object):
         if sensorgroup != self.sensorgroup:
             self.setSensorgroup(sensorgroup)
         self.createChart()
+        self.sensorgroup.flush()
 
     def init(self):
-        """overwrite this to set name, description, previewImage etc. """
+        """overwrite this to set name, description, previewImage etc.
+        - self.name will appear in the GUI to select this template
+        - self.chartName is the suggested Name of the chart in datastorage
+        - self.description should contain a (multi-line) desription
+        - self.previewImage can point to an example image file
+        """
         pass
 
     def setup(self):
-        """overwrite this to set information on the chart properties, sensors etc."""
+        """overwrite this to set information on the chart properties, sensors etc.:
+        - define properties with defProp()
+        - you have self.sensorgroup and self.sensorNames available at this point
+        """
         pass
 
     def createChart(self):
-        """overwrite this to create the chart"""
+        """overwrite this to create the chart:
+        - defined properties are accessible with self['property name']
+        - must contain something like self.sensorgroup.addChart(chart)
+        """
         pass
 
 
+
+#####################################################################
+#### Start of user defined ChartTemplates
+#####################################################################
 
 class WeatherData(ChartTemplate):
 
@@ -88,7 +104,7 @@ class WeatherData(ChartTemplate):
         self.defProp(Q.Float('Y-axis end', 0.8, min=0.0, max=1.0, descr=' ??? '))
 
     def createChart(self):
-        sensors = [str(s) for s in self['Sensors']]
+        sensors = [[str(s)] for s in self['Sensors']]
         canvasSize = (self['Canvas width'], self['Canvas height'])
         chart = MatplotLineMatrix(title=self['Title'], name=self.chartName,
             yaxis_end=self['Y-axis end'], size=canvasSize)
@@ -119,7 +135,7 @@ class ConsumptionCarpet(ChartTemplate):
         self.defProp(Q.Float('Y-axis gap', 0.04, min=0.0, max=1.0, descr=' ??? '))
 
     def createChart(self):
-        sensors = [str(s) for s in self['Sensors']]
+        sensors = list([str(s)] for s in self['Sensors'])
         canvasSize = (self['Canvas width'], self['Canvas height'])
         chart = CarpetPlotMatrix(name=self.chartName, xaxis_end=self['Y-axis end'],
             yaxis_gap=self['Y-axis gap'], title=self['Title'], size=canvasSize)
@@ -157,9 +173,12 @@ class dtDistrictHeat(ChartTemplate):
         self.sensorgroup.addChart(chart)
 
 
+#####################################################################
+#### End of user defined ChartTemplates
+#####################################################################
 
-# collect all subclasses of ChartTemplates
-import sys, types
+
+
+# collect and instantiate all subclasses of ChartTemplates
 templateList = [c() for c in sys.modules[__name__].__dict__.values() \
     if type(c) == types.TypeType and issubclass(c, ChartTemplate) and not c == ChartTemplate]
-print templateList
