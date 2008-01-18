@@ -3,7 +3,6 @@
 # author:   Joerg Raedler <jr@j-raedler.de>
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
-"""TextEditor PlugIn for SimuVis4 - provides simple text editing"""
 
 import SimuVis4
 from SimuVis4.PlugIn import SimplePlugIn
@@ -12,9 +11,14 @@ from SimuVis4.PlugIn import SimplePlugIn
 class PlugIn(SimplePlugIn):
 
     def load(self):
-        import Widgets, Quantities
+        import Widgets
         self.Widgets = Widgets
-        self.Quantities = Quantities
+        try:
+            import RichTypes
+            self.RichTypes = RichTypes
+        except ImportError:
+            import MyRichTypes
+            self.RichTypes = MyRichTypes
         return True
 
 
