@@ -43,102 +43,102 @@ Nach einem Neustart von SimuVis4 solltest Du matplot/pylabin der PythonConsole (
         <translation>Informationen zur Konfiguration vom MatPlot-Plugin</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="111"/>
+        <location filename="backend_sv4agg.py" line="110"/>
         <source>Figure %d</source>
         <translation>Diagramm %d</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="211"/>
+        <location filename="backend_sv4agg.py" line="210"/>
         <source>Home</source>
         <translation>Startansicht</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="212"/>
+        <location filename="backend_sv4agg.py" line="211"/>
         <source>Reset original view</source>
         <translation>Setze Ansicht auf die Startansicht zurück</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="214"/>
+        <location filename="backend_sv4agg.py" line="213"/>
         <source>Back</source>
         <translation>Zurück</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="215"/>
+        <location filename="backend_sv4agg.py" line="214"/>
         <source>Back to  previous view</source>
         <translation>Zurück zur letzten Ansicht</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="217"/>
+        <location filename="backend_sv4agg.py" line="216"/>
         <source>Forward</source>
         <translation>Vorwärts</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="218"/>
+        <location filename="backend_sv4agg.py" line="217"/>
         <source>Forward to next view</source>
         <translation>Weiter zur nächsten Ansicht</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="221"/>
+        <location filename="backend_sv4agg.py" line="220"/>
         <source>Pan</source>
         <translation>Verschieben</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="222"/>
+        <location filename="backend_sv4agg.py" line="221"/>
         <source>Pan axes with left mouse, zoom with right</source>
         <translation>Verschiebe Achsen mit der linken Maustaste, zoome mit der rechten Taste</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="224"/>
+        <location filename="backend_sv4agg.py" line="223"/>
         <source>Zoom</source>
         <translation>Zoomen</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="225"/>
+        <location filename="backend_sv4agg.py" line="224"/>
         <source>Zoom to rectangle</source>
         <translation>Zoome auf Rechteckauswahl</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="228"/>
+        <location filename="backend_sv4agg.py" line="227"/>
         <source>Subplots</source>
         <translation>Unterdiagramme</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="229"/>
+        <location filename="backend_sv4agg.py" line="228"/>
         <source>Configure subplots</source>
         <translation>Konfiguriere Parameter für Unterdiagramme</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="231"/>
+        <location filename="backend_sv4agg.py" line="230"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="232"/>
+        <location filename="backend_sv4agg.py" line="231"/>
         <source>Save the figure</source>
         <translation>Speichere das Diagramm</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="311"/>
+        <location filename="backend_sv4agg.py" line="310"/>
         <source>Subplot Configuration Tool</source>
         <translation>Konfiguration von Unterdiagrammen</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="327"/>
+        <location filename="backend_sv4agg.py" line="326"/>
         <source>Select file to save</source>
         <translation>Wähle einen Namen der zu sichernden Datei</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="489"/>
+        <location filename="backend_sv4agg.py" line="488"/>
         <source>Print Document</source>
         <translation>Dokument Drucken</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="261"/>
+        <location filename="backend_sv4agg.py" line="260"/>
         <source>Print</source>
         <translation>Drucken</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="263"/>
+        <location filename="backend_sv4agg.py" line="262"/>
         <source>Print the figure</source>
         <translation>Drucke das Diagramm</translation>
     </message>
@@ -148,12 +148,12 @@ Nach einem Neustart von SimuVis4 solltest Du matplot/pylabin der PythonConsole (
         <translation>MatPlot: matplotlib in Version zwischen %s und %s benötigt, vorhanden ist %s</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="271"/>
+        <location filename="backend_sv4agg.py" line="270"/>
         <source>Wheel Zoom</source>
         <translation>Mausrad Zoom</translation>
     </message>
     <message>
-        <location filename="backend_sv4agg.py" line="273"/>
+        <location filename="backend_sv4agg.py" line="272"/>
         <source>when activated, canvas can be zoomed with CTRL-MouseWheel</source>
         <translation>Ermögliche das Zoomen der gesamten Zeichenfläche mit CTRL-Mausrad</translation>
     </message>

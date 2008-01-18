@@ -6,7 +6,7 @@
     <message>
         <location filename="DSChartMplToolBar.py" line="89"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Formular</translation>
     </message>
     <message>
         <location filename="DSChartMplToolBar.py" line="93"/>
@@ -19,7 +19,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="DSChartMplToolBar.py" line="94"/>
         <source>|&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation>|&lt;</translation>
     </message>
     <message>
         <location filename="DSChartMplToolBar.py" line="98"/>
@@ -27,12 +27,12 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Verdana&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Go back one step&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="DSChartMplToolBar.py" line="99"/>
         <source>&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;</translation>
     </message>
     <message>
         <location filename="DSChartMplToolBar.py" line="103"/>
@@ -40,12 +40,12 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Verdana&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Go forward one step&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="DSChartMplToolBar.py" line="104"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&gt;</translation>
     </message>
     <message>
         <location filename="DSChartMplToolBar.py" line="108"/>
@@ -53,12 +53,12 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Verdana&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Got to the end of the time interval&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="DSChartMplToolBar.py" line="109"/>
         <source>&gt;|</source>
-        <translation type="unfinished"></translation>
+        <translation>&gt;|</translation>
     </message>
     <message>
         <location filename="DSChartMplToolBar.py" line="110"/>
@@ -154,7 +154,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DataStorageBrowser</name>
     <message>
-        <location filename="__init__.py" line="38"/>
+        <location filename="__init__.py" line="39"/>
         <source>DataStorageBrowser: could not load module datastorage, check paths!</source>
         <translation>DataStorageBrowser: konnte Modul datastorage nicht importieren, kontrolliere die Einstellungen!</translation>
     </message>
@@ -250,29 +250,64 @@ Double click on the chart item to show!
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="234"/>
+        <location filename="DSBrowser.py" line="221"/>
         <source>Edit metadata</source>
         <translation>Editiere Metadaten</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="240"/>
+        <location filename="DSBrowser.py" line="227"/>
         <source>Add Chart</source>
         <translation>Chart hinzufügen</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="242"/>
+        <location filename="DSBrowser.py" line="229"/>
         <source>Plot (Qwt)</source>
         <translation>Plotten (Qwt)</translation>
-    </message>
-    <message>
-        <location filename="DSBrowser.py" line="244"/>
-        <source>Show Chart</source>
-        <translation>Chart anzeigen</translation>
     </message>
     <message>
         <location filename="DSMetadata.py" line="34"/>
         <source>Edit metadata of %s</source>
         <translation>Ändere Metadaten von %s</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="231"/>
+        <source>Show</source>
+        <translation>Anzeigen</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="232"/>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <location filename="DSAddChartMpl.py" line="30"/>
+        <source>Select type/template of chart</source>
+        <translation>Wähle eine Typvorlage für den Chart</translation>
+    </message>
+    <message>
+        <location filename="DSAddChartMpl.py" line="51"/>
+        <source>Chart name:</source>
+        <translation>Name des Charts:</translation>
+    </message>
+    <message>
+        <location filename="DSAddChartMpl.py" line="82"/>
+        <source>Chart name already exists!</source>
+        <translation>Dieser Chartname existiert bereits!</translation>
+    </message>
+    <message>
+        <location filename="DSAddChartMpl.py" line="83"/>
+        <source>Chart names must be unique. Choose another name or delete existing chart first!</source>
+        <translation>Chartnamen müssen eindeutig sein. Wähle einen anderen Namen oder lösche den existierenden Chart zuerst!</translation>
+    </message>
+    <message>
+        <location filename="DSAddChartMpl.py" line="94"/>
+        <source>Adjust chart properties</source>
+        <translation>Einstellungen des Charts anpassen</translation>
+    </message>
+    <message>
+        <location filename="DSAddChartMpl.py" line="120"/>
+        <source>Add a new chart</source>
+        <translation>Einen neuen Chart hinzufügen</translation>
     </message>
 </context>
 </TS>

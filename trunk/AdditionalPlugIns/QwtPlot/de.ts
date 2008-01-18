@@ -3,17 +3,17 @@
 <context>
     <name>QwtPlot</name>
     <message>
-        <location filename="__init__.py" line="33"/>
+        <location filename="__init__.py" line="34"/>
         <source>Qwt Plotwindow</source>
         <translation>Qwt Plotfenster</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="35"/>
+        <location filename="__init__.py" line="36"/>
         <source>&amp;QwtPlotWindow Test</source>
         <translation>&amp;Qwt Plottest</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="36"/>
+        <location filename="__init__.py" line="37"/>
         <source>Show a new Qwt test window</source>
         <translation>Zeige ein Qwt-Testfenster</translation>
     </message>
