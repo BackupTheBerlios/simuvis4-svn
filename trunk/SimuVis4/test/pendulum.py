@@ -14,7 +14,7 @@ class Pendulum(object):
     """ abstract pendulum class """
     def __init__(self, **kw):
         self.initValues = kw
-        F = SimTools.Quantities.Float
+        F = SimTools.RichTypes.Float
         self.mass =     F('mass', kw.get('mass', 1.0), descr='mass of ball', unit='kg', min=0.01, max=1000.0)
         self.length =   F('length', kw.get('length', 1.0), descr='length of rod', unit='m', min=0.01, max=1000.0)
         self.radius =   F('radius', kw.get('radius', 1.0), descr='radius of ball', unit='m', min=0.01, max=1000.0)
@@ -68,8 +68,8 @@ class GPendulum(Graphics.Items.ItemGroupBase):
         self.addToGroup(self.ball)
         self.setFlags(QGraphicsItem.ItemIsSelectable)
 
-    def setQuantities(self, q):
-        self.quantities = q
+    def setProperties(self, q):
+        self.properties = q
 
     def contextMenuEvent(self, e):
         e.accept()
@@ -77,9 +77,9 @@ class GPendulum(Graphics.Items.ItemGroupBase):
         p = m.addAction("Properties")
         a = m.exec_(e.screenPos())
         if a == p:
-            dlg = SimTools.Widgets.SimpleQuantitiesDialog(mainWin, 'Pendulum properties',
+            dlg = SimTools.RichTypes.Qt4Widgets.SimpleRichTypesDialog(mainWin, 'Pendulum properties',
                 text='Change physical properties', scrolling=False)
-            dlg.addQuantities(self.quantities)
+            dlg.addRichTypes(self.properties)
             dlg.exec_()
 
 
@@ -98,7 +98,7 @@ class PendulumGraphics(Pendulum):
         self.gCross = Graphics.Items.CrossX(toolTip='this is the fix point of the pendulum')
         self.gAxes = Graphics.Items.Axes(toolTip='theese are x,y-axes')
         self.gPendulum = GPendulum()
-        self.gPendulum.setQuantities((self.mass, self.length, self.radius, self.gravity,
+        self.gPendulum.setProperties((self.mass, self.length, self.radius, self.gravity,
             self.omega, self.friction))
         self.gScene.addItem(self.gGrid)
         self.gScene.addItem(self.gText)
