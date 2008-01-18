@@ -9,8 +9,8 @@ import SimuVis4, numpy
 from PyQt4.QtCore import QCoreApplication
 
 SimTools = SimuVis4.Globals.plugInManager.getPlugIn('SimTools')
-Quantities = SimTools.Quantities
-QuantitiesDialog = SimTools.Widgets.ComplexQuantitiesDialog
+RichTypes = SimTools.RichTypes
+RichTypesDialog = RichTypes.Qt4Widgets.ComplexRichTypesDialog
 
 
 def editMetadata(node):
@@ -20,20 +20,20 @@ def editMetadata(node):
         v = node.getMetaData(k)
         t = type(v)
         if t in (str, unicode, numpy.string_):
-            qq.append(Quantities.Text(unicode(k), v))
+            qq.append(RichTypes.Text(unicode(k), v))
         elif t in (bool, numpy.bool_):
-            qq.append(Quantities.Bool(str(k), not not v))
+            qq.append(RichTypes.Bool(str(k), not not v))
         elif t in (int, ):
-            qq.append(Quantities.Integer(str(k), v))
+            qq.append(RichTypes.Integer(str(k), v))
         elif t in (float, ):
-            qq.append(Quantities.Float(str(k), v))
+            qq.append(RichTypes.Float(str(k), v))
         else:
             # FIXME: other data types
             pass
     title = '%s: Metadata' % node.path
     txt = unicode(QCoreApplication.translate('DataStorageBrowser', 'Edit metadata of %s')) % node.path
-    dlg = QuantitiesDialog(SimuVis4.Globals.mainWin, windowTitle=title, text=txt, scrolling=True)
-    dlg.addQuantities(qq)
+    dlg = RichTypesDialog(SimuVis4.Globals.mainWin, windowTitle=title, text=txt, scrolling=True)
+    dlg.addRichTypes(qq)
     if not dlg.exec_():
         return
     res = dlg.result

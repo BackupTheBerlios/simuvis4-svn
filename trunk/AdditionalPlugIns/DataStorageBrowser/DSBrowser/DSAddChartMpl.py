@@ -84,7 +84,7 @@ class NewChartPage1(QWizardPage):
         self.setTitle(QCoreApplication.translate('DataStorageBrowser', 'Adjust chart properties'))
         self.mainLayout = QVBoxLayout()
         self.setLayout(self.mainLayout)
-        self.quantityWidget = None
+        self.propertyWidget = None
         self.sensorgroup = sensorgroup
 
 
@@ -92,13 +92,13 @@ class NewChartPage1(QWizardPage):
         i, x = self.field('templateNumber').toInt()
         tmpl = chartTemplates[i]
         tmpl.setSensorgroup(self.sensorgroup)
-        if self.quantityWidget is not None:
-            self.mainLayout.removeWidget(self.quantityWidget)
-            self.quantityWidget.hide()
-            del self.quantityWidget
-        self.quantityWidget = SimTools.Widgets.QuantityWidget(self)
-        self.mainLayout.addWidget(self.quantityWidget)
-        self.quantityWidget.addQuantities(tmpl.properties)
+        if self.propertyWidget is not None:
+            self.mainLayout.removeWidget(self.propertyWidget)
+            self.propertyWidget.hide()
+            del self.propertyWidget
+        self.propertyWidget = SimTools.RichTypes.Qt4Widgets.RichTypesWidget(self)
+        self.mainLayout.addWidget(self.propertyWidget)
+        self.propertyWidget.addRichTypes(tmpl.properties)
         self.adjustSize()
 
 

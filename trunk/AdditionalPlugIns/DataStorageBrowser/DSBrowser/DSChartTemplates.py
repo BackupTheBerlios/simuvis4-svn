@@ -5,9 +5,6 @@
 # this file is part of the SimuVis4 framework
 
 import SimuVis4, sys, types
-SimTools = SimuVis4.Globals.plugInManager.getPlugIn('SimTools')
-Q = SimTools.Quantities
-
 
 from datastorage.graphics.matplot_lines_matrix import MatplotLineMatrix
 from datastorage.graphics.matplot_matrix import MatplotMatrix
@@ -16,6 +13,10 @@ from datastorage.graphics.carpetplot import CarpetPlot
 
 timeValues = [60, 3600, 86400, 604800, 2592000, 31536000]
 timeNames = ['Minute', 'Hour', 'Day', 'Week', 'Month', 'Year']
+
+RT = SimuVis4.Globals.plugInManager.getPlugIn('SimTools').RichTypes
+## import RichTypes as RT
+
 
 
 class ChartTemplate(object):
@@ -91,16 +92,16 @@ class WeatherData(ChartTemplate):
         self.previewImage = 'WeatherData.png'
 
     def setup(self):
-        self.defProp(Q.Text('Title', self.chartName, maxLen=100, descr='title of the chart'))
+        self.defProp(RT.Text('Title', self.chartName, maxLen=100, descr='title of the chart'))
         sensors = ['Ta', 'Rha', 'Iglob']
         for s in sensors:
             if not s in self.sensorNames:
                 sensors.remove(s)
-        self.defProp(Q.MultiChoice('Sensors', sensors, choices=self.sensorNames, descr='sensors to plot'))
-        self.defProp(Q.Float('Y-axis end', 0.8, min=0.0, max=1.0, descr=' ??? '))
-        self.defProp(Q.Choice('Standard slice', timeNames[2], choices=timeNames, descr='standard slice in plot'))
-        self.defProp(Q.Integer('Canvas width', 1000, min=200, max=5000, descr='standard width of plot'))
-        self.defProp(Q.Integer('Canvas height', 800, min=200, max=5000, descr='standard height of plot'))
+        self.defProp(RT.MultiChoice('Sensors', sensors, choices=self.sensorNames, descr='sensors to plot'))
+        self.defProp(RT.Float('Y-axis end', 0.8, min=0.0, max=1.0, descr=' ??? '))
+        self.defProp(RT.Choice('Standard slice', timeNames[2], choices=timeNames, descr='standard slice in plot'))
+        self.defProp(RT.Integer('Canvas width', 1000, min=200, max=5000, descr='standard width of plot'))
+        self.defProp(RT.Integer('Canvas height', 800, min=200, max=5000, descr='standard height of plot'))
 
     def createChart(self):
         sensors = [[str(s)] for s in self['Sensors']]
@@ -122,17 +123,17 @@ class ConsumptionCarpet(ChartTemplate):
         self.previewImage = 'ConsumptionCarpet.png'
 
     def setup(self):
-        self.defProp(Q.Text('Title', self.chartName, maxLen=100, descr='title of the chart'))
+        self.defProp(RT.Text('Title', self.chartName, maxLen=100, descr='title of the chart'))
         sensors = ['Ta', 'Waermezaehler_Uebergabestation', 'Elektrozaehler_Uebergabe_Badenova']
         for s in sensors:
             if not s in self.sensorNames:
                 sensors.remove(s)
-        self.defProp(Q.MultiChoice('Sensors', sensors, choices=self.sensorNames, descr='sensors to plot'))
-        self.defProp(Q.Float('Y-axis end', 0.85, min=0.0, max=1.0, descr=' ??? '))
-        self.defProp(Q.Float('Y-axis gap', 0.04, min=0.0, max=1.0, descr=' ??? '))
-        self.defProp(Q.Choice('Standard slice', timeNames[2], choices=timeNames, descr='standard slice in plot'))
-        self.defProp(Q.Integer('Canvas width', 1000, min=200, max=5000, descr='standard width of plot'))
-        self.defProp(Q.Integer('Canvas height',1600, min=200, max=5000, descr='standard height of plot'))
+        self.defProp(RT.MultiChoice('Sensors', sensors, choices=self.sensorNames, descr='sensors to plot'))
+        self.defProp(RT.Float('Y-axis end', 0.85, min=0.0, max=1.0, descr=' ??? '))
+        self.defProp(RT.Float('Y-axis gap', 0.04, min=0.0, max=1.0, descr=' ??? '))
+        self.defProp(RT.Choice('Standard slice', timeNames[2], choices=timeNames, descr='standard slice in plot'))
+        self.defProp(RT.Integer('Canvas width', 1000, min=200, max=5000, descr='standard width of plot'))
+        self.defProp(RT.Integer('Canvas height',1600, min=200, max=5000, descr='standard height of plot'))
 
     def createChart(self):
         sensors = list([str(s)] for s in self['Sensors'])
@@ -154,9 +155,9 @@ class dtDistrictHeat(ChartTemplate):
         self.previewImage = 'dtDistrictHeat.png'
 
     def setup(self):
-        self.defProp(Q.Text('Title', self.chartName, maxLen=100, descr='title of the chart'))
-        self.defProp(Q.Choice('Sensor', 'dT_fw_threshold', choices=self.sensorNames, descr='sensors to plot'))
-        self.defProp(Q.Choice('Standard slice', timeNames[2], choices=timeNames, descr='standard slice in plot'))
+        self.defProp(RT.Text('Title', self.chartName, maxLen=100, descr='title of the chart'))
+        self.defProp(RT.Choice('Sensor', 'dT_fw_threshold', choices=self.sensorNames, descr='sensors to plot'))
+        self.defProp(RT.Choice('Standard slice', timeNames[2], choices=timeNames, descr='standard slice in plot'))
 
     def createChart(self):
         from matplotlib import rc
