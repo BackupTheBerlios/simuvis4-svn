@@ -6,7 +6,7 @@
 
 import SimuVis4, Icons, os
 from PyQt4.QtGui import QWizard, QWizardPage, QHBoxLayout, QVBoxLayout, QListWidget, QLabel,\
-    QLineEdit, QFrame, QPixmap, QTextEdit
+    QLineEdit, QFrame, QPixmap, QTextEdit, QMessageBox
 from PyQt4.QtCore import Qt, SIGNAL, QCoreApplication
 import DSChartTemplates
 
@@ -25,10 +25,11 @@ def reloadTemplates():
 
 class NewChartPage0(QWizardPage):
     """WizardPage to select chart type and name"""
-    def __init__(self, parent):
+    def __init__(self, parent, sensorgroup):
         QWizardPage.__init__(self, parent)
         self.setTitle(QCoreApplication.translate('DataStorageBrowser', 'Select type/template of chart'))
         self.setFinalPage(True)
+        self.sensorgroup = sensorgroup
         self.mainLayout = QVBoxLayout()
         self.setLayout(self.mainLayout)
         layout0 = QHBoxLayout()
@@ -62,7 +63,10 @@ class NewChartPage0(QWizardPage):
     def templateChanged(self, i):
         t = chartTemplates[i]
         self.templateInfo.setPlainText(t.description)
-        self.nameInput.setText(t.chartName)
+        n = t.chartName
+        while n in self.sensorgroup.charts.keys():
+            n += '_X'
+        self.nameInput.setText(n)
         if t.previewImage:
             xpm = QPixmap()
             path = os.path.join('previewImages', t.previewImage)
@@ -72,7 +76,13 @@ class NewChartPage0(QWizardPage):
 
     def validatePage(self):
         i, x = self.field('templateNumber').toInt()
-        chartTemplates[i].chartName = str(self.field('chartName').toString())
+        n = str(self.field('chartName').toString())
+        if n in self.sensorgroup.charts.keys():
+            QMessageBox.warning(self, QCoreApplication.translate('DataStorageBrowser',
+                'Chart name already exists!'), QCoreApplication.translate('DataStorageBrowser',
+                'Chart names must be unique. Choose another name or delete existing chart first!'))
+            return False
+        chartTemplates[i].chartName = n
         return True
 
 
@@ -108,7 +118,7 @@ class NewChartWizard(QWizard):
     def __init__(self, parent, sensorgroup):
         QWizard.__init__(self, parent)
         self.setWindowTitle(QCoreApplication.translate('DataStorageBrowser', 'Add a new chart'))
-        self.addPage(NewChartPage0(self))
+        self.addPage(NewChartPage0(self, sensorgroup))
         self.addPage(NewChartPage1(self, sensorgroup))
 
 
