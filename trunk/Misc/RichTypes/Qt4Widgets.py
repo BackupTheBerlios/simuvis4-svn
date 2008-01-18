@@ -11,7 +11,7 @@ from PyQt4.QtCore import QCoreApplication, SIGNAL, Qt, QObject, QDateTime
 from RTypes import Text, MLText, Choice, MultiChoice, Float, Integer, Bool, DateTime
 
 
-quantityClasses = {
+richTypeClasses = {
     unicode(QCoreApplication.translate('RichTypes.Qt4Widgets', 'Simple Text')): Text,
     unicode(QCoreApplication.translate('RichTypes.Qt4Widgets', 'Multiline Text')): MLText,
     unicode(QCoreApplication.translate('RichTypes.Qt4Widgets', 'Single Choice')): Choice,
@@ -23,21 +23,21 @@ quantityClasses = {
 }
 
 
-class QuantityWidget(QWidget):
+class RichTypesWidget(QWidget):
 
     def __init__(self, parent=None):
         QWidget.__init__(self, parent)
         self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
         self.gridLayout = QGridLayout(self)
-        self.quantities = []
+        self.richTypes = []
         self.qwidgets   = []
         self.qlabels = []
 
     def addRichTypes(self, l):
-        """set the list of quantities"""
+        """set the list of richtypes"""
         for q in l:
-            i = len(self.quantities)
-            self.quantities.append(q)
+            i = len(self.richTypes)
+            self.richTypes.append(q)
             l = QLabel(self)
             self.qlabels.append(l)
             l.setText(q.name)
@@ -124,17 +124,17 @@ class QuantityWidget(QWidget):
 
     def delRichTypes(self, *names):
         """delete RichTypes by name, widgets get disabled but not deleted"""
-        qq = [q for q in self.quantities if q and q.name in names]
+        qq = [q for q in self.richTypes if q and q.name in names]
         for q in qq:
-            i = self.quantities.index(q)
-            self.quantities[i] = None
+            i = self.richTypes.index(q)
+            self.richTypes[i] = None
             self.qwidgets[i].setEnabled(False)
             self.qlabels[i].setEnabled(False)
 
 
     def applyChanges(self):
-        for i in range(len(self.quantities)):
-            q = self.quantities[i]
+        for i in range(len(self.richTypes)):
+            q = self.richTypes[i]
             if q is not None:
                 w = self.qwidgets[i]
                 cls = q.__class__
@@ -152,12 +152,12 @@ class QuantityWidget(QWidget):
                     q.set(w.dateTime().toTime_t())
                 else:
                     q.set(w.value()) # Integer, Float
-        return [q for q in self.quantities if q is not None]
+        return [q for q in self.richTypes if q is not None]
 
 
 
 class SimpleRichTypesDialog(QDialog):
-    """Simple dialog to display and change quantities"""
+    """Simple dialog to display and change RichTypes"""
 
     def __init__(self, parent=None, windowTitle='', scrolling=True, text=''):
         QDialog.__init__(self, parent)
@@ -168,12 +168,12 @@ class SimpleRichTypesDialog(QDialog):
         if scrolling:
             self.scrollArea = QScrollArea(self)
             self.mainLayout.addWidget(self.scrollArea)
-            self.quantityWidget = QuantityWidget(self.scrollArea)
-            self.scrollArea.setWidget(self.quantityWidget)
+            self.richTypesWidget = RichTypesWidget(self.scrollArea)
+            self.scrollArea.setWidget(self.richTypesWidget)
             self.scrollArea.setWidgetResizable(False)
         else:
-            self.quantityWidget = QuantityWidget(self)
-            self.mainLayout.addWidget(self.quantityWidget)
+            self.richTypesWidget = RichTypesWidget(self)
+            self.mainLayout.addWidget(self.richTypesWidget)
         self.buttonBox =  QDialogButtonBox(self)
         self.buttonBox.setOrientation(Qt.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel | QDialogButtonBox.NoButton | QDialogButtonBox.Ok)
@@ -184,18 +184,18 @@ class SimpleRichTypesDialog(QDialog):
         self.result = None
 
     def addRichTypes(self, l):
-        """set the list of quantities"""
-        self.quantityWidget.addRichTypes(l)
+        """set the list of richtypes"""
+        self.richTypesWidget.addRichTypes(l)
 
     def accept(self):
-        """after dialog closes, quantity list is available as self.result"""
-        self.result = self.quantityWidget.applyChanges()
+        """after dialog closes, RichType list is available as self.result"""
+        self.result = self.richTypesWidget.applyChanges()
         QDialog.accept(self)
 
 
 
 class ComplexRichTypesDialog(SimpleRichTypesDialog):
-    """complex dialog to display, change, add or delete quantities"""
+    """complex dialog to display, change, add or delete RichTypes"""
 
     def __init__(self, parent=None, windowTitle='', scrolling=True, text=''):
         SimpleRichTypesDialog.__init__(self, parent, windowTitle, scrolling, text)
@@ -208,14 +208,14 @@ class ComplexRichTypesDialog(SimpleRichTypesDialog):
         self.delButton.setText(QCoreApplication.translate('RichTypes.Qt4Widgets', 'Delete'))
         self.editButtonLayout.addWidget(self.delButton)
         self.editButtonLayout.addStretch(100)
-        self.connect(self.addButton, SIGNAL('pressed()'), self.newQuantity)
+        self.connect(self.addButton, SIGNAL('pressed()'), self.newRichType)
         self.connect(self.delButton, SIGNAL('pressed()'), self.delRichTypes)
 
 
-    def newQuantity(self):
+    def newRichType(self):
         N = Text('Name', 'new_item', maxLen=100)
         D = Text('Description', '-empty-', maxLen=300)
-        clsNames = quantityClasses.keys()
+        clsNames = richTypeClasses.keys()
         T = Choice('Type', clsNames[0], choices=clsNames,
             descr=QCoreApplication.translate('RichTypes.Qt4Widgets', 'Select type'))
         txt = QCoreApplication.translate('RichTypes.Qt4Widgets', 'Select name, description and type')
@@ -225,10 +225,10 @@ class ComplexRichTypesDialog(SimpleRichTypesDialog):
         if not dlg.exec_():
             return
         name = dlg.result[0].v
-        while name in [q.name for q in self.quantityWidget.quantities if q]:
+        while name in [q.name for q in self.richTypesWidget.richTypes if q]:
             name = name + 'X'
         descr = dlg.result[1].v
-        cls = quantityClasses[dlg.result[2].v]
+        cls = richTypeClasses[dlg.result[2].v]
         if cls in (Choice, MultiChoice):
             C = MLText('choices', '')
             txt = QCoreApplication.translate('RichTypes.Qt4Widgets', 'Enter choices (one per line)')
@@ -237,7 +237,7 @@ class ComplexRichTypesDialog(SimpleRichTypesDialog):
             dlg.addRichTypes((C,))
             if dlg.exec_():
                 choices = [c for c in dlg.result[0].v.split('\n') if c]
-                self.quantityWidget.addRichTypes((cls(name, descr=descr, choices=choices), ))
+                self.richTypesWidget.addRichTypes((cls(name, descr=descr, choices=choices), ))
         elif cls == Float:
             # FIXME: adjust fMin, fMax
             fMin = -1e+10
@@ -250,7 +250,7 @@ class ComplexRichTypesDialog(SimpleRichTypesDialog):
                 'Properties'), text=txt, scrolling=False)
             dlg.addRichTypes((MIN, MAX, STEP))
             if dlg.exec_():
-                self.quantityWidget.addRichTypes((Float(name, descr=descr, min=MIN.v, max=MAX.v, step=STEP.v), ))
+                self.richTypesWidget.addRichTypes((Float(name, descr=descr, min=MIN.v, max=MAX.v, step=STEP.v), ))
         elif cls == Integer:
             # FIXME: adjust iMin, iMax
             iMin = -1e+5
@@ -263,7 +263,7 @@ class ComplexRichTypesDialog(SimpleRichTypesDialog):
                 'Properties'), text=txt, scrolling=False)
             dlg.addRichTypes((MIN, MAX, STEP))
             if dlg.exec_():
-                self.quantityWidget.addRichTypes((Integer(name, descr=descr, min=MIN.v, max=MAX.v, step=STEP.v), ))
+                self.richTypesWidget.addRichTypes((Integer(name, descr=descr, min=MIN.v, max=MAX.v, step=STEP.v), ))
         elif cls == DateTime:
             tMax = 2147483647
             MIN = DateTime('min', 0, min=0, max=tMax)
@@ -273,7 +273,7 @@ class ComplexRichTypesDialog(SimpleRichTypesDialog):
                 'Properties'), text=txt, scrolling=False)
             dlg.addRichTypes((MIN, MAX))
             if dlg.exec_():
-                self.quantityWidget.addRichTypes((DateTime(name, descr=descr, min=MIN.v, max=MAX.v), ))
+                self.richTypesWidget.addRichTypes((DateTime(name, descr=descr, min=MIN.v, max=MAX.v), ))
         elif cls in (Text, MLText):
             ML = Integer('maxLen', 1000, min=0, max=1e+5, step=1)
             txt = QCoreApplication.translate('RichTypes.Qt4Widgets', 'Enter properties')
@@ -281,13 +281,13 @@ class ComplexRichTypesDialog(SimpleRichTypesDialog):
                 'Properties'), text=txt, scrolling=False)
             dlg.addRichTypes((ML,))
             if dlg.exec_():
-                self.quantityWidget.addRichTypes((cls(name, descr=descr, maxLen=ML.v), ))
+                self.richTypesWidget.addRichTypes((cls(name, descr=descr, maxLen=ML.v), ))
         else:
-            self.quantityWidget.addRichTypes((cls(name, descr=descr), ))
+            self.richTypesWidget.addRichTypes((cls(name, descr=descr), ))
 
 
     def delRichTypes(self):
-        qnames = [q.name for q in self.quantityWidget.quantities if q is not None]
+        qnames = [q.name for q in self.richTypesWidget.richTypes if q is not None]
         Q = MultiChoice('Items', [], choices=qnames, descr=QCoreApplication.translate('RichTypes.Qt4Widgets',
             'RichTypes to delete'))
         txt = QCoreApplication.translate('RichTypes.Qt4Widgets', 'Select items to delete')
@@ -296,7 +296,7 @@ class ComplexRichTypesDialog(SimpleRichTypesDialog):
         dlg.addRichTypes((Q,))
         if dlg.exec_():
             delNames = dlg.result[0].v
-            self.quantityWidget.delRichTypes(*delNames)
+            self.richTypesWidget.delRichTypes(*delNames)
 
 
 

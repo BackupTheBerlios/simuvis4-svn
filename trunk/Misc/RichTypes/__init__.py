@@ -9,7 +9,8 @@ some extra information like unit, min/max etc.
 
 """
 
-import RTypes
+from RTypes import *
+
 try:
     import Qt4Widgets
 except ImportError:
