@@ -6,7 +6,7 @@
 
 import SimuVis4, Icons, os
 from PyQt4.QtGui import QWizard, QWizardPage, QHBoxLayout, QVBoxLayout, QListWidget, QLabel,\
-    QLineEdit, QFrame, QPixmap, QTextEdit, QMessageBox
+    QLineEdit, QFrame, QPixmap, QTextEdit, QMessageBox, QAbstractItemView
 from PyQt4.QtCore import Qt, SIGNAL, QCoreApplication
 import DSChartTemplates
 
@@ -34,6 +34,7 @@ class NewChartPage0(QWizardPage):
         self.setLayout(self.mainLayout)
         layout0 = QHBoxLayout()
         self.templateSelect = QListWidget(self)
+        self.templateSelect.setSelectionMode(QAbstractItemView.SingleSelection)
         layout0.addWidget(self.templateSelect)
         self.templatePreview = QLabel(self)
         self.templatePreview.setScaledContents(True)
@@ -59,6 +60,7 @@ class NewChartPage0(QWizardPage):
         self.registerField('chartName', self.nameInput, 'text')
         self.ownPlugIn = SimuVis4.Globals.plugInManager['DataStorageBrowser']
         self.connect(self.templateSelect, SIGNAL("currentRowChanged(int)"), self.templateChanged)
+        self.templateSelect.setCurrentRow(0)
 
     def templateChanged(self, i):
         t = chartTemplates[i]
