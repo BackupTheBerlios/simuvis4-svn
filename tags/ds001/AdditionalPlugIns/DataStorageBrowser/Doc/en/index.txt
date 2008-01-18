@@ -1,0 +1,73 @@
+============================
+ PlugIn: DataStorageBrowser
+============================
+This plugin provides a browser for databases in the datastorage_ format.
+It plugs into the sidebar/dockwidget provided be the DataBrowser_ plugin.
+
+Configuration
+=============
+In a configfile_ you may use the following items:
+
+::
+
+    [datastoragebrowser]
+
+    # path, optional: path to the folder containing the datastorage package,
+    # if not installed in PYTHONPATH
+    datastorage_path = /home/horst/lib/
+
+    # path, optional: database to open at startup (folder containing h5 files)
+    default_database = /home/horst/weather
+
+    # bool: show chart subwindows maximized
+    show_chart_maximized = no
+
+    # bool: show chart subwindows using the size hint instead of fitting the window
+    # see 'canvas zoom' of the MatPlot_ plugin for details
+    show_chart_original_size = no
+
+Interaction
+===========
+Selecting an item in the treeview shows some information in the info area at the
+bottom of the browser. Double-clicking a sensor will open a QwtPlot_ window with
+the sensors data. Double-clicking a chart will open a MatPlot_ window containing
+the chart.
+
+All other actions are contained in the context menu (right mouse button) of the
+items in the tree view.
+
+Hints
+=====
+If you use SimuVis4 as a GUI for datastorage_ only you may enable/disable some of features
+in your configfile_:
+
+::
+    
+    [main]
+    
+    # hide the log window at startup
+    hide_log_window = yes
+    
+    # hide the plugin browser at startup
+    hide_plugin_browser = yes
+    
+    # add plugins not needed by DataStorageBrowser
+    ignore_plugins = RemoteControl VtkWindow Graphics PythonConsole
+    
+    [databrowser]
+
+    # show databrowser at startup
+    show = yes
+    
+    # hide netcdf3 browser
+    netcdf3_browser = no
+    
+    # hide filesystembrowser
+    filesystem_browser = no
+
+
+.. _DataBrowser: /plugin/DataBrowser/index.html
+.. _QwtPlot: /plugin/QwtPlot/index.html
+.. _MatPlot: /plugin/MatPlot/index.html
+.. _configfile: /simuvis/config.html
+.. _datastorage: http://www.riap.de/

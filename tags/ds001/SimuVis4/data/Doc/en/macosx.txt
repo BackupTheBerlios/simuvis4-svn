@@ -1,0 +1,6 @@
+=====================
+ SimuVis4 on MacOS X
+=====================
+In theory, SimuVis should run on MacOS X with very little changes. I hope to get
+access to machines running MacOS X soon. At the moment you should not expect
+SimuVis4 to run out of the box, sorry!

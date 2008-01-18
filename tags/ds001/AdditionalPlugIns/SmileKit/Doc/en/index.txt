@@ -1,0 +1,5 @@
+==================
+ PlugIn: SmileKit
+==================
+SmileKit provides some helper classes and dialogs for the simulation package SMILE.
+Documentation will follow soon.
