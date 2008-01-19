@@ -8,7 +8,11 @@ SimuVis4 is a package containing the main part of the SimuVis 4 framework.
 Have a look at "http://simuvis.de/" for details.
 """
 
-__version__ = '4.0'
+svn_revision = 302 # this line is changed automagically by mark_svn_rev.py
+version_info = (4, 0, svn_revision)
+version_string = '4.0.%03d' % svn_revision
+
+__version__ = version_string
 __author__ = 'Joerg Raedler <jr@j-raedler.de>'
 
 
