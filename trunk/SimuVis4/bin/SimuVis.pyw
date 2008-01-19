@@ -30,7 +30,7 @@ Usage: %s [options]
             use language lang if available
 """ % sys.argv[0]
 
-svn_revision = 277 # this line is changed automagically by mark_svn_rev.py
+svn_revision = 303 # this line is changed automagically by mark_svn_rev.py
 version_info = (4, 0, svn_revision)
 version_string = '4.0.%03d' % svn_revision
 
@@ -115,6 +115,13 @@ except ImportError:
     errorExit("Module not found", "Could not import the main SimuVis4 module package!",
             "Make sure SimuVis is installed correctly.",
             "Let your $PYTHONPATH include the SimuVis4 module package folder!")
+
+if SimuVis4.version_info != version_info:
+    errorExit("Version mismatch",
+        "The versions of the main script and the SimuVis4 module package do not match:",
+        "%s: %s" % (exeFile, version_string),
+        "%s: %s" % (SimuVis4.__file__, SimuVis4.version_string),
+        "Let your $PYTHONPATH include only one SimuVis4 module package folder!")
 
 glb = SimuVis4.Globals
 glb.startScript = startScript
