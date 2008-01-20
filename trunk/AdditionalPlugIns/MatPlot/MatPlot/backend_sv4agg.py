@@ -43,6 +43,7 @@ except:
     raise "This backend works only from SimuVis4!"
 
 from PyQt4 import QtCore, QtGui
+Qt = QtCore.Qt
 
 
 backend_version = "0.3.0"
@@ -53,10 +54,10 @@ if os.path.isdir(tmp):
     imagepath = tmp
 
 cursord = {
-    cursors.MOVE          : QtCore.Qt.PointingHandCursor,
-    cursors.HAND          : QtCore.Qt.WaitCursor,
-    cursors.POINTER       : QtCore.Qt.ArrowCursor,
-    cursors.SELECT_REGION : QtCore.Qt.CrossCursor,
+    cursors.MOVE          : Qt.PointingHandCursor,
+    cursors.HAND          : Qt.WaitCursor,
+    cursors.POINTER       : Qt.ArrowCursor,
+    cursors.SELECT_REGION : Qt.CrossCursor,
     }
 
 def draw_if_interactive():
@@ -82,19 +83,55 @@ def new_figure_manager(num, *args, **kwargs):
     return FigureManagerSV4(canvas, num)
 
 
+zoomStepFactor = SimuVis4.Globals.config.getfloat('matplot', 'zoom_step_factor')
+mouseWheelStep = SimuVis4.Globals.config.getfloat('matplot', 'mouse_wheel_step')
 
 class WheelScrollArea(QtGui.QScrollArea):
+    """ScrollArea that is zoomable with CTRL-Wheel or CTRL-(+/-)"""
+
+    def zoomWidget(self, w, h=None):
+        """Zoom widget width by w and height by h. If h is None, w is used instead"""
+        if h == None:
+            h = w
+        wi = self.widget()
+        s = wi.size()
+        wi.resize(int(w*s.width()), int(h*s.height()))
+
+
+    def keyPressEvent(self, e):
+        if (e.modifiers() & Qt.ControlModifier) and e.key() in (Qt.Key_Plus, Qt.Key_Minus):
+            if self.widgetResizable():
+                e.ignore()
+                return
+            if e.modifiers() & Qt.ShiftModifier:
+                h = 1.0
+            else:
+                h = None
+            w = 1.0+zoomStepFactor
+            if e.key() == Qt.Key_Plus:
+                self.zoomWidget(w, h)
+            else:
+                self.zoomWidget(1.0/w, h)
+            e.accept()
+        else:
+            QtGui.QScrollArea.keyPressEvent(self, e)
+
+
     def wheelEvent(self, e):
         if self.widgetResizable():
             e.ignore()
             return
-        if e.modifiers() & QtCore.Qt.ControlModifier:
-            d = e.delta()
-            # FIXME: adjust speed
-            f = (1000.0+d)/1000.0
-            w = self.widget()
-            s = w.size()
-            w.resize(int(f*s.width()), int(f*s.height()))
+        if e.modifiers() & Qt.ControlModifier:
+            if e.modifiers() & Qt.ShiftModifier:
+                h = 1.0
+            else:
+                h = None
+            steps = e.delta()/8.0/mouseWheelStep
+            w = 1.0 + abs(steps)*zoomStepFactor
+            if steps < 0.0:
+                self.zoomWidget(w, h)
+            else:
+                self.zoomWidget(1.0/w, h)
             e.accept()
         else:
             QtGui.QScrollArea.wheelEvent(self, e)
@@ -104,7 +141,7 @@ class WheelScrollArea(QtGui.QScrollArea):
 class MatPlotWindow(SubWindowV):
     def setup(self, canvas, num):
         mainWin.workSpace.addSubWindow(self)
-        self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
+        self.setAttribute(Qt.WA_DeleteOnClose)
         self.mainLayout.setSpacing(2)
 
         self.setWindowTitle(unicode(QtCore.QCoreApplication.translate('MatPlot', 'Figure %d')) % num)
@@ -118,7 +155,7 @@ class MatPlotWindow(SubWindowV):
         self.canvas = canvas
         self.canvas.mplWindow = self
         canvas.setParent(self)
-        canvas.setFocusPolicy(QtCore.Qt.ClickFocus)
+        canvas.setFocusPolicy(Qt.ClickFocus)
         canvas.setFocus()
         self.scrollArea.setWidget(self.canvas)
         self.setMinimumSize(350, 300)
@@ -269,12 +306,13 @@ class NavigationToolbar2SV4(NavigationToolbar2, QtGui.QWidget):
         self.wheelButton.setChecked(False)
         self.wheelButton.setText(QtCore.QCoreApplication.translate('MatPlot', 'Wheel Zoom'))
         self.wheelButton.setIcon(QtGui.QIcon(QtGui.QPixmap(SimuVis4.Icons.magnify)))
-        self.wheelButton.setToolTip(QtCore.QCoreApplication.translate('MatPlot', 'when activated, canvas can be zoomed with CTRL-MouseWheel'))
+        self.wheelButton.setToolTip(QtCore.QCoreApplication.translate('MatPlot',
+        'when activated, canvas can be zoomed with CTRL-MouseWheel, CTRL-"+" and CTRL-"-"'))
         QtCore.QObject.connect(self.wheelButton, QtCore.SIGNAL('toggled(bool)'), self.enableWheelZoom)
         self.layout.addWidget(self.wheelButton)
 
         self.locLabel = QtGui.QLabel(self)
-        self.locLabel.setAlignment( QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter )
+        self.locLabel.setAlignment( Qt.AlignRight | Qt.AlignVCenter )
         self.locLabel.setSizePolicy(QtGui.QSizePolicy(QtGui.QSizePolicy.Ignored,
                                                       QtGui.QSizePolicy.Ignored))
         self.layout.addWidget(self.locLabel, 1)
@@ -306,7 +344,7 @@ class NavigationToolbar2SV4(NavigationToolbar2, QtGui.QWidget):
     def configure_subplots(self):
         win = SubWindow(mainWin.workSpace)
         mainWin.workSpace.addSubWindow(win)
-        win.setAttribute(QtCore.Qt.WA_DeleteOnClose)
+        win.setAttribute(Qt.WA_DeleteOnClose)
         win.setWindowTitle(QtCore.QCoreApplication.translate('MatPlot', 'Subplot Configuration Tool'))
         image = os.path.join(imagepath,'matplotlib.png' )
         win.setWindowIcon(QtGui.QIcon(image))
@@ -344,9 +382,9 @@ class NavigationToolbar2SV4(NavigationToolbar2, QtGui.QWidget):
 
 
 class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg):
-    keyvald = { QtCore.Qt.Key_Control : 'control',
-                QtCore.Qt.Key_Shift : 'shift',
-                QtCore.Qt.Key_Alt : 'alt',
+    keyvald = { Qt.Key_Control : 'control',
+                Qt.Key_Shift : 'shift',
+                Qt.Key_Alt : 'alt',
                }
     # left 1, middle 2, right 3
     buttond = {1:1, 2:3, 4:2}
@@ -441,7 +479,7 @@ class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg):
 
             # draw the zoom rectangle to the QPainter
             if (self.drawRect):
-                p.setPen(QtGui.QPen(QtCore.Qt.black, 1, QtCore.Qt.DotLine))
+                p.setPen(QtGui.QPen(Qt.black, 1, Qt.DotLine))
                 p.drawRect(self.rect[0], self.rect[1], self.rect[2], self.rect[3])
 
         # we are blitting here

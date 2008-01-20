@@ -50,6 +50,12 @@ In a configfile_ you may use the following items:
     
     # bool: show a warning when the backend is not installed for pylab
     show_config_warning = yes
+    
+    # float: stepsize to enlarge or shrink when zooming canvas (0.2 = 20%)
+    zoom_step_factor = 0.2
+    
+    # float: rotation distance of mouse wheel for one step, see explanation below
+    mouse_wheel_step = 15
 
 Interaction
 ===========
@@ -67,9 +73,23 @@ papers size, orientation and other settings. See known problems above for detail
 Canvas Zoom
 -----------
 When this button is activated, the size of the plot canvas is not bound to the window size.
-You may use the wheel of your mouse to zoom while holding the CTRL key. As soon as this
-mode is decativated (by pressing this key) the plot canvas will again fit the whole window.
-**Be careful when zooming, it may need some time and a lot of memory!**
+While pressing CTRL you may zoom using the mousewheel or the keys '+' and '-'. If you
+additionally press SHIFT, only the width of the canvas will change. This way you may
+adjust the aspect ratio.
+
+**Be careful and patient when zooming! It may need some time and a lot of memory because
+matplotlib is not optimized for this kind of interactive usage.**
+
+When one of the dimensions of the canvas exceeds the window size, the corresponding scrollbar
+will appear. If the canvas is smaller than the window, no scrollbar is shown.
+
+As soon as this mode is decativated (by pressing this button again) the plot canvas will
+again fit the whole window.
+
+You may adjust the zoom step in your configuration (see above). With ``zoom_step_factor``
+you define the change of size along one axis (new = old * 1+zoom_step_factor). This value
+is used for both one key press and one step with the mouse wheel. If your wheel resolution
+is not 15 degrees, you should adjust the value of ``mouse_wheel_step``.
 
 
 .. _PythonConsole: /plugin/PythonConsole/index.html

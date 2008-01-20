@@ -193,6 +193,12 @@ to render but didn't show the figures yet, calling <tt class="docutils literal">
 
 # bool: show a warning when the backend is not installed for pylab
 show_config_warning = yes
+
+# float: stepsize to enlarge or shrink when zooming canvas (0.2 = 20%)
+zoom_step_factor = 0.2
+
+# float: rotation distance of mouse wheel for one step, see explanation below
+mouse_wheel_step = 15
 </pre>
 </div>
 <div class="section">
@@ -208,9 +214,19 @@ papers size, orientation and other settings. See known problems above for detail
 <div class="section">
 <h2><a id="canvas-zoom" name="canvas-zoom">Canvas Zoom</a></h2>
 <p>When this button is activated, the size of the plot canvas is not bound to the window size.
-You may use the wheel of your mouse to zoom while holding the CTRL key. As soon as this
-mode is decativated (by pressing this key) the plot canvas will again fit the whole window.
-<strong>Be careful when zooming, it may need some time and a lot of memory!</strong></p>
+While pressing CTRL you may zoom using the mousewheel or the keys '+' and '-'. If you
+additionally press SHIFT, only the width of the canvas will change. This way you may
+adjust the aspect ratio.</p>
+<p><strong>Be careful and patient when zooming! It may need some time and a lot of memory because
+matplotlib is not optimized for this kind of interactive usage.</strong></p>
+<p>When one of the dimensions of the canvas exceeds the window size, the corresponding scrollbar
+will appear. If the canvas is smaller than the window, no scrollbar is shown.</p>
+<p>As soon as this mode is decativated (by pressing this button again) the plot canvas will
+again fit the whole window.</p>
+<p>You may adjust the zoom step in your configuration (see above). With <tt class="docutils literal"><span class="pre">zoom_step_factor</span></tt>
+you define the change of size along one axis (new = old * 1+zoom_step_factor). This value
+is used for both one key press and one step with the mouse wheel. If your wheel resolution
+is not 15 degrees, you should adjust the value of <tt class="docutils literal"><span class="pre">mouse_wheel_step</span></tt>.</p>
 </div>
 </div>
 </div>

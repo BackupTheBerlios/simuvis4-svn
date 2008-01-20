@@ -54,6 +54,8 @@ class PlugIn(SimplePlugIn):
         if not cfg.has_section(cfgsec):
             cfg.add_section(cfgsec)
         cfg.set_def(cfgsec, 'show_config_warning', 'yes')
+        cfg.set_def(cfgsec, 'zoom_step_factor', '0.189207115002721')
+        cfg.set_def(cfgsec, 'mouse_wheel_step', '15')
         glb = SimuVis4.Globals
         import matplotlib
         if matplotlib.__version__ < mplMinVersion or matplotlib.__version__ > mplMaxVersion:
