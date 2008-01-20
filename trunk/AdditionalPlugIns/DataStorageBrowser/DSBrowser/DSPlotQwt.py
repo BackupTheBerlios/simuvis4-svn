@@ -23,6 +23,6 @@ def showQwtPlotWindow(n, maximized=False):
 
     curve.setPen(QPen(Qt.blue))
     curve.attach(w.plot)
-    w.setMinimumSize(800, 600)
+    w.setMinimumSize(640, 480)
     w.plot.replot()
     w.plot.zoomer.setZoomBase()

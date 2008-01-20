@@ -144,7 +144,7 @@ def showChartMplWindow(chart, maximized=False):
     canvas = mplBackend.FigureCanvasSV4(chart.figure)
     manager = mplBackend.FigureManagerSV4(canvas, mplWinCount())
     w = manager.window
-    w.setMinimumSize(800, 600)
+    w.setMinimumSize(640, 480)
     w.setWindowTitle('%s (%s)' % (chart.name, chart.sensorgroup.path))
     w.dsToolBar = ChartToolBar(w)
     w.dsToolBar.setChartCanvas(chart, canvas)
