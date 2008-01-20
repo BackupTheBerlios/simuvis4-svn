@@ -59,7 +59,6 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
         uF.reverse()
         for f in uF:
             if not slc % f:
-                print slc, f
                 self.LengthUnitInput.setCurrentIndex(unitFactors.index(f))
                 self.LengthInput.setValue(slc / f)
                 self.setTimeslice(slc)

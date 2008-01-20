@@ -204,7 +204,6 @@ class DSBrowser(QWidget):
         elif t == 'G':
             pass
         elif t == 'S':
-            print n
             self.showQwtPlot(n)
         elif t == 'C':
             self.showMplChart(n)

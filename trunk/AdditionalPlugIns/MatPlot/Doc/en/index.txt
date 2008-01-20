@@ -87,9 +87,9 @@ As soon as this mode is decativated (by pressing this button again) the plot can
 again fit the whole window.
 
 You may adjust the zoom step in your configuration (see above). With ``zoom_step_factor``
-you define the change of size along one axis (new = old * 1+zoom_step_factor). This value
-is used for both one key press and one step with the mouse wheel. If your wheel resolution
-is not 15 degrees, you should adjust the value of ``mouse_wheel_step``.
+you define the change of size along one axis (``new = old * (1+zoom_step_factor)``). This value
+is used for both the key press and a step with the mouse wheel. If your wheel resolution
+is not 15 degrees, you may want to adjust the value of ``mouse_wheel_step``.
 
 
 .. _PythonConsole: /plugin/PythonConsole/index.html

@@ -38,10 +38,15 @@ items in the tree view.
 
 Hints
 =====
-Please read the documentation for QwtPlot_ and MatPlot_!
+* Please read the documentation for MatPlot_ (in particular about canvas zoom) and QwtPlot_!
+* To save space you may show/hide the browser window with CTRL-B.
+* If more than one subwindow is opened, you may easily switch between the windows
+  with CTRL-">" and CTRL-"<".
+* Use Window > Cascade to see all windows.
+* Use CTRL-M to switch between normal, maximized and shaded state for the active window.
 
-If you use SimuVis4 as a GUI for datastorage_ only you may enable/disable some of
-SimuVis' features in your configfile_ to get a lean GUI:
+If you use SimuVis4 mainly as a GUI for datastorage_ only you may enable/disable some of
+SimuVis' features in your configfile_ to get a leaner GUI:
 
 ::
     
