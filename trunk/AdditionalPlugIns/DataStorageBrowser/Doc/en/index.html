@@ -151,6 +151,46 @@ code, tt {
 <p>This plugin provides a browser for databases in the <a class="reference" href="http://www.riap.de/">datastorage</a> format.
 It plugs into the sidebar/dockwidget provided be the <a class="reference" href="/plugin/DataBrowser/index.html">DataBrowser</a> plugin.</p>
 <div class="section">
+<h1><a id="usage" name="usage">Usage</a></h1>
+<img align="right" alt="Screenshot1.png" class="align-right" src="Screenshot1.png" />
+<p>To load a database, use the button at the toolbar. A tree of items will appear.
+Most actions are available from the context menu (right mouse button) of an item.</p>
+<p>Selecting an item in the treeview shows some information in the info area at the
+bottom of the browser. Double-clicking on a sensor will open a <a class="reference" href="/plugin/QwtPlot/index.html">QwtPlot</a> window with
+the sensors data. Double-clicking a chart will open a <a class="reference" href="/plugin/MatPlot/index.html">MatPlot</a> window containing
+the chart.</p>
+<p>The expand/collapse button will expand or collapse all items in the browser window.</p>
+<p>To search an item you enter the items name (or a part of it) in the search input and
+press ENTER. If there's more than one matching item, pressing ENTER again without
+changing the search text will jump to the next matching item. You may use wildcards
+(<tt class="docutils literal"><span class="pre">*</span></tt> and <tt class="docutils literal"><span class="pre">?</span></tt>) in the search input.</p>
+<p>The Help button opens a help browser with this information.</p>
+<div class="section">
+<h2><a id="database-actions" name="database-actions">Database Actions</a></h2>
+<p>You may close a database or edit its metadata using the context menu.</p>
+</div>
+<div class="section">
+<h2><a id="project-actions" name="project-actions">Project Actions</a></h2>
+<p>You may edit its metadata using the context menu.</p>
+</div>
+<div class="section">
+<h2><a id="sensorgroup-actions" name="sensorgroup-actions">Sensorgroup Actions</a></h2>
+<p>You may edit its metadata using the context menu. If the group has defined charts,
+you may show all charts at once in separate windows. A new chart may be defined
+from a list of templates using a wizard.</p>
+</div>
+<div class="section">
+<h2><a id="sensor-actions" name="sensor-actions">Sensor Actions</a></h2>
+<p>You may edit its metadata using the context menu. A doubleclick on a sensor will
+open a <a class="reference" href="/plugin/QwtPlot/index.html">QwtPlot</a> window showing a simple chart.</p>
+</div>
+<div class="section">
+<h2><a id="chart-actions" name="chart-actions">Chart Actions</a></h2>
+<p>Doubleclicking on a chart will show the chart in a new window. You may
+delete a chart using the action from the context menu.</p>
+</div>
+</div>
+<div class="section">
 <h1><a id="configuration" name="configuration">Configuration</a></h1>
 <p>In a <a class="reference" href="/simuvis/config.html">configfile</a> you may use the following items:</p>
 <pre class="literal-block">
@@ -172,20 +212,12 @@ show_chart_original_size = no
 </pre>
 </div>
 <div class="section">
-<h1><a id="interaction" name="interaction">Interaction</a></h1>
-<p>Selecting an item in the treeview shows some information in the info area at the
-bottom of the browser. Double-clicking a sensor will open a <a class="reference" href="/plugin/QwtPlot/index.html">QwtPlot</a> window with
-the sensors data. Double-clicking a chart will open a <a class="reference" href="/plugin/MatPlot/index.html">MatPlot</a> window containing
-the chart.</p>
-<p>All other actions are contained in the context menu (right mouse button) of the
-items in the tree view.</p>
-</div>
-<div class="section">
 <h1><a id="hints" name="hints">Hints</a></h1>
 <ul class="simple">
 <li>Please read the documentation for <a class="reference" href="/plugin/MatPlot/index.html">MatPlot</a> (in particular about canvas zoom) and <a class="reference" href="/plugin/QwtPlot/index.html">QwtPlot</a>!</li>
 <li>To save space you may show/hide the browser window with CTRL-B.</li>
-<li>If more than one subwindow is opened, you may easily switch between the windows
+<li>You may place the browser window in other dock areas in th main windor or detach it completely.</li>
+<li>If more than one chart subwindow is opened, you may easily switch between the windows
 with CTRL-&quot;&gt;&quot; and CTRL-&quot;&lt;&quot;.</li>
 <li>Use Window &gt; Cascade to see all windows.</li>
 <li>Use CTRL-M to switch between normal, maximized and shaded state for the active window.</li>
