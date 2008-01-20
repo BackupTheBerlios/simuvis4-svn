@@ -1,0 +1,36 @@
+=================
+ PlugIn: QwtPlot
+=================
+QwtPlot will make the usage of PyQwt5 in SimuVis4 more comfortable. At the moment
+there are two concepts.
+
+Plot window
+===========
+You may get a new window with a QwtPlotWidget and some helpers with the following command:
+
+::
+
+    ...
+    # create a plot window
+    plotWin = mainWin.plugInManager['QwtPlot'].winManager.newWindow('my new plotwindow')
+    # attach a curve
+    QwtPlotCurve('curve1').attach(plotWin.plot)
+    ...
+
+The attribute plot of a plot window is an instance of QwtPlot.
+
+PyQt4.PyQwt5.qplt
+=================
+With this package PyQwt5 has an easy to use language for fast plotting of datasets.
+You may use the package in SimuVis scripts. The commands ``Plot()`` and ``IPlot()`` will open a
+MDI window with some buttons instead of the original windows. All other commands work
+as expected. There's no need to import PyQt4.PyQwt5.iqt!
+
+Example
+-------
+::
+
+    from PyQt4.Qwt5.qplt import *
+    xx = [0.1*a for a in range(50)]
+    yy = [sin(a) for a in xx]
+    Plot(Curve(xx, yy))

@@ -1,0 +1,25 @@
+===================
+ SimuVis4 on Linux
+===================
+If you use Linux, it should not be to hard to install the required software packages.
+Please use the package manager for your distribution.
+
+Debian
+------
+For debian (and probably for derived distributions like ubuntu) there are .deb packages
+available for the required additional software. You must have these packages (and the
+packages required by these pakages, but apt will manage the dependencies for you):
+
+* python2.4 or python2.5
+* python-qt4 version 4.3 or newer
+
+To get all plugins working, you should install these packages:
+
+* python-qwt5-qt4
+* python-scientific
+* python-matplotlib
+* python-vtk
+
+SuSE
+----
+information coming soon

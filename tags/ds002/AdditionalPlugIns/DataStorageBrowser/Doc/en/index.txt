@@ -1,0 +1,118 @@
+============================
+ PlugIn: DataStorageBrowser
+============================
+This plugin provides a browser for databases in the datastorage_ format.
+It plugs into the sidebar/dockwidget provided be the DataBrowser_ plugin.
+
+Usage
+=====
+.. image:: Screenshot1.png
+   :align: right
+
+To load a database, use the button at the toolbar. A tree of items will appear.
+Most actions are available from the context menu (right mouse button) of an item.
+
+Selecting an item in the treeview shows some information in the info area at the
+bottom of the browser. Double-clicking on a sensor will open a QwtPlot_ window with
+the sensors data. Double-clicking a chart will open a MatPlot_ window containing
+the chart.
+
+The expand/collapse button will expand or collapse all items in the browser window.
+
+To search an item you enter the items name (or a part of it) in the search input and
+press ENTER. If there's more than one matching item, pressing ENTER again without
+changing the search text will jump to the next matching item. You may use wildcards
+(``*`` and ``?``) in the search input.
+
+The Help button opens a help browser with this information.
+
+Database Actions
+----------------
+You may close a database or edit its metadata using the context menu.
+
+Project Actions
+---------------
+You may edit its metadata using the context menu.
+
+Sensorgroup Actions
+-------------------
+You may edit its metadata using the context menu. If the group has defined charts,
+you may show all charts at once in separate windows. A new chart may be defined
+from a list of templates using a wizard.
+
+Sensor Actions
+--------------
+You may edit its metadata using the context menu. A doubleclick on a sensor will
+open a QwtPlot_ window showing a simple chart.
+
+Chart Actions
+-------------
+Doubleclicking on a chart will show the chart in a new window. You may
+delete a chart using the action from the context menu.
+
+
+Configuration
+=============
+In a configfile_ you may use the following items:
+
+::
+
+    [datastoragebrowser]
+
+    # path, optional: path to the folder containing the datastorage package,
+    # if not installed in PYTHONPATH
+    datastorage_path = /home/horst/lib/
+
+    # path, optional: database to open at startup (folder containing h5 files)
+    default_database = /home/horst/weather
+
+    # bool: show chart subwindows maximized
+    show_chart_maximized = no
+
+    # bool: show chart subwindows using the size hint instead of fitting the window
+    # see 'canvas zoom' of the MatPlot_ plugin for details
+    show_chart_original_size = no
+
+Hints
+=====
+* Please read the documentation for MatPlot_ (in particular about canvas zoom) and QwtPlot_!
+* To save space you may show/hide the browser window with CTRL-B.
+* You may place the browser window in other dock areas in th main windor or detach it completely.
+* If more than one chart subwindow is opened, you may easily switch between the windows
+  with CTRL-">" and CTRL-"<".
+* Use Window > Cascade to see all windows.
+* Use CTRL-M to switch between normal, maximized and shaded state for the active window.
+
+If you use SimuVis4 mainly as a GUI for datastorage_ only you may enable/disable some of
+SimuVis' features in your configfile_ to get a leaner GUI:
+
+::
+    
+    [main]
+    
+    # hide the log window at startup
+    hide_log_window = yes
+    
+    # hide the plugin browser at startup
+    hide_plugin_browser = yes
+    
+    # add plugins not needed by DataStorageBrowser
+    ignore_plugins = RemoteControl VtkWindow Graphics PythonConsole
+    
+    [databrowser]
+
+    # show databrowser at startup
+    show = yes
+    
+    # hide netcdf3 browser
+    netcdf3_browser = no
+    
+    # hide filesystembrowser
+    filesystem_browser = no
+
+
+.. _DataBrowser: /plugin/DataBrowser/index.html
+.. _QwtPlot: /plugin/QwtPlot/index.html
+.. _MatPlot: /plugin/MatPlot/index.html
+.. _configfile: /simuvis/config.html
+.. _datastorage: http://www.riap.de/
