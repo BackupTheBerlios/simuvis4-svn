@@ -38,8 +38,10 @@ items in the tree view.
 
 Hints
 =====
-If you use SimuVis4 as a GUI for datastorage_ only you may enable/disable some of features
-in your configfile_:
+Please read the documentation for QwtPlot_ and MatPlot_!
+
+If you use SimuVis4 as a GUI for datastorage_ only you may enable/disable some of
+SimuVis' features in your configfile_ to get a lean GUI:
 
 ::
     

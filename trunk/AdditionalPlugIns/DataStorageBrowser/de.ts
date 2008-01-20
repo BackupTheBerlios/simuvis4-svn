@@ -285,27 +285,27 @@ Double click on the chart item to show!
         <translation>Wähle eine Typvorlage für den Chart</translation>
     </message>
     <message>
-        <location filename="DSAddChartMpl.py" line="51"/>
+        <location filename="DSAddChartMpl.py" line="52"/>
         <source>Chart name:</source>
         <translation>Name des Charts:</translation>
     </message>
     <message>
-        <location filename="DSAddChartMpl.py" line="82"/>
+        <location filename="DSAddChartMpl.py" line="84"/>
         <source>Chart name already exists!</source>
         <translation>Dieser Chartname existiert bereits!</translation>
     </message>
     <message>
-        <location filename="DSAddChartMpl.py" line="83"/>
+        <location filename="DSAddChartMpl.py" line="85"/>
         <source>Chart names must be unique. Choose another name or delete existing chart first!</source>
         <translation>Chartnamen müssen eindeutig sein. Wähle einen anderen Namen oder lösche den existierenden Chart zuerst!</translation>
     </message>
     <message>
-        <location filename="DSAddChartMpl.py" line="94"/>
+        <location filename="DSAddChartMpl.py" line="96"/>
         <source>Adjust chart properties</source>
         <translation>Einstellungen des Charts anpassen</translation>
     </message>
     <message>
-        <location filename="DSAddChartMpl.py" line="120"/>
+        <location filename="DSAddChartMpl.py" line="122"/>
         <source>Add a new chart</source>
         <translation>Einen neuen Chart hinzufügen</translation>
     </message>
