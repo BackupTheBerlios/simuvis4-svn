@@ -29,12 +29,21 @@ class PlugIn(SimplePlugIn):
         # FIXME: disabled while developing, get Exceptions in logger
         if 1: #try:
             import DSBrowser
-            dsbrowser = DSBrowser.DSBrowser()
-            SimuVis4.Globals.dataBrowser.toolBox.addItem(dsbrowser, 'DataStorage')
+            self.dsbrowser = DSBrowser.DSBrowser()
+            SimuVis4.Globals.dataBrowser.toolBox.addItem(self.dsbrowser, 'DataStorage')
             if cfg.has_option(cfgsec, 'default_database'):
-                dsbrowser.loadDatabase(cfg.get(cfgsec, 'default_database'))
+                self.dsbrowser.loadDatabase(cfg.get(cfgsec, 'default_database'))
             return True
         else: #except ImportError:
             SimuVis4.Globals.logger.error(unicode(QCoreApplication.translate('DataStorageBrowser',
                 'DataStorageBrowser: could not load module datastorage, check paths!')))
             return False
+
+    def unload(self, fast):
+        try:
+            for n, db in self.dsbrowser.model.databases.items():
+                db.close()
+                SimuVis4.Globals.logger.debug(unicode(QCoreApplication.translate('DataStorageBrowser',
+                'DataStorageBrowser: closing database: %s')), n)
+        except:
+            pass

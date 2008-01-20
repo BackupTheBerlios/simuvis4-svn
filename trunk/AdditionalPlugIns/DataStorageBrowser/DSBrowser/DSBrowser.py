@@ -7,7 +7,7 @@
 import SimuVis4, os, Icons, string
 from PyQt4.QtGui import QWidget, QTreeView, QAbstractItemView, QStandardItemModel, QStandardItem, \
     QVBoxLayout, QHBoxLayout, QSplitter, QTextBrowser, QMessageBox, QToolButton, QIcon, QPixmap, \
-    QFrame, QFileDialog, QPen, QMenu
+    QFrame, QFileDialog, QPen, QMenu, QLineEdit
 from PyQt4.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, SIGNAL, QCoreApplication
 from cgi import escape
 
@@ -21,61 +21,71 @@ from datastorage.database import DataBaseRoot, Sensor
 showChartMaximized = SimuVis4.Globals.config.getboolean('datastoragebrowser', 'show_chart_maximized')
 
 rootInfo = string.Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
-<h3>Root $name</h3>
-<table border="1">
-<tr><td>Title</td><td>$title</td></tr>
-<tr><td>Folder</td><td>$folder</td></tr>
-<tr><td>Projects</td><td>$projects</td></tr>
+<b>Root $name</b><br/>
+<hr/>
+<table border="0">
+<tr bgcolor="#dddddd"><td><b>Title: </b></td><td>$title</td></tr>
+<tr><td><b>Folder: </b></td><td>$folder</td></tr>
+<tr bgcolor="#dddddd"><td><b>Projects: </b></td><td>$projects</td></tr>
 </table>
 """)))
 
 
 projectInfo = string.Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
-<h3>Project $name</h3>
-<table border="1">
-<tr><td>Title</td><td>$title</td></tr>
-<tr><td>Groups</td><td>$groups</td></tr>
+<b>Project $name</b><br/>
+<i>in $path</i>
+<hr/>
+<table border="0">
+<tr bgcolor="#dddddd"><td><b>Title: </b></td><td>$title</td></tr>
+<tr><td><b>Groups: </b></td><td>$groups</td></tr>
 </table>
 """)))
 
 
 groupInfo = string.Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
-<h3>Group $name</h3>
-<table border="1">
-<tr><td>Title</td><td>$title</td></tr>
-<tr><td>Sensors</td><td>$sensors</td></tr>
-<tr><td>Charts</td><td>$charts</td></tr>
+<b>Group $name</b><br/>
+<i>in $path</i>
+<hr/>
+<table border="0">
+<tr bgcolor="#dddddd"><td><b>Title: </b></td><td>$title</td></tr>
+<tr><td><b>Sensors: </b></td><td>$sensors</td></tr>
+<tr bgcolor="#dddddd"><td><b>Charts: </b></td><td>$charts</td></tr>
 </table>
 """)))
 
 
 sensorInfo = string.Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
-<h3>Sensor $name</h3>
-<table border="1">
-<tr><td>Title</td><td>$title</td></tr>
-<tr><td>Start</td><td>$start</td></tr>
-<tr><td>Stop</td><td>$stop</td></tr>
-<tr><td>Step</td><td>$step</td></tr>
-<tr><td>Length</td><td>$length</td></tr>
+<b>Sensor $name</b><br/>
+<i>in $path</i><br/>
+Doubleclick to show a chart!
+<hr/>
+<table border="0">
+<tr bgcolor="#dddddd"><td><b>Title: </b></td><td>$title</td></tr>
+<tr><td><b>Start: </b></td><td>$start</td></tr>
+<tr bgcolor="#dddddd"><td><b>Stop: </b></td><td>$stop</td></tr>
+<tr><td><b>Step: </b></td><td>$step</td></tr>
+<tr bgcolor="#dddddd"><td><b>Length: </b></td><td>$length</td></tr>
 </table>
-Double click on the sensor item to show a chart!
 """)))
 
 
 chartInfo = string.Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
-<h3>Chart $name</h3>
-Double click on the chart item to show!
+<b>Chart $name</b><br/>
+<i>in $path</i>
+<hr/>
+Doubleclick to show!
 """)))
 
 
 metaDataStartInfo = unicode(QCoreApplication.translate('DataStorageBrowser', """
-<h4>Metadata</h4>
-<table border="1">
+<hr/>
+<b>  Metadata:</b>
+<table border="0">
 """))
 
 
 metaDataLineInfo = string.Template("""
-<tr><td>$name</td><td>$value</td></tr>
+<tr bgcolor="$bgcolor"><td><b>$name:&nbsp;</b></td><td>$value</td></tr>
 """)
 
 
@@ -85,12 +95,15 @@ metaDataEndInfo = """
 
 
 def formatMetaData(n):
+    sw = SimuVis4.Misc.Switcher()
+    colors = ['#dddddd', '#ffffff']
     keys = n.getMetaKeys()
     if not keys:
         return ""
     l = [metaDataStartInfo]
     for k in keys:
-        l.append(metaDataLineInfo.substitute(name=k, value=escape(unicode(n.getMetaData(k)))))
+        l.append(metaDataLineInfo.substitute(name=k, value=escape(unicode(n.getMetaData(k))),
+            bgcolor=colors[sw()]))
     l.append(metaDataEndInfo)
     return '\n'.join(l)
 
@@ -124,15 +137,26 @@ class DSBrowser(QWidget):
         self.toolBarLayout.addWidget(self.loadButton)
         self.connect(self.loadButton, SIGNAL('pressed()'), self.loadDatabase)
 
-        self.dropButton = QToolButton(self.toolBar)
-        self.dropButton.setText(QCoreApplication.translate('DataStorageBrowser', 'Close All'))
-        self.dropButton.setIcon(QIcon(QPixmap(SimuVis4.Icons.clear)))
-        self.dropButton.setToolTip(QCoreApplication.translate('DataStorageBrowser', 'Drop all open databases'))
-        self.toolBarLayout.addWidget(self.dropButton)
-        self.connect(self.dropButton, SIGNAL('pressed()'), self.dropDatabases)
-        self.dropButton.setEnabled(False)
+        self.expandButton = QToolButton(self.toolBar)
+        self.expandButton.setText('Expand/Collapse')
+        self.expandButton.setIcon(QIcon(QPixmap(Icons.exp_col)))
+        self.expandButton.setToolTip(QCoreApplication.translate('DataStorageBrowser', 'Expand or collapse the whole tree'))
+        self.toolBarLayout.addWidget(self.expandButton)
+        self.connect(self.expandButton, SIGNAL('pressed()'), self.expandCollapseAll)
 
-        self.toolBarLayout.addStretch(100)
+        self.searchInput = QLineEdit(self.toolBar)
+        self.searchInput.setText(QCoreApplication.translate('DataStorageBrowser', 'Enter search text here'))
+        self.searchInput.setToolTip(QCoreApplication.translate('DataStorageBrowser',
+            'Enter search text using wildcards here, press ENTER again to go to next match!'))
+        self.toolBarLayout.addWidget(self.searchInput, 100)
+        self.connect(self.searchInput, SIGNAL('returnPressed()'), self.searchItem)
+
+        self.helpButton = QToolButton(self.toolBar)
+        self.helpButton.setText(QCoreApplication.translate('DataStorageBrowser', 'Help'))
+        self.helpButton.setIcon(QIcon(QPixmap(SimuVis4.Icons.help)))
+        self.helpButton.setToolTip(QCoreApplication.translate('DataStorageBrowser', 'Show help for DataStorageBrowser'))
+        self.toolBarLayout.addWidget(self.helpButton)
+        self.connect(self.helpButton, SIGNAL('pressed()'), self.showHelp)
 
         self.splitter = QSplitter(self)
         self.splitter.setOrientation(Qt.Vertical)
@@ -154,6 +178,9 @@ class DSBrowser(QWidget):
         self.connect(self.treeView, SIGNAL("customContextMenuRequested(QPoint)"), self.showContextMenu)
         self.selectedNode = None
         self.selectedMI = None
+        self.searchText = ''
+        self.searchResults = []
+        self.collExpand = SimuVis4.Misc.Switcher()
 
 
     def loadDatabase(self, dn=None):
@@ -168,11 +195,11 @@ class DSBrowser(QWidget):
                 return
         self.model.addDatabase(dn)
         self.treeView.expandToDepth(1)
+        self.treeView.resizeColumnToContents(0)
 
 
-    def dropDatabases(self):
-        # FIXME: implement it
-        pass
+    def showHelp(self):
+        SimuVis4.HelpBrowser.showHelp('/plugin/DataStorageBrowser/index.html')
 
 
     def showItem(self, mi, pr):
@@ -181,18 +208,48 @@ class DSBrowser(QWidget):
         txt = ""
         if t == 'R':
             # FIXME: no metadata?
-            txt = rootInfo.substitute(name=n.name, title=escape(n.title), folder=n.h5dir, projects=len(n)) # + formatMetaData(n)
+            txt = rootInfo.substitute(name=n.name, title=escape(n.title), folder=n.h5dir,
+                projects=len(n)) + formatMetaData(n)
         elif t == 'P':
-            txt = projectInfo.substitute(name=n.name, title=escape(n.title), groups=len(n)) + formatMetaData(n)
+            txt = projectInfo.substitute(name=n.name, path=escape(n.parent.name),
+                title=escape(n.title), groups=len(n)) + formatMetaData(n)
         elif t == 'G':
-            txt = groupInfo.substitute(name=n.name, title=escape(n.title), sensors=len(n), charts=len(n.charts)) + formatMetaData(n)
+            txt = groupInfo.substitute(name=n.name,  path='/'.join(n.path.split('/')[:-1]),
+                title=escape(n.title), sensors=len(n), charts=len(n.charts)) + formatMetaData(n)
         elif t == 'S':
-            txt = sensorInfo.substitute(name=n.name, title=escape(n.title), start=n.timegrid.start, stop=n.timegrid.stop,
+            txt = sensorInfo.substitute(name=n.name,  path='/'.join(n.path.split('/')[:-1]),
+                title=escape(n.title), start=n.timegrid.start, stop=n.timegrid.stop,
                 step=n.timegrid.step, length=n.datalen()) + formatMetaData(n)
         elif t == 'C':
-            txt = chartInfo.substitute(name=n.name)
+            txt = chartInfo.substitute(name=n.name, path=n.sensorgroup.path)
         self.textBrowser.setText(txt)
 
+
+    def searchItem(self):
+        """execute the search and highlight the (next) result"""
+        txt = str(self.searchInput.text())
+        if txt != self.searchText:
+            self.searchText = txt
+            tmp = self.model.findItems(txt,
+                Qt.MatchFixedString | Qt.MatchContains | Qt.MatchWildcard | Qt.MatchRecursive)
+            self.searchList = [i.index() for i in tmp]
+        if self.searchList:
+            mi = self.searchList.pop()
+            self.treeView.setCurrentIndex(mi)
+            self.treeView.expand(mi)
+            self.treeView.scrollTo(mi)
+        else:
+            QMessageBox.information(self, QCoreApplication.translate('DataStorageBrowser',
+                'No (more) matches!'), QCoreApplication.translate('DataStorageBrowser',
+                'No (more) matches found! Change you search criteria and try again!'))
+            self.searchText = ''
+
+
+    def expandCollapseAll(self):
+        if self.collExpand():
+            self.treeView.collapseAll()
+        else:
+            self.treeView.expandAll()
 
     def itemAction(self, mi):
         """default action (on doubleclick) for item at model index mi"""
@@ -216,19 +273,24 @@ class DSBrowser(QWidget):
         self.selectedNode = n
         self.selectedMI = mi
         m = QMenu()
-        if t in 'RPGS':
-            p = m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Edit metadata'), self.editMetadata)
         if t == 'R':
-            pass
+            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Close'), self.closeDatabase)
         elif t == 'P':
             pass
         elif t == 'G':
+            nCharts = len(n.charts)
+            if nCharts > 0:
+                txt = str(QCoreApplication.translate('DataStorageBrowser', 'Show all Charts (%d)')) % nCharts
+                m.addAction(txt, self.showAllCharts)
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Add Chart'), self.newChart)
         elif t == 'S':
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Plot (Qwt)'), self.showQwtPlot)
         elif t == 'C':
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Show'), self.showMplChart)
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Delete'), self.deleteItem)
+        if t in 'RPGS':
+            m.addSeparator()
+            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Edit metadata'), self.editMetadata)
         a = m.exec_(self.treeView.mapToGlobal(pos))
 
 
@@ -236,6 +298,13 @@ class DSBrowser(QWidget):
         if node is None:
             node = self.selectedNode
         showChartMplWindow(node, maximized=showChartMaximized)
+
+
+    def showAllCharts(self, node=None):
+        if node is None:
+            node = self.selectedNode
+        for chart in node.charts.values():
+            showChartMplWindow(chart, maximized=showChartMaximized)
 
 
     def showQwtPlot(self, node=None):
@@ -250,11 +319,18 @@ class DSBrowser(QWidget):
         editMetadata(node)
 
 
+    def closeDatabase(self, mi=None):
+        if mi is None:
+            mi = self.selectedMI
+        self.model.closeDatabase(mi)
+
+
     def newChart(self, mi=None):
         """add a chart to sensorgroup at mi using the wizard"""
         if mi is None:
             mi = self.selectedMI
         showNewChartWizard(self.model, mi)
+
 
     def deleteItem(self, mi=None):
         """delete the item at mi"""
@@ -334,6 +410,8 @@ class DSModel(QStandardItemModel):
     def dsNode(self, mi):
         """get the type of the node and the node for a model index"""
         item = self.itemFromIndex(mi)
+        if not item:
+            return None, None
         p = str(item.data().toString()).split('|')
         if p[0] == 'R': # root
             x = self.databases[p[1]]
@@ -342,6 +420,13 @@ class DSModel(QStandardItemModel):
         elif p[0] == 'C': # chart
             x = self.databases[p[1]].find(p[2]).charts[p[3]]
         return p[0], x
+
+
+    def closeDatabase(self, mi):
+        t, db = self.dsNode(mi)
+        db.close()
+        item = self.itemFromIndex(mi)
+        self.rootItem.removeRow(item.row())
 
 
     def addChart(self, chart, mi):
