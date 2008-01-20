@@ -4,7 +4,7 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-import Globals, sys, os, mimetypes, string
+import Globals, sys, os, mimetypes, string, pydoc
 from PyQt4.QtGui import QDesktopServices
 from PyQt4.QtCore import QCoreApplication, QUrl, QString, QRegExp, QDateTime, SIGNAL
 from PyQt4.QtNetwork import QTcpServer, QTcpSocket, QHostAddress
@@ -73,6 +73,7 @@ class HelpServer(QTcpServer):
 
 
     def doGET(self, path):
+        """ handle a get request, dispatch to getXYZ functions"""
         s = self.sender()
         words = path.split('/')
         words = filter(None, words)
@@ -111,6 +112,7 @@ class HelpServer(QTcpServer):
 
 
     def getIndex(self):
+        """get the index made from a template"""
         p = os.path.join(helpPath, 'mainIndexTemplate.html')
         if not os.path.exists(p):
             p = os.path.join(helpPathEn, 'mainIndexTemplate.html')
@@ -126,6 +128,7 @@ class HelpServer(QTcpServer):
 
 
     def getSimuVis(self, w):
+        """get simuvis documentation"""
         p = os.path.join(helpPath, *w)
         if not os.path.exists(p):
             p = os.path.join(helpPathEn, *w)
@@ -138,7 +141,11 @@ class HelpServer(QTcpServer):
 
 
     def getPlugIn(self, w):
-        pi = Globals.plugInManager.plugIns[w[0]]
+        """get plugin documentation"""
+        try:
+            pi = Globals.plugInManager.plugIns[w[0]]
+        except KeyError:
+            return None, None
         base, ext = os.path.splitext(w[-1])
         mimetype = mimetypes.types_map.get(ext, 'application/octet-stream')
         c = None
@@ -153,7 +160,35 @@ class HelpServer(QTcpServer):
 
 
     def getPython(self, w):
-        return 'text/plain', 'Dummy - sorry'
+        """get python documentation
+        This function is a modified version of DocHandler.do_GET() from pydoc.py
+        by Ka-Ping Yee"""
+        path = '/'.join(w)
+        if path.endswith('.html'): path = path[:-5]
+        if path and path != '.':
+            try:
+                obj = pydoc.locate(path, forceload=1)
+            except pydoc.ErrorDuringImport, value:
+                return 'text/html', pydoc.html.page(path, pydoc.html.escape(str(value)))
+            print obj
+            if obj:
+                return 'text/html', pydoc.html.page(pydoc.describe(obj), pydoc.html.document(obj, path))
+            else:
+                return 'text/html', pydoc.html.page(path, 'no Python documentation found for %s' % repr(path))
+        else:
+            heading = pydoc.html.heading('<big><big><strong>Python: Index of Modules</strong></big></big>',
+                '#ffffff', '#7799ee')
+            def bltinlink(name):
+                return '<a href="/python/%s.html">%s</a>' % (name, name)
+            names = filter(lambda x: x != '__main__', sys.builtin_module_names)
+            contents = pydoc.html.multicolumn(names, bltinlink)
+            indices = ['<p>' + pydoc.html.bigsection('Built-in Modules', '#ffffff', '#ee77aa', contents)]
+            seen = {}
+            for dir in pydoc.pathdirs():
+                indices.append(pydoc.html.index(dir, seen))
+            contents = heading + ''.join(indices) + '''<p align=right><font color="#909090" face="helvetica, arial">
+                <strong>pydoc</strong> by Ka-Ping Yee &lt;ping@lfw.org&gt;</font>'''
+            return 'text/html', pydoc.html.page('Index of Modules', contents)
 
 
 

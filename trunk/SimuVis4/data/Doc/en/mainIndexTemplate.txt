@@ -28,5 +28,5 @@ The plugin documentation will be inserted at runtime.
 
 .. _SimuVis: simuvis/index.html
 .. _Homepage: http://www.simuvis.de/
-.. _Python: python.html
+.. _Python: /python/
 .. _reStructuredText: http://docutils.sourceforge.net/rst.html

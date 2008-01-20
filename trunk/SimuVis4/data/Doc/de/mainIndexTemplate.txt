@@ -28,5 +28,5 @@ betrachtet werden. Die Doku zu den PlugIns wird zur Laufzeit integriert.
 
 .. _SimuVis: simuvis/index.html
 .. _Homepage: http://www.simuvis.de/
-.. _Python: python.html
+.. _Python: /python/
 .. _reStructuredText: http://docutils.sourceforge.net/rst.html
