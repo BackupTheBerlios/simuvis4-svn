@@ -13,7 +13,7 @@ from cgi import escape
 lang = Globals.language or Globals.config['main:i18n_language']
 helpPath   = os.path.join(Globals.config['main:system_help_path'], lang)
 helpPathEn = os.path.join(Globals.config['main:system_help_path'], 'en')
-helpURL = 'http://127.0.0.1:%d/' % Globals.config.getint('main', 'help_server_port')
+helpURL = 'http://127.0.0.1:%d' % Globals.config.getint('main', 'help_server_port')
 
 helpServer = None
 
@@ -206,7 +206,7 @@ def stopServer():
 
 
 
-def showHelp(url=helpURL):
+def showHelp(path=''):
     if not helpServer:
         startServer()
-    QDesktopServices.openUrl(QUrl(url))
+    QDesktopServices.openUrl(QUrl(helpURL+path))
