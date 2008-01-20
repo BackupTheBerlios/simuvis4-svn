@@ -113,6 +113,9 @@ class NewChartPage1(QWizardPage):
         self.propertyWidget.addRichTypes(tmpl.properties)
         self.adjustSize()
 
+    def validatePage(self):
+        self.propertyWidget.applyChanges()
+        return True
 
 
 class NewChartWizard(QWizard):
