@@ -108,20 +108,26 @@ config.set_def('main', 'hide_plugin_browser', 'yes')
 
 config.set_def('main', 'disable_help_browser', 'no')
 config.set_def('main', 'help_browser_external', 'no')
-config.set_def('main', 'help_server_port', '34568')
+config.set_def('main', 'help_server_port', '34567')
 
 if platform == 'win32':
     # FIXME: there's an error on windows when exiting, somewhere in the logging system...
     config.set_def('main', 'save_last_exception', 'SV4_lastException.txt')
 
-# try to guess data path:
-dataPath = os.path.join(mainModule.baseDir, 'data')
-if not os.path.isdir(dataPath):
-    # already installed, but not configured correctly?
-    dataPath = os.path.join(mainModule.baseDir, 'lib', 'SimuVis4')
-if not os.path.isdir(dataPath):
-    logger.error('Config: could not guess data path, SimuVis may not work correctly!')
-config.set_def('main', 'system_data_path', dataPath)
+
+if not config.has_option('main', 'system_data_path'):
+    # try to guess data path:
+    dataPath = os.path.join(mainModule.baseDir, 'data')
+    if not os.path.isdir(dataPath):
+        # already installed, but not configured correctly?
+        dataPath = os.path.join(mainModule.baseDir, 'lib', 'SimuVis4')
+    if not os.path.isdir(dataPath):
+        logger.error('Config: could not guess data path, SimuVis will not work correctly!')
+        mainModule.errorExit('Data path not found!',
+        'This may be caused by an incomplete installation or an incorrect configuration file.')
+    config.set_def('main', 'system_data_path', dataPath)
+else:
+    dataPath = config['main:system_data_path']
 config.set_def('main', 'system_plugin_path', os.path.join(dataPath, 'PlugIns'))
 config.set_def('main', 'system_picture_path', os.path.join(dataPath, 'Pictures'))
 config.set_def('main', 'system_language_path', os.path.join(dataPath, 'Language'))

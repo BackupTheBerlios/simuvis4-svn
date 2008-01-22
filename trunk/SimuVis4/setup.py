@@ -6,27 +6,32 @@
 
 from distutils.core import setup
 
-import os, sys
-        
+import os, sys, string
+
+svn_revision = 313 # this line is changed automagically by mark_svn_rev.py
+version_info = (4, 0, svn_revision)
+version_string = '4.0.%03d' % svn_revision
+
 # there was an error in distutils when building rpms with PYTHONOPTIMIZE set:
 if os.environ.has_key('PYTHONOPTIMIZE'):
     del os.environ['PYTHONOPTIMIZE']
 
-longdesc = """SimuVis4 is intended to be a framework / working environment
+longdesc = """
+SimuVis4 is intended to be a framework / working environment
 for scientific programmin in Python, data analysis and
 visualisation in 2D/3D. It uses Python, PyQt, PyQwt and VTK.
 The program is designed to be very flexible by using a
 plugin system for extensions and a lean main program.
 
 SimuVis4 is a major rewrite of an earlier application
-and is in the state of alpha software at the moment!
+and is in the state of beta software at the moment!
 """
 
 # generate datafile list on the fly
 def list_data_files():
     def add_data_path(df, dn, fi):
-        if 'CVS' in fi:
-            fi.remove('CVS')
+        if '.svn' in fi:
+            fi.remove('.svn')
         foo = [os.path.join(dn, f) for f in fi if os.path.isfile]
         bar = [os.path.normpath(f) for f in foo if os.path.isfile(f)]
         if bar:
@@ -37,8 +42,33 @@ def list_data_files():
     os.path.walk(data_path, add_data_path, data_files)
     return data_files
 
+
+cfgTemplate = string.Template("""
+[main]
+# global configuration file of SimuVis4
+system_data_path     = ${system_data_path}
+""")
+
+
 def generate_config_file():
-    print "Configfile not copied, SimuVis may not run!"
+    """generate a configfile"""
+    name = 'SimuVis4.ini'
+    if sys.platform == 'linux2':
+        cfg_path = '/etc'
+        system_data_path = '/usr/share/SimuVis4'
+    elif sys.platform == 'win32':
+        cfg_path = ''
+        system_data_path = ''
+    elif sys.platform == 'macos_x':
+        cfg_path = ''
+        system_data_path = ''
+    else:
+        raise 'platform not supported'
+    cfg = cfgTemplate.substitute(system_data_path=system_data_path, sep=os.path.sep)
+    f = open(name, 'w')
+    f.write(cfg)
+    f.close()
+    return cfg_path, [name]
     # FIXME: generate and fill a SimuVis4.ini file, need to know directories
     # Unix (pure)	prefix/lib/python2.0/site-packages
     # Unix (non-pure) exec-prefix/lib/python2.0/site-packages
@@ -69,21 +99,20 @@ def generate_config_file():
     # non-pure module distribution	prefix:Lib:site-packages	--install-platlib
     # scripts	prefix:Scripts	--install-scripts
     # data	prefix:Data	--install-data
-    pass
 
 
 args = { 'name' : "SimuVis4",
-         'version' : '4.0a3',
+         'version' : version_string,
          'description' : "Scientific programming, data analysis and visualisation framework",
          'long_description' : longdesc,
          'license' : "GPL",
          'author' : "Joerg Raedler",
          'author_email' : "jr@j-raedler.de",
-         'maintainer' : "dezentral gbr Berlin",
-         'maintainer_email' : "software@dezentral.de",
-         'url' : "http://www.dezentral.de/soft/SimuVis4",
-         'download_url' : "http://download.dezentral.de/soft/",
-         'classifiers' : ['Development Status :: 5 - Production/Stable',
+         'maintainer' : "Joerg Raedler",
+         'maintainer_email' : "jr@j-raedler.de",
+         'url' : "http://www.simuvis.de",
+         'download_url' : "http://www.simuvis.de/pages/download.php",
+         'classifiers' : ['Development Status :: 4 - Beta',
                            'Intended Audience :: Developers',
                            'Intended Audience :: Science/Research',
                            'License :: Freely Distributable',
@@ -95,11 +124,8 @@ args = { 'name' : "SimuVis4",
                            'Topic :: Multimedia :: Graphics'
                            ],
          'packages' : ['SimuVis4', 'SimuVis4/UI'],
-         'scripts' : ['bin/SimuVis.py'],
+         'scripts' : ['bin/SimuVis.pyw', 'bin/SV4ClientRC.pyw'],
          'data_files' : list_data_files(),
 }
 
-#setup(**args)
-
-if 'install' in sys.argv:
-    print generate_config_file()
+setup(**args)

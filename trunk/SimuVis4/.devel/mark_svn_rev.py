@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os, stat
 
-files = ('bin/SimuVis.pyw', 'SimuVis4/__init__.py')
+files = ('bin/SimuVis.pyw', 'SimuVis4/__init__.py', 'setup.py')
 tmp = os.popen('svnversion -n .', 'r').read().split(':')[-1]
 while not tmp[-1].isdigit():
     tmp = tmp[:-1]
