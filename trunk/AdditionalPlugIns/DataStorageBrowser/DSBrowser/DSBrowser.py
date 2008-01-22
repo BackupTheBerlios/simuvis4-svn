@@ -15,8 +15,10 @@ from DSChartMpl import showChartMplWindow
 from DSPlotQwt import showQwtPlotWindow
 from DSMetadata import editMetadata
 from DSAddChartMpl import showNewChartWizard
+from DSExport import exportSensors
 
 from datastorage.database import DataBaseRoot, Sensor
+
 
 showChartMaximized = SimuVis4.Globals.config.getboolean('datastoragebrowser', 'show_chart_maximized')
 
@@ -280,9 +282,10 @@ class DSBrowser(QWidget):
         elif t == 'G':
             nCharts = len(n.charts)
             if nCharts > 0:
-                txt = str(QCoreApplication.translate('DataStorageBrowser', 'Show all Charts (%d)')) % nCharts
+                txt = str(QCoreApplication.translate('DataStorageBrowser', 'Show all charts (%d)')) % nCharts
                 m.addAction(txt, self.showAllCharts)
-            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Add Chart'), self.newChart)
+            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Add chart'), self.newChart)
+            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Export data'), self.exportSensors)
         elif t == 'S':
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Plot (Qwt)'), self.showQwtPlot)
         elif t == 'C':
@@ -305,6 +308,12 @@ class DSBrowser(QWidget):
             node = self.selectedNode
         for chart in node.charts.values():
             showChartMplWindow(chart, maximized=showChartMaximized)
+
+
+    def exportSensors(self, node=None):
+        if node is None:
+            node = self.selectedNode
+        exportSensors(node)
 
 
     def showQwtPlot(self, node=None):
