@@ -113,6 +113,13 @@ class QwtPlotWindow(SubWindowV):
 
             self.toolBarLayout.addSpacing(10)
 
+        self.helpButton = QToolButton(self)
+        self.helpButton.setText(QCoreApplication.translate('QwtPlot', 'Help'))
+        self.helpButton.setIcon(QIcon(QPixmap(SimuVis4.Icons.help)))
+        self.helpButton.setToolTip(QCoreApplication.translate('QwtPlot', 'Open help browser'))
+        self.connect(self.helpButton, SIGNAL('clicked()'), self.showHelp)
+        self.toolBarLayout.addWidget(self.helpButton)
+
         self.statusLabel = QLabel(self.toolBar)
         self.toolBarLayout.addWidget(self.statusLabel)
 
@@ -170,3 +177,6 @@ class QwtPlotWindow(SubWindowV):
             generator.setFileName(fileName)
             generator.setSize(QSize(800, 600))
             self.plot.print_(generator)
+
+    def showHelp(self):
+        SimuVis4.HelpBrowser.showHelp('/plugin/QwtPlot/index.html')

@@ -311,6 +311,14 @@ class NavigationToolbar2SV4(NavigationToolbar2, QtGui.QWidget):
         QtCore.QObject.connect(self.wheelButton, QtCore.SIGNAL('toggled(bool)'), self.enableWheelZoom)
         self.layout.addWidget(self.wheelButton)
 
+        self.layout.addSpacing(8)
+        self.helpButton = QtGui.QToolButton(self)
+        self.helpButton.setText(QtCore.QCoreApplication.translate('MatPlot', 'Help'))
+        self.helpButton.setIcon(QtGui.QIcon(QtGui.QPixmap(SimuVis4.Icons.help)))
+        self.helpButton.setToolTip(QtCore.QCoreApplication.translate('MatPlot', 'Open help browser'))
+        QtCore.QObject.connect(self.helpButton, QtCore.SIGNAL('clicked()'), self.show_help)
+        self.layout.addWidget(self.helpButton)
+
         self.locLabel = QtGui.QLabel(self)
         self.locLabel.setAlignment( Qt.AlignRight | Qt.AlignVCenter )
         self.locLabel.setSizePolicy(QtGui.QSizePolicy(QtGui.QSizePolicy.Ignored,
@@ -379,6 +387,9 @@ class NavigationToolbar2SV4(NavigationToolbar2, QtGui.QWidget):
 
     def print_dialog(self):
         self.canvas.print_dialog()
+
+    def show_help(self):
+        SimuVis4.HelpBrowser.showHelp('/plugin/MatPlot/index.html')
 
 
 class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg):

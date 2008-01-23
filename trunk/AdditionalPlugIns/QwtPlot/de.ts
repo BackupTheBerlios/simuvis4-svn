@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>QwtPlot</name>
     <message>
@@ -33,7 +34,7 @@
         <translation>Drucke Diagramm auf einen Drucker oder in eine Datei</translation>
     </message>
     <message>
-        <location filename="QwtPlotWindow.py" line="130"/>
+        <location filename="QwtPlotWindow.py" line="137"/>
         <source>Print Document</source>
         <translation>Drucke das Dokument</translation>
     </message>
@@ -63,7 +64,7 @@
         <translation>Drucken...</translation>
     </message>
     <message>
-        <location filename="QwtPlotWindow.py" line="140"/>
+        <location filename="QwtPlotWindow.py" line="147"/>
         <source>Select type and name of file to save</source>
         <translation>Wähle Typ und Namen der zu sichernden Datei</translation>
     </message>
@@ -76,6 +77,16 @@
         <location filename="QPlot.py" line="34"/>
         <source>QwtPlot: PyQt4.Qwt5.qplt not found, skipped subwindow support</source>
         <translation>QwtPlot: PyQt4.Qwt5.qplt nicht gefunden, Unterstützung für Unterfenster nicht installiert</translation>
+    </message>
+    <message>
+        <location filename="QwtPlotWindow.py" line="119"/>
+        <source>Open help browser</source>
+        <translation>Öffne einen Hilfebrowser</translation>
+    </message>
+    <message>
+        <location filename="QwtPlotWindow.py" line="117"/>
+        <source>Help</source>
+        <translation>Hilfe</translation>
     </message>
 </context>
 </TS>
