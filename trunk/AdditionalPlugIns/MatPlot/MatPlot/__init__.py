@@ -53,6 +53,7 @@ class PlugIn(SimplePlugIn):
         cfgsec = self.name.lower()
         if not cfg.has_section(cfgsec):
             cfg.add_section(cfgsec)
+        cfg.set_def(cfgsec, 'set_default_backend', 'yes')
         cfg.set_def(cfgsec, 'show_config_warning', 'yes')
         cfg.set_def(cfgsec, 'zoom_step_factor', '0.189207115002721')
         cfg.set_def(cfgsec, 'mouse_wheel_step', '15')
@@ -63,11 +64,12 @@ class PlugIn(SimplePlugIn):
                 (mplMinVersion, mplMaxVersion, matplotlib.__version__))
             return False
         self.matplotlib = matplotlib
-        try:
-            matplotlib.use('SV4Agg')
-        except:
-            if cfg.getboolean(cfgsec, 'show_config_warning'):
-                QTimer().singleShot(8000, showConfigWarning)
+        if cfg.getboolean(cfgsec, 'set_default_backend'):
+            try:
+               matplotlib.use('SV4Agg')
+            except:
+               if cfg.getboolean(cfgsec, 'show_config_warning'):
+                   QTimer().singleShot(8000, showConfigWarning)
         import backend_sv4agg
         self.backend_sv4agg = backend_sv4agg
         dpath = matplotlib.rcParams['datapath']
