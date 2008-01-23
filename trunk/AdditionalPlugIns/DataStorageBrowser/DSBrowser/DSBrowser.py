@@ -113,6 +113,19 @@ def formatMetaData(n):
 
 
 
+class MyLineEdit(QLineEdit):
+    """QLineEdit that selects all text when it gets the focus"""
+    # FIXME: does not work yet ... why?
+    def __init__(self, parent=None):
+        QLineEdit.__init__(self, parent)
+        self.setFocusPolicy(Qt.WheelFocus)
+
+    def focusInEvent(self, e):
+        self.selectAll()
+        #QLineEdit.focusInEvent(self, e)
+
+
+
 class DSBrowser(QWidget):
     """browser for datastorage databases
        Nodes are identified by a string, containing fields separated by '|'.
@@ -148,7 +161,7 @@ class DSBrowser(QWidget):
         self.toolBarLayout.addWidget(self.expandButton)
         self.connect(self.expandButton, SIGNAL('pressed()'), self.expandCollapseAll)
 
-        self.searchInput = QLineEdit(self.toolBar)
+        self.searchInput = MyLineEdit(self.toolBar)
         self.searchInput.setText(QCoreApplication.translate('DataStorageBrowser', 'Enter search text here'))
         self.searchInput.setToolTip(QCoreApplication.translate('DataStorageBrowser',
             'Enter search text using wildcards here, press ENTER again to go to next match!'))
