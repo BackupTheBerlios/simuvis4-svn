@@ -94,11 +94,11 @@ class ExportDialog(QDialog, Ui_DSExportDialog):
         if self.fileType == 'CSV':
             self.separatorLabel.setEnabled(True)
             self.separatorInput.setEnabled(True)
-            self.separatorInfoLabel.setEnabled(True)
+            self.separatorHintLabel.setEnabled(True)
         else:
             self.separatorLabel.setEnabled(False)
             self.separatorInput.setEnabled(False)
-            self.separatorInfoLabel.setEnabled(False)
+            self.separatorHintLabel.setEnabled(False)
         self.showInfo()
 
 
