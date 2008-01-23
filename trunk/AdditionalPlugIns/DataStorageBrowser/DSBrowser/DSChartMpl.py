@@ -18,10 +18,18 @@ showOriginalSize = SimuVis4.Globals.config.getboolean('datastoragebrowser', 'sho
 
 
 def qdt(time_t):
+    """make QDateTime from time_t"""
     dt = QDateTime()
     dt.setTime_t(time_t)
     dt.setTimeSpec(Qt.UTC)
     return dt
+
+
+
+def time_t(qdt):
+    """make time_t from QDateTime"""
+    qdt.setTimeSpec(Qt.UTC)
+    return qdt.toTime_t()
 
 
 
@@ -56,12 +64,8 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
         self.canvas = canvas
         slc = chart.standardSlice
         self.startTime = chart.sensorgroup.stop - slc
-        dt = QDateTime()
-        dt.setTime_t(self.startTime)
-        self.StartInput.setDateTime(dt)
-        mindt = QDateTime()
-        mindt.setTime_t(chart.sensorgroup.start)
-        self.StartInput.setMinimumDate(mindt.date())
+        self.StartInput.setDateTime(qdt(self.startTime))
+        self.StartInput.setMinimumDate(qdt(chart.sensorgroup.start).date())
         # try to guess unit*factor from slice
         uF = unitFactors[:]
         uF.reverse()
@@ -81,12 +85,10 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
 
     def go(self, p, rel=True):
         if rel:
-            t = self.StartInput.dateTime().toTime_t()
+            t = time_t(self.StartInput.dateTime())
         else:
             t = 0
-        dt = QDateTime()
-        dt.setTime_t(t + p)
-        self.StartInput.setDateTime(dt)
+        self.StartInput.setDateTime(qdt(t+p))
 
 
     def goStart(self):
@@ -125,7 +127,7 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
 
 
     def startChanged(self, dt):
-        self.startTime = dt.toTime_t()
+        self.startTime = time_t(dt)
         self.updateChart()
 
 

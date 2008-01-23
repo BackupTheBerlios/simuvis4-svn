@@ -7,12 +7,14 @@
 import SimuVis4, os, string
 
 from PyQt4.QtGui import QFileDialog, QDialog, QAbstractItemView, QDesktopServices
-from PyQt4.QtCore import QCoreApplication, SIGNAL, QDateTime, Qt, QUrl
+from PyQt4.QtCore import QCoreApplication, SIGNAL, Qt, QUrl
 
 from UI.DSExportDialog import Ui_DSExportDialog
 
 from datastorage.sensorgroup import hasExelerator
 from datastorage.timegrid import TimeGrid
+
+from DSChartMpl import qdt, time_t
 
 from time import strftime, gmtime
 
@@ -55,12 +57,8 @@ class ExportDialog(QDialog, Ui_DSExportDialog):
         self.connect(self.stopInput, SIGNAL('dateTimeChanged(QDateTime)'), self.stopTimeChanged)
         self.startTime = sg.start
         self.stopTime = sg.stop
-        mindt = QDateTime()
-        mindt.setTimeSpec(Qt.UTC)
-        mindt.setTime_t(self.startTime)
-        maxdt = QDateTime()
-        mindt.setTimeSpec(Qt.UTC)
-        maxdt.setTime_t(self.stopTime)
+        mindt = qdt(self.startTime)
+        maxdt = qdt(self.stopTime)
         self.startInput.setMinimumDate(mindt.date())
         self.startInput.setMaximumDate(maxdt.date())
         self.stopInput.setMinimumDate(mindt.date())
@@ -103,14 +101,12 @@ class ExportDialog(QDialog, Ui_DSExportDialog):
 
 
     def startTimeChanged(self, dt):
-        dt.setTimeSpec(Qt.UTC)
-        self.startTime = self.sensorgroup.timegrid.moveOnGrid(dt.toTime_t(), TimeGrid.nearest)
+        self.startTime = self.sensorgroup.timegrid.moveOnGrid(time_t(dt), TimeGrid.nearest)
         self.showInfo()
 
 
     def stopTimeChanged(self, dt):
-        dt.setTimeSpec(Qt.UTC)
-        self.stopTime = self.sensorgroup.timegrid.moveOnGrid(dt.toTime_t(), TimeGrid.nearest)
+        self.stopTime = self.sensorgroup.timegrid.moveOnGrid(time_t(dt), TimeGrid.nearest)
         self.showInfo()
 
 
