@@ -5,8 +5,8 @@
 # this file is part of the SimuVis4 framework
 
 import SimuVis4, Icons, os
-from PyQt4.QtGui import QWidget, QIcon, QPixmap, QFileDialog
-from PyQt4.QtCore import QTimer, SIGNAL, QDateTime, QCoreApplication
+from PyQt4.QtGui import QWidget, QIcon, QPixmap, QFileDialog, QMessageBox, QProgressDialog
+from PyQt4.QtCore import Qt, QTimer, SIGNAL, QDateTime, QCoreApplication
 from UI.DSChartMplToolBar import Ui_DSChartMplToolBar
 
 mplBackend = SimuVis4.Globals.plugInManager['MatPlot'].backend_sv4agg
@@ -15,6 +15,14 @@ mplWinCount = SimuVis4.Misc.Counter(1000)
 unitFactors = [60, 3600, 86400, 604800, 2592000, 31536000]
 
 showOriginalSize = SimuVis4.Globals.config.getboolean('datastoragebrowser', 'show_chart_original_size')
+
+
+def qdt(time_t):
+    dt = QDateTime()
+    dt.setTime_t(time_t)
+    dt.setTimeSpec(Qt.UTC)
+    return dt
+
 
 
 class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
@@ -122,12 +130,14 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
 
 
     def setTimeslice(self, ts):
-        if not ts == self.chart.timeslice:
-            maxdt = QDateTime()
-            maxdt.setTime_t(self.chart.sensorgroup.stop-ts)
-            self.StartInput.setMaximumDate(maxdt.date())
-            self.chart.setTimeslice(ts)
-            self.updateChart()
+        self.blockUpdates = True
+        maxdt = qdt(self.chart.sensorgroup.stop-ts)
+        self.StartInput.setMaximumDate(maxdt.date())
+        if self.startTime + ts > self.chart.sensorgroup.stop:
+            self.StartInput.setDateTime(maxdt)
+        self.chart.setTimeslice(ts)
+        self.blockUpdates = False
+        self.updateChart()
 
 
     def updateChart(self):
@@ -139,7 +149,7 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
 
 
 
-def showChartMplWindow(chart, maximized=False):
+def showChartWindow(chart, maximized=False):
     canvas = mplBackend.FigureCanvasSV4(chart.figure)
     manager = mplBackend.FigureManagerSV4(canvas, mplWinCount())
     w = manager.window
@@ -158,8 +168,37 @@ def showChartMplWindow(chart, maximized=False):
         w.show()
 
 
+
+def showAllChartWindows(sg, maximized=False):
+    dlg = QProgressDialog(SimuVis4.Globals.mainWin)
+    dlg.setWindowModality(Qt.WindowModal)
+    dlg.setMaximum(len(sg.charts))
+    dlg.setAutoClose(True)
+    dlg.setMinimumDuration(0)
+    dlg.setValue(0)
+    i = 1
+    app = SimuVis4.Globals.application
+    for name, chart in sg.charts.items():
+        dlg.setLabelText(name)
+        app.processEvents()
+        showChartWindow(chart, maximized)
+        dlg.setValue(i)
+        i += 1
+        if dlg.wasCanceled():
+            break
+
+
+
 def saveAllChartImages(sg):
-    # FIXME: this gives an error - why?
+    if SimuVis4.Globals.config.getboolean('matplot', 'set_default_backend'):
+        QMessageBox.warning(SimuVis4.Globals.mainWin,
+            QCoreApplication.translate('DataStorageBrowser', 'Configuration error'),
+            QCoreApplication.translate('DataStorageBrowser',
+"""The option "set_default_backend" in section "matplot" is enabled.
+The requested action will not work with this setting.
+Change this setting and restart the application to make this work!"""))
+        return
+
     f = QFileDialog.getExistingDirectory(SimuVis4.Globals.mainWin,
         QCoreApplication.translate('DataStorageBrowser',
         "Select a folder (existing image files will be overwritten!)"),
@@ -168,7 +207,21 @@ def saveAllChartImages(sg):
         return
     folder = unicode(f)
     SimuVis4.Globals.defaultFolder = folder
-    for chart in sg.charts.values():
-        fileName = "%s.png" % chart.name
-        chart.setTimeslice(1*86400)
+    dlg = QProgressDialog(SimuVis4.Globals.mainWin)
+    dlg.setWindowModality(Qt.WindowModal)
+    dlg.setMaximum(len(sg.charts))
+    dlg.setAutoClose(True)
+    dlg.setMinimumDuration(0)
+    dlg.setValue(0)
+    i = 1
+    app = SimuVis4.Globals.application
+    for name, chart in sg.charts.items():
+        fileName = "%s.png" % name
+        dlg.setLabelText(fileName)
+        app.processEvents()
+        #chart.setTimeslice(1*86400)
         chart(starttime=sg.start, filename=os.path.join(folder, fileName))
+        dlg.setValue(i)
+        i += 1
+        if dlg.wasCanceled():
+            break

@@ -11,7 +11,7 @@ from PyQt4.QtGui import QWidget, QTreeView, QAbstractItemView, QStandardItemMode
 from PyQt4.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, SIGNAL, QCoreApplication
 from cgi import escape
 
-from DSChartMpl import showChartMplWindow, saveAllChartImages
+from DSChartMpl import showChartWindow, showAllChartWindows, saveAllChartImages
 from DSPlotQwt import showQwtPlotWindow
 from DSMetadata import editMetadata
 from DSAddChartMpl import showNewChartWizard
@@ -280,7 +280,7 @@ class DSBrowser(QWidget):
         elif t == 'S':
             self.showQwtPlot(n)
         elif t == 'C':
-            self.showMplChart(n)
+            self.showChart(n)
 
 
     def showContextMenu(self, pos):
@@ -307,7 +307,7 @@ class DSBrowser(QWidget):
         elif t == 'S':
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Plot (Qwt)'), self.showQwtPlot)
         elif t == 'C':
-            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Show'), self.showMplChart)
+            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Show'), self.showChart)
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Delete'), self.deleteItem)
         if t in 'RPGS':
             m.addSeparator()
@@ -321,10 +321,10 @@ class DSBrowser(QWidget):
         newSensorGroup(mi)
 
 
-    def showMplChart(self, ch=None):
+    def showChart(self, ch=None):
         if ch is None:
             ch = self.selectedNode
-        showChartMplWindow(ch, maximized=showChartMaximized)
+        showChartWindow(ch, maximized=showChartMaximized)
 
 
     def importFiles(self, sg=None):
@@ -336,8 +336,7 @@ class DSBrowser(QWidget):
     def showAllCharts(self, sg=None):
         if sg is None:
             sg = self.selectedNode
-        for ch in sg.charts.values():
-            showChartMplWindow(ch, maximized=showChartMaximized)
+        showAllChartWindows(sg, maximized=showChartMaximized)
 
 
     def saveAllChartImages(self, sg=None):
