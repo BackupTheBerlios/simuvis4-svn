@@ -2,12 +2,11 @@
 
 # Form implementation generated from reading ui file './SimuVis4/UI/ExceptionDialog.ui'
 #
-# Created: Mon Feb 12 22:37:02 2007
-#      by: PyQt4 UI code generator 4.1.1
+# Created: Wed Jan 23 08:58:18 2008
+#      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
 
-import sys
 from PyQt4 import QtCore, QtGui
 
 class Ui_ExceptionDialog(object):
@@ -18,18 +17,18 @@ class Ui_ExceptionDialog(object):
         ExceptionDialog.setModal(True)
 
         self.vboxlayout = QtGui.QVBoxLayout(ExceptionDialog)
-        self.vboxlayout.setMargin(9)
         self.vboxlayout.setSpacing(6)
+        self.vboxlayout.setMargin(9)
         self.vboxlayout.setObjectName("vboxlayout")
 
         self.hboxlayout = QtGui.QHBoxLayout()
-        self.hboxlayout.setMargin(0)
         self.hboxlayout.setSpacing(6)
+        self.hboxlayout.setMargin(0)
         self.hboxlayout.setObjectName("hboxlayout")
 
         self.IconLabel = QtGui.QLabel(ExceptionDialog)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(1),QtGui.QSizePolicy.Policy(1))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.IconLabel.sizePolicy().hasHeightForWidth())
@@ -39,7 +38,7 @@ class Ui_ExceptionDialog(object):
 
         self.MainLabel = QtGui.QLabel(ExceptionDialog)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(7))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.MainLabel.sizePolicy().hasHeightForWidth())
@@ -50,6 +49,12 @@ class Ui_ExceptionDialog(object):
         self.vboxlayout.addLayout(self.hboxlayout)
 
         self.TracebackView = QtGui.QTextBrowser(ExceptionDialog)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(100)
+        sizePolicy.setHeightForWidth(self.TracebackView.sizePolicy().hasHeightForWidth())
+        self.TracebackView.setSizePolicy(sizePolicy)
         self.TracebackView.setObjectName("TracebackView")
         self.vboxlayout.addWidget(self.TracebackView)
 
@@ -60,8 +65,8 @@ class Ui_ExceptionDialog(object):
         self.vboxlayout.addWidget(self.Iconlabel)
 
         self.hboxlayout1 = QtGui.QHBoxLayout()
-        self.hboxlayout1.setMargin(0)
         self.hboxlayout1.setSpacing(6)
+        self.hboxlayout1.setMargin(0)
         self.hboxlayout1.setObjectName("hboxlayout1")
 
         spacerItem = QtGui.QSpacerItem(101,29,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
@@ -106,6 +111,7 @@ class Ui_ExceptionDialog(object):
 
 
 if __name__ == "__main__":
+    import sys
     app = QtGui.QApplication(sys.argv)
     ExceptionDialog = QtGui.QDialog()
     ui = Ui_ExceptionDialog()
