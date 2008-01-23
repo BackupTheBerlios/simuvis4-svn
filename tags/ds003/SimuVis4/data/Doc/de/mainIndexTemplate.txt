@@ -1,0 +1,32 @@
+===================================================
+ SimuVis4 Hilfe - Übersicht über die Dokumentation
+===================================================
+
+Allgemein
+=========
+* SimuVis_ - SimuVis' eigene Dokumentation, für PlugIns siehe weiter unten
+* Homepage_ - die Homepage von SimuVis
+* Python_ - eine Schnittstelle zu Pythons Dokumentationssystem
+
+PlugIns
+=======
+Die Doku zu allen installierten PlugIns:
+
+PLUGIN_DOC_PLACEHOLDER
+
+Über die Hilfe
+==============
+Wie bei vielen nichtkommerziellen Projekten ist auch bei SimuVis die Doku etwas lückenhaft.
+Freiwillige Beiträge sind sehr willkommen! Wenn verfügbar gibt die Hilfefunktion (*'F1'*)
+die Dokumentation in der voreingestellten Sprache. Wenn noch keine übersetzte Version vorliegt,
+wird automatisch auf die englische Version zurückgegriffen.
+
+Dieses Dokument wurde in reStructuredText_ geschrieben, andere Formate (wie HTML) daraus
+generiert. Wenn Du diesen Text über SimuVis' Hilfefunktion liest, wurde er über einen
+eingebauten simplen Webserver zur Verfügung gestellt und kann in einem beliebigen Webbrowser
+betrachtet werden. Die Doku zu den PlugIns wird zur Laufzeit integriert.
+
+.. _SimuVis: simuvis/index.html
+.. _Homepage: http://www.simuvis.de/
+.. _Python: /python/
+.. _reStructuredText: http://docutils.sourceforge.net/rst.html

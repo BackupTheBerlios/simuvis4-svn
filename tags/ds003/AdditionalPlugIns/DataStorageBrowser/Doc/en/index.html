@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="ascii" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ascii" />
+<meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
+<title>PlugIn: DataStorageBrowser</title>
+<style type="text/css">
+
+/*
+Stylesheet for Docutils.
+Based on ``voidspace.css``,``blue_box.css`` by Ian Bicking
+and ``html4css1.css`` revision 1.46.
+*/
+
+@import url(html4css1.css);
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+em, i {
+  /* Typically serif fonts have much nicer italics */
+  font-family: Times New Roman, Times, serif;
+}
+
+a.target {
+  color: blue;
+}
+
+a.target {
+  color: blue;
+}
+
+a.toc-backref {
+  text-decoration: none;
+  color: black;
+}
+
+a.toc-backref:hover {
+  background-color: inherit;
+}
+
+a:hover {
+  background-color: #cccccc;
+}
+
+div.attention, div.caution, div.danger, div.error, div.hint,
+div.important, div.note, div.tip, div.warning {
+  background-color: #cccccc;
+  padding: 3px;
+  width: 80%;
+}
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title  {
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: #cc0000;
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Helvetica, Arial, sans-serif;
+  /* border: thin solid black; */
+  /* This makes the borders rounded on Mozilla, which pleases me */
+  /* -moz-border-radius: 8px; */
+  padding: 4px;
+}
+
+h1 {
+  background-color: #444499;
+  color: #ffffff;
+  /* border: thin solid black; */
+  font-size: 16px;
+}
+
+h1 a.toc-backref, h2 a.toc-backref { 
+  color: #ffff00;
+}
+
+h2 {
+  background-color: #666666;
+  color: #ffffff;
+  /* border: thin solid black; */
+  font-size: 14px;
+}
+
+h3, h4, h5, h6 {
+  background-color: #cccccc;
+  color: #000000;
+  font-size: 12px;
+}
+
+h3 a.toc-backref, h4 a.toc-backref, h5 a.toc-backref, 
+h6 a.toc-backref { 
+  color: #000000;
+}
+
+h1.title {
+  text-align: center;
+  background-color: #444499;
+  color: #ffff00;
+  /* border: thin solid yellow; */
+  /* -moz-border-radius: 20px; */
+}
+
+table.footnote {
+  padding-left: 0.5ex;
+}
+
+table.citation {
+  padding-left: 0.5ex
+}
+
+pre.literal-block, pre.doctest-block {
+  border: thin solid black;
+  padding: 5px;
+}
+
+.image img { border-style : solid;
+            border-width : 2px;
+}
+
+h1 tt, h2 tt, h3 tt, h4 tt, h5 tt, h6 tt {
+  font-size: 80%;
+}
+
+code, tt {
+  color: #000066;
+}
+
+</style>
+</head>
+<body>
+<div class="document" id="plugin-datastoragebrowser">
+<h1 class="title">PlugIn: DataStorageBrowser</h1>
+<p>This plugin provides a browser for databases in the <a class="reference" href="http://www.riap.de/">datastorage</a> format.
+It plugs into the sidebar/dockwidget provided be the <a class="reference" href="/plugin/DataBrowser/index.html">DataBrowser</a> plugin.</p>
+<div class="section">
+<h1><a id="usage" name="usage">Usage</a></h1>
+<img align="right" alt="Screenshot1.png" class="align-right" src="Screenshot1.png" />
+<p>To load a database, use the button at the toolbar. A tree of items will appear.
+Most actions are available from the context menu (right mouse button) of an item.</p>
+<p>Selecting an item in the treeview shows some information in the info area at the
+bottom of the browser. Double-clicking on a sensor will open a <a class="reference" href="/plugin/QwtPlot/index.html">QwtPlot</a> window with
+the sensors data. Double-clicking a chart will open a <a class="reference" href="/plugin/MatPlot/index.html">MatPlot</a> window containing
+the chart.</p>
+<p>The expand/collapse button will expand or collapse all items in the browser window.</p>
+<p>To search an item you enter the items name (or a part of it) in the search input and
+press ENTER. If there's more than one matching item, pressing ENTER again without
+changing the search text will jump to the next matching item. You may use wildcards
+(<tt class="docutils literal"><span class="pre">*</span></tt> and <tt class="docutils literal"><span class="pre">?</span></tt>) in the search input.</p>
+<p>The Help button opens a help browser with this information.</p>
+<div class="section">
+<h2><a id="database-actions" name="database-actions">Database Actions</a></h2>
+<ul class="simple">
+<li>close - close a database</li>
+<li>reload - will close and reopen the database</li>
+<li>edit metadata - edit the metadata of the database</li>
+</ul>
+</div>
+<div class="section">
+<h2><a id="project-actions" name="project-actions">Project Actions</a></h2>
+<ul class="simple">
+<li>new sensorgroup - import data to a new sensorgroup</li>
+<li>edit metadata - edit the metadata of the project</li>
+</ul>
+</div>
+<div class="section">
+<h2><a id="sensorgroup-actions" name="sensorgroup-actions">Sensorgroup Actions</a></h2>
+<ul class="simple">
+<li>add chart - create a new chart from a template</li>
+<li>add/update data - import data from files to the sensorgroup</li>
+<li>export data - export data to a file in CSV or MS Excel format</li>
+<li>edit metadata - edit the metadata of the sensorgroup</li>
+</ul>
+<p>If the sensorgroup has charts defined, you may:</p>
+<ul class="simple">
+<li>show all charts - open each chart in a new window</li>
+<li>save all charts - save each chart to an image file in a specified folder</li>
+</ul>
+</div>
+<div class="section">
+<h2><a id="sensor-actions" name="sensor-actions">Sensor Actions</a></h2>
+<ul class="simple">
+<li>edit metadata - edit the metadata of the sensor</li>
+<li>plot (Qwt) or a doubleclick - will open a <a class="reference" href="/plugin/QwtPlot/index.html">QwtPlot</a> window showing a simple chart</li>
+</ul>
+</div>
+<div class="section">
+<h2><a id="chart-actions" name="chart-actions">Chart Actions</a></h2>
+<ul class="simple">
+<li>show or a doubleclick - will open a <a class="reference" href="/plugin/MatPlot/index.html">MatPlot</a> window showing the chart</li>
+<li>delete - will delete the chart from its parent sensorgroup</li>
+</ul>
+</div>
+</div>
+<div class="section">
+<h1><a id="configuration" name="configuration">Configuration</a></h1>
+<p>In a <a class="reference" href="/simuvis/config.html">configfile</a> you may use the following items:</p>
+<pre class="literal-block">
+[datastoragebrowser]
+
+# path, optional: path to the folder containing the datastorage package,
+# if not installed in PYTHONPATH
+datastorage_path = /home/horst/lib/
+
+# path, optional: database to open at startup (folder containing h5 files)
+default_database = /home/horst/weather
+
+# bool: show chart subwindows maximized
+show_chart_maximized = no
+
+# bool: show chart subwindows using the size hint instead of fitting the window
+# see 'canvas zoom' of the MatPlot_ plugin for details
+show_chart_original_size = no
+</pre>
+</div>
+<div class="section">
+<h1><a id="hints" name="hints">Hints</a></h1>
+<ul class="simple">
+<li>Please read the documentation for <a class="reference" href="/plugin/MatPlot/index.html">MatPlot</a> (in particular about canvas zoom) and <a class="reference" href="/plugin/QwtPlot/index.html">QwtPlot</a>!</li>
+<li>To save space you may show/hide the browser window with CTRL-B.</li>
+<li>You may place the browser window in other dock areas in th main windor or detach it completely.</li>
+<li>If more than one chart subwindow is opened, you may easily switch between the windows
+with CTRL-&quot;&gt;&quot; and CTRL-&quot;&lt;&quot;.</li>
+<li>Use Window &gt; Cascade to see all windows.</li>
+<li>Use CTRL-M to switch between normal, maximized and shaded state for the active window.</li>
+</ul>
+<p>If you use SimuVis4 mainly as a GUI for <a class="reference" href="http://www.riap.de/">datastorage</a> only you may enable/disable some of
+SimuVis' features in your <a class="reference" href="/simuvis/config.html">configfile</a> to get a leaner GUI:</p>
+<pre class="literal-block">
+[main]
+
+# hide the log window at startup
+hide_log_window = yes
+
+# hide the plugin browser at startup
+hide_plugin_browser = yes
+
+# add plugins not needed by DataStorageBrowser
+ignore_plugins = RemoteControl VtkWindow Graphics PythonConsole
+
+[databrowser]
+
+# show databrowser at startup
+show = yes
+
+# hide netcdf3 browser
+netcdf3_browser = no
+
+# hide filesystembrowser
+filesystem_browser = no
+</pre>
+</div>
+</div>
+</body>
+</html>

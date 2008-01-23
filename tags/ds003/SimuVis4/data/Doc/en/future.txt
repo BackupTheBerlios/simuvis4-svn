@@ -1,0 +1,21 @@
+==============
+ Future Plans
+==============
+
+ToDo List
+---------
+
+Things I want to add to SimuVis4:
+
+* add Drag'n'Drop support for different data items, implement a MIME-Manager
+* PlugIn to browse pytables_ datasets
+* PlugIn to browse DAP repositories using pydap_
+
+
+Long term plans for SimuVis
+---------------------------
+
+* ...
+
+.. _pytables: http://www.pytables.org/
+.. _pydap: http://pydap.org/

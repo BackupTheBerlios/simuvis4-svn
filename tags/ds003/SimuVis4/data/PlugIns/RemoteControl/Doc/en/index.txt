@@ -1,0 +1,104 @@
+=======================
+ PlugIn: RemoteControl
+=======================
+The RemoteControl listens on a tcp port for connections. When receiving code, it
+tries to execute it inside SimuVis as a script_.
+
+**This is a security risk! Be careful when using this PlugIn!** The only security
+mechanism is a check if the start of the source IP of the connection
+matches a specified filter. Code is not checked at all before execution,
+it may erase your harddisk! The main motivation of this plugin is the ability
+to develop scripts in an external text editor and execute it in SimuVis with a
+simple keystroke.
+
+Configuration
+=============
+In a configfile_ you may use the following items:
+
+::
+
+    [remotecontrol]
+    
+    # int: port to listen
+    tcp_port = 12345
+    
+    # int: size of sommand queue, if unsure, use 1
+    cmd_queue_size = 1
+    
+    # bool: start with remote command execution enabled
+    start_enabled = yes
+    
+    # string: allow local connections only, can be shorter like 192.168.
+    ip_filter = 127.0.0.1
+    
+    # bool: raise mainwindow when executing code
+    raise_mainwindow = yes
+    
+    # bool: use hide/show hack when raising doesn't work properly
+    raise_use_hack = yes
+
+Clients
+=======
+
+Kate
+----
+A sample configuration for the KDE editor kate could look like this:
+
+.. image:: Kate.png
+
+This configuration uses netcat for transmission, but you may use SV4ClientRC.pyw instead.
+
+SV4ClientRC
+-----------
+A simple client called SV4ClientRC.pyw is provided for convenience and as an example
+(in the bin-folder). It operates in GUI mode or without any visual feedback. The GUI
+looks like this:
+
+.. image:: SV4ClientRC.png
+
+Try this:
+
+#. start SimuVis4, make sure RemoteControl is running
+
+#. start SV4ClientRC.pyw
+
+#. check host and port settings, enter "print 1/0" and execute it by pressing Send
+
+#. SimuVis4 should show the exception dialog with a ZeroDivisionError
+
+#. ignore the exception and try something more complex
+
+Usage:
+~~~~~~
+SV4ClientRC.pyw [options] [scriptfiles]
+
+Options include:
+ 
+-h or --help:
+    rint this help and exit
+
+-t hostname_or_ip or --target=hostname_or_ip:
+    send to hostname or ip, default is (127.0.0.1) localhost
+
+-p portnumber or --port=portnumber:
+    use target portnumber, default is 12345
+
+-n or --nowin:
+    send code immediately without showing a GUI window, if no scriptfile is given stdin is read
+
+scriptfiles means one or more python files, multiple files are concatenated.
+
+Examples:
+~~~~~~~~~
+SV4ClientRC.pyw -n -p 23456 foo.py
+    send contents of foo.py to localhost, port 23456 immediately
+
+SV4ClientRC.pyw --target=otherhost foo.py bar.py
+    send contents of foo.py and bar.py to otherhost, port 12345 using the GUI
+
+someCommand | SV4ClientRC.pyw -n
+    send the output of someCommand immediately to localhost, port 12345
+
+
+.. _configfile: /simuvis/config.html
+.. _script: /simuvis/script.html

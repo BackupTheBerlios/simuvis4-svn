@@ -1,0 +1,1 @@
+python setup.py bdist_wininst --install-script=install\SimuVis4_postinstall_w32.py
