@@ -1,3 +1,7 @@
+Go to: Index_ | Homepage_
+
+----
+
 ====================
 SimuVis4 on Windows
 ====================
@@ -37,6 +41,9 @@ Using SimuVis4 on Windows
 I suggest starting SimuVis with the commandline switch ``-style=plastique`` which gives
 a much nicer visual appearance on Windows XP.
 
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/
 .. _installing: install.html
 .. _enthought: http://www.enthought.com
 .. _enstaller: http://code.enthought.com/enstaller/

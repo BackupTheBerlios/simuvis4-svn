@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ascii" />
 <meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
-<title>Configuration</title>
+<title></title>
 <style type="text/css">
 
 /*
@@ -146,8 +146,11 @@ code, tt {
 </style>
 </head>
 <body>
-<div class="document" id="configuration">
-<h1 class="title">Configuration</h1>
+<div class="document">
+<p>Go to: <a class="reference" href="/">Index</a> | <a class="reference" href="http://simuvis.de/">Homepage</a></p>
+<hr class="docutils" />
+<div class="section">
+<h1><a id="configuration" name="configuration">Configuration</a></h1>
 <p>SimuVis by default searches for a sytem-wide and a personal configuration file in the
 INI-format. Alternatively you may specify a configuration file on the commandline.
 During startup default configuration values are set and used for items not found
@@ -156,25 +159,25 @@ only! If not disabled, you may save configuration files from the tools menu and 
 files using the <a class="reference" href="/plugin/TextEditor/index.html">TextEditor</a>. You may write to an arbitrary configuration file using the
 <a class="reference" href="/plugin/PythonConsole/index.html">PythonConsole</a> with the command <tt class="docutils literal"><span class="pre">config.write(open('foobar.ini',</span> <span class="pre">'w'))</span></tt>.</p>
 <div class="section">
-<h1><a id="configuration-files-on-linux" name="configuration-files-on-linux">Configuration files on Linux:</a></h1>
+<h2><a id="configuration-files-on-linux" name="configuration-files-on-linux">Configuration files on Linux:</a></h2>
 <ol class="arabic simple">
 <li>system-wide: <tt class="docutils literal"><span class="pre">/etc/SimuVis4.ini</span></tt></li>
 <li>personal: <tt class="docutils literal"><span class="pre">$HOME/.SimuVis4.ini</span></tt></li>
 </ol>
 </div>
 <div class="section">
-<h1><a id="configuration-files-on-windows" name="configuration-files-on-windows">Configuration files on Windows:</a></h1>
+<h2><a id="configuration-files-on-windows" name="configuration-files-on-windows">Configuration files on Windows:</a></h2>
 <ol class="arabic simple">
 <li>system-wide: <tt class="docutils literal"><span class="pre">%ALLUSERSPROFILE%\SimuVis4.ini</span></tt></li>
 <li>personal: <tt class="docutils literal"><span class="pre">%USERPROFILE%\SimuVis4.ini</span></tt></li>
 </ol>
 </div>
 <div class="section">
-<h1><a id="configuration-files-on-macos" name="configuration-files-on-macos">Configuration files on MacOS:</a></h1>
+<h2><a id="configuration-files-on-macos" name="configuration-files-on-macos">Configuration files on MacOS:</a></h2>
 <p>sorry, not yet implemented</p>
 </div>
 <div class="section">
-<h1><a id="configuration-items" name="configuration-items">Configuration items</a></h1>
+<h2><a id="configuration-items" name="configuration-items">Configuration items</a></h2>
 <p>The files are read in the well-known INI-format. The following configuration items
 in the section main affect the main program. PlugIns use own sections in the same files.</p>
 <pre class="literal-block">
@@ -255,6 +258,7 @@ user_plugin_path = /home/horst/simuvis/SimuVis4/../AdditionalPlugIns
 # path: start working in this folder
 user_work_path = /home/horst
 </pre>
+</div>
 </div>
 </div>
 </body>

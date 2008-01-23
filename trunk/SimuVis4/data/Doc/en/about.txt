@@ -1,3 +1,7 @@
+Go to: Index_ | Homepage_
+
+----
+
 ===============
  About SimuVis
 ===============
@@ -55,4 +59,7 @@ Please note that there is another software called SimuVis as part of the e-viz_ 
 When I started my SimuVis project and used the name frequently, there was no reference to
 other projects with this name found on the internet.
 
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/
 .. _e-viz: http://www.eviz.org

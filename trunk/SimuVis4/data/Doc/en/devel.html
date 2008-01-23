@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ascii" />
 <meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
-<title>Development</title>
+<title></title>
 <style type="text/css">
 
 /*
@@ -146,46 +146,18 @@ code, tt {
 </style>
 </head>
 <body>
-<div class="document" id="development">
-<h1 class="title">Development</h1>
+<div class="document">
+<p>Go to: <a class="reference" href="/">Index</a> | <a class="reference" href="http://simuvis.de/">Homepage</a></p>
+<hr class="docutils" />
 <div class="section">
-<h1><a id="general" name="general">General</a></h1>
+<h1><a id="development" name="development">Development</a></h1>
+<div class="section">
+<h2><a id="general" name="general">General</a></h2>
 <p>Development takes place under Linux. The python files have UNIX line ends (LF) and utf8
 encoding. All comments, documentation and output for the user should be in english language
 by default. All strings visible in the GUI should use the i18n-mechanism to be easily translated.</p>
+<p>Most recent information about the development is at the SimuVis <a class="reference" href="http://simuvis.de/">homepage</a>.</p>
 </div>
-<div class="section">
-<h1><a id="folder-structure" name="folder-structure">Folder Structure</a></h1>
-<p>There are two main folders: SimuVis4 and AdditionalPlugIns. This folders
-do not depend on each other. Both have a subfolder called .devel with some helper scripts.</p>
-<div class="section">
-<h2><a id="simuvis4" name="simuvis4">SimuVis4</a></h2>
-<p>This folder contains the main program including needed data (images, translations etc.)
-and a set of basic plugins. All this should go into one package when distributing
-SimuVis (using distutils in the future). You may run SimuVis directly by executing
-<tt class="docutils literal"><span class="pre">bin/SimuVis.pyw</span></tt>. If the program doesn't find its modules in the standard
-locations (PYTHONPATH) it will assume it runs directly from the development folder and
-it will adjust the settings according to this.</p>
-</div>
-<div class="section">
-<h2><a id="additionalplugins" name="additionalplugins">AdditionalPlugIns</a></h2>
-<p>AdditionalPlugIns contains subfolders with additional plugins for SimuVis. Every
-folder contains a single plugin. This plugins may be distributed seperately from
-the main program and from each other.</p>
-</div>
-</div>
-<div class="section">
-<h1><a id="subversion" name="subversion">Subversion</a></h1>
-<p>At the moment the repository is hostet at origo:</p>
-<ul class="simple">
-<li>Path: <a class="reference" href="https://svn.origo.ethz.ch/simuvis/">https://svn.origo.ethz.ch/simuvis/</a></li>
-<li>Web SVN: <a class="reference" href="http://svn.origo.ethz.ch/wsvn/simuvis">http://svn.origo.ethz.ch/wsvn/simuvis</a></li>
-<li>ViewVC: <a class="reference" href="http://svn.origo.ethz.ch/viewvc/simuvis">http://svn.origo.ethz.ch/viewvc/simuvis</a></li>
-</ul>
-</div>
-<div class="section">
-<h1><a id="packaging" name="packaging">Packaging</a></h1>
-<p>coming soon</p>
 </div>
 </div>
 </body>

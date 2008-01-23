@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ascii" />
 <meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
-<title>PlugIn: RemoteControl</title>
+<title></title>
 <style type="text/css">
 
 /*
@@ -146,9 +146,12 @@ code, tt {
 </style>
 </head>
 <body>
-<div class="document" id="plugin-remotecontrol">
-<h1 class="title">PlugIn: RemoteControl</h1>
-<p>The RemoteControl listens on a tcp port for connections. When receiving code, it
+<div class="document">
+<p>Go to: <a class="reference" href="/">Index</a> | <a class="reference" href="http://simuvis.de/">Homepage</a></p>
+<hr class="docutils" />
+<div class="section">
+<h1><a id="plugin-remotecontrol" name="plugin-remotecontrol">PlugIn: RemoteControl</a></h1>
+<p>The <a class="reference" href="/simuvis/plugin.html">PlugIn</a> RemoteControl listens on a tcp port for connections. When receiving code, it
 tries to execute it inside SimuVis as a <a class="reference" href="/simuvis/script.html">script</a>.</p>
 <p><strong>This is a security risk! Be careful when using this PlugIn!</strong> The only security
 mechanism is a check if the start of the source IP of the connection
@@ -157,7 +160,7 @@ it may erase your harddisk! The main motivation of this plugin is the ability
 to develop scripts in an external text editor and execute it in SimuVis with a
 simple keystroke.</p>
 <div class="section">
-<h1><a id="configuration" name="configuration">Configuration</a></h1>
+<h2><a id="configuration" name="configuration">Configuration</a></h2>
 <p>In a <a class="reference" href="/simuvis/config.html">configfile</a> you may use the following items:</p>
 <pre class="literal-block">
 [remotecontrol]
@@ -182,15 +185,15 @@ raise_use_hack = yes
 </pre>
 </div>
 <div class="section">
-<h1><a id="clients" name="clients">Clients</a></h1>
+<h2><a id="clients" name="clients">Clients</a></h2>
 <div class="section">
-<h2><a id="kate" name="kate">Kate</a></h2>
+<h3><a id="kate" name="kate">Kate</a></h3>
 <p>A sample configuration for the KDE editor kate could look like this:</p>
 <img alt="Kate.png" src="Kate.png" />
 <p>This configuration uses netcat for transmission, but you may use SV4ClientRC.pyw instead.</p>
 </div>
 <div class="section">
-<h2><a id="sv4clientrc" name="sv4clientrc">SV4ClientRC</a></h2>
+<h3><a id="sv4clientrc" name="sv4clientrc">SV4ClientRC</a></h3>
 <p>A simple client called SV4ClientRC.pyw is provided for convenience and as an example
 (in the bin-folder). It operates in GUI mode or without any visual feedback. The GUI
 looks like this:</p>
@@ -204,7 +207,7 @@ looks like this:</p>
 <li>ignore the exception and try something more complex</li>
 </ol>
 <div class="section">
-<h3><a id="usage" name="usage">Usage:</a></h3>
+<h4><a id="usage" name="usage">Usage:</a></h4>
 <p>SV4ClientRC.pyw [options] [scriptfiles]</p>
 <p>Options include:</p>
 <dl class="docutils">
@@ -220,7 +223,7 @@ looks like this:</p>
 <p>scriptfiles means one or more python files, multiple files are concatenated.</p>
 </div>
 <div class="section">
-<h3><a id="examples" name="examples">Examples:</a></h3>
+<h4><a id="examples" name="examples">Examples:</a></h4>
 <dl class="docutils">
 <dt>SV4ClientRC.pyw -n -p 23456 foo.py</dt>
 <dd>send contents of foo.py to localhost, port 23456 immediately</dd>
@@ -229,6 +232,7 @@ looks like this:</p>
 <dt>someCommand | SV4ClientRC.pyw -n</dt>
 <dd>send the output of someCommand immediately to localhost, port 12345</dd>
 </dl>
+</div>
 </div>
 </div>
 </div>

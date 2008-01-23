@@ -1,3 +1,7 @@
+Go to: Index_ | Homepage_
+
+----
+
 ==============
  Future Plans
 ==============
@@ -17,5 +21,8 @@ Long term plans for SimuVis
 
 * ...
 
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/
 .. _pytables: http://www.pytables.org/
 .. _pydap: http://pydap.org/

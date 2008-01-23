@@ -1,4 +1,13 @@
+Go to: Index_ | Homepage_
+
+----
+
 ==================
  PlugIn: SimTools
 ==================
-Sorry, not documented yet!
+Sorry, this PlugIn_ is not documented yet!
+
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/
+.. _PlugIn: /simuvis/plugin.html

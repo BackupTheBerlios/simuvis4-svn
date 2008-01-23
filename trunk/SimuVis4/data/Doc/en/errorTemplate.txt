@@ -1,3 +1,7 @@
+Go to: Index_ | Homepage_
+
+----
+
 ======================================
  SimuVis4 Help - 404 - File not Found
 ======================================
@@ -11,6 +15,8 @@ This may be caused by:
 * a link to a PlugIn that is not installed or not active
 * an error in the cross references of the documentation
 
-Please go back to the main index_.
+Please go back to the main Index_.
 
-.. _index: /
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/

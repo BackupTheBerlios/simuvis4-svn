@@ -1,3 +1,7 @@
+Go to: Index_ | Homepage_
+
+----
+
 =========
  PlugIns
 =========
@@ -18,3 +22,7 @@ dependencies to external python modules.
 Structure of a PlugIn
 ---------------------
 Documentation will follow soon.
+
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/

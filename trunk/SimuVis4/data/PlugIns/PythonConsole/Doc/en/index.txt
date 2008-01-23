@@ -1,7 +1,11 @@
+Go to: Index_ | Homepage_
+
+----
+
 =======================
  PlugIn: PythonConsole
 =======================
-The plugin provides an interactive python console with a one-line input and formatted output.
+The PlugIn_ provides an interactive python console with a one-line input and formatted output.
 The output may be printed or saved to a file.
 
 The namespace is the global namespace of the application, you have access to all objects
@@ -49,5 +53,7 @@ As MDI-Window
 
 .. image:: Screenshot2.png
 
-
+.. _Index: /
+.. _Homepage: http://simuvis.de/
+.. _PlugIn: /simuvis/plugin.html
 .. _configfile: /simuvis/config.html

@@ -1,7 +1,11 @@
+Go to: Index_ | Homepage_
+
+----
+
 =======================
  PlugIn: RemoteControl
 =======================
-The RemoteControl listens on a tcp port for connections. When receiving code, it
+The PlugIn_ RemoteControl listens on a tcp port for connections. When receiving code, it
 tries to execute it inside SimuVis as a script_.
 
 **This is a security risk! Be careful when using this PlugIn!** The only security
@@ -100,5 +104,8 @@ someCommand | SV4ClientRC.pyw -n
     send the output of someCommand immediately to localhost, port 12345
 
 
+.. _Index: /
+.. _Homepage: http://simuvis.de/
+.. _PlugIn: /simuvis/plugin.html
 .. _configfile: /simuvis/config.html
 .. _script: /simuvis/script.html

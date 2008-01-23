@@ -1,3 +1,7 @@
+Go to: Index_ | Homepage_
+
+----
+
 ===================
  SimuVis4 on Linux
 ===================
@@ -23,3 +27,7 @@ To get all plugins working, you should install these packages:
 SuSE
 ----
 information coming soon
+
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/

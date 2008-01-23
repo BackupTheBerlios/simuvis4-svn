@@ -1,3 +1,7 @@
+Go to: Index_ | Homepage_
+
+----
+
 ==========
  Starting
 ==========
@@ -65,4 +69,6 @@ Linux user may add the line
 to their ``~/.bash_profile`` to let SimuVis start in english and fullscreen mode by default.
 
 
+.. _Index: /
+.. _Homepage: http://simuvis.de/
 .. _Qt documentation: http://doc.trolltech.com/4.3/qapplication.html#QApplication

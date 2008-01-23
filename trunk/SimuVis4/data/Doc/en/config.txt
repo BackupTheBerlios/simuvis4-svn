@@ -1,3 +1,7 @@
+Go to: Index_ | Homepage_
+
+----
+
 ===============
  Configuration
 ===============
@@ -108,6 +112,8 @@ in the section main affect the main program. PlugIns use own sections in the sam
     user_work_path = /home/horst
 
 
+.. _Index: /
+.. _Homepage: http://simuvis.de/
 .. _PythonConsole: /plugin/PythonConsole/index.html
 .. _TextEditor: /plugin/TextEditor/index.html
 

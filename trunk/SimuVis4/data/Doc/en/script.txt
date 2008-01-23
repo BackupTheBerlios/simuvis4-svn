@@ -1,3 +1,7 @@
+Go to: Index_ | Homepage_
+
+----
+
 =========
  Scripts
 =========
@@ -32,6 +36,9 @@ wanted and unwanted effects of the code.
 INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES CAUSED BY THE
 EXECUTION OF PYTHON CODE IN SIMUVIS.**
 
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/
 .. _PythonConsole: /plugin/PythonConsole/index.html
 .. _TextEditor: /plugin/TextEditor/index.html
 .. _RemoteControl: /plugin/RemoteControl/index.html

@@ -1,3 +1,7 @@
+Go to: Index_ | Homepage_
+
+----
+
 ===========
  Platforms
 ===========
@@ -23,6 +27,9 @@ Additional software
 * matplotlib
 * pycdf
 
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/
 .. _Linux: linux.html
 .. _Windows: windows.html
 .. _MacOS X: macosx.html

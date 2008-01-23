@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ascii" />
 <meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
-<title>Starting</title>
+<title></title>
 <style type="text/css">
 
 /*
@@ -146,14 +146,17 @@ code, tt {
 </style>
 </head>
 <body>
-<div class="document" id="starting">
-<h1 class="title">Starting</h1>
+<div class="document">
+<p>Go to: <a class="reference" href="/">Index</a> | <a class="reference" href="http://simuvis.de/">Homepage</a></p>
+<hr class="docutils" />
+<div class="section">
+<h1><a id="starting" name="starting">Starting</a></h1>
 <p>The main file is called SimuVis.pyw. If you are not using Windows, you may rename it to
 SimuVis.py.</p>
 <div class="section">
-<h1><a id="commandline-switches" name="commandline-switches">Commandline switches</a></h1>
+<h2><a id="commandline-switches" name="commandline-switches">Commandline switches</a></h2>
 <div class="section">
-<h2><a id="simuvis4-switches" name="simuvis4-switches">SimuVis4 switches</a></h2>
+<h3><a id="simuvis4-switches" name="simuvis4-switches">SimuVis4 switches</a></h3>
 <p>All switches and options have a long and a short form. You may freely mix both.</p>
 <dl class="docutils">
 <dt>-h or --help</dt>
@@ -171,14 +174,14 @@ SimuVis.py.</p>
 </dl>
 </div>
 <div class="section">
-<h2><a id="qt-s-switches" name="qt-s-switches">Qt's switches</a></h2>
+<h3><a id="qt-s-switches" name="qt-s-switches">Qt's switches</a></h3>
 <p>There are some switches common to all applications using Qt. Please look at the
 <a class="reference" href="http://doc.trolltech.com/4.3/qapplication.html#QApplication">Qt documentation</a> for details.
 One of the most important switches is <tt class="docutils literal"><span class="pre">--style=mystyle</span></tt> with mystyle being one of motif,
 windows, platinum or one of the additional styles installed.</p>
 </div>
 <div class="section">
-<h2><a id="example" name="example">Example</a></h2>
+<h3><a id="example" name="example">Example</a></h3>
 <p>Starting SimuVis with the commandline</p>
 <pre class="literal-block">
 SimuVis.pyw --execute=mystart.py -l de -m
@@ -187,16 +190,17 @@ SimuVis.pyw --execute=mystart.py -l de -m
 </div>
 </div>
 <div class="section">
-<h1><a id="environment" name="environment">Environment</a></h1>
+<h2><a id="environment" name="environment">Environment</a></h2>
 <p>You may set the variable <tt class="docutils literal"><span class="pre">SIMUVIS4_OPTIONS</span></tt> to contain one or more of the explained switches.</p>
 <div class="section">
-<h2><a id="id1" name="id1">Example</a></h2>
+<h3><a id="id1" name="id1">Example</a></h3>
 <p>Users of Windows XP can set the variable to the value <tt class="docutils literal"><span class="pre">-style=plastique</span></tt> to get a nicer look and feel.
 Linux user may add the line</p>
 <pre class="literal-block">
 export SIMUVIS4_OPTIONS=&quot;--language=en --fullscreen&quot;
 </pre>
 <p>to their <tt class="docutils literal"><span class="pre">~/.bash_profile</span></tt> to let SimuVis start in english and fullscreen mode by default.</p>
+</div>
 </div>
 </div>
 </div>

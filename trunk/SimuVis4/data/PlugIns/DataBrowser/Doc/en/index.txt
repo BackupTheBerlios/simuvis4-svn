@@ -1,7 +1,11 @@
+Go to: Index_ | Homepage_
+
+----
+
 =====================
  PlugIn: DataBrowser
 =====================
-This plugin provides a common area for browsing data organised in lists and
+This PlugIn_ provides a common area for browsing data organised in lists and
 trees. It appears as a dockwidget in the main window which can be toggled with
 *'CTRL-B'*. The different types of data are organised in a toolbox, every toolbox
 may contain a browser. A filesystem browser and a simple netCDF3 browser
@@ -34,5 +38,8 @@ Screenshots
 .. image:: Screenshot2.png
 
 
+.. _Index: /
+.. _Homepage: http://simuvis.de/
+.. _PlugIn: /simuvis/plugin.html
 .. _DataStorageBrowser: /plugin/DataStorageBrowser/index.html
 .. _configfile: /simuvis/config.html

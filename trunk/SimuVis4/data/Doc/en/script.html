@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ascii" />
 <meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
-<title>Scripts</title>
+<title></title>
 <style type="text/css">
 
 /*
@@ -146,8 +146,11 @@ code, tt {
 </style>
 </head>
 <body>
-<div class="document" id="scripts">
-<h1 class="title">Scripts</h1>
+<div class="document">
+<p>Go to: <a class="reference" href="/">Index</a> | <a class="reference" href="http://simuvis.de/">Homepage</a></p>
+<hr class="docutils" />
+<div class="section">
+<h1><a id="scripts" name="scripts">Scripts</a></h1>
 <p>SimuVis can run ordinary python scripts. These scripts get executed in the global
 namespace and have complete access to the whole application. You may extend, reduce or
 completely change the SimuVis application at runtime.</p>
@@ -160,20 +163,21 @@ completely change the SimuVis application at runtime.</p>
 <li>send from other applications and even other computers with the <a class="reference" href="/plugin/RemoteControl/index.html">RemoteControl</a> plugin</li>
 </ul>
 <div class="section">
-<h1><a id="important-facts-to-keep-in-mind" name="important-facts-to-keep-in-mind">Important facts to keep in mind</a></h1>
+<h2><a id="important-facts-to-keep-in-mind" name="important-facts-to-keep-in-mind">Important facts to keep in mind</a></h2>
 <div class="section">
-<h2><a id="blocking" name="blocking">Blocking</a></h2>
+<h3><a id="blocking" name="blocking">Blocking</a></h3>
 <p>Scripts are run in the main application loop and must not block for a long time. If your
 script blocks the whole application will block and you have to kill SimuVis manually!</p>
 </div>
 <div class="section">
-<h2><a id="security" name="security">Security</a></h2>
+<h3><a id="security" name="security">Security</a></h3>
 <p>There is no restriction what the code may do. You may execute code that deletes
 all your data, kills your cat or burns your house. You are responsible for all
 wanted and unwanted effects of the code.</p>
 <p><strong>IN NO EVENT SHALL THE AUTHORS OR CONTRIBUTORS OF SIMUVIS BE LIABLE FOR ANY DIRECT,
 INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES CAUSED BY THE
 EXECUTION OF PYTHON CODE IN SIMUVIS.</strong></p>
+</div>
 </div>
 </div>
 </div>

@@ -1,3 +1,7 @@
+Go to: Index_ | Homepage_
+
+----
+
 ==============
  Installation
 ==============
@@ -20,5 +24,8 @@ SVN-checkout usually works with:
 
   svn checkout https://svn.origo.ethz.ch/simuvis
 
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/
 .. _Linux: linux.html
 .. _Windows: windows.html
