@@ -44,8 +44,9 @@ Sensorgroup Actions
 * export data - export data to a file in CSV or MS Excel format
 * edit metadata - edit the metadata of the sensorgroup
 
-If the senorgroup has charts defined, you may:
-* show all chart - open each chart in a new window
+If the sensorgroup has charts defined, you may:
+
+* show all charts - open each chart in a new window
 * save all charts - save each chart to an image file in a specified folder
 
 Sensor Actions
