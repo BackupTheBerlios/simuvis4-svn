@@ -1,18 +1,31 @@
+Go to: Index_ | Homepage_
+
+----
+
 =================
  PlugIn: MatPlot
 =================
-The plugin MatPlot provides support for the matplotlib in SimuVis. There's a special
-matplotlib backend which opens plot windows as MDI subwindows in SimuVis. Unfortunately
-this backend can't be added dynamically to be used with pylab. Some matplotlib files
-need to be changed and one file needs to be copied. There's a helper script to ease
-this process.
+The PlugIn_ MatPlot provides support for the matplotlib in SimuVis. There's a special
+matplotlib backend which opens plot windows as MDI subwindows in SimuVis. The window
+appearance was choosen to be as close as possible to the other backends. In fact,
+the SV4Agg backend is a slightly modified version of the Qt4Agg backend shipped
+with matplotlib.
+
+Using pylab
+===========
+Unfortunately this backend can't be added dynamically to be used with pylab. Some
+matplotlib files need to be changed and one file needs to be copied. There's a
+helper script to ease this process (``configure_matplotlib.py`` in the plugin folder).
 
 In combination with the PythonConsole_, TextEditor_ or RemoteControl_ in combination
 with your favourite text editor you may conveniently use the pylab interface to
-matplotlib. You should use the backend 'SV4Agg' for interactice matplot sessions
-(``matplotlib.use('SV4Agg'``) is set by default in SimuVis4). The window appearance
-was choosen to be as close as possible to the other backends. In fact, the SV4Agg
-backend is a slightly modified version of the Qt4Agg backend shipped with matplotlib.
+matplotlib. You should use the backend 'SV4Agg' for interactice matplot sessions.
+If you enable this feature in the configuration, ``matplotlib.use('SV4Agg'``) is set
+by default in SimuVis4. If this is not possible because your matplotlib installation
+was not modified, a message dialog is shown (but can be disabled).
+
+Using matplotlib
+================
 You may use the backend manually, even if you did not change the matplot installation.
 You will get the classes FigureManagerSV4, NavigationToolbar2SV4 and FigureCanvasSV4
 from the plugin:
@@ -39,6 +52,8 @@ Known Problems
   to render but didn't show the figures yet, calling ``pylab.show()`` may popup several
   (maybe empty) windows. You may get this with DataStorageBrowser_.
 * In matplotlib 0.91.1 it seems impossible to switch backends with ``matplotlib.use(backend)``.
+* ``set_default_backend`` must not be set when using the DataStorageBrowser_ plugin!
+
 
 Configuration
 =============
@@ -48,7 +63,10 @@ In a configfile_ you may use the following items:
 
     [matplot]
     
-    # bool: show a warning when the backend is not installed for pylab
+    # bool: try to set default backend to SV4Agg
+    set_default_backend = yes
+    
+    # bool: show a warning when this backend is not available for pylab
     show_config_warning = yes
     
     # float: stepsize to enlarge or shrink when zooming canvas (0.2 = 20%)
@@ -92,6 +110,9 @@ is used for both the key press and a step with the mouse wheel. If your wheel re
 is not 15 degrees, you may want to adjust the value of ``mouse_wheel_step``.
 
 
+.. _Index: /
+.. _Homepage: http://simuvis.de/
+.. _PlugIn: /simuvis/plugin.html
 .. _PythonConsole: /plugin/PythonConsole/index.html
 .. _TextEditor: /plugin/TextEditor/index.html
 .. _RemoteControl: /plugin/RemoteControl/index.html

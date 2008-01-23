@@ -1,7 +1,11 @@
+Go to: Index_ | Homepage_
+
+----
+
 ============================
  PlugIn: DataStorageBrowser
 ============================
-This plugin provides a browser for databases in the datastorage_ format.
+This PlugIn_ provides a browser for databases in the datastorage_ format.
 It plugs into the sidebar/dockwidget provided be the DataBrowser_ plugin.
 
 Usage
@@ -48,6 +52,8 @@ If the sensorgroup has charts defined, you may:
 
 * show all charts - open each chart in a new window
 * save all charts - save each chart to an image file in a specified folder
+  **The config option ``set_default_backend`` of the MatPlot_ plugin must
+  not be enabled  for this to work!**
 
 Sensor Actions
 --------------
@@ -92,8 +98,9 @@ Hints
 * Use Window > Cascade to see all windows.
 * Use CTRL-M to switch between normal, maximized and shaded state for the active window.
 
-If you use SimuVis4 mainly as a GUI for datastorage_ only you may enable/disable some of
-SimuVis' features in your configfile_ to get a leaner GUI:
+If you use SimuVis4 mainly as a GUI for datastorage_ only you may enable, disable or
+adjust some of SimuVis' features in your configfile_ to get a leaner and more
+comfortable GUI:
 
 ::
     
@@ -109,7 +116,7 @@ SimuVis' features in your configfile_ to get a leaner GUI:
     ignore_plugins = RemoteControl VtkWindow Graphics PythonConsole
     
     [databrowser]
-
+    
     # show databrowser at startup
     show = yes
     
@@ -118,8 +125,22 @@ SimuVis' features in your configfile_ to get a leaner GUI:
     
     # hide filesystembrowser
     filesystem_browser = no
+    
+    [matplot]
+    
+    # disable this!
+    set_default_backend = no
+    
+    # change this to adjust the canvas zoom
+    zoom_step_factor = 0.2
+    
+    # you may want to change this (be careful!)
+    mouse_wheel_step = 15
 
 
+.. _Index: /
+.. _Homepage: http://simuvis.de/
+.. _PlugIn: /simuvis/plugin.html
 .. _DataBrowser: /plugin/DataBrowser/index.html
 .. _QwtPlot: /plugin/QwtPlot/index.html
 .. _MatPlot: /plugin/MatPlot/index.html

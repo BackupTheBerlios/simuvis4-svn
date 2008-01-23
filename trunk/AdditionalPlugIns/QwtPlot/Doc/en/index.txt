@@ -1,7 +1,11 @@
+Go to: Index_ | Homepage_
+
+----
+
 =================
  PlugIn: QwtPlot
 =================
-QwtPlot will make the usage of PyQwt5 in SimuVis4 more comfortable. At the moment
+The PlugIn_ QwtPlot will make the usage of PyQwt5 in SimuVis4 more comfortable. At the moment
 there are two concepts.
 
 Plot window
@@ -34,3 +38,8 @@ Example
     xx = [0.1*a for a in range(50)]
     yy = [sin(a) for a in xx]
     Plot(Curve(xx, yy))
+
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/
+.. _PlugIn: /simuvis/plugin.html

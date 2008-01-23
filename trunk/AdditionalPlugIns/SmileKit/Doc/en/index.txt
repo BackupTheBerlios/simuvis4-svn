@@ -1,5 +1,14 @@
+Go to: Index_ | Homepage_
+
+----
+
 ==================
  PlugIn: SmileKit
 ==================
-SmileKit provides some helper classes and dialogs for the simulation package SMILE.
+The PlugIn_ SmileKit provides some helper classes and dialogs for the simulation package SMILE.
 Documentation will follow soon.
+
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/
+.. _PlugIn: /simuvis/plugin.html
