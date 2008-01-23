@@ -6,26 +6,25 @@
 
 import SimuVis4, os, string
 
-from PyQt4.QtGui import QFileDialog, QDialog, QAbstractItemView
-from PyQt4.QtCore import QCoreApplication, SIGNAL, QDateTime
+from PyQt4.QtGui import QFileDialog, QDialog, QAbstractItemView, QDesktopServices
+from PyQt4.QtCore import QCoreApplication, SIGNAL, QDateTime, Qt, QUrl
 
 from UI.DSExportDialog import Ui_DSExportDialog
 
 from datastorage.sensorgroup import hasExelerator
+from datastorage.timegrid import TimeGrid
 
 from time import strftime, gmtime
 
-def timeStr(t):
-    return strftime('%d.%m.%Y - %H:%M', gmtime(t))
-
+epoch = gmtime(0)
 
 infoTxt = string.Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
 <b>Export file format:</b> $format<br/>
 <b>Sensors (columns):</b> $sensors<br/>
-<b>Timesteps (rows):</b> $timesteps<br/>
-<b>Values:</b> $values<br/>
+<b>Time steps (rows):</b> $timesteps<br/>
+<b>Values (total):</b> $values<br/>
 <b>File size:</b> $filesize (raw guess)<br/>
-<b>$warning</b>
+<font color="#ff0000">$warning</font>
 """)))
 
 
@@ -34,6 +33,8 @@ class ExportDialog(QDialog, Ui_DSExportDialog):
     def __init__(self, parent, sg):
         QDialog.__init__(self, parent)
         self.setupUi(self)
+        self.setWindowTitle(str(QCoreApplication.translate('DataStorageBrowser',
+            'Data export from %s')) % sg.path)
         self.sensorgroup = sg
         self.connect(self, SIGNAL('accepted()'), self.exportData)
 
@@ -50,15 +51,22 @@ class ExportDialog(QDialog, Ui_DSExportDialog):
             self.sensorList.item(i).setSelected(True)
         self.connect(self.sensorList, SIGNAL('itemSelectionChanged()'), self.showInfo)
 
-        self.connect(self.startInput, SIGNAL('valueChanged(int)'), self.startValueChanged)
-        self.connect(self.stopInput, SIGNAL('valueChanged(int)'), self.stopValueChanged)
-        nValues = sg.timegrid.dataLen()
-        self.startInput.setMinimum(0)
-        self.startInput.setMaximum(nValues-2)
-        self.stopInput.setMinimum(1)
-        self.stopInput.setMaximum(nValues-1)
-        self.startInput.setValue(0)
-        self.stopInput.setValue(nValues-1)
+        self.connect(self.startInput, SIGNAL('dateTimeChanged(QDateTime)'), self.startTimeChanged)
+        self.connect(self.stopInput, SIGNAL('dateTimeChanged(QDateTime)'), self.stopTimeChanged)
+        self.startTime = sg.start
+        self.stopTime = sg.stop
+        mindt = QDateTime()
+        mindt.setTimeSpec(Qt.UTC)
+        mindt.setTime_t(self.startTime)
+        maxdt = QDateTime()
+        mindt.setTimeSpec(Qt.UTC)
+        maxdt.setTime_t(self.stopTime)
+        self.startInput.setMinimumDate(mindt.date())
+        self.startInput.setMaximumDate(maxdt.date())
+        self.stopInput.setMinimumDate(mindt.date())
+        self.stopInput.setMaximumDate(maxdt.date())
+        self.startInput.setDateTime(mindt)
+        self.stopInput.setDateTime(maxdt)
 
 
     def changeFileName(self):
@@ -83,23 +91,33 @@ class ExportDialog(QDialog, Ui_DSExportDialog):
         self.fileName = unicode(files[0])
         self.fileNameInput.setText(self.fileName)
         SimuVis4.Globals.defaultFolder, tmp = os.path.split(self.fileName)
+        if self.fileType == 'CSV':
+            self.separatorLabel.setEnabled(True)
+            self.separatorInput.setEnabled(True)
+            self.separatorInfoLabel.setEnabled(True)
+        else:
+            self.separatorLabel.setEnabled(False)
+            self.separatorInput.setEnabled(False)
+            self.separatorInfoLabel.setEnabled(False)
         self.showInfo()
 
 
-    def startValueChanged(self, i):
-        self.startInfoLabel.setText(timeStr(self.sensorgroup.timegrid.indexToTime(i)))
+    def startTimeChanged(self, dt):
+        dt.setTimeSpec(Qt.UTC)
+        self.startTime = self.sensorgroup.timegrid.moveOnGrid(dt.toTime_t(), TimeGrid.nearest)
         self.showInfo()
 
 
-    def stopValueChanged(self, i):
-        self.stopInfoLabel.setText(timeStr(self.sensorgroup.timegrid.indexToTime(i)))
+    def stopTimeChanged(self, dt):
+        dt.setTimeSpec(Qt.UTC)
+        self.stopTime = self.sensorgroup.timegrid.moveOnGrid(dt.toTime_t(), TimeGrid.nearest)
         self.showInfo()
 
 
     def showInfo(self, *arg):
         sizeFactor = {'CSV' : 5, 'MS Excel' : 15}
         sensors = len(self.sensorList.selectedIndexes())
-        timesteps=self.stopInput.value()-self.startInput.value()
+        timesteps = int((self.stopTime - self.startTime)/self.sensorgroup.step)
         tmp = sensors*timesteps * sizeFactor[self.fileType]
         if tmp > 1000000:
             filesize = '%.1f MB' % (tmp*1.0e-6)
@@ -110,17 +128,17 @@ class ExportDialog(QDialog, Ui_DSExportDialog):
         warning = ''
         if self.fileType == 'MS Excel':
             if sensors > 256 or timesteps > 65534:
-                warning = """<font color="#ff0000"><b>To many values in Excel file:</b><br>
-                65534 rows and 256 columns max.!</font>"""
+                warning = str(QCoreApplication.translate('DataStorageBrowser',
+                    '<b>To many values in Excel file:</b><br>65534 rows and 256 columns max.!'))
         txt = infoTxt.substitute(format=self.fileType, sensors=sensors,
             timesteps=timesteps, values=sensors*timesteps, filesize=filesize, warning=warning)
         self.infoLabel.setText(txt)
 
 
     def exportData(self):
-        # FIXME: does not work! Why?
-        #slc =  slice(self.startInput.value(), self.stopInput.value(), None)
-        slc =  slice(None, None, None)
+        startTuple = self.sensorgroup.timegrid.gmt2tupletz(self.startTime)
+        stopTuple = self.sensorgroup.timegrid.gmt2tupletz(self.stopTime)
+        slc =  slice(startTuple, stopTuple)
         sensors = [unicode(i.text()) for i in self.sensorList.selectedItems()]
         if self.fileType == 'CSV':
             sep = str(self.separatorInput.text())
@@ -128,6 +146,8 @@ class ExportDialog(QDialog, Ui_DSExportDialog):
         elif self.fileType == 'MS Excel':
             # FIXME: sensorlist?
             self.sensorgroup.exportEXCEL(slc, self.fileName)
+        if self.openFileButton.isChecked():
+            QDesktopServices.openUrl(QUrl.fromLocalFile(self.fileName))
 
 
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>DSChartMplToolBar</name>
     <message>
@@ -152,6 +151,59 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>DSExportDialog</name>
+    <message>
+        <location filename="DSExportDialog.py" line="138"/>
+        <source>Dialog</source>
+        <translation>Dialog</translation>
+    </message>
+    <message>
+        <location filename="DSExportDialog.py" line="139"/>
+        <source>Filename/type:</source>
+        <translation>Dateiname/-typ:</translation>
+    </message>
+    <message>
+        <location filename="DSExportDialog.py" line="140"/>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <location filename="DSExportDialog.py" line="141"/>
+        <source>Start time:</source>
+        <translation>Startzeit:</translation>
+    </message>
+    <message>
+        <location filename="DSExportDialog.py" line="142"/>
+        <source>End time:</source>
+        <translation>Endzeit:</translation>
+    </message>
+    <message>
+        <location filename="DSExportDialog.py" line="143"/>
+        <source>Separator:</source>
+        <translation>Trenner:</translation>
+    </message>
+    <message>
+        <location filename="DSExportDialog.py" line="144"/>
+        <source>;</source>
+        <translation>;</translation>
+    </message>
+    <message>
+        <location filename="DSExportDialog.py" line="145"/>
+        <source>(for CSV only)</source>
+        <translation>(nur für CSV)</translation>
+    </message>
+    <message>
+        <location filename="DSExportDialog.py" line="146"/>
+        <source>Open file after creation</source>
+        <translation>Öffne Datei nach dem Speichern</translation>
+    </message>
+    <message>
+        <location filename="DSExportDialog.py" line="147"/>
+        <source>info</source>
+        <translation>info</translation>
+    </message>
+</context>
+<context>
     <name>DataStorageBrowser</name>
     <message>
         <location filename="__init__.py" line="39"/>
@@ -159,108 +211,27 @@ p, li { white-space: pre-wrap; }
         <translation>DataStorageBrowser: konnte Modul datastorage nicht importieren, kontrolliere die Einstellungen!</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="121"/>
+        <location filename="DSBrowser.py" line="138"/>
         <source>Open...</source>
         <translation>Öffnen...</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="123"/>
+        <location filename="DSBrowser.py" line="140"/>
         <source>Open a datastorage database</source>
         <translation>Öffne eine datastorage-Datenbank</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="128"/>
-        <source>Close All</source>
-        <translation>Alle schließen</translation>
-    </message>
-    <message>
-        <location filename="DSBrowser.py" line="130"/>
-        <source>Drop all open databases</source>
-        <translation>Schließe alle geöffneten Datenbanken</translation>
-    </message>
-    <message>
-        <location filename="DSBrowser.py" line="163"/>
+        <location filename="DSBrowser.py" line="194"/>
         <source>Select a folder containing a datastorage database</source>
         <translation>Wähle einen Ordner, der eine datastorage-Datenbank enthält</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="30"/>
-        <source>
-&lt;h3&gt;Root $name&lt;/h3&gt;
-&lt;table border=&quot;1&quot;&gt;
-&lt;tr&gt;&lt;td&gt;Title&lt;/td&gt;&lt;td&gt;$title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Folder&lt;/td&gt;&lt;td&gt;$folder&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Projects&lt;/td&gt;&lt;td&gt;$projects&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="DSBrowser.py" line="39"/>
-        <source>
-&lt;h3&gt;Project $name&lt;/h3&gt;
-&lt;table border=&quot;1&quot;&gt;
-&lt;tr&gt;&lt;td&gt;Title&lt;/td&gt;&lt;td&gt;$title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Groups&lt;/td&gt;&lt;td&gt;$groups&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="DSBrowser.py" line="49"/>
-        <source>
-&lt;h3&gt;Group $name&lt;/h3&gt;
-&lt;table border=&quot;1&quot;&gt;
-&lt;tr&gt;&lt;td&gt;Title&lt;/td&gt;&lt;td&gt;$title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Sensors&lt;/td&gt;&lt;td&gt;$sensors&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Charts&lt;/td&gt;&lt;td&gt;$charts&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="DSBrowser.py" line="62"/>
-        <source>
-&lt;h3&gt;Sensor $name&lt;/h3&gt;
-&lt;table border=&quot;1&quot;&gt;
-&lt;tr&gt;&lt;td&gt;Title&lt;/td&gt;&lt;td&gt;$title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Start&lt;/td&gt;&lt;td&gt;$start&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Stop&lt;/td&gt;&lt;td&gt;$stop&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Step&lt;/td&gt;&lt;td&gt;$step&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Length&lt;/td&gt;&lt;td&gt;$length&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-Double click on the sensor item to show a chart!
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="DSBrowser.py" line="68"/>
-        <source>
-&lt;h3&gt;Chart $name&lt;/h3&gt;
-Double click on the chart item to show!
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="DSBrowser.py" line="74"/>
-        <source>
-&lt;h4&gt;Metadata&lt;/h4&gt;
-&lt;table border=&quot;1&quot;&gt;
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="DSBrowser.py" line="221"/>
+        <location filename="DSBrowser.py" line="301"/>
         <source>Edit metadata</source>
         <translation>Editiere Metadaten</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="227"/>
-        <source>Add Chart</source>
-        <translation>Chart hinzufügen</translation>
-    </message>
-    <message>
-        <location filename="DSBrowser.py" line="229"/>
+        <location filename="DSBrowser.py" line="295"/>
         <source>Plot (Qwt)</source>
         <translation>Plotten (Qwt)</translation>
     </message>
@@ -270,12 +241,12 @@ Double click on the chart item to show!
         <translation>Ändere Metadaten von %s</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="231"/>
+        <location filename="DSBrowser.py" line="297"/>
         <source>Show</source>
         <translation>Anzeigen</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="232"/>
+        <location filename="DSBrowser.py" line="298"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
@@ -290,24 +261,217 @@ Double click on the chart item to show!
         <translation>Name des Charts:</translation>
     </message>
     <message>
-        <location filename="DSAddChartMpl.py" line="84"/>
+        <location filename="DSAddChartMpl.py" line="89"/>
         <source>Chart name already exists!</source>
         <translation>Dieser Chartname existiert bereits!</translation>
     </message>
     <message>
-        <location filename="DSAddChartMpl.py" line="85"/>
+        <location filename="DSAddChartMpl.py" line="90"/>
         <source>Chart names must be unique. Choose another name or delete existing chart first!</source>
         <translation>Chartnamen müssen eindeutig sein. Wähle einen anderen Namen oder lösche den existierenden Chart zuerst!</translation>
     </message>
     <message>
-        <location filename="DSAddChartMpl.py" line="96"/>
+        <location filename="DSAddChartMpl.py" line="101"/>
         <source>Adjust chart properties</source>
         <translation>Einstellungen des Charts anpassen</translation>
     </message>
     <message>
-        <location filename="DSAddChartMpl.py" line="122"/>
+        <location filename="DSAddChartMpl.py" line="130"/>
         <source>Add a new chart</source>
         <translation>Einen neuen Chart hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="DSChartMpl.py" line="165"/>
+        <source>Select a folder (existing image files will be overwritten!)</source>
+        <translation>Wähle einen Ordner (existierende Dateien werden überschrieben!)</translation>
+    </message>
+    <message>
+        <location filename="__init__.py" line="47"/>
+        <source>DataStorageBrowser: closing database: %s</source>
+        <translation>DataStorageBrowser: schließe Datenbank: %s</translation>
+    </message>
+    <message>
+        <location filename="DSExport.py" line="28"/>
+        <source>
+&lt;b&gt;Export file format:&lt;/b&gt; $format&lt;br/&gt;
+&lt;b&gt;Sensors (columns):&lt;/b&gt; $sensors&lt;br/&gt;
+&lt;b&gt;Time steps (rows):&lt;/b&gt; $timesteps&lt;br/&gt;
+&lt;b&gt;Values (total):&lt;/b&gt; $values&lt;br/&gt;
+&lt;b&gt;File size:&lt;/b&gt; $filesize (raw guess)&lt;br/&gt;
+&lt;font color=&quot;#ff0000&quot;&gt;$warning&lt;/font&gt;
+</source>
+        <translation>&lt;b&gt;Dateiformat:&lt;/b&gt; $format&lt;br/&gt;&lt;b&gt;Sensoren (Spalten):&lt;/b&gt; $sensors&lt;br/&gt;&lt;b&gt;Zeitschritte (Reihen):&lt;/b&gt; $timesteps&lt;br/&gt;&lt;b&gt;Werte (insgesamt):&lt;/b&gt; $values&lt;br/&gt;&lt;b&gt;Dateigröße:&lt;/b&gt; $filesize (grob geschätzt)&lt;br/&gt;&lt;font color=&quot;#ff0000&quot;&gt;$warning&lt;/font&gt;</translation>
+    </message>
+    <message>
+        <location filename="DSExport.py" line="37"/>
+        <source>Data export from %s</source>
+        <translation>Datenexport aus %s</translation>
+    </message>
+    <message>
+        <location filename="DSExport.py" line="78"/>
+        <source>Select name of file to save</source>
+        <translation>Wähle den Namen der zu sichernden Datei</translation>
+    </message>
+    <message>
+        <location filename="DSExport.py" line="132"/>
+        <source>&lt;b&gt;To many values in Excel file:&lt;/b&gt;&lt;br&gt;65534 rows and 256 columns max.!</source>
+        <translation>&lt;b&gt;Zu viele Werte in der Exceldatei:&lt;/b&gt;&lt;br&gt;65534 Reihen und 256 Spalten maximal erlaubt!</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="35"/>
+        <source>
+&lt;b&gt;Root $name&lt;/b&gt;&lt;br/&gt;
+&lt;hr/&gt;
+&lt;table border=&quot;0&quot;&gt;
+&lt;tr bgcolor=&quot;#dddddd&quot;&gt;&lt;td&gt;&lt;b&gt;Title: &lt;/b&gt;&lt;/td&gt;&lt;td&gt;$title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Folder: &lt;/b&gt;&lt;/td&gt;&lt;td&gt;$folder&lt;/td&gt;&lt;/tr&gt;
+&lt;tr bgcolor=&quot;#dddddd&quot;&gt;&lt;td&gt;&lt;b&gt;Projects: &lt;/b&gt;&lt;/td&gt;&lt;td&gt;$projects&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="46"/>
+        <source>
+&lt;b&gt;Project $name&lt;/b&gt;&lt;br/&gt;
+&lt;i&gt;in $path&lt;/i&gt;
+&lt;hr/&gt;
+&lt;table border=&quot;0&quot;&gt;
+&lt;tr bgcolor=&quot;#dddddd&quot;&gt;&lt;td&gt;&lt;b&gt;Title: &lt;/b&gt;&lt;/td&gt;&lt;td&gt;$title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Groups: &lt;/b&gt;&lt;/td&gt;&lt;td&gt;$groups&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="58"/>
+        <source>
+&lt;b&gt;Group $name&lt;/b&gt;&lt;br/&gt;
+&lt;i&gt;in $path&lt;/i&gt;
+&lt;hr/&gt;
+&lt;table border=&quot;0&quot;&gt;
+&lt;tr bgcolor=&quot;#dddddd&quot;&gt;&lt;td&gt;&lt;b&gt;Title: &lt;/b&gt;&lt;/td&gt;&lt;td&gt;$title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Sensors: &lt;/b&gt;&lt;/td&gt;&lt;td&gt;$sensors&lt;/td&gt;&lt;/tr&gt;
+&lt;tr bgcolor=&quot;#dddddd&quot;&gt;&lt;td&gt;&lt;b&gt;Charts: &lt;/b&gt;&lt;/td&gt;&lt;td&gt;$charts&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="73"/>
+        <source>
+&lt;b&gt;Sensor $name&lt;/b&gt;&lt;br/&gt;
+&lt;i&gt;in $path&lt;/i&gt;&lt;br/&gt;
+Doubleclick to show a chart!
+&lt;hr/&gt;
+&lt;table border=&quot;0&quot;&gt;
+&lt;tr bgcolor=&quot;#dddddd&quot;&gt;&lt;td&gt;&lt;b&gt;Title: &lt;/b&gt;&lt;/td&gt;&lt;td&gt;$title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Start: &lt;/b&gt;&lt;/td&gt;&lt;td&gt;$start&lt;/td&gt;&lt;/tr&gt;
+&lt;tr bgcolor=&quot;#dddddd&quot;&gt;&lt;td&gt;&lt;b&gt;Stop: &lt;/b&gt;&lt;/td&gt;&lt;td&gt;$stop&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Step: &lt;/b&gt;&lt;/td&gt;&lt;td&gt;$step&lt;/td&gt;&lt;/tr&gt;
+&lt;tr bgcolor=&quot;#dddddd&quot;&gt;&lt;td&gt;&lt;b&gt;Length: &lt;/b&gt;&lt;/td&gt;&lt;td&gt;$length&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="81"/>
+        <source>
+&lt;b&gt;Chart $name&lt;/b&gt;&lt;br/&gt;
+&lt;i&gt;in $path&lt;/i&gt;
+&lt;hr/&gt;
+Doubleclick to show!
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="88"/>
+        <source>
+&lt;hr/&gt;
+&lt;b&gt;  Metadata:&lt;/b&gt;
+&lt;table border=&quot;0&quot;&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="147"/>
+        <source>Expand or collapse the whole tree</source>
+        <translation>Den gesamten Baum aus- oder einklappen</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="152"/>
+        <source>Enter search text here</source>
+        <translation>Suchtext hier eingeben</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="154"/>
+        <source>Enter search text using wildcards here, press ENTER again to go to next match!</source>
+        <translation>Suchtext eingeben und mit ENTER abschließen, erneutes ENTER wählt den nächsten Treffer aus!</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="159"/>
+        <source>Help</source>
+        <translation>Hilfe</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="161"/>
+        <source>Show help for DataStorageBrowser</source>
+        <translation>Zeige Hilfe für den DataStorageBrowser</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="247"/>
+        <source>No (more) matches!</source>
+        <translation>Keine (weiteren) Treffer!</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="248"/>
+        <source>No (more) matches found! Change you search text and try again!</source>
+        <translation>Keine (weiteren) Treffer gefunden! Ändere den Suchtext und versuche es erneut!</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="281"/>
+        <source>Close</source>
+        <translation>Schließen</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="282"/>
+        <source>Reload</source>
+        <translation>Erneut laden</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="284"/>
+        <source>New sensorgroup</source>
+        <translation>Neue Sensorgruppe</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="288"/>
+        <source>Show all charts (%d)</source>
+        <translation>Zeige alle Charts (%d)</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="290"/>
+        <source>Save all charts as images</source>
+        <translation>Speichere alle Charts als Bilder</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="291"/>
+        <source>Add chart</source>
+        <translation>Chart hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="292"/>
+        <source>Add/update data</source>
+        <translation>Daten hinzufügen/updaten</translation>
+    </message>
+    <message>
+        <location filename="DSBrowser.py" line="293"/>
+        <source>Export data</source>
+        <translation>Daten exportieren</translation>
+    </message>
+    <message>
+        <location filename="DSAddChartMpl.py" line="59"/>
+        <source>Open chart window after creation</source>
+        <translation>Öffne den Chart in einem neuen Fenster</translation>
     </message>
 </context>
 </TS>

@@ -4,9 +4,9 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-import SimuVis4, Icons
-from PyQt4.QtGui import QWidget, QIcon, QPixmap
-from PyQt4.QtCore import QTimer, SIGNAL, QDateTime
+import SimuVis4, Icons, os
+from PyQt4.QtGui import QWidget, QIcon, QPixmap, QFileDialog
+from PyQt4.QtCore import QTimer, SIGNAL, QDateTime, QCoreApplication
 from UI.DSChartMplToolBar import Ui_DSChartMplToolBar
 
 mplBackend = SimuVis4.Globals.plugInManager['MatPlot'].backend_sv4agg
@@ -157,3 +157,18 @@ def showChartMplWindow(chart, maximized=False):
     else:
         w.show()
 
+
+def saveAllChartImages(sg):
+    # FIXME: this gives an error - why?
+    f = QFileDialog.getExistingDirectory(SimuVis4.Globals.mainWin,
+        QCoreApplication.translate('DataStorageBrowser',
+        "Select a folder (existing image files will be overwritten!)"),
+        SimuVis4.Globals.defaultFolder)
+    if f.isEmpty():
+        return
+    folder = unicode(f)
+    SimuVis4.Globals.defaultFolder = folder
+    for chart in sg.charts.values():
+        fileName = "%s.png" % chart.name
+        chart.setTimeslice(1*86400)
+        chart(starttime=sg.start, filename=os.path.join(folder, fileName))

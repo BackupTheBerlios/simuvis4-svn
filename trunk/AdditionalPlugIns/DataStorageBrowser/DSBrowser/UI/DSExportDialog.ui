@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>621</width>
-    <height>349</height>
+    <width>500</width>
+    <height>355</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -18,7 +18,7 @@
      <item>
       <widget class="QLabel" name="fileLabel" >
        <property name="text" >
-        <string>Filename:</string>
+        <string>Filename/type:</string>
        </property>
       </widget>
      </item>
@@ -47,79 +47,48 @@
    <item>
     <layout class="QGridLayout" >
      <item rowspan="2" row="0" column="0" >
-      <widget class="QListWidget" name="sensorList" />
+      <widget class="QListWidget" name="sensorList" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+         <horstretch>100</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
      </item>
      <item row="0" column="1" >
       <layout class="QGridLayout" >
        <item row="0" column="0" >
         <widget class="QLabel" name="startLabel" >
          <property name="text" >
-          <string>Start Index:</string>
+          <string>Start time:</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1" >
-        <widget class="QSpinBox" name="startInput" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+       <item row="0" column="1" colspan="2" >
+        <widget class="QDateTimeEdit" name="startInput" >
+         <property name="buttonSymbols" >
+          <enum>QAbstractSpinBox::PlusMinus</enum>
          </property>
-         <property name="minimumSize" >
-          <size>
-           <width>80</width>
-           <height>0</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2" >
-        <widget class="QLabel" name="startInfoLabel" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text" >
-          <string>xx.xx.xxxx - yy:yy</string>
+         <property name="calendarPopup" >
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="1" column="0" >
         <widget class="QLabel" name="stopLabel" >
          <property name="text" >
-          <string>End Index:</string>
+          <string>End time:</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1" >
-        <widget class="QSpinBox" name="stopInput" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+       <item row="1" column="1" colspan="2" >
+        <widget class="QDateTimeEdit" name="stopInput" >
+         <property name="buttonSymbols" >
+          <enum>QAbstractSpinBox::PlusMinus</enum>
          </property>
-         <property name="minimumSize" >
-          <size>
-           <width>80</width>
-           <height>0</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2" >
-        <widget class="QLabel" name="stopInfoLabel" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text" >
-          <string>xx.xx.xxxx - yy:yy</string>
+         <property name="calendarPopup" >
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -128,19 +97,28 @@
          <property name="text" >
           <string>Separator:</string>
          </property>
+         <property name="buddy" >
+          <cstring>separatorInput</cstring>
+         </property>
         </widget>
        </item>
        <item row="2" column="1" >
         <widget class="QLineEdit" name="separatorInput" >
          <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="minimumSize" >
+          <size>
+           <width>30</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize" >
           <size>
-           <width>1000</width>
+           <width>30</width>
            <height>16777215</height>
           </size>
          </property>
@@ -154,8 +132,27 @@
        </item>
        <item row="2" column="2" >
         <widget class="QLabel" name="separatorHintLabel" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+           <horstretch>100</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text" >
           <string>(for CSV only)</string>
+         </property>
+         <property name="buddy" >
+          <cstring>separatorInput</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="3" >
+        <widget class="QCheckBox" name="openFileButton" >
+         <property name="text" >
+          <string>Open file after creation</string>
+         </property>
+         <property name="checked" >
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -200,8 +197,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>248</x>
-     <y>254</y>
+     <x>257</x>
+     <y>345</y>
     </hint>
     <hint type="destinationlabel" >
      <x>157</x>
@@ -216,8 +213,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>316</x>
-     <y>260</y>
+     <x>325</x>
+     <y>345</y>
     </hint>
     <hint type="destinationlabel" >
      <x>286</x>

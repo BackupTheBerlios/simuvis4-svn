@@ -167,27 +167,44 @@ changing the search text will jump to the next matching item. You may use wildca
 <p>The Help button opens a help browser with this information.</p>
 <div class="section">
 <h2><a id="database-actions" name="database-actions">Database Actions</a></h2>
-<p>You may close a database or edit its metadata using the context menu.</p>
+<ul class="simple">
+<li>close - close a database</li>
+<li>reload - will close and reopen the database</li>
+<li>edit metadata - edit the metadata of the database</li>
+</ul>
 </div>
 <div class="section">
 <h2><a id="project-actions" name="project-actions">Project Actions</a></h2>
-<p>You may edit its metadata using the context menu.</p>
+<ul class="simple">
+<li>new sensorgroup - import data to a new sensorgroup</li>
+<li>edit metadata - edit the metadata of the project</li>
+</ul>
 </div>
 <div class="section">
 <h2><a id="sensorgroup-actions" name="sensorgroup-actions">Sensorgroup Actions</a></h2>
-<p>You may edit its metadata using the context menu. If the group has defined charts,
-you may show all charts at once in separate windows. A new chart may be defined
-from a list of templates using a wizard.</p>
+<ul class="simple">
+<li>add chart - create a new chart from a template</li>
+<li>add/update data - import data from files to the sensorgroup</li>
+<li>export data - export data to a file in CSV or MS Excel format</li>
+<li>edit metadata - edit the metadata of the sensorgroup</li>
+</ul>
+<p>If the senorgroup has charts defined, you may:
+* show all chart - open each chart in a new window
+* save all charts - save each chart to an image file in a specified folder</p>
 </div>
 <div class="section">
 <h2><a id="sensor-actions" name="sensor-actions">Sensor Actions</a></h2>
-<p>You may edit its metadata using the context menu. A doubleclick on a sensor will
-open a <a class="reference" href="/plugin/QwtPlot/index.html">QwtPlot</a> window showing a simple chart.</p>
+<ul class="simple">
+<li>edit metadata - edit the metadata of the sensor</li>
+<li>plot (Qwt) or a doubleclick - will open a <a class="reference" href="/plugin/QwtPlot/index.html">QwtPlot</a> window showing a simple chart</li>
+</ul>
 </div>
 <div class="section">
 <h2><a id="chart-actions" name="chart-actions">Chart Actions</a></h2>
-<p>Doubleclicking on a chart will show the chart in a new window. You may
-delete a chart using the action from the context menu.</p>
+<ul class="simple">
+<li>show or a doubleclick - will open a <a class="reference" href="/plugin/MatPlot/index.html">MatPlot</a> window showing the chart</li>
+<li>delete - will delete the chart from its parent sensorgroup</li>
+</ul>
 </div>
 </div>
 <div class="section">

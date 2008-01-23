@@ -28,27 +28,35 @@ The Help button opens a help browser with this information.
 
 Database Actions
 ----------------
-You may close a database or edit its metadata using the context menu.
+* close - close a database
+* reload - will close and reopen the database
+* edit metadata - edit the metadata of the database
 
 Project Actions
 ---------------
-You may edit its metadata using the context menu.
+* new sensorgroup - import data to a new sensorgroup
+* edit metadata - edit the metadata of the project
 
 Sensorgroup Actions
 -------------------
-You may edit its metadata using the context menu. If the group has defined charts,
-you may show all charts at once in separate windows. A new chart may be defined
-from a list of templates using a wizard.
+* add chart - create a new chart from a template
+* add/update data - import data from files to the sensorgroup
+* export data - export data to a file in CSV or MS Excel format
+* edit metadata - edit the metadata of the sensorgroup
+
+If the senorgroup has charts defined, you may:
+* show all chart - open each chart in a new window
+* save all charts - save each chart to an image file in a specified folder
 
 Sensor Actions
 --------------
-You may edit its metadata using the context menu. A doubleclick on a sensor will
-open a QwtPlot_ window showing a simple chart.
+* edit metadata - edit the metadata of the sensor
+* plot (Qwt) or a doubleclick - will open a QwtPlot_ window showing a simple chart
 
 Chart Actions
 -------------
-Doubleclicking on a chart will show the chart in a new window. You may
-delete a chart using the action from the context menu.
+* show or a doubleclick - will open a MatPlot_ window showing the chart
+* delete - will delete the chart from its parent sensorgroup
 
 
 Configuration

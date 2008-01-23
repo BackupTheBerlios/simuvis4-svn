@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './DataStorageBrowser/DSBrowser/UI/DSExportDialog.ui'
 #
-# Created: Tue Jan 22 21:40:34 2008
+# Created: Wed Jan 23 10:30:34 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_DSExportDialog(object):
     def setupUi(self, DSExportDialog):
         DSExportDialog.setObjectName("DSExportDialog")
-        DSExportDialog.resize(QtCore.QSize(QtCore.QRect(0,0,621,349).size()).expandedTo(DSExportDialog.minimumSizeHint()))
+        DSExportDialog.resize(QtCore.QSize(QtCore.QRect(0,0,500,355).size()).expandedTo(DSExportDialog.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(DSExportDialog)
         self.vboxlayout.setObjectName("vboxlayout")
@@ -44,6 +44,12 @@ class Ui_DSExportDialog(object):
         self.gridlayout.setObjectName("gridlayout")
 
         self.sensorList = QtGui.QListWidget(DSExportDialog)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(100)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.sensorList.sizePolicy().hasHeightForWidth())
+        self.sensorList.setSizePolicy(sizePolicy)
         self.sensorList.setObjectName("sensorList")
         self.gridlayout.addWidget(self.sensorList,0,0,2,1)
 
@@ -54,51 +60,21 @@ class Ui_DSExportDialog(object):
         self.startLabel.setObjectName("startLabel")
         self.gridlayout1.addWidget(self.startLabel,0,0,1,1)
 
-        self.startInput = QtGui.QSpinBox(DSExportDialog)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.startInput.sizePolicy().hasHeightForWidth())
-        self.startInput.setSizePolicy(sizePolicy)
-        self.startInput.setMinimumSize(QtCore.QSize(80,0))
+        self.startInput = QtGui.QDateTimeEdit(DSExportDialog)
+        self.startInput.setButtonSymbols(QtGui.QAbstractSpinBox.PlusMinus)
+        self.startInput.setCalendarPopup(True)
         self.startInput.setObjectName("startInput")
-        self.gridlayout1.addWidget(self.startInput,0,1,1,1)
-
-        self.startInfoLabel = QtGui.QLabel(DSExportDialog)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.startInfoLabel.sizePolicy().hasHeightForWidth())
-        self.startInfoLabel.setSizePolicy(sizePolicy)
-        self.startInfoLabel.setObjectName("startInfoLabel")
-        self.gridlayout1.addWidget(self.startInfoLabel,0,2,1,1)
+        self.gridlayout1.addWidget(self.startInput,0,1,1,2)
 
         self.stopLabel = QtGui.QLabel(DSExportDialog)
         self.stopLabel.setObjectName("stopLabel")
         self.gridlayout1.addWidget(self.stopLabel,1,0,1,1)
 
-        self.stopInput = QtGui.QSpinBox(DSExportDialog)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.stopInput.sizePolicy().hasHeightForWidth())
-        self.stopInput.setSizePolicy(sizePolicy)
-        self.stopInput.setMinimumSize(QtCore.QSize(80,0))
+        self.stopInput = QtGui.QDateTimeEdit(DSExportDialog)
+        self.stopInput.setButtonSymbols(QtGui.QAbstractSpinBox.PlusMinus)
+        self.stopInput.setCalendarPopup(True)
         self.stopInput.setObjectName("stopInput")
-        self.gridlayout1.addWidget(self.stopInput,1,1,1,1)
-
-        self.stopInfoLabel = QtGui.QLabel(DSExportDialog)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.stopInfoLabel.sizePolicy().hasHeightForWidth())
-        self.stopInfoLabel.setSizePolicy(sizePolicy)
-        self.stopInfoLabel.setObjectName("stopInfoLabel")
-        self.gridlayout1.addWidget(self.stopInfoLabel,1,2,1,1)
+        self.gridlayout1.addWidget(self.stopInput,1,1,1,2)
 
         self.separatorLabel = QtGui.QLabel(DSExportDialog)
         self.separatorLabel.setObjectName("separatorLabel")
@@ -106,19 +82,31 @@ class Ui_DSExportDialog(object):
 
         self.separatorInput = QtGui.QLineEdit(DSExportDialog)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.separatorInput.sizePolicy().hasHeightForWidth())
         self.separatorInput.setSizePolicy(sizePolicy)
-        self.separatorInput.setMaximumSize(QtCore.QSize(1000,16777215))
+        self.separatorInput.setMinimumSize(QtCore.QSize(30,0))
+        self.separatorInput.setMaximumSize(QtCore.QSize(30,16777215))
         self.separatorInput.setMaxLength(1)
         self.separatorInput.setObjectName("separatorInput")
         self.gridlayout1.addWidget(self.separatorInput,2,1,1,1)
 
         self.separatorHintLabel = QtGui.QLabel(DSExportDialog)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(100)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.separatorHintLabel.sizePolicy().hasHeightForWidth())
+        self.separatorHintLabel.setSizePolicy(sizePolicy)
         self.separatorHintLabel.setObjectName("separatorHintLabel")
         self.gridlayout1.addWidget(self.separatorHintLabel,2,2,1,1)
+
+        self.openFileButton = QtGui.QCheckBox(DSExportDialog)
+        self.openFileButton.setChecked(True)
+        self.openFileButton.setObjectName("openFileButton")
+        self.gridlayout1.addWidget(self.openFileButton,3,0,1,3)
         self.gridlayout.addLayout(self.gridlayout1,0,1,1,1)
 
         self.infoLabel = QtGui.QLabel(DSExportDialog)
@@ -138,6 +126,8 @@ class Ui_DSExportDialog(object):
         self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.NoButton|QtGui.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.vboxlayout.addWidget(self.buttonBox)
+        self.separatorLabel.setBuddy(self.separatorInput)
+        self.separatorHintLabel.setBuddy(self.separatorInput)
 
         self.retranslateUi(DSExportDialog)
         QtCore.QObject.connect(self.buttonBox,QtCore.SIGNAL("accepted()"),DSExportDialog.accept)
@@ -146,15 +136,14 @@ class Ui_DSExportDialog(object):
 
     def retranslateUi(self, DSExportDialog):
         DSExportDialog.setWindowTitle(QtGui.QApplication.translate("DSExportDialog", "Dialog", None, QtGui.QApplication.UnicodeUTF8))
-        self.fileLabel.setText(QtGui.QApplication.translate("DSExportDialog", "Filename:", None, QtGui.QApplication.UnicodeUTF8))
+        self.fileLabel.setText(QtGui.QApplication.translate("DSExportDialog", "Filename/type:", None, QtGui.QApplication.UnicodeUTF8))
         self.fileNameButton.setText(QtGui.QApplication.translate("DSExportDialog", "...", None, QtGui.QApplication.UnicodeUTF8))
-        self.startLabel.setText(QtGui.QApplication.translate("DSExportDialog", "Start Index:", None, QtGui.QApplication.UnicodeUTF8))
-        self.startInfoLabel.setText(QtGui.QApplication.translate("DSExportDialog", "xx.xx.xxxx - yy:yy", None, QtGui.QApplication.UnicodeUTF8))
-        self.stopLabel.setText(QtGui.QApplication.translate("DSExportDialog", "End Index:", None, QtGui.QApplication.UnicodeUTF8))
-        self.stopInfoLabel.setText(QtGui.QApplication.translate("DSExportDialog", "xx.xx.xxxx - yy:yy", None, QtGui.QApplication.UnicodeUTF8))
+        self.startLabel.setText(QtGui.QApplication.translate("DSExportDialog", "Start time:", None, QtGui.QApplication.UnicodeUTF8))
+        self.stopLabel.setText(QtGui.QApplication.translate("DSExportDialog", "End time:", None, QtGui.QApplication.UnicodeUTF8))
         self.separatorLabel.setText(QtGui.QApplication.translate("DSExportDialog", "Separator:", None, QtGui.QApplication.UnicodeUTF8))
         self.separatorInput.setText(QtGui.QApplication.translate("DSExportDialog", ";", None, QtGui.QApplication.UnicodeUTF8))
         self.separatorHintLabel.setText(QtGui.QApplication.translate("DSExportDialog", "(for CSV only)", None, QtGui.QApplication.UnicodeUTF8))
+        self.openFileButton.setText(QtGui.QApplication.translate("DSExportDialog", "Open file after creation", None, QtGui.QApplication.UnicodeUTF8))
         self.infoLabel.setText(QtGui.QApplication.translate("DSExportDialog", "info", None, QtGui.QApplication.UnicodeUTF8))
 
 

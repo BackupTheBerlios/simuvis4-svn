@@ -11,11 +11,13 @@ from PyQt4.QtGui import QWidget, QTreeView, QAbstractItemView, QStandardItemMode
 from PyQt4.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, SIGNAL, QCoreApplication
 from cgi import escape
 
-from DSChartMpl import showChartMplWindow
+from DSChartMpl import showChartMplWindow, saveAllChartImages
 from DSPlotQwt import showQwtPlotWindow
 from DSMetadata import editMetadata
 from DSAddChartMpl import showNewChartWizard
 from DSExport import exportSensors
+from DSImport import newSensorGroup, importFiles
+
 
 from datastorage.database import DataBaseRoot, Sensor
 
@@ -243,7 +245,7 @@ class DSBrowser(QWidget):
         else:
             QMessageBox.information(self, QCoreApplication.translate('DataStorageBrowser',
                 'No (more) matches!'), QCoreApplication.translate('DataStorageBrowser',
-                'No (more) matches found! Change you search criteria and try again!'))
+                'No (more) matches found! Change you search text and try again!'))
             self.searchText = ''
 
 
@@ -277,14 +279,17 @@ class DSBrowser(QWidget):
         m = QMenu()
         if t == 'R':
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Close'), self.closeDatabase)
+            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Reload'), self.reloadDatabase)
         elif t == 'P':
-            pass
+            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'New sensorgroup'), self.newSensorGroup)
         elif t == 'G':
             nCharts = len(n.charts)
             if nCharts > 0:
                 txt = str(QCoreApplication.translate('DataStorageBrowser', 'Show all charts (%d)')) % nCharts
                 m.addAction(txt, self.showAllCharts)
+                m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Save all charts as images'), self.saveAllChartImages)
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Add chart'), self.newChart)
+            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Add/update data'), self.importFiles)
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Export data'), self.exportSensors)
         elif t == 'S':
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Plot (Qwt)'), self.showQwtPlot)
@@ -297,29 +302,47 @@ class DSBrowser(QWidget):
         a = m.exec_(self.treeView.mapToGlobal(pos))
 
 
-    def showMplChart(self, node=None):
-        if node is None:
-            node = self.selectedNode
-        showChartMplWindow(node, maximized=showChartMaximized)
+    def newSensorGroup(self, mi=None):
+        if mi is None:
+            mi = self.selectedMI
+        newSensorGroup(mi)
 
 
-    def showAllCharts(self, node=None):
-        if node is None:
-            node = self.selectedNode
-        for chart in node.charts.values():
-            showChartMplWindow(chart, maximized=showChartMaximized)
+    def showMplChart(self, ch=None):
+        if ch is None:
+            ch = self.selectedNode
+        showChartMplWindow(ch, maximized=showChartMaximized)
 
 
-    def exportSensors(self, node=None):
-        if node is None:
-            node = self.selectedNode
-        exportSensors(node)
+    def importFiles(self, sg=None):
+        if sg is None:
+            sg = self.selectedNode
+        importFiles(sg)
 
 
-    def showQwtPlot(self, node=None):
-        if node is None:
-            node = self.selectedNode
-        showQwtPlotWindow(node, maximized=showChartMaximized)
+    def showAllCharts(self, sg=None):
+        if sg is None:
+            sg = self.selectedNode
+        for ch in sg.charts.values():
+            showChartMplWindow(ch, maximized=showChartMaximized)
+
+
+    def saveAllChartImages(self, sg=None):
+        if sg is None:
+            sg = self.selectedNode
+        saveAllChartImages(sg)
+
+
+    def exportSensors(self, sg=None):
+        if sg is None:
+            sg = self.selectedNode
+        exportSensors(sg)
+
+
+    def showQwtPlot(self, se=None):
+        if se is None:
+            se = self.selectedNode
+        showQwtPlotWindow(se, maximized=showChartMaximized)
 
 
     def editMetadata(self, node=None):
@@ -334,11 +357,19 @@ class DSBrowser(QWidget):
         self.model.closeDatabase(mi)
 
 
+    def reloadDatabase(self, mi=None):
+        if mi is None:
+            mi = self.selectedMI
+        dbPath = self.model.dsFolder(mi)
+        self.model.closeDatabase(mi)
+        self.loadDatabase(dbPath)
+
+
     def newChart(self, mi=None):
         """add a chart to sensorgroup at mi using the wizard"""
         if mi is None:
             mi = self.selectedMI
-        showNewChartWizard(self.model, mi)
+        showNewChartWizard(self.model, mi, self)
 
 
     def deleteItem(self, mi=None):
@@ -346,6 +377,7 @@ class DSBrowser(QWidget):
         if mi is None:
             mi = self.selectedMI
         self.model.deleteItem(mi)
+
 
 
 class DSModel(QStandardItemModel):

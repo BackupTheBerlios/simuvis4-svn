@@ -6,7 +6,7 @@
 
 import SimuVis4, Icons, os
 from PyQt4.QtGui import QWizard, QWizardPage, QHBoxLayout, QVBoxLayout, QListWidget, QLabel,\
-    QLineEdit, QFrame, QPixmap, QTextEdit, QMessageBox, QAbstractItemView
+    QLineEdit, QFrame, QPixmap, QTextEdit, QMessageBox, QAbstractItemView, QCheckBox
 from PyQt4.QtCore import Qt, SIGNAL, QCoreApplication
 import DSChartTemplates
 
@@ -54,10 +54,15 @@ class NewChartPage0(QWizardPage):
         self.nameInput = QLineEdit(self)
         layout1.addWidget(self.nameInput)
         self.mainLayout.addLayout(layout1)
+        openChartButton = QCheckBox(self)
+        openChartButton.setChecked(True)
+        openChartButton.setText(QCoreApplication.translate('DataStorageBrowser', 'Open chart window after creation'))
+        self.mainLayout.addWidget(openChartButton)
         for t in chartTemplates:
             self.templateSelect.addItem(t.name)
         self.registerField('templateNumber', self.templateSelect, 'currentRow')
         self.registerField('chartName', self.nameInput, 'text')
+        self.registerField('openChart', openChartButton, 'checked')
         self.ownPlugIn = SimuVis4.Globals.plugInManager['DataStorageBrowser']
         self.connect(self.templateSelect, SIGNAL("currentRowChanged(int)"), self.templateChanged)
         self.templateSelect.setCurrentRow(0)
@@ -128,7 +133,7 @@ class NewChartWizard(QWizard):
 
 
 
-def showNewChartWizard(model, mi):
+def showNewChartWizard(model, mi, browser):
     t, sensorgroup = model.dsNode(mi)
     wiz = NewChartWizard(SimuVis4.Globals.mainWin, sensorgroup)
     wiz.sensorgroup = sensorgroup
@@ -138,3 +143,5 @@ def showNewChartWizard(model, mi):
     template = chartTemplates[i]
     chart = template.makeChart(sensorgroup)
     model.addChart(chart, mi)
+    if wiz.field('openChart').toBool():
+        browser.showMplChart(chart)
