@@ -9,8 +9,8 @@
 import os, time, stat, re, select
 
 
-### Misc. Objects and calling...
 
+### Misc. Objects and calling...
 
 class DictProxy(object):
     """present a dict as an object which attributes are the keys"""
@@ -22,6 +22,28 @@ class DictProxy(object):
             return self.__d[a]
         except KeyError:
             raise AttributeError('no such key in dict: %s' % a)
+
+
+
+class RingBuffer(list):
+    """list that behaves like a ring buffer,
+    next() gives the next element, starting over
+    when done"""
+
+    def __init__(self, *arg, **kwarg):
+        list.__init__(self, *arg, **kwarg)
+        self._index = -1
+
+    def next(self):
+        if self._index < (len(self)-2):
+            self._index += 1
+        else:
+            self._index = 0
+        return self[self._index]
+
+    def __call__(self):
+        return self.next()
+
 
 
 class Counter(object):
@@ -44,6 +66,7 @@ class Counter(object):
 
     def __float__(self):
         return float(self.__call__())
+
 
 
 class BoolSignal(object):
@@ -71,6 +94,7 @@ class BoolSignal(object):
         return self._v
 
 
+
 class Switcher(object):
     """will switch between two results with every call"""
     def __init__(self, v=0, v0=0, v1=1):
@@ -84,6 +108,7 @@ class Switcher(object):
         return r
 
 
+
 class CallMultiplexer(object):
     """a multiplexer for function calls, dispatch a single call to
     more than one function"""
@@ -95,6 +120,24 @@ class CallMultiplexer(object):
 
     def __call__(self, *args, **kwargs):
         [f(*args, **kwargs) for f in self.flist]
+
+
+
+def uniqueName(name, names, numFormat='%03d', sep='_'):
+    """try to generate a unique name which is not already in names"""
+    if not name in names:
+        return name
+    tmp = name.split(sep)
+    try:
+        tmp[-1] = numFormat % (int(tmp[-1])+1)
+    except:
+        tmp.append(numFormat % 0)
+    name = sep.join(tmp)
+    while name in names:
+        tmp[-1] = numFormat % (int(tmp[-1])+1)
+        name = sep.join(tmp)
+    return name
+
 
 
 ### Files & friends
@@ -116,6 +159,7 @@ class FileMonitor(object):
         if not ref: ref=self.lastACheck
         self.lastACheck = time.time()
         return os.stat(self.name)[stat.ST_ATIME] > ref
+
 
 
 class FifoWriter(object):
@@ -141,6 +185,7 @@ class FifoWriter(object):
         self.fifo.close()
 
 
+
 class FifoReader(object):
 
     def __init__(self, fName):
@@ -159,6 +204,7 @@ class FifoReader(object):
 
     def close(self):
         self.fifo.close()
+
 
 
 class FifoReaderMem(object):
@@ -181,4 +227,23 @@ class FifoReaderMem(object):
 
     def close(self):
         self.fifo.close()
+
+
+
+def uniqueFileName(fileName, numFormat='%03d', sep='_'):
+    """try to generate a unique, non-existent filename"""
+    if not os.path.exists(fileName):
+        return fileName
+    base, ext = os.path.splitext(fileName)
+    tmp = base.split(sep)
+    try:
+        tmp[-1] = numFormat % (int(tmp[-1])+1)
+    except:
+        tmp.append(numFormat % 0)
+    fileName = sep.join(tmp) + ext
+    while os.path.exists(fileName):
+        tmp[-1] = numFormat % (int(tmp[-1])+1)
+        fileName = sep.join(tmp) + ext
+    return fileName
+
 
