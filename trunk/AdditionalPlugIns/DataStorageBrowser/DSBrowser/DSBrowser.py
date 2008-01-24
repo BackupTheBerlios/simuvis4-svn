@@ -12,7 +12,7 @@ from PyQt4.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, SIGNAL, 
 from cgi import escape
 
 from DSChartMpl import showChartWindow, showAllChartWindows, saveAllChartImages
-from DSPlotQwt import showQwtPlotWindow
+from DSPlotQwt import showQwtPlotWindow, qwtPlotWindowActive, addToQwtPlotWindow
 from DSMetadata import editMetadata
 from DSAddChartMpl import showNewChartWizard
 from DSExport import exportSensors
@@ -54,6 +54,10 @@ groupInfo = string.Template(unicode(QCoreApplication.translate('DataStorageBrows
 <tr bgcolor="#dddddd"><td><b>Title: </b></td><td>$title</td></tr>
 <tr><td><b>Sensors: </b></td><td>$sensors</td></tr>
 <tr bgcolor="#dddddd"><td><b>Charts: </b></td><td>$charts</td></tr>
+<tr><td><b>Start: </b></td><td>$start</td></tr>
+<tr bgcolor="#dddddd"><td><b>Stop: </b></td><td>$stop</td></tr>
+<tr><td><b>Step: </b></td><td>$step s</td></tr>
+<tr bgcolor="#dddddd"><td><b>Timezone: </b></td><td>$timezone</td></tr>
 </table>
 """)))
 
@@ -67,8 +71,9 @@ Doubleclick to show a chart!
 <tr bgcolor="#dddddd"><td><b>Title: </b></td><td>$title</td></tr>
 <tr><td><b>Start: </b></td><td>$start</td></tr>
 <tr bgcolor="#dddddd"><td><b>Stop: </b></td><td>$stop</td></tr>
-<tr><td><b>Step: </b></td><td>$step</td></tr>
+<tr><td><b>Step: </b></td><td>$step s</td></tr>
 <tr bgcolor="#dddddd"><td><b>Length: </b></td><td>$length</td></tr>
+<tr><td><b>Timezone: </b></td><td>$timezone</td></tr>
 </table>
 """)))
 
@@ -199,6 +204,8 @@ class DSBrowser(QWidget):
         self.searchResults = []
         self.collExpand = SimuVis4.Misc.Switcher()
 
+        self.statusBar = SimuVis4.Globals.mainWin.statusBar()
+
 
     def loadDatabase(self, dn=None):
         """load a database"""
@@ -211,7 +218,9 @@ class DSBrowser(QWidget):
             else:
                 return
         self.model.addDatabase(dn)
-        self.treeView.expandToDepth(1)
+        self.treeView.collapseAll()
+        self.treeView.expandToDepth(SimuVis4.Globals.config.getint('datastoragebrowser',
+            'expand_tree_depth'))
         self.treeView.resizeColumnToContents(0)
 
 
@@ -232,14 +241,17 @@ class DSBrowser(QWidget):
                 title=escape(n.title), groups=len(n)) + formatMetaData(n)
         elif t == 'G':
             txt = groupInfo.substitute(name=n.name,  path='/'.join(n.path.split('/')[:-1]),
-                title=escape(n.title), sensors=len(n), charts=len(n.charts)) + formatMetaData(n)
+                title=escape(n.title), sensors=len(n), charts=len(n.charts), start=n.timegrid.start,
+                stop=n.timegrid.stop, step=n.timegrid.step, timezone=n.timegrid.timezone) + formatMetaData(n)
         elif t == 'S':
             txt = sensorInfo.substitute(name=n.name,  path='/'.join(n.path.split('/')[:-1]),
                 title=escape(n.title), start=n.timegrid.start, stop=n.timegrid.stop,
-                step=n.timegrid.step, length=n.datalen()) + formatMetaData(n)
+                step=n.timegrid.step, length=n.datalen(), timezone=n.timegrid.timezone) + formatMetaData(n)
         elif t == 'C':
             txt = chartInfo.substitute(name=n.name, path=n.sensorgroup.path)
         self.textBrowser.setText(txt)
+        msg = ': '.join(str(self.model.itemFromIndex(mi).data().toString()).split('|')[1:])
+        self.statusBar.showMessage(msg, 5000)
 
 
     def searchItem(self):
@@ -268,17 +280,15 @@ class DSBrowser(QWidget):
         else:
             self.treeView.expandAll()
 
+
     def itemAction(self, mi):
         """default action (on doubleclick) for item at model index mi"""
         t, n = self.model.dsNode(mi)
-        if t == 'R':
-            pass
-        elif t == 'P':
-            pass
-        elif t == 'G':
-            pass
-        elif t == 'S':
-            self.showQwtPlot(n)
+        if t == 'S':
+            if qwtPlotWindowActive():
+                self.addToQwtPlot(n)
+            else:
+                self.showQwtPlot(n)
         elif t == 'C':
             self.showChart(n)
 
@@ -305,7 +315,9 @@ class DSBrowser(QWidget):
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Add/update data'), self.importFiles)
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Export data'), self.exportSensors)
         elif t == 'S':
-            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Plot (Qwt)'), self.showQwtPlot)
+            m.addAction(QCoreApplication.translate('DataStorageBrowser', 'New plot (Qwt)'), self.showQwtPlot)
+            if qwtPlotWindowActive():
+                m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Add to plot (Qwt)'), self.addToQwtPlot)
         elif t == 'C':
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Show'), self.showChart)
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'Delete'), self.deleteItem)
@@ -355,6 +367,12 @@ class DSBrowser(QWidget):
         if se is None:
             se = self.selectedNode
         showQwtPlotWindow(se, maximized=showChartMaximized)
+
+
+    def addToQwtPlot(self, se=None):
+        if se is None:
+            se = self.selectedNode
+        addToQwtPlotWindow(se)
 
 
     def editMetadata(self, node=None):

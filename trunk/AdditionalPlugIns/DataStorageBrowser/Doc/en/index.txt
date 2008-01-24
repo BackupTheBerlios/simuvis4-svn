@@ -17,11 +17,11 @@ To load a database, use the button at the toolbar. A tree of items will appear.
 Most actions are available from the context menu (right mouse button) of an item.
 
 Selecting an item in the treeview shows some information in the info area at the
-bottom of the browser. Double-clicking on a sensor will open a QwtPlot_ window with
-the sensors data. Double-clicking a chart will open a MatPlot_ window containing
+bottom of the browser. Double-clicking on a sensor will open a QwtPlot_ subwindow with
+the sensors data. Double-clicking a chart will open a MatPlot_ subwindow containing
 the chart.
 
-The expand/collapse button will expand or collapse all items in the browser window.
+The expand/collapse button will expand or collapse all items in the browser.
 
 To search an item you enter the items name (or a part of it) in the search input and
 press ENTER. If there's more than one matching item, pressing ENTER again without
@@ -50,7 +50,7 @@ Sensorgroup Actions
 
 If the sensorgroup has charts defined, you may:
 
-* show all charts - open each chart in a new window
+* show all charts - open each chart in a new subwindow
 * save all charts - save each chart to an image file in a specified folder
   **The config option ``set_default_backend`` of the MatPlot_ plugin must
   not be enabled  for this to work!**
@@ -58,11 +58,15 @@ If the sensorgroup has charts defined, you may:
 Sensor Actions
 --------------
 * edit metadata - edit the metadata of the sensor
-* plot (Qwt) or a doubleclick - will open a QwtPlot_ window showing a simple chart
+* New plot (Qwt) - will open a QwtPlot_ subwindow showing a simple chart
+
+A double click will do the same. If the active subwindow is already a QwtPlot_
+window, it will add the sensor to the existing plot instead.
+
 
 Chart Actions
 -------------
-* show or a doubleclick - will open a MatPlot_ window showing the chart
+* show or a doubleclick - will open a MatPlot_ subwindow showing the chart
 * delete - will delete the chart from its parent sensorgroup
 
 
@@ -82,21 +86,31 @@ In a configfile_ you may use the following items:
     default_database = /home/horst/weather
 
     # bool: show chart subwindows maximized
-    show_chart_maximized = no
+    show_chart_maximized = yes
 
-    # bool: show chart subwindows using the size hint instead of fitting the window
+    # bool: show chart canvas using the size hint instead of fitting the subwindow
     # see 'canvas zoom' of the MatPlot_ plugin for details
-    show_chart_original_size = no
+    show_chart_original_size = yes
 
-Hints
-=====
+    # bool: set the option to open the file after a data export
+    # sets only the default value, can be changed in the export dialog
+    open_exported_files = yes
+
+    # integer: expand the data tree to this level after loading a database
+    # 0: show projects only, 1: show sensorgroups, 2+: show sensors and charts
+    expand_tree_depth = 1
+
+
+
+Tips and Hints
+==============
 * Please read the documentation for MatPlot_ (in particular about canvas zoom) and QwtPlot_!
-* To save space you may show/hide the browser window with CTRL-B.
-* You may place the browser window in other dock areas in th main windor or detach it completely.
-* If more than one chart subwindow is opened, you may easily switch between the windows
+* To save space you may show/hide the browser with CTRL-B.
+* You may place the browser in other dock areas in th main window or detach it completely.
+* If more than one chart subwindow is opened, you may easily switch between the subwindows
   with CTRL-">" and CTRL-"<".
-* Use Window > Cascade to see all windows.
-* Use CTRL-M to switch between normal, maximized and shaded state for the active window.
+* Use Window > Cascade to see all subwindows.
+* Use CTRL-M to switch between normal, maximized and shaded state for the active subwindow.
 
 If you use SimuVis4 mainly as a GUI for datastorage_ only you may enable, disable or
 adjust some of SimuVis' features in your configfile_ to get a leaner and more
@@ -106,10 +120,10 @@ comfortable GUI:
     
     [main]
     
-    # hide the log window at startup
+    # hide the log subwindow at startup
     hide_log_window = yes
     
-    # hide the plugin browser at startup
+    # hide the plugin browser subwindow at startup
     hide_plugin_browser = yes
     
     # add plugins not needed by DataStorageBrowser
@@ -145,4 +159,4 @@ comfortable GUI:
 .. _QwtPlot: /plugin/QwtPlot/index.html
 .. _MatPlot: /plugin/MatPlot/index.html
 .. _configfile: /simuvis/config.html
-.. _datastorage: http://www.riap.de/
+.. _datastorage: http://sserv01.fh-biberach.de/trac/DataStorage/

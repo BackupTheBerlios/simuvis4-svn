@@ -5,6 +5,7 @@
 # this file is part of the SimuVis4 framework
 
 import SimuVis4, Icons, os
+from SimuVis4.Misc import uniqueName
 from PyQt4.QtGui import QWizard, QWizardPage, QHBoxLayout, QVBoxLayout, QListWidget, QLabel,\
     QLineEdit, QFrame, QPixmap, QTextEdit, QMessageBox, QAbstractItemView, QCheckBox
 from PyQt4.QtCore import Qt, SIGNAL, QCoreApplication
@@ -70,9 +71,7 @@ class NewChartPage0(QWizardPage):
     def templateChanged(self, i):
         t = chartTemplates[i]
         self.templateInfo.setPlainText(t.description)
-        n = t.chartName
-        while n in self.sensorgroup.charts.keys():
-            n += '_X'
+        n = uniqueName(t.chartName, self.sensorgroup.charts.keys(), numFormat='%d')
         self.nameInput.setText(n)
         if t.previewImage:
             xpm = QPixmap()
@@ -144,4 +143,4 @@ def showNewChartWizard(model, mi, browser):
     chart = template.makeChart(sensorgroup)
     model.addChart(chart, mi)
     if wiz.field('openChart').toBool():
-        browser.showMplChart(chart)
+        browser.showChart(chart)

@@ -4,14 +4,17 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-import SimuVis4, os, string
+import SimuVis4, os
+from string import Template
+from SimuVis4.Misc import uniqueFileName
 
-from PyQt4.QtGui import QFileDialog, QDialog, QAbstractItemView, QDesktopServices
+from PyQt4.QtGui import QFileDialog, QDialog, QAbstractItemView, QDesktopServices,\
+    QDialogButtonBox
 from PyQt4.QtCore import QCoreApplication, SIGNAL, Qt, QUrl
 
 from UI.DSExportDialog import Ui_DSExportDialog
 
-from datastorage.sensorgroup import hasExelerator
+from datastorage.sensorgroup import hasExcelerator
 from datastorage.timegrid import TimeGrid
 
 from DSChartMpl import qdt, time_t
@@ -20,7 +23,7 @@ from time import strftime, gmtime
 
 epoch = gmtime(0)
 
-infoTxt = string.Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
+infoTxt = Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
 <b>Export file format:</b> $format<br/>
 <b>Sensors (columns):</b> $sensors<br/>
 <b>Time steps (rows):</b> $timesteps<br/>
@@ -41,9 +44,7 @@ class ExportDialog(QDialog, Ui_DSExportDialog):
         self.connect(self, SIGNAL('accepted()'), self.exportData)
 
         self.connect(self.fileNameButton, SIGNAL('clicked()'), self.changeFileName)
-        self.fileName = os.path.join(SimuVis4.Globals.defaultFolder, sg.name+'.csv')
-        while os.path.exists(self.fileName):
-            self.fileName = self.fileName[:-4]+'_X.csv'
+        self.fileName = uniqueFileName(os.path.join(SimuVis4.Globals.defaultFolder, sg.name+'.csv'))
         self.fileNameInput.setText(self.fileName)
         self.fileType='CSV'
 
@@ -66,10 +67,13 @@ class ExportDialog(QDialog, Ui_DSExportDialog):
         self.startInput.setDateTime(mindt)
         self.stopInput.setDateTime(maxdt)
 
+        self.openFileButton.setChecked(SimuVis4.Globals.config.getboolean('datastoragebrowser',
+            'open_exported_files'))
+
 
     def changeFileName(self):
         fileTypes = {'CSV':('csv',) }
-        if hasExelerator:
+        if hasExcelerator:
             fileTypes['MS Excel'] = ('xls',)
         filters = ';;'.join(['%s (%s)' % (k, ' '.join(['*.'+e for e in v])) for k, v in fileTypes.items()])
         dlg = QFileDialog(self,
@@ -122,10 +126,12 @@ class ExportDialog(QDialog, Ui_DSExportDialog):
         else:
             filesize = '%s B' % tmp
         warning = ''
-        if self.fileType == 'MS Excel':
-            if sensors > 256 or timesteps > 65534:
-                warning = str(QCoreApplication.translate('DataStorageBrowser',
-                    '<b>To many values in Excel file:</b><br>65534 rows and 256 columns max.!'))
+        if self.fileType == 'MS Excel' and (sensors > 256 or timesteps > 65534):
+            warning = str(QCoreApplication.translate('DataStorageBrowser',
+                '<b>To many values in Excel file:</b><br>65534 rows and 256 columns max.!'))
+            self.buttonBox.button(QDialogButtonBox.Ok).setEnabled(False)
+        else:
+            self.buttonBox.button(QDialogButtonBox.Ok).setEnabled(True)
         txt = infoTxt.substitute(format=self.fileType, sensors=sensors,
             timesteps=timesteps, values=sensors*timesteps, filesize=filesize, warning=warning)
         self.infoLabel.setText(txt)
@@ -140,8 +146,7 @@ class ExportDialog(QDialog, Ui_DSExportDialog):
             sep = str(self.separatorInput.text())
             self.sensorgroup.exportCSV(slc, self.fileName, sensors, sep)
         elif self.fileType == 'MS Excel':
-            # FIXME: sensorlist?
-            self.sensorgroup.exportEXCEL(slc, self.fileName)
+            self.sensorgroup.exportEXCEL(slc, self.fileName, sensors)
         if self.openFileButton.isChecked():
             QDesktopServices.openUrl(QUrl.fromLocalFile(self.fileName))
 

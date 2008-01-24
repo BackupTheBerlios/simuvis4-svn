@@ -28,12 +28,12 @@ Bitte starte das Skript configure_matplotlib.py(im Ordner %s).Es werden dabei zw
 Nach einem Neustart von SimuVis4 solltest Du matplot/pylabin der PythonConsole (falls installiert) oder in Skripten nutzen können.</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="79"/>
+        <location filename="__init__.py" line="81"/>
         <source>&amp;MatPlot Test</source>
         <translation>&amp;MatPlot Test</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="80"/>
+        <location filename="__init__.py" line="82"/>
         <source>Show a matplotlib test window</source>
         <translation>Öffne ein Testfenster für matplotlib</translation>
     </message>
@@ -143,7 +143,7 @@ Nach einem Neustart von SimuVis4 solltest Du matplot/pylabin der PythonConsole (
         <translation>Drucke das Diagramm</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="62"/>
+        <location filename="__init__.py" line="63"/>
         <source>MatPlot: need matplotlib version between %s and %s, but found %s</source>
         <translation>MatPlot: matplotlib in Version zwischen %s und %s benötigt, vorhanden ist %s</translation>
     </message>

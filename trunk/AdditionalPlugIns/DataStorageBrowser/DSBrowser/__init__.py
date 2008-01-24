@@ -21,6 +21,8 @@ class PlugIn(SimplePlugIn):
             cfg.add_section(cfgsec)
         cfg.set_def(cfgsec, 'show_chart_maximized', 'yes')
         cfg.set_def(cfgsec, 'show_chart_original_size', 'yes')
+        cfg.set_def(cfgsec, 'open_exported_files', 'yes')
+        cfg.set_def(cfgsec, 'expand_tree_depth', '1')
         # cfg.set_def(cfgsec, 'datastorage_path', '/net/Dezentral/Projekte/Angebote/ISE_DataStorage-GUI/nmd/')
         # cfg.set_def(cfgsec, 'default_database', '/net/Dezentral/Projekte/Angebote/ISE_DataStorage-GUI/nmd/datastorage/wetter')
 

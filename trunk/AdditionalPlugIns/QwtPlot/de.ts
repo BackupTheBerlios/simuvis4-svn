@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>QwtPlot</name>
     <message>
@@ -19,52 +18,52 @@
         <translation>Zeige ein Qwt-Testfenster</translation>
     </message>
     <message>
-        <location filename="QwtPlotWindow.py" line="48"/>
+        <location filename="QwtPlotWindow.py" line="53"/>
         <source>QwtPlotWindow</source>
         <translation>QwtPlotFenster</translation>
     </message>
     <message>
-        <location filename="QwtPlotWindow.py" line="71"/>
+        <location filename="QwtPlotWindow.py" line="76"/>
         <source>Save plot as graphics</source>
         <translation>Speichere Diagramm als Grafik</translation>
     </message>
     <message>
-        <location filename="QwtPlotWindow.py" line="78"/>
+        <location filename="QwtPlotWindow.py" line="83"/>
         <source>Print plot to printer or file</source>
         <translation>Drucke Diagramm auf einen Drucker oder in eine Datei</translation>
     </message>
     <message>
-        <location filename="QwtPlotWindow.py" line="137"/>
+        <location filename="QwtPlotWindow.py" line="142"/>
         <source>Print Document</source>
         <translation>Drucke das Dokument</translation>
     </message>
     <message>
-        <location filename="QwtPlotWindow.py" line="88"/>
+        <location filename="QwtPlotWindow.py" line="93"/>
         <source>Enable zooming with the mouse</source>
         <translation>Ermögliche das Zoomen mit der Maus</translation>
     </message>
     <message>
-        <location filename="QwtPlotWindow.py" line="98"/>
+        <location filename="QwtPlotWindow.py" line="103"/>
         <source>Enable magnifying with the mouse</source>
         <translation>Ermögliche das Vergrößern/Verkleinern mit der Maus</translation>
     </message>
     <message>
-        <location filename="QwtPlotWindow.py" line="108"/>
+        <location filename="QwtPlotWindow.py" line="113"/>
         <source>Enable panning with the mouse</source>
         <translation>Ermögliche das Verschieben mit der Maus</translation>
     </message>
     <message>
-        <location filename="QwtPlotWindow.py" line="69"/>
+        <location filename="QwtPlotWindow.py" line="74"/>
         <source>Save...</source>
         <translation>Speichern...</translation>
     </message>
     <message>
-        <location filename="QwtPlotWindow.py" line="76"/>
+        <location filename="QwtPlotWindow.py" line="81"/>
         <source>Print...</source>
         <translation>Drucken...</translation>
     </message>
     <message>
-        <location filename="QwtPlotWindow.py" line="147"/>
+        <location filename="QwtPlotWindow.py" line="152"/>
         <source>Select type and name of file to save</source>
         <translation>Wähle Typ und Namen der zu sichernden Datei</translation>
     </message>
@@ -79,12 +78,12 @@
         <translation>QwtPlot: PyQt4.Qwt5.qplt nicht gefunden, Unterstützung für Unterfenster nicht installiert</translation>
     </message>
     <message>
-        <location filename="QwtPlotWindow.py" line="119"/>
+        <location filename="QwtPlotWindow.py" line="124"/>
         <source>Open help browser</source>
         <translation>Öffne einen Hilfebrowser</translation>
     </message>
     <message>
-        <location filename="QwtPlotWindow.py" line="117"/>
+        <location filename="QwtPlotWindow.py" line="122"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>

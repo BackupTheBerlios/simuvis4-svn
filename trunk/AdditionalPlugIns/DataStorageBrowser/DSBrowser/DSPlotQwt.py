@@ -13,6 +13,7 @@ QwtPlot = SimuVis4.Globals.plugInManager.getPlugIn('QwtPlot')
 MaskedCurve = QwtPlot.MaskedArray.MaskedCurve
 
 
+
 def showQwtPlotWindow(n, maximized=False):
     w = SimuVis4.Globals.mainWin.plugInManager['QwtPlot'].winManager.newWindow(n.path)
     if maximized:
@@ -21,8 +22,22 @@ def showQwtPlotWindow(n, maximized=False):
     curve = MaskedCurve(n.name)
     curve.setData(n.timegrid.getTimeArray(), n[:])
 
-    curve.setPen(QPen(Qt.blue))
+    curve.setPen(QPen(w.plot.nextColor()))
     curve.attach(w.plot)
     w.setMinimumSize(640, 480)
+    w.plot.replot()
+    w.plot.zoomer.setZoomBase()
+
+
+def qwtPlotWindowActive():
+    return type(SimuVis4.Globals.mainWin.activeMdiChild()) == QwtPlot.QwtPlotWindow.QwtPlotWindow
+
+
+def addToQwtPlotWindow(n):
+    w = SimuVis4.Globals.mainWin.activeMdiChild()
+    curve = MaskedCurve(n.name)
+    curve.setData(n.timegrid.getTimeArray(), n[:])
+    curve.setPen(QPen(w.plot.nextColor()))
+    curve.attach(w.plot)
     w.plot.replot()
     w.plot.zoomer.setZoomBase()

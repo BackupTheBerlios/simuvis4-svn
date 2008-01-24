@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './DataStorageBrowser/DSBrowser/UI/DSExportDialog.ui'
 #
-# Created: Wed Jan 23 10:30:34 2008
+# Created: Thu Jan 24 16:02:02 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_DSExportDialog(object):
     def setupUi(self, DSExportDialog):
         DSExportDialog.setObjectName("DSExportDialog")
-        DSExportDialog.resize(QtCore.QSize(QtCore.QRect(0,0,500,355).size()).expandedTo(DSExportDialog.minimumSizeHint()))
+        DSExportDialog.resize(QtCore.QSize(QtCore.QRect(0,0,657,355).size()).expandedTo(DSExportDialog.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(DSExportDialog)
         self.vboxlayout.setObjectName("vboxlayout")
@@ -116,6 +116,7 @@ class Ui_DSExportDialog(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.infoLabel.sizePolicy().hasHeightForWidth())
         self.infoLabel.setSizePolicy(sizePolicy)
+        self.infoLabel.setMinimumSize(QtCore.QSize(300,0))
         self.infoLabel.setFrameShape(QtGui.QFrame.Box)
         self.infoLabel.setObjectName("infoLabel")
         self.gridlayout.addWidget(self.infoLabel,1,1,1,1)
@@ -136,7 +137,7 @@ class Ui_DSExportDialog(object):
 
     def retranslateUi(self, DSExportDialog):
         DSExportDialog.setWindowTitle(QtGui.QApplication.translate("DSExportDialog", "Dialog", None, QtGui.QApplication.UnicodeUTF8))
-        self.fileLabel.setText(QtGui.QApplication.translate("DSExportDialog", "Filename/type:", None, QtGui.QApplication.UnicodeUTF8))
+        self.fileLabel.setText(QtGui.QApplication.translate("DSExportDialog", "Filename and type:", None, QtGui.QApplication.UnicodeUTF8))
         self.fileNameButton.setText(QtGui.QApplication.translate("DSExportDialog", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.startLabel.setText(QtGui.QApplication.translate("DSExportDialog", "Start time:", None, QtGui.QApplication.UnicodeUTF8))
         self.stopLabel.setText(QtGui.QApplication.translate("DSExportDialog", "End time:", None, QtGui.QApplication.UnicodeUTF8))

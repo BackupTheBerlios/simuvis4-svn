@@ -13,6 +13,10 @@ from PyQt4.QtGui import QFrame, QHBoxLayout, QToolButton, QSizePolicy, QPen, QPr
 from PyQt4.QtCore import SIGNAL, QCoreApplication, Qt, QSize
 from PyQt4.QtSvg import QSvgGenerator
 
+colors = (Qt.red, Qt.green, Qt.blue, Qt.yellow, Qt.cyan, Qt.magenta, Qt.black,
+    Qt.darkRed, Qt.darkGreen, Qt.darkBlue, Qt.darkYellow, Qt.darkCyan, Qt.darkMagenta, Qt.gray)
+
+
 
 class QwtPlotE(QwtPlot):
     """a slightly enhanced version of QwtPlot which already has some sugar on it"""
@@ -34,6 +38,7 @@ class QwtPlotE(QwtPlot):
         self.panner = QwtPlotPanner(self.canvas())
         self.panner.setMouseButton(Qt.LeftButton, Qt.ControlModifier)
         self.connect(self, SIGNAL("legendClicked(QwtPlotItem*)"), self.togglePlotItemVisibility)
+        self.nextColor = SimuVis4.Misc.RingBuffer(colors)
 
     def togglePlotItemVisibility(self, plotItem):
         """Toggle the visibility of a plot item"""
