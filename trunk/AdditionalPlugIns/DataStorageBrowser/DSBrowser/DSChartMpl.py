@@ -8,6 +8,7 @@ import SimuVis4, Icons, os
 from PyQt4.QtGui import QWidget, QIcon, QPixmap, QFileDialog, QMessageBox, QProgressDialog
 from PyQt4.QtCore import Qt, QTimer, SIGNAL, QDateTime, QCoreApplication
 from UI.DSChartMplToolBar import Ui_DSChartMplToolBar
+from datastorage.timegrid import TimeGrid
 
 mplBackend = SimuVis4.Globals.plugInManager['MatPlot'].backend_sv4agg
 mplWinCount = SimuVis4.Misc.Counter(1000)
@@ -28,7 +29,8 @@ def qdt(time_t):
 
 def time_t(qdt):
     """make time_t from QDateTime"""
-    qdt.setTimeSpec(Qt.UTC)
+    # FIXME: something wrong with timezones ...
+    # qdt.setTimeSpec(Qt.UTC)
     return qdt.toTime_t()
 
 
@@ -61,11 +63,12 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
 
     def setChartCanvas(self, chart, canvas):
         self.chart = chart
+        self.sensorgroup = chart.sensorgroup
         self.canvas = canvas
         slc = chart.standardSlice
-        self.startTime = chart.sensorgroup.stop - slc
+        self.startTime = self.sensorgroup.stop - slc
         self.StartInput.setDateTime(qdt(self.startTime))
-        self.StartInput.setMinimumDate(qdt(chart.sensorgroup.start).date())
+        self.StartInput.setMinimumDate(qdt(self.sensorgroup.start).date())
         # try to guess unit*factor from slice
         uF = unitFactors[:]
         uF.reverse()
@@ -92,7 +95,7 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
 
 
     def goStart(self):
-        self.go(self.chart.sensorgroup.start, False)
+        self.go(self.sensorgroup.start, False)
 
 
     def goBack(self):
@@ -104,7 +107,7 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
 
 
     def goEnd(self):
-        self.go(self.chart.sensorgroup.stop-self.chart.timeslice, False)
+        self.go(self.sensorgroup.stop-self.chart.timeslice, False)
 
 
     def animate(self, a):
@@ -127,15 +130,15 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
 
 
     def startChanged(self, dt):
-        self.startTime = time_t(dt)
+        self.startTime = self.sensorgroup.timegrid.moveOnGrid(time_t(dt), TimeGrid.nearest)
         self.updateChart()
 
 
     def setTimeslice(self, ts):
         self.blockUpdates = True
-        maxdt = qdt(self.chart.sensorgroup.stop-ts)
+        maxdt = qdt(self.sensorgroup.stop-ts)
         self.StartInput.setMaximumDate(maxdt.date())
-        if self.startTime + ts > self.chart.sensorgroup.stop:
+        if self.startTime + ts > self.sensorgroup.stop:
             self.StartInput.setDateTime(maxdt)
         self.chart.setTimeslice(ts)
         self.blockUpdates = False
@@ -222,7 +225,7 @@ Change this setting and restart the application to make this work!"""))
         dlg.setLabelText(fileName)
         app.processEvents()
         #chart.setTimeslice(1*86400)
-        chart(starttime=sg.start, filename=os.path.join(folder, fileName))
+        chart(starttime=(sg.stop-chart.standardSlice), filename=os.path.join(folder, fileName))
         dlg.setValue(i)
         i += 1
         if dlg.wasCanceled():
