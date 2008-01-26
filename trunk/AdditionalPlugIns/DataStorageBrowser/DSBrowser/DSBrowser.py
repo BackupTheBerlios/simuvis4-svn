@@ -330,7 +330,7 @@ class DSBrowser(QWidget):
     def newSensorGroup(self, mi=None):
         if mi is None:
             mi = self.selectedMI
-        newSensorGroup(self.model, mi, self)
+        newSensorGroup(self.model, mi)
 
 
     def showChart(self, ch=None):
@@ -339,10 +339,10 @@ class DSBrowser(QWidget):
         showChartWindow(ch, maximized=showChartMaximized)
 
 
-    def importFiles(self, sg=None):
-        if sg is None:
-            sg = self.selectedNode
-        importFiles(sg)
+    def importFiles(self, mi=None):
+        if mi is None:
+            mi = self.selectedMI
+        importFiles(self.model, mi)
 
 
     def showAllCharts(self, sg=None):
@@ -498,6 +498,16 @@ class DSModel(QStandardItemModel):
         db.close()
         item = self.itemFromIndex(mi)
         self.rootItem.removeRow(item.row())
+
+
+    def addSensorgroup(self, project_mi, sg):
+        """show a newly created or updated sensorgroup"""
+        dbf = self.dsFolder(project_mi)
+        item = QStandardItem(sg.name)
+        item.setIcon(self.icons['sensorgroup'])
+        item.setData(QVariant("G|%s|%s" % (dbf, sg.path)))
+        self.itemFromIndex(project_mi).appendRow(item)
+        self._processSensorGroup(sg, item, dbf)
 
 
     def addChart(self, chart, mi):

@@ -4,13 +4,15 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-import SimuVis4
+import SimuVis4, os, sys
 
-from PyQt4.QtGui import QFileDialog, QDialog, QWizard, QWizardPage, QSpinBox, \
+from PyQt4.QtGui import QFileDialog, QDialog, QWizard, QWizardPage, QSpinBox, QFileDialog, \
     QGridLayout, QVBoxLayout, QLabel, QLineEdit, QComboBox, QPixmap, QMessageBox
 from PyQt4.QtCore import QCoreApplication, SIGNAL, QDateTime, Qt
 from SimuVis4.Misc import uniqueName
 
+from datastorage.importer.csvdata import CSVImporter
+from datastorage.importer.remusdata import RemusImporter
 
 class NewSensorgroupPage0(QWizardPage):
     """WizardPage to select sensorgroup name, title and importer"""
@@ -77,9 +79,10 @@ class NewSensorgroupPage1(QWizardPage):
         self.mainLayout.addWidget(tsLabel, 0, 0)
         self.tsInput = QSpinBox(self)
         self.tsInput.setSuffix(' s')
-        self.tsInput.setMinimum(1)
+        self.tsInput.setSpecialValueText('---')
+        self.tsInput.setMinimum(0)
         self.tsInput.setMaximum(86400)
-        self.tsInput.setValue(3600)
+        self.tsInput.setValue(0)
         self.registerField('timestep', self.tsInput, 'value')
         self.mainLayout.addWidget(self.tsInput, 0, 1)
 
@@ -163,28 +166,65 @@ class NewSensorgroupWizard(QWizard):
 
 
 
-def newSensorGroup(model, mi, browser):
+def newSensorGroup(model, mi):
     t, project = model.dsNode(mi)
     wiz = NewSensorgroupWizard(SimuVis4.Globals.mainWin, project)
     if not wiz.exec_():
         return
+    # add sensorgroup
+    name = str(wiz.field('name').toString())
+    title = str(wiz.field('title').toString())
+    sg = project.addGetSensorGroup(name, title)
+    # set importer
     t = str(wiz.field('type').toString())
     timestep, x = wiz.field('timestep').toInt()
+    if timestep == 0:
+        timestep = None
     timezone, x = wiz.field('timezone').toInt()
     timeformat = str(wiz.field('timeformat').toString())
     print timestep, timezone, timeformat
     if t == 'Remus':
-        raise SimuVis4.Errors.NotImplementedError()
+        imp = RemusImporter(tstep=timestep, tz=timezone, timefmt=timeformat)
+        fileFilter = 'Remus (*.txt)'
     elif t == 'CSV':
         delim = str(wiz.field('delim').toString())
         timecol, x = wiz.field('timecol').toInt()
         extra_headers = str(wiz.field('extra_headers').toString()).split(delim)
-        raise SimuVis4.Errors.NotImplementedError()
+        imp = CSVImporter(tstep=timestep, tz=timezone, timefmt=timeformat,
+            delim=delim, timecol=timecol, extra_headers=extra_headers)
+        fileFilter = 'CSV (*.csv *.txt)'
     else:
-        pass
+        return # should never happen
+    sg.setImporter(imp)
+    fileList = []
+    tmp = QFileDialog.getOpenFileNames(SimuVis4.Globals.mainWin,
+        QCoreApplication.translate('DataStorageBrowser', 'Select import data files'),
+        SimuVis4.Globals.defaultFolder, fileFilter)
+    fileList = [unicode(f) for f in tmp]
+    if fileList:
+        SimuVis4.Globals.defaultFolder, tmp = os.path.split(fileList[0])
+        sg.syncFileList(fileList)
+    model.addSensorgroup(mi, sg)
 
 
-def importFiles(sg):
-    # FIXME!
 
+def importFiles(model, mi):
+    t, sg = model.dsNode(mi)
+    fileList = []
+    tmp = QFileDialog.getOpenFileNames(SimuVis4.Globals.mainWin,
+        QCoreApplication.translate('DataStorageBrowser', 'Select import data files'),
+        SimuVis4.Globals.defaultFolder)
+    fileList = [unicode(f) for f in tmp]
+    if fileList:
+        SimuVis4.Globals.defaultFolder, tmp = os.path.split(fileList[0])
+        sg.syncFileList(fileList)
 
+    sgItem = model.itemFromIndex(mi)
+
+    # first delete all items
+    rows = sgItem.rowCount()
+    if rows > 0:
+        sgItem.removeRows(0, rows)
+
+    # and rebuild
+    model._processSensorGroup(sg, sgItem, model.dsFolder(mi))

@@ -34,6 +34,7 @@ class PlugIn(SimplePlugIn):
             self.dsbrowser = DSBrowser.DSBrowser()
             SimuVis4.Globals.dataBrowser.toolBox.addItem(self.dsbrowser, 'DataStorage')
             if cfg.has_option(cfgsec, 'default_database'):
+                SimuVis4.Globals.application.processEvents()
                 self.dsbrowser.loadDatabase(cfg.get(cfgsec, 'default_database'))
             return True
         else: #except ImportError:
