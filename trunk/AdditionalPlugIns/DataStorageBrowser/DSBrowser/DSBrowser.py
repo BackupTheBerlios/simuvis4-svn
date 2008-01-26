@@ -330,7 +330,7 @@ class DSBrowser(QWidget):
     def newSensorGroup(self, mi=None):
         if mi is None:
             mi = self.selectedMI
-        newSensorGroup(mi)
+        newSensorGroup(self.model, mi, self)
 
 
     def showChart(self, ch=None):

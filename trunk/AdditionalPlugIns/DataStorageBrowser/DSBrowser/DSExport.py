@@ -21,7 +21,6 @@ from DSChartMpl import qdt, time_t
 
 from time import strftime, gmtime
 
-epoch = gmtime(0)
 
 infoTxt = Template(unicode(QCoreApplication.translate('DataStorageBrowser', """
 <b>Export file format:</b> $format<br/>

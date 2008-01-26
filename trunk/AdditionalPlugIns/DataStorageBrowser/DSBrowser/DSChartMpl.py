@@ -18,20 +18,24 @@ unitFactors = [60, 3600, 86400, 604800, 2592000, 31536000]
 showOriginalSize = SimuVis4.Globals.config.getboolean('datastoragebrowser', 'show_chart_original_size')
 
 
+
+# FIXME: there may be something wrong with timezones ...
+
+
 def qdt(time_t):
     """make QDateTime from time_t"""
     dt = QDateTime()
-    dt.setTime_t(time_t)
     dt.setTimeSpec(Qt.UTC)
-    return dt
+    dt.setTime_t(time_t)
+    return dt #.toLocalTime()
 
 
 
 def time_t(qdt):
     """make time_t from QDateTime"""
-    # FIXME: something wrong with timezones ...
-    # qdt.setTimeSpec(Qt.UTC)
-    return qdt.toTime_t()
+    #qdt.setTimeSpec(Qt.LocalTime)
+    qdt.setTimeSpec(Qt.UTC)
+    return qdt.toTime_t()  #.toUTC().toTime_t()
 
 
 
@@ -131,6 +135,7 @@ class ChartToolBar(QWidget, Ui_DSChartMplToolBar):
 
     def startChanged(self, dt):
         self.startTime = self.sensorgroup.timegrid.moveOnGrid(time_t(dt), TimeGrid.nearest)
+        #self.startTime = time_t(dt)
         self.updateChart()
 
 

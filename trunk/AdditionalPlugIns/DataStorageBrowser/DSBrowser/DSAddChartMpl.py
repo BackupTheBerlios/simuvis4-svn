@@ -135,7 +135,6 @@ class NewChartWizard(QWizard):
 def showNewChartWizard(model, mi, browser):
     t, sensorgroup = model.dsNode(mi)
     wiz = NewChartWizard(SimuVis4.Globals.mainWin, sensorgroup)
-    wiz.sensorgroup = sensorgroup
     if not wiz.exec_():
         return
     i, x = wiz.field('templateNumber').toInt()
