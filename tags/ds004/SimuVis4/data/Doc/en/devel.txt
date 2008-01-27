@@ -1,0 +1,20 @@
+Go to: Index_ | Homepage_
+
+----
+
+=============
+ Development
+=============
+
+General
+-------
+Development takes place under Linux. The python files have UNIX line ends (LF) and utf8
+encoding. All comments, documentation and output for the user should be in english language
+by default. All strings visible in the GUI should use the i18n-mechanism to be easily translated.
+
+Most recent information about the development is at the SimuVis homepage_.
+
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/
+.. _homepage: http://simuvis.de/

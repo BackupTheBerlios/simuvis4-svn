@@ -1,0 +1,44 @@
+Go to: Index_ | Homepage_
+
+----
+
+=========
+ Scripts
+=========
+
+SimuVis can run ordinary python scripts. These scripts get executed in the global
+namespace and have complete access to the whole application. You may extend, reduce or
+completely change the SimuVis application at runtime.
+
+A script may be:
+
+* run at startup with the -e commandline switch
+* executed at any time with via menu or CTRL-E
+* interactively entered with the PythonConsole_ plugin
+* loaded, entered and edited in a TextEditor_ window and executed with CTRL-J
+* send from other applications and even other computers with the RemoteControl_ plugin
+
+Important facts to keep in mind
+-------------------------------
+
+Blocking
+~~~~~~~~
+Scripts are run in the main application loop and must not block for a long time. If your
+script blocks the whole application will block and you have to kill SimuVis manually!
+
+Security
+~~~~~~~~
+There is no restriction what the code may do. You may execute code that deletes
+all your data, kills your cat or burns your house. You are responsible for all
+wanted and unwanted effects of the code.
+
+**IN NO EVENT SHALL THE AUTHORS OR CONTRIBUTORS OF SIMUVIS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES CAUSED BY THE
+EXECUTION OF PYTHON CODE IN SIMUVIS.**
+
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/
+.. _PythonConsole: /plugin/PythonConsole/index.html
+.. _TextEditor: /plugin/TextEditor/index.html
+.. _RemoteControl: /plugin/RemoteControl/index.html

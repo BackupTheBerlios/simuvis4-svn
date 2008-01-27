@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="ascii" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ascii" />
+<meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
+<title></title>
+<style type="text/css">
+
+/*
+Stylesheet for Docutils.
+Based on ``voidspace.css``,``blue_box.css`` by Ian Bicking
+and ``html4css1.css`` revision 1.46.
+*/
+
+@import url(html4css1.css);
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+em, i {
+  /* Typically serif fonts have much nicer italics */
+  font-family: Times New Roman, Times, serif;
+}
+
+a.target {
+  color: blue;
+}
+
+a.target {
+  color: blue;
+}
+
+a.toc-backref {
+  text-decoration: none;
+  color: black;
+}
+
+a.toc-backref:hover {
+  background-color: inherit;
+}
+
+a:hover {
+  background-color: #cccccc;
+}
+
+div.attention, div.caution, div.danger, div.error, div.hint,
+div.important, div.note, div.tip, div.warning {
+  background-color: #cccccc;
+  padding: 3px;
+  width: 80%;
+}
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title  {
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: #cc0000;
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Helvetica, Arial, sans-serif;
+  /* border: thin solid black; */
+  /* This makes the borders rounded on Mozilla, which pleases me */
+  /* -moz-border-radius: 8px; */
+  padding: 4px;
+}
+
+h1 {
+  background-color: #444499;
+  color: #ffffff;
+  /* border: thin solid black; */
+  font-size: 16px;
+}
+
+h1 a.toc-backref, h2 a.toc-backref { 
+  color: #ffff00;
+}
+
+h2 {
+  background-color: #666666;
+  color: #ffffff;
+  /* border: thin solid black; */
+  font-size: 14px;
+}
+
+h3, h4, h5, h6 {
+  background-color: #cccccc;
+  color: #000000;
+  font-size: 12px;
+}
+
+h3 a.toc-backref, h4 a.toc-backref, h5 a.toc-backref, 
+h6 a.toc-backref { 
+  color: #000000;
+}
+
+h1.title {
+  text-align: center;
+  background-color: #444499;
+  color: #ffff00;
+  /* border: thin solid yellow; */
+  /* -moz-border-radius: 20px; */
+}
+
+table.footnote {
+  padding-left: 0.5ex;
+}
+
+table.citation {
+  padding-left: 0.5ex
+}
+
+pre.literal-block, pre.doctest-block {
+  border: thin solid black;
+  padding: 5px;
+}
+
+.image img { border-style : solid;
+            border-width : 2px;
+}
+
+h1 tt, h2 tt, h3 tt, h4 tt, h5 tt, h6 tt {
+  font-size: 80%;
+}
+
+code, tt {
+  color: #000066;
+}
+
+</style>
+</head>
+<body>
+<div class="document">
+<p>Go to: <a class="reference" href="/">Index</a> | <a class="reference" href="http://simuvis.de/">Homepage</a></p>
+<hr class="docutils" />
+<div class="section">
+<h1><a id="simuvis4-on-windows" name="simuvis4-on-windows">SimuVis4 on Windows</a></h1>
+<p>To run SimuVis4 on Windows (2000 or newer) you need a recent python interpreter
+and some additional modules. Unfortunately the version of the interpreter has to
+match exactly the version for with the modules are build.</p>
+<div class="section">
+<h2><a id="installation" name="installation">Installation</a></h2>
+<div class="section">
+<h3><a id="installing-python" name="installing-python">1. Installing Python</a></h3>
+<p>Please use the MSI-based installer for python 2.5 from <a class="reference" href="http://www.python.org">http://www.python.org</a>. Once you have
+the python package installed, you can go on and install PyQt4.</p>
+</div>
+<div class="section">
+<h3><a id="installig-pyqt4" name="installig-pyqt4">2. Installig PyQt4</a></h3>
+<p>For Windows there's an experimental installer for PyQt and related packages at
+<a class="reference" href="http://www.riverbankcomputing.co.uk/pyqt/download.php">http://www.riverbankcomputing.co.uk/pyqt/download.php</a> . The current version should work
+with python 2.5. After this step you should be able to run SimuVis4.</p>
+</div>
+<div class="section">
+<h3><a id="installing-simuvis4" name="installing-simuvis4">3. Installing SimuVis4</a></h3>
+<p>Follow the instructions for <a class="reference" href="install.html">installing</a>.</p>
+</div>
+<div class="section">
+<h3><a id="additional-modules" name="additional-modules">4. Additional Modules</a></h3>
+<p>To get all of SimuVis' plugins working you will need additional modules like
+matplotlib or vtk. The people at Enthought did a very good job creating an
+installer and providing precompiled packages for a lot of useful python modules.
+The installer is called <a class="reference" href="http://code.enthought.com/enstaller/">enstaller</a>, you may install it from the <a class="reference" href="http://code.enthought.com/enstaller/ez_enstaller_setup.py">setup</a> file and use
+it to download and install additional packages. At the moment you may need VTK,
+matplotlib, Scientific and netCDF for SimuVis4.</p>
+</div>
+</div>
+<div class="section">
+<h2><a id="using-simuvis4-on-windows" name="using-simuvis4-on-windows">Using SimuVis4 on Windows</a></h2>
+<p>I suggest starting SimuVis with the commandline switch <tt class="docutils literal"><span class="pre">-style=plastique</span></tt> which gives
+a much nicer visual appearance on Windows XP.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

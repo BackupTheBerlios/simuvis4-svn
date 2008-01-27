@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="ascii" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ascii" />
+<meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
+<title></title>
+<style type="text/css">
+
+/*
+Stylesheet for Docutils.
+Based on ``voidspace.css``,``blue_box.css`` by Ian Bicking
+and ``html4css1.css`` revision 1.46.
+*/
+
+@import url(html4css1.css);
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+em, i {
+  /* Typically serif fonts have much nicer italics */
+  font-family: Times New Roman, Times, serif;
+}
+
+a.target {
+  color: blue;
+}
+
+a.target {
+  color: blue;
+}
+
+a.toc-backref {
+  text-decoration: none;
+  color: black;
+}
+
+a.toc-backref:hover {
+  background-color: inherit;
+}
+
+a:hover {
+  background-color: #cccccc;
+}
+
+div.attention, div.caution, div.danger, div.error, div.hint,
+div.important, div.note, div.tip, div.warning {
+  background-color: #cccccc;
+  padding: 3px;
+  width: 80%;
+}
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title  {
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: #cc0000;
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Helvetica, Arial, sans-serif;
+  /* border: thin solid black; */
+  /* This makes the borders rounded on Mozilla, which pleases me */
+  /* -moz-border-radius: 8px; */
+  padding: 4px;
+}
+
+h1 {
+  background-color: #444499;
+  color: #ffffff;
+  /* border: thin solid black; */
+  font-size: 16px;
+}
+
+h1 a.toc-backref, h2 a.toc-backref { 
+  color: #ffff00;
+}
+
+h2 {
+  background-color: #666666;
+  color: #ffffff;
+  /* border: thin solid black; */
+  font-size: 14px;
+}
+
+h3, h4, h5, h6 {
+  background-color: #cccccc;
+  color: #000000;
+  font-size: 12px;
+}
+
+h3 a.toc-backref, h4 a.toc-backref, h5 a.toc-backref, 
+h6 a.toc-backref { 
+  color: #000000;
+}
+
+h1.title {
+  text-align: center;
+  background-color: #444499;
+  color: #ffff00;
+  /* border: thin solid yellow; */
+  /* -moz-border-radius: 20px; */
+}
+
+table.footnote {
+  padding-left: 0.5ex;
+}
+
+table.citation {
+  padding-left: 0.5ex
+}
+
+pre.literal-block, pre.doctest-block {
+  border: thin solid black;
+  padding: 5px;
+}
+
+.image img { border-style : solid;
+            border-width : 2px;
+}
+
+h1 tt, h2 tt, h3 tt, h4 tt, h5 tt, h6 tt {
+  font-size: 80%;
+}
+
+code, tt {
+  color: #000066;
+}
+
+</style>
+</head>
+<body>
+<div class="document">
+<p>Go to: <a class="reference" href="/">Index</a> | <a class="reference" href="http://simuvis.de/">Homepage</a></p>
+<hr class="docutils" />
+<div class="section">
+<h1><a id="about-simuvis" name="about-simuvis">About SimuVis</a></h1>
+<p>SimuVis in its current implementation SimuVis4 is a framework and an interactive
+application for data handling, visualisation and simulations. It's based on python as the
+programming language, Qt for the GUI, Qwt for charts and VTK for 3D scenes.
+Currently it runs on Linux, Windows (both tested) and MacOS X (untested).</p>
+<p>SimuVis4 is released as OpenSource. The GUI is available in english and german, more
+languages can be added easily.</p>
+<div class="section">
+<h2><a id="target-audience" name="target-audience">Target Audience</a></h2>
+<p>I develop SimuVis for my needs and the projects I'm working on. SimuVis should be useful:</p>
+<ul class="simple">
+<li>for the python programmer as a visual shell</li>
+<li>for the developer of scientific applications as a framework</li>
+<li>for the scientists as a tool for programming, data analysis and visualisation or a GUI for simulations</li>
+</ul>
+</div>
+<div class="section">
+<h2><a id="architecture" name="architecture">Architecture</a></h2>
+<p>The SimuVis application is a typical MDI application written in PyQt. It can be custimized
+by the following mechanisms:</p>
+<ul class="simple">
+<li>configuration files: system-wide, user-specific and explicit</li>
+<li>python scripts running inside the application with unlimited access to the whole program</li>
+<li>plugins to extend the programs abilities</li>
+</ul>
+<p>Because all parts are written in the python language and there's no artificial border
+between the parts of the program you may completely change or adjust the whole
+applications functionality and appearance. You may so this even while the program is
+running and use scripts or a comfortable shell window.</p>
+</div>
+<div class="section">
+<h2><a id="history" name="history">History</a></h2>
+<p>The history of SimuVis started in 2001. I wrote a couple of python scripts using VTK to
+visualise simulation results of solarthermal systems and buildings as colored 3D animations.
+To ease this process an more general and modular application was developed. VTK was used as
+the 3D-toolkit, the GUI was switched from Tkinter to Gtk+. We called this application
+SimuVis and used it in some scientific projects.</p>
+<p>The version SimuVis2 was based on Qt2 and later Qt3 because of its nicer API and the
+existence of the powerful Qwt toolkit. SimuVis3 came to life only as a prototype.
+The technical base of SimuVis4 is the new Qt4 and Qwt5 with its excellent python
+bindings PyQt and PyQwt and still VTK for 3D things.
+The application concept has changed a lot since the beginning. First versions were
+focused on a (possibly animated) 3D scene, other elements were attached to 3D
+objects. With the new MDI interface, different ways to browse and manipulate data can
+coexist and can be used alternatively.</p>
+<div class="section">
+<h3><a id="name" name="name">Name</a></h3>
+<p>The origin of the name is should be obvious: a tool for <strong>Simu</strong> lation and <strong>Vis</strong> ualisation.
+Please note that there is another software called SimuVis as part of the <a class="reference" href="http://www.eviz.org">e-viz</a> project.
+When I started my SimuVis project and used the name frequently, there was no reference to
+other projects with this name found on the internet.</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

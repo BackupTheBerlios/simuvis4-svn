@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="ascii" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ascii" />
+<meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
+<title></title>
+<style type="text/css">
+
+/*
+Stylesheet for Docutils.
+Based on ``voidspace.css``,``blue_box.css`` by Ian Bicking
+and ``html4css1.css`` revision 1.46.
+*/
+
+@import url(html4css1.css);
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+em, i {
+  /* Typically serif fonts have much nicer italics */
+  font-family: Times New Roman, Times, serif;
+}
+
+a.target {
+  color: blue;
+}
+
+a.target {
+  color: blue;
+}
+
+a.toc-backref {
+  text-decoration: none;
+  color: black;
+}
+
+a.toc-backref:hover {
+  background-color: inherit;
+}
+
+a:hover {
+  background-color: #cccccc;
+}
+
+div.attention, div.caution, div.danger, div.error, div.hint,
+div.important, div.note, div.tip, div.warning {
+  background-color: #cccccc;
+  padding: 3px;
+  width: 80%;
+}
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title  {
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: #cc0000;
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Helvetica, Arial, sans-serif;
+  /* border: thin solid black; */
+  /* This makes the borders rounded on Mozilla, which pleases me */
+  /* -moz-border-radius: 8px; */
+  padding: 4px;
+}
+
+h1 {
+  background-color: #444499;
+  color: #ffffff;
+  /* border: thin solid black; */
+  font-size: 16px;
+}
+
+h1 a.toc-backref, h2 a.toc-backref { 
+  color: #ffff00;
+}
+
+h2 {
+  background-color: #666666;
+  color: #ffffff;
+  /* border: thin solid black; */
+  font-size: 14px;
+}
+
+h3, h4, h5, h6 {
+  background-color: #cccccc;
+  color: #000000;
+  font-size: 12px;
+}
+
+h3 a.toc-backref, h4 a.toc-backref, h5 a.toc-backref, 
+h6 a.toc-backref { 
+  color: #000000;
+}
+
+h1.title {
+  text-align: center;
+  background-color: #444499;
+  color: #ffff00;
+  /* border: thin solid yellow; */
+  /* -moz-border-radius: 20px; */
+}
+
+table.footnote {
+  padding-left: 0.5ex;
+}
+
+table.citation {
+  padding-left: 0.5ex
+}
+
+pre.literal-block, pre.doctest-block {
+  border: thin solid black;
+  padding: 5px;
+}
+
+.image img { border-style : solid;
+            border-width : 2px;
+}
+
+h1 tt, h2 tt, h3 tt, h4 tt, h5 tt, h6 tt {
+  font-size: 80%;
+}
+
+code, tt {
+  color: #000066;
+}
+
+</style>
+</head>
+<body>
+<div class="document">
+<p>Go to: <a class="reference" href="/">Index</a> | <a class="reference" href="http://simuvis.de/">Homepage</a></p>
+<hr class="docutils" />
+<div class="section">
+<h1><a id="scripts" name="scripts">Scripts</a></h1>
+<p>SimuVis can run ordinary python scripts. These scripts get executed in the global
+namespace and have complete access to the whole application. You may extend, reduce or
+completely change the SimuVis application at runtime.</p>
+<p>A script may be:</p>
+<ul class="simple">
+<li>run at startup with the -e commandline switch</li>
+<li>executed at any time with via menu or CTRL-E</li>
+<li>interactively entered with the <a class="reference" href="/plugin/PythonConsole/index.html">PythonConsole</a> plugin</li>
+<li>loaded, entered and edited in a <a class="reference" href="/plugin/TextEditor/index.html">TextEditor</a> window and executed with CTRL-J</li>
+<li>send from other applications and even other computers with the <a class="reference" href="/plugin/RemoteControl/index.html">RemoteControl</a> plugin</li>
+</ul>
+<div class="section">
+<h2><a id="important-facts-to-keep-in-mind" name="important-facts-to-keep-in-mind">Important facts to keep in mind</a></h2>
+<div class="section">
+<h3><a id="blocking" name="blocking">Blocking</a></h3>
+<p>Scripts are run in the main application loop and must not block for a long time. If your
+script blocks the whole application will block and you have to kill SimuVis manually!</p>
+</div>
+<div class="section">
+<h3><a id="security" name="security">Security</a></h3>
+<p>There is no restriction what the code may do. You may execute code that deletes
+all your data, kills your cat or burns your house. You are responsible for all
+wanted and unwanted effects of the code.</p>
+<p><strong>IN NO EVENT SHALL THE AUTHORS OR CONTRIBUTORS OF SIMUVIS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES CAUSED BY THE
+EXECUTION OF PYTHON CODE IN SIMUVIS.</strong></p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="ascii" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ascii" />
+<meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
+<title></title>
+<style type="text/css">
+
+/*
+Stylesheet for Docutils.
+Based on ``voidspace.css``,``blue_box.css`` by Ian Bicking
+and ``html4css1.css`` revision 1.46.
+*/
+
+@import url(html4css1.css);
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+em, i {
+  /* Typically serif fonts have much nicer italics */
+  font-family: Times New Roman, Times, serif;
+}
+
+a.target {
+  color: blue;
+}
+
+a.target {
+  color: blue;
+}
+
+a.toc-backref {
+  text-decoration: none;
+  color: black;
+}
+
+a.toc-backref:hover {
+  background-color: inherit;
+}
+
+a:hover {
+  background-color: #cccccc;
+}
+
+div.attention, div.caution, div.danger, div.error, div.hint,
+div.important, div.note, div.tip, div.warning {
+  background-color: #cccccc;
+  padding: 3px;
+  width: 80%;
+}
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title  {
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: #cc0000;
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Helvetica, Arial, sans-serif;
+  /* border: thin solid black; */
+  /* This makes the borders rounded on Mozilla, which pleases me */
+  /* -moz-border-radius: 8px; */
+  padding: 4px;
+}
+
+h1 {
+  background-color: #444499;
+  color: #ffffff;
+  /* border: thin solid black; */
+  font-size: 16px;
+}
+
+h1 a.toc-backref, h2 a.toc-backref { 
+  color: #ffff00;
+}
+
+h2 {
+  background-color: #666666;
+  color: #ffffff;
+  /* border: thin solid black; */
+  font-size: 14px;
+}
+
+h3, h4, h5, h6 {
+  background-color: #cccccc;
+  color: #000000;
+  font-size: 12px;
+}
+
+h3 a.toc-backref, h4 a.toc-backref, h5 a.toc-backref, 
+h6 a.toc-backref { 
+  color: #000000;
+}
+
+h1.title {
+  text-align: center;
+  background-color: #444499;
+  color: #ffff00;
+  /* border: thin solid yellow; */
+  /* -moz-border-radius: 20px; */
+}
+
+table.footnote {
+  padding-left: 0.5ex;
+}
+
+table.citation {
+  padding-left: 0.5ex
+}
+
+pre.literal-block, pre.doctest-block {
+  border: thin solid black;
+  padding: 5px;
+}
+
+.image img { border-style : solid;
+            border-width : 2px;
+}
+
+h1 tt, h2 tt, h3 tt, h4 tt, h5 tt, h6 tt {
+  font-size: 80%;
+}
+
+code, tt {
+  color: #000066;
+}
+
+</style>
+</head>
+<body>
+<div class="document">
+<p>Go to: <a class="reference" href="/">Index</a> | <a class="reference" href="http://simuvis.de/">Homepage</a></p>
+<hr class="docutils" />
+<div class="section">
+<h1><a id="configuration" name="configuration">Configuration</a></h1>
+<p>SimuVis by default searches for a sytem-wide and a personal configuration file in the
+INI-format. Alternatively you may specify a configuration file on the commandline.
+During startup default configuration values are set and used for items not found
+in a file. Most changes to the configuration will have an effect after a restart
+only! If not disabled, you may save configuration files from the tools menu and edit
+files using the <a class="reference" href="/plugin/TextEditor/index.html">TextEditor</a>. You may write to an arbitrary configuration file using the
+<a class="reference" href="/plugin/PythonConsole/index.html">PythonConsole</a> with the command <tt class="docutils literal"><span class="pre">config.write(open('foobar.ini',</span> <span class="pre">'w'))</span></tt>.</p>
+<div class="section">
+<h2><a id="configuration-files-on-linux" name="configuration-files-on-linux">Configuration files on Linux:</a></h2>
+<ol class="arabic simple">
+<li>system-wide: <tt class="docutils literal"><span class="pre">/etc/SimuVis4.ini</span></tt></li>
+<li>personal: <tt class="docutils literal"><span class="pre">$HOME/.SimuVis4.ini</span></tt></li>
+</ol>
+</div>
+<div class="section">
+<h2><a id="configuration-files-on-windows" name="configuration-files-on-windows">Configuration files on Windows:</a></h2>
+<ol class="arabic simple">
+<li>system-wide: <tt class="docutils literal"><span class="pre">%ALLUSERSPROFILE%\SimuVis4.ini</span></tt></li>
+<li>personal: <tt class="docutils literal"><span class="pre">%USERPROFILE%\SimuVis4.ini</span></tt></li>
+</ol>
+</div>
+<div class="section">
+<h2><a id="configuration-files-on-macos" name="configuration-files-on-macos">Configuration files on MacOS:</a></h2>
+<p>sorry, not yet implemented</p>
+</div>
+<div class="section">
+<h2><a id="configuration-items" name="configuration-items">Configuration items</a></h2>
+<p>The files are read in the well-known INI-format. The following configuration items
+in the section main affect the main program. PlugIns use own sections in the same files.</p>
+<pre class="literal-block">
+[main]
+
+# string: the application name
+application_name = SimuVis4
+
+# filename: the icon to use, relative to system_picture_path
+application_icon = Icon16.png
+
+# filename: the background image to use, relative to system_picture_path
+background_image = background.png
+
+# bool: disable main menu, should create own menu via startup scripts
+disable_main_menu = no
+
+# bool: disable splash screen
+disable_splash = no
+
+# bool: disable internal log window
+disable_log_window = no
+
+# bool: disable internal plugin browser
+disable_plugin_browser = no
+
+# bool: hide python exceptions from the user
+hide_exceptions = no
+
+# bool: hide the log window at startup
+hide_log_window = yes
+
+# bool: hide the plugin browser at startup
+hide_plugin_browser = yes
+
+# string[2]: set language, should be 'en' or 'de' for now
+i18n_language = de
+
+# list of words: names of plugins to ignore
+ignore_plugins = DummyPlugIn DataStorageBrowser
+
+# path: log to this file
+log_file = /home/horst/.SV4.log
+
+# string: dont log below this level, one of DEBUG, INFO, WARNING, ERROR or CRITICAL
+log_threshold = INFO
+
+# string: raise log window when logging at this level or higher
+log_raise_level = CRITICAL
+
+# bool: save configuration at exit (not yet implemented!)
+save_config = no
+
+# bool: show menu items to edit and save configuration
+show_config_actions = yes
+
+# filename: splash image, relativ to system_picture_path
+splash_image = splash1.png
+
+# path: path to SimuVis data (image, translations, plugins)
+system_data_path = /home/horst/simuvis/SimuVis4/data
+
+# path: path to help files
+system_help_path = /home/horst/simuvis/SimuVis4/data/Help
+
+# path: path to translations
+system_language_path = /home/horst/simuvis/SimuVis4/data/Language
+
+# path: path to pictures and images
+system_picture_path = /home/horst/simuvis/SimuVis4/data/Pictures
+
+# path: path plugins
+system_plugin_path = /home/horst/simuvis/SimuVis4/data/PlugIns
+
+# path: path to additional plugins
+user_plugin_path = /home/horst/simuvis/SimuVis4/../AdditionalPlugIns
+
+# path: start working in this folder
+user_work_path = /home/horst
+</pre>
+</div>
+</div>
+</div>
+</body>
+</html>

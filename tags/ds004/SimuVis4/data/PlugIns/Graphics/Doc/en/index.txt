@@ -1,0 +1,15 @@
+Go to: Index_ | Homepage_
+
+----
+
+==================
+ PlugIn: Graphics
+==================
+The Graphics PlugIn_ provides some support for QGraphicsView and related things.
+
+Documentation will follow soon.
+
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/
+.. _PlugIn: /simuvis/plugin.html

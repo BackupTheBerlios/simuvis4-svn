@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="ascii" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ascii" />
+<meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
+<title></title>
+<style type="text/css">
+
+/*
+Stylesheet for Docutils.
+Based on ``voidspace.css``,``blue_box.css`` by Ian Bicking
+and ``html4css1.css`` revision 1.46.
+*/
+
+@import url(html4css1.css);
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+em, i {
+  /* Typically serif fonts have much nicer italics */
+  font-family: Times New Roman, Times, serif;
+}
+
+a.target {
+  color: blue;
+}
+
+a.target {
+  color: blue;
+}
+
+a.toc-backref {
+  text-decoration: none;
+  color: black;
+}
+
+a.toc-backref:hover {
+  background-color: inherit;
+}
+
+a:hover {
+  background-color: #cccccc;
+}
+
+div.attention, div.caution, div.danger, div.error, div.hint,
+div.important, div.note, div.tip, div.warning {
+  background-color: #cccccc;
+  padding: 3px;
+  width: 80%;
+}
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title  {
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: #cc0000;
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #999999;
+  display: block;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Helvetica, Arial, sans-serif;
+  /* border: thin solid black; */
+  /* This makes the borders rounded on Mozilla, which pleases me */
+  /* -moz-border-radius: 8px; */
+  padding: 4px;
+}
+
+h1 {
+  background-color: #444499;
+  color: #ffffff;
+  /* border: thin solid black; */
+  font-size: 16px;
+}
+
+h1 a.toc-backref, h2 a.toc-backref { 
+  color: #ffff00;
+}
+
+h2 {
+  background-color: #666666;
+  color: #ffffff;
+  /* border: thin solid black; */
+  font-size: 14px;
+}
+
+h3, h4, h5, h6 {
+  background-color: #cccccc;
+  color: #000000;
+  font-size: 12px;
+}
+
+h3 a.toc-backref, h4 a.toc-backref, h5 a.toc-backref, 
+h6 a.toc-backref { 
+  color: #000000;
+}
+
+h1.title {
+  text-align: center;
+  background-color: #444499;
+  color: #ffff00;
+  /* border: thin solid yellow; */
+  /* -moz-border-radius: 20px; */
+}
+
+table.footnote {
+  padding-left: 0.5ex;
+}
+
+table.citation {
+  padding-left: 0.5ex
+}
+
+pre.literal-block, pre.doctest-block {
+  border: thin solid black;
+  padding: 5px;
+}
+
+.image img { border-style : solid;
+            border-width : 2px;
+}
+
+h1 tt, h2 tt, h3 tt, h4 tt, h5 tt, h6 tt {
+  font-size: 80%;
+}
+
+code, tt {
+  color: #000066;
+}
+
+</style>
+</head>
+<body>
+<div class="document">
+<p>Go to: <a class="reference" href="/">Index</a> | <a class="reference" href="http://simuvis.de/">Homepage</a></p>
+<hr class="docutils" />
+<div class="section">
+<h1><a id="starting" name="starting">Starting</a></h1>
+<p>The main file is called SimuVis.pyw. If you are not using Windows, you may rename it to
+SimuVis.py.</p>
+<div class="section">
+<h2><a id="commandline-switches" name="commandline-switches">Commandline switches</a></h2>
+<div class="section">
+<h3><a id="simuvis4-switches" name="simuvis4-switches">SimuVis4 switches</a></h3>
+<p>All switches and options have a long and a short form. You may freely mix both.</p>
+<dl class="docutils">
+<dt>-h or --help</dt>
+<dd>print a short help and exit</dd>
+<dt>-f or --fullscreen</dt>
+<dd>start in fullscreen mode, you may toggle this mode with F11 at any time</dd>
+<dt>-m or --maximized</dt>
+<dd>start with maximized window</dd>
+<dt>-e script or --execute=script</dt>
+<dd>run the python script 'script' at startup</dd>
+<dt>-c inifile or --config=inifile</dt>
+<dd>load 'inifile' instead of system and user configfiles</dd>
+<dt>-l lang or --language=lang</dt>
+<dd>use language 'lang' if available, currently only en and de are supported</dd>
+</dl>
+</div>
+<div class="section">
+<h3><a id="qt-s-switches" name="qt-s-switches">Qt's switches</a></h3>
+<p>There are some switches common to all applications using Qt. Please look at the
+<a class="reference" href="http://doc.trolltech.com/4.3/qapplication.html#QApplication">Qt documentation</a> for details.
+One of the most important switches is <tt class="docutils literal"><span class="pre">--style=mystyle</span></tt> with mystyle being one of motif,
+windows, platinum or one of the additional styles installed.</p>
+</div>
+<div class="section">
+<h3><a id="example" name="example">Example</a></h3>
+<p>Starting SimuVis with the commandline</p>
+<pre class="literal-block">
+SimuVis.pyw --execute=mystart.py -l de -m
+</pre>
+<p>will give a maximized window in german language and execute the script mystart.py at startup.</p>
+</div>
+</div>
+<div class="section">
+<h2><a id="environment" name="environment">Environment</a></h2>
+<p>You may set the variable <tt class="docutils literal"><span class="pre">SIMUVIS4_OPTIONS</span></tt> to contain one or more of the explained switches.</p>
+<div class="section">
+<h3><a id="id1" name="id1">Example</a></h3>
+<p>Users of Windows XP can set the variable to the value <tt class="docutils literal"><span class="pre">-style=plastique</span></tt> to get a nicer look and feel.
+Linux user may add the line</p>
+<pre class="literal-block">
+export SIMUVIS4_OPTIONS=&quot;--language=en --fullscreen&quot;
+</pre>
+<p>to their <tt class="docutils literal"><span class="pre">~/.bash_profile</span></tt> to let SimuVis start in english and fullscreen mode by default.</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

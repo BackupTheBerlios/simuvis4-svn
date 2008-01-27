@@ -1,0 +1,50 @@
+Go to: Index_ | Homepage_
+
+----
+
+====================
+SimuVis4 on Windows
+====================
+To run SimuVis4 on Windows (2000 or newer) you need a recent python interpreter
+and some additional modules. Unfortunately the version of the interpreter has to
+match exactly the version for with the modules are build.
+
+Installation
+------------
+
+1. Installing Python
+~~~~~~~~~~~~~~~~~~~~
+Please use the MSI-based installer for python 2.5 from http://www.python.org. Once you have
+the python package installed, you can go on and install PyQt4.
+
+2. Installig PyQt4
+~~~~~~~~~~~~~~~~~~
+For Windows there's an experimental installer for PyQt and related packages at
+http://www.riverbankcomputing.co.uk/pyqt/download.php . The current version should work
+with python 2.5. After this step you should be able to run SimuVis4.
+
+3. Installing SimuVis4
+~~~~~~~~~~~~~~~~~~~~~~
+Follow the instructions for installing_.
+
+4. Additional Modules
+~~~~~~~~~~~~~~~~~~~~~
+To get all of SimuVis' plugins working you will need additional modules like
+matplotlib or vtk. The people at Enthought did a very good job creating an
+installer and providing precompiled packages for a lot of useful python modules.
+The installer is called enstaller_, you may install it from the setup_ file and use
+it to download and install additional packages. At the moment you may need VTK,
+matplotlib, Scientific and netCDF for SimuVis4.
+
+Using SimuVis4 on Windows
+-------------------------
+I suggest starting SimuVis with the commandline switch ``-style=plastique`` which gives
+a much nicer visual appearance on Windows XP.
+
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/
+.. _installing: install.html
+.. _enthought: http://www.enthought.com
+.. _enstaller: http://code.enthought.com/enstaller/
+.. _setup: http://code.enthought.com/enstaller/ez_enstaller_setup.py

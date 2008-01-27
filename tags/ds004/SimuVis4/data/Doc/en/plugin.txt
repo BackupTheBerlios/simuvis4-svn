@@ -1,0 +1,28 @@
+Go to: Index_ | Homepage_
+
+----
+
+=========
+ PlugIns
+=========
+Plugins in SimuVis are packages of python code which can be loaded dynamically.
+A plugin may be an ordinary folder with subfolders or a zip-file wih the same structure.
+An .ini-file hold meta-information on a plugin. Additional files like icons, 
+translations and documentation may be packaged in a plugin.
+
+Standard PlugIns
+----------------
+The standard plugins are developed and delivered with the main SimuVis application.
+
+Additional PlugIns
+------------------
+Additional plugins are deveoped in a separate tree. They usually have additional
+dependencies to external python modules.
+
+Structure of a PlugIn
+---------------------
+Documentation will follow soon.
+
+
+.. _Index: /
+.. _Homepage: http://simuvis.de/
