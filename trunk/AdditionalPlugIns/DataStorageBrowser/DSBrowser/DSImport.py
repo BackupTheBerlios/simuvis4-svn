@@ -7,7 +7,7 @@
 import SimuVis4, os, sys
 
 from PyQt4.QtGui import QFileDialog, QDialog, QWizard, QWizardPage, QSpinBox, QFileDialog, \
-    QGridLayout, QVBoxLayout, QLabel, QLineEdit, QComboBox, QPixmap, QMessageBox
+    QGridLayout, QVBoxLayout, QLabel, QLineEdit, QComboBox, QPixmap, QMessageBox, QCheckBox
 from PyQt4.QtCore import QCoreApplication, SIGNAL, QDateTime, Qt
 from SimuVis4.Misc import uniqueName
 
@@ -25,7 +25,7 @@ class NewSensorgroupPage0(QWizardPage):
         self.setLayout(self.mainLayout)
 
         nameLabel = QLabel(self)
-        nameLabel.setText('Name')
+        nameLabel.setText(QCoreApplication.translate('DataStorageBrowser', 'Name'))
         self.mainLayout.addWidget(nameLabel, 0, 0)
         self.nameInput = QLineEdit(self)
         self.nameInput.setText(uniqueName('unnamed', project.keys()))
@@ -33,7 +33,7 @@ class NewSensorgroupPage0(QWizardPage):
         self.mainLayout.addWidget(self.nameInput, 0, 1)
 
         titleLabel = QLabel(self)
-        titleLabel.setText('Title')
+        titleLabel.setText(QCoreApplication.translate('DataStorageBrowser', 'Title'))
         self.mainLayout.addWidget(titleLabel, 1, 0)
         self.titleInput = QLineEdit(self)
         self.titleInput.setText('...')
@@ -41,13 +41,20 @@ class NewSensorgroupPage0(QWizardPage):
         self.mainLayout.addWidget(self.titleInput, 1, 1)
 
         typeLabel = QLabel(self)
-        typeLabel.setText('Data type')
+        typeLabel.setText(QCoreApplication.translate('DataStorageBrowser', 'Data type'))
         self.mainLayout.addWidget(typeLabel, 2, 0)
         self.typeSelect = QComboBox(self)
         self.typeSelect.addItem('CSV')
         self.typeSelect.addItem('Remus')
         self.registerField('type', self.typeSelect, 'currentText')
         self.mainLayout.addWidget(self.typeSelect, 2, 1)
+
+        self.importFilesButton = QCheckBox(self)
+        self.importFilesButton.setChecked(True)
+        self.importFilesButton.setText(QCoreApplication.translate('DataStorageBrowser',
+            'Import files after creation'))
+        self.registerField('importFiles', self.importFilesButton, 'checked')
+        self.mainLayout.addWidget(self.importFilesButton, 3, 0, 3, 2)
 
 
     def validatePage(self):
@@ -75,7 +82,7 @@ class NewSensorgroupPage1(QWizardPage):
         self.setLayout(self.mainLayout)
 
         tsLabel = QLabel(self)
-        tsLabel.setText('Time step')
+        tsLabel.setText(QCoreApplication.translate('DataStorageBrowser', 'Time step'))
         self.mainLayout.addWidget(tsLabel, 0, 0)
         self.tsInput = QSpinBox(self)
         self.tsInput.setSuffix(' s')
@@ -87,7 +94,7 @@ class NewSensorgroupPage1(QWizardPage):
         self.mainLayout.addWidget(self.tsInput, 0, 1)
 
         tzLabel = QLabel(self)
-        tzLabel.setText('Time zone')
+        tzLabel.setText(QCoreApplication.translate('DataStorageBrowser', 'Time zone'))
         self.mainLayout.addWidget(tzLabel, 1, 0)
         self.tzInput = QSpinBox(self)
         self.tzInput.setMinimum(0)
@@ -98,7 +105,7 @@ class NewSensorgroupPage1(QWizardPage):
         self.mainLayout.addWidget(self.tzInput, 1, 1)
 
         tfLabel = QLabel(self)
-        tfLabel.setText('Time format')
+        tfLabel.setText(QCoreApplication.translate('DataStorageBrowser', 'Time format'))
         self.mainLayout.addWidget(tfLabel, 2, 0)
         self.tfInput = QLineEdit(self)
         self.tfInput.setText('')
@@ -106,7 +113,8 @@ class NewSensorgroupPage1(QWizardPage):
         self.mainLayout.addWidget(self.tfInput, 2, 1)
 
         self.delimLabel = QLabel(self)
-        self.delimLabel.setText('CSV separator')
+        self.delimLabel.setText(QCoreApplication.translate('DataStorageBrowser',
+            'CSV separator'))
         self.mainLayout.addWidget(self.delimLabel, 3, 0)
         self.delimInput = QLineEdit(self)
         self.delimInput.setMaxLength(1)
@@ -115,7 +123,8 @@ class NewSensorgroupPage1(QWizardPage):
         self.mainLayout.addWidget(self.delimInput, 3, 1)
 
         self.tcolLabel = QLabel(self)
-        self.tcolLabel.setText('CSV time column')
+        self.tcolLabel.setText(QCoreApplication.translate('DataStorageBrowser',
+            'CSV time column'))
         self.mainLayout.addWidget(self.tcolLabel, 4, 0)
         self.tcolInput = QSpinBox(self)
         self.tcolInput.setMinimum(1)
@@ -125,7 +134,8 @@ class NewSensorgroupPage1(QWizardPage):
         self.mainLayout.addWidget(self.tcolInput, 4, 1)
 
         self.extraLabel = QLabel(self)
-        self.extraLabel.setText('CSV extra headers')
+        self.extraLabel.setText(QCoreApplication.translate('DataStorageBrowser',
+            'CSV extra headers'))
         self.mainLayout.addWidget(self.extraLabel, 5, 0)
         self.extraInput = QLineEdit(self)
         self.extraInput.setMaxLength(200)
@@ -147,7 +157,7 @@ class NewSensorgroupPage1(QWizardPage):
                     self.extraLabel, self.extraInput):
                 w.hide()
         else:
-            pass
+            raise SimuVis4.Errors.NotImplementedError
 
 
     def validatePage(self):
@@ -175,6 +185,7 @@ def newSensorGroup(model, mi):
     name = str(wiz.field('name').toString())
     title = str(wiz.field('title').toString())
     sg = project.addGetSensorGroup(name, title)
+
     # set importer
     t = str(wiz.field('type').toString())
     timestep, x = wiz.field('timestep').toInt()
@@ -196,14 +207,18 @@ def newSensorGroup(model, mi):
     else:
         return # should never happen
     sg.setImporter(imp)
-    fileList = []
-    tmp = QFileDialog.getOpenFileNames(SimuVis4.Globals.mainWin,
-        QCoreApplication.translate('DataStorageBrowser', 'Select import data files'),
-        SimuVis4.Globals.defaultFolder, fileFilter)
-    fileList = [unicode(f) for f in tmp]
-    if fileList:
-        SimuVis4.Globals.defaultFolder, tmp = os.path.split(fileList[0])
-        sg.syncFileList(fileList)
+
+    # import files on demand
+    if wiz.field('importFiles').toBool():
+        fileList = []
+        tmp = QFileDialog.getOpenFileNames(SimuVis4.Globals.mainWin,
+            QCoreApplication.translate('DataStorageBrowser', 'Select import data files'),
+            SimuVis4.Globals.defaultFolder, fileFilter)
+        fileList = [unicode(f) for f in tmp]
+        if fileList:
+            SimuVis4.Globals.defaultFolder, tmp = os.path.split(fileList[0])
+            sg.syncFileList(fileList)
+    # and update model and view
     model.addSensorgroup(mi, sg)
 
 

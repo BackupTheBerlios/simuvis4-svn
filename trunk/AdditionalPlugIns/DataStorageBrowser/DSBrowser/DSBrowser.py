@@ -233,7 +233,6 @@ class DSBrowser(QWidget):
         t, n = self.model.dsNode(mi)
         txt = ""
         if t == 'R':
-            # FIXME: no metadata?
             txt = rootInfo.substitute(name=n.name, title=escape(n.title), folder=n.h5dir,
                 projects=len(n)) + formatMetaData(n)
         elif t == 'P':
@@ -529,7 +528,6 @@ class DSModel(QStandardItemModel):
         if t == 'C':
             node.sensorgroup.removeChart(node.name)
             node.sensorgroup.flush()
-        # FIXME: remove sensors, sensorgroups or projects ?
         else:
-            return
+            raise SimuVis4.Errors.NotImplementedError
         item.parent().removeRow(item.row())
