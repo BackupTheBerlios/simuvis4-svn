@@ -83,22 +83,22 @@
 <context>
     <name>ExceptionDialog</name>
     <message>
-        <location filename="ExceptionDialog.py" line="96"/>
+        <location filename="ExceptionDialog.py" line="101"/>
         <source>Python Exception</source>
         <translation>Python-Ausnahme</translation>
     </message>
     <message>
-        <location filename="ExceptionDialog.py" line="97"/>
+        <location filename="ExceptionDialog.py" line="102"/>
         <source>Icon</source>
         <translation>Ikon</translation>
     </message>
     <message>
-        <location filename="ExceptionDialog.py" line="98"/>
+        <location filename="ExceptionDialog.py" line="103"/>
         <source>Exception</source>
         <translation>Ausnahme</translation>
     </message>
     <message>
-        <location filename="ExceptionDialog.py" line="100"/>
+        <location filename="ExceptionDialog.py" line="105"/>
         <source>Python exceptions are usually caused be bugs in the program code or unusual application conditions. The exception may be there because of a bug introduced by the SimuVis author, a bug in your own code or in the code of a plugin. 
 Depending on the kind of exception you may simply ignore it, but it&apos;s safer to exit or restart the application.</source>
         <translation>Pythons Ausnahmen sind normalerweise Anzeichen von Fehlern im Programmcode oder von ungewöhnlichen Programmbedingungen. Sie können durch Fehler im SimuVis-Code, in Ihrem eigenen Python-Code oder im Code von PlugIns entstehen.
@@ -106,22 +106,22 @@ Abhängig von der Art der Ausnahme  können Sie sie eventuell ignorieren, aber z
 </translation>
     </message>
     <message>
-        <location filename="ExceptionDialog.py" line="101"/>
+        <location filename="ExceptionDialog.py" line="106"/>
         <source>Exit program</source>
         <translation>Programm beenden</translation>
     </message>
     <message>
-        <location filename="ExceptionDialog.py" line="102"/>
+        <location filename="ExceptionDialog.py" line="107"/>
         <source>Kill program</source>
         <translation>Programm killen</translation>
     </message>
     <message>
-        <location filename="ExceptionDialog.py" line="103"/>
+        <location filename="ExceptionDialog.py" line="108"/>
         <source>Restart program</source>
         <translation>Programm Neustarten</translation>
     </message>
     <message>
-        <location filename="ExceptionDialog.py" line="104"/>
+        <location filename="ExceptionDialog.py" line="109"/>
         <source>Ignore</source>
         <translation>Ignorieren</translation>
     </message>
@@ -921,109 +921,6 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
     </message>
 </context>
 <context>
-    <name>QuantitiesDialog</name>
-    <message>
-        <location filename="Widgets.py" line="293"/>
-        <source>Add</source>
-        <translation>Neu</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="296"/>
-        <source>Delete</source>
-        <translation>Löschen</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="308"/>
-        <source>Select type</source>
-        <translation>Typ wählen</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="310"/>
-        <source>Select name, description and type</source>
-        <translation>Wähle Name, Beschreibung und Typ</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="311"/>
-        <source>New Item</source>
-        <translation>Neuer Eintrag</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="323"/>
-        <source>Enter choices (one per line)</source>
-        <translation>Auswahlmöglichkeiten eingeben (zeilenweise)</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="324"/>
-        <source>Choices</source>
-        <translation>Auswahl</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="380"/>
-        <source>Quantities to delete</source>
-        <translation>Zu löschende Einträge</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="382"/>
-        <source>Select items to delete</source>
-        <translation>Wähle Einträge zum Löschen aus</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="383"/>
-        <source>Delete items</source>
-        <translation>Einträge löschen</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="22"/>
-        <source>Simple Text</source>
-        <translation>Einfacher Text</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="23"/>
-        <source>Multiline Text</source>
-        <translation>Mehrzeiliger Text</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="24"/>
-        <source>Single Choice</source>
-        <translation>Einfache Auswahl</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="25"/>
-        <source>Multiple Choice</source>
-        <translation>Mehrfachauswahl</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="26"/>
-        <source>Boolean</source>
-        <translation>Wahrheitswert</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="27"/>
-        <source>Integer</source>
-        <translation>Ganzzahl</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="28"/>
-        <source>Float</source>
-        <translation>Fließkommazahl</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="29"/>
-        <source>Date+Time</source>
-        <translation>Datum+Uhrzeit</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="368"/>
-        <source>Enter properties</source>
-        <translation>Ändere Eigenschaften</translation>
-    </message>
-    <message>
-        <location filename="Widgets.py" line="369"/>
-        <source>Properties</source>
-        <translation>Eigenschaften</translation>
-    </message>
-</context>
-<context>
     <name>RemoteControl</name>
     <message>
         <location filename="Receiver.py" line="65"/>
@@ -1052,6 +949,109 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
     </message>
 </context>
 <context>
+    <name>RichTypes.Qt4Widgets</name>
+    <message>
+        <location filename="Qt4Widgets.py" line="15"/>
+        <source>Simple Text</source>
+        <translation>Einfacher Text</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="16"/>
+        <source>Multiline Text</source>
+        <translation>Mehrzeiliger Text</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="17"/>
+        <source>Single Choice</source>
+        <translation>Einfache Auswahl</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="18"/>
+        <source>Multiple Choice</source>
+        <translation>Mehrfachauswahl</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="19"/>
+        <source>Boolean</source>
+        <translation>Wahrheitswert</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="20"/>
+        <source>Integer</source>
+        <translation>Ganzzahl</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="21"/>
+        <source>Float</source>
+        <translation>Fließkommazahl</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="22"/>
+        <source>Date+Time</source>
+        <translation>Datum+Uhrzeit</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="205"/>
+        <source>Add</source>
+        <translation>Hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="208"/>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="220"/>
+        <source>Select type</source>
+        <translation>Typ wählen</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="222"/>
+        <source>Select name, description and type</source>
+        <translation>Wähle Name, Beschreibung und Typ</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="223"/>
+        <source>New Item</source>
+        <translation>Neuer Eintrag</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="235"/>
+        <source>Enter choices (one per line)</source>
+        <translation>Auswahlmöglichkeiten eingeben (zeilenweise)</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="236"/>
+        <source>Choices</source>
+        <translation>Auswahl</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="280"/>
+        <source>Enter properties</source>
+        <translation>Ändere Eigenschaften</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="281"/>
+        <source>Properties</source>
+        <translation>Eigenschaften</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="292"/>
+        <source>RichTypes to delete</source>
+        <translation>zu löschende RichTypes</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="294"/>
+        <source>Select items to delete</source>
+        <translation>Wähle Einträge zum Löschen aus</translation>
+    </message>
+    <message>
+        <location filename="Qt4Widgets.py" line="295"/>
+        <source>Delete items</source>
+        <translation>Einträge löschen</translation>
+    </message>
+</context>
+<context>
     <name>SV4ClientRC</name>
     <message>
         <location filename="SV4ClientRC.pyw" line="52"/>
@@ -1077,12 +1077,12 @@ Bitte benutze Spaces und keine Tabs zur Einrückung. [Enter] übernimmt eine Zei
 <context>
     <name>SimTools</name>
     <message>
-        <location filename="Widgets.py" line="107"/>
+        <location filename="Widgets.py" line="90"/>
         <source>Time signal Generator</source>
         <translation>Zeitsignal-Generator</translation>
     </message>
     <message>
-        <location filename="Widgets.py" line="404"/>
+        <location filename="Widgets.py" line="110"/>
         <source>Process</source>
         <translation>Prozess</translation>
     </message>
@@ -1120,12 +1120,12 @@ other contributors to free software projects.&lt;p&gt;
         <translation>&lt;p&gt;SimuVis4 und sein Vorgänger wurden geschrieben von &lt;b&gt;Jörg Rädler&lt;/b&gt; &lt;i&gt;(jr@j-raedler)&lt;/i&gt;.&lt;/p&gt; &lt;p&gt;Weitere Informationen sind zu finden unter: http://www.simuvis.de/.&lt;/p&gt;&lt;p&gt;Bitte beachte, daß SimuVis viele andere Softwarepakete nutzt.&lt;br&gt;Mein Dank geht an die Autoren von Python, Qt und unzählige andere Autoren, die&lt;br&gt;zu OpenSource-Projekten beitragen.&lt;p&gt;</translation>
     </message>
     <message>
-        <location filename="SimuVis.pyw" line="150"/>
+        <location filename="SimuVis.pyw" line="157"/>
         <source>Starting SimuVis</source>
         <translation>Starte SimuVis</translation>
     </message>
     <message>
-        <location filename="SimuVis.pyw" line="152"/>
+        <location filename="SimuVis.pyw" line="159"/>
         <source>Main: splash screen image not found: &quot;%s&quot;</source>
         <translation>Main: Splash-Bild nicht gefunden: &quot;%s&quot;</translation>
     </message>
@@ -1437,7 +1437,7 @@ not covered by another dialog or window!&lt;/p&gt;
         <translation>--</translation>
     </message>
     <message>
-        <location filename="Widgets.py" line="81"/>
+        <location filename="Widgets.py" line="64"/>
         <source>Stop!</source>
         <translation>Stop!</translation>
     </message>

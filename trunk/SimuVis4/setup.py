@@ -8,7 +8,7 @@ from distutils.core import setup
 
 import os, sys, string
 
-svn_revision = 320 # this line is changed automagically by mark_svn_rev.py
+svn_revision = 334 # this line is changed automagically by mark_svn_rev.py
 version_info = (4, 0, svn_revision)
 version_string = '4.0.%03d' % svn_revision
 
