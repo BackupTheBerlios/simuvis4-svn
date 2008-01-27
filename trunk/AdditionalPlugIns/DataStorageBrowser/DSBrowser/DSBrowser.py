@@ -10,6 +10,7 @@ from PyQt4.QtGui import QWidget, QTreeView, QAbstractItemView, QStandardItemMode
     QFrame, QFileDialog, QPen, QMenu, QLineEdit
 from PyQt4.QtCore import QAbstractItemModel, QModelIndex, QVariant, Qt, SIGNAL, QCoreApplication
 from cgi import escape
+from time import gmtime, strftime
 
 from DSChartMpl import showChartWindow, showAllChartWindows, saveAllChartImages
 from DSPlotQwt import showQwtPlotWindow, qwtPlotWindowActive, addToQwtPlotWindow
@@ -115,6 +116,14 @@ def formatMetaData(n):
             bgcolor=colors[sw()]))
     l.append(metaDataEndInfo)
     return '\n'.join(l)
+
+
+
+def formatTime(s):
+    if not s:
+        return '---'
+    else:
+        return strftime('%d.%m.%y %H:%M UTC', gmtime(s))
 
 
 
@@ -240,11 +249,11 @@ class DSBrowser(QWidget):
                 title=escape(n.title), groups=len(n)) + formatMetaData(n)
         elif t == 'G':
             txt = groupInfo.substitute(name=n.name,  path='/'.join(n.path.split('/')[:-1]),
-                title=escape(n.title), sensors=len(n), charts=len(n.charts), start=n.timegrid.start,
-                stop=n.timegrid.stop, step=n.timegrid.step, timezone=n.timegrid.timezone) + formatMetaData(n)
+                title=escape(n.title), sensors=len(n), charts=len(n.charts), start=formatTime(n.timegrid.start),
+                stop=formatTime(n.timegrid.stop), step=n.timegrid.step, timezone=n.timegrid.timezone) + formatMetaData(n)
         elif t == 'S':
             txt = sensorInfo.substitute(name=n.name,  path='/'.join(n.path.split('/')[:-1]),
-                title=escape(n.title), start=n.timegrid.start, stop=n.timegrid.stop,
+                title=escape(n.title), start=formatTime(n.timegrid.start), stop=formatTime(n.timegrid.stop),
                 step=n.timegrid.step, length=n.datalen(), timezone=n.timegrid.timezone) + formatMetaData(n)
         elif t == 'C':
             txt = chartInfo.substitute(name=n.name, path=n.sensorgroup.path)
