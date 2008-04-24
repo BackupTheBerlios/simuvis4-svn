@@ -23,11 +23,11 @@ class TextBrowserFormatter(Formatter):
 
     def format(self, r):
         if r.exc_info:
-            txt = '<font color="#0000ff"><b>EXCEPTION:</b></font> %s <pre>%s</pre>' % (escape(unicode(r.message)),
+            txt = '<font color="#0000ff"><b>EXCEPTION:</b></font> %s <pre>%s</pre>' % (escape(unicode(r.getMessage())),
                 self.formatException(r.exc_info))
         else:
             txt = '<font color="%s"><b>%s</b> (<i>%s</i>):</font> %s' % (self.color(r.levelno), r.levelname,
-                r.module or '[...]', escape(unicode(r.message)))
+                r.module or '[...]', escape(unicode(r.getMessage())))
         return txt
 
 

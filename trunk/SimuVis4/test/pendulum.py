@@ -18,7 +18,7 @@ class Pendulum(object):
         self.mass =     F('mass', kw.get('mass', 1.0), descr='mass of ball', unit='kg', min=0.01, max=1000.0)
         self.length =   F('length', kw.get('length', 1.0), descr='length of rod', unit='m', min=0.01, max=1000.0)
         self.radius =   F('radius', kw.get('radius', 1.0), descr='radius of ball', unit='m', min=0.01, max=1000.0)
-        self.gravity =  F('gravity', kw.get('gravity', 9.81), descr='gravity', unit='m/s²', min=0.01, max=1000.0)
+        self.gravity =  F('gravity', kw.get('gravity', 9.81), descr='gravity', unit='m/s^2', min=0.01, max=1000.0)
         self.phi =      F('phi', kw.get('phi', 0.0), descr='angle of pendulum', unit='', min=-1.0e+6, max=1.0e+6)
         self.omega =    F('omega', kw.get('omega', 100.0), descr='angular speed', unit='1/s', min=0.0, max=1.0e+6)
         self.friction = F('friction', kw.get('friction', 0.05), descr='friction coefficient', unit='', min=0, max=100.0)

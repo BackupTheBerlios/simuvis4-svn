@@ -36,10 +36,10 @@ if platform == 'linux2':
     personalConfigFile = os.path.join(homePath, '.%s.ini' % appName)
     startLogHandler = logging.StreamHandler(sys.stderr)
 elif platform == 'win32':
-    userName = os.environ['USERNAME']
-    hostName = os.environ['COMPUTERNAME']
-    homePath = os.environ['USERPROFILE']
-    systemConfigFile   = os.path.join(os.environ['ALLUSERSPROFILE'], '%s.ini' % appName)
+    userName = unicode(os.environ['USERNAME'])
+    hostName = unicode(os.environ['COMPUTERNAME'])
+    homePath = unicode(os.environ['USERPROFILE'])
+    systemConfigFile   = os.path.join(unicode(os.environ['ALLUSERSPROFILE']), '%s.ini' % appName)
     personalConfigFile = os.path.join(homePath, '%s.ini' % appName)
     startLogHandler = logging.StreamHandler(sys.stderr)
 elif platform == 'macos_x': # FIXME
@@ -97,7 +97,8 @@ config.set_def('main', 'show_config_actions', 'yes')
 
 config.set_def('main', 'ignore_plugins', 'DummyPlugIn')
 
-config.set_def('main', 'log_file', '.SV4.log')
+#config.set_def('main', 'log_file', '.SV4.log')
+config.set_def('main', 'log_file', '')
 config.set_def('main', 'disable_log_window', 'no')
 config.set_def('main', 'hide_log_window', 'yes')
 config.set_def('main', 'log_threshold', 'INFO')
@@ -110,9 +111,9 @@ config.set_def('main', 'disable_help_browser', 'no')
 config.set_def('main', 'help_browser_external', 'no')
 config.set_def('main', 'help_server_port', '34567')
 
-if platform == 'win32':
-    # FIXME: there's an error on windows when exiting, somewhere in the logging system...
-    config.set_def('main', 'save_last_exception', 'SV4_lastException.txt')
+#if platform == 'win32':
+#    # FIXME: there's an error on windows when exiting, somewhere in the logging system...
+#    config.set_def('main', 'save_last_exception', 'SV4_lastException.txt')
 
 
 if not config.has_option('main', 'system_data_path'):
