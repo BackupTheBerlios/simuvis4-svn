@@ -59,6 +59,9 @@ try:
 except:
     errorExit("module missing", "PyQt4 not found, please install PyQt4")
 
+if sys.getdefaultencoding() == 'ascii':
+    print "WARNING: python's default encoding 'ascii' may cause trouble on some systems!"
+
 p = sys.argv[0]
 if not os.path.isabs(p):
     p = os.path.normpath(os.path.join(os.getcwd(), p))
