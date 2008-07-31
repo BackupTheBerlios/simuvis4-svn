@@ -14,7 +14,7 @@ from SimuVis4.SubWinManager import SubWinManager
 from PyQt4.QtGui import QAction, QIcon, QWidget, QMenu, QFileDialog, QMessageBox
 from PyQt4.QtCore import SIGNAL, QCoreApplication, QObject, QTimer
 
-mplMinVersion = '0.90'
+mplMinVersion = '0.98'
 mplMaxVersion = '0.99'
 
 configWarningText = unicode(QCoreApplication.translate('MatPlot',
