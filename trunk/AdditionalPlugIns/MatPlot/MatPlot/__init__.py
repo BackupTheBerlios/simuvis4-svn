@@ -78,8 +78,8 @@ class PlugIn(SimplePlugIn):
             dpath = tmp
         winIcon = QIcon(os.path.join(dpath, 'matplotlib.png'))
         testAction = QAction(winIcon,
-            QCoreApplication.translate('MatPlot', '&MatPlot Test'), SimuVis4.Globals.mainWin)
-        testAction.setStatusTip(QCoreApplication.translate('MatPlot', 'Show a matplotlib test window'))
+            QCoreApplication.translate('MatPlot', '&MatPlot/PyLab Test'), SimuVis4.Globals.mainWin)
+        testAction.setStatusTip(QCoreApplication.translate('MatPlot', 'Show a matplotlib/pylab test window'))
         QWidget.connect(testAction, SIGNAL("triggered()"), self.test)
         SimuVis4.Globals.mainWin.plugInMenu.addAction(testAction)
         return True

@@ -339,7 +339,7 @@ class NavigationToolbar2SV4(NavigationToolbar2, QtGui.QWidget):
         QtGui.QApplication.setOverrideCursor(QtGui.QCursor(cursord[cursor]))
 
     def draw_rubberband( self, event, x0, y0, x1, y1 ):
-        height = self.canvas.figure.bbox.height()
+        height = self.canvas.figure.bbox.height
         y1 = height - y1
         y0 = height - y0
 
@@ -386,7 +386,11 @@ class NavigationToolbar2SV4(NavigationToolbar2, QtGui.QWidget):
         self.canvas.print_figure(fileName, dpi=300)
 
     def print_dialog(self):
-        self.canvas.print_dialog()
+        #self.canvas.print_dialog()
+        tmp, fileName = tempfile.mkstemp('.pdf')
+        self.canvas.print_figure(fileName, dpi=600)
+        QtGui.QDesktopServices.openUrl(QtCore.QUrl(fileName))
+
 
     def show_help(self):
         SimuVis4.HelpBrowser.showHelp('/plugin/MatPlot/index.html')
@@ -496,7 +500,7 @@ class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg):
         # we are blitting here
         else:
             bbox = self.replot
-            w, h = int(bbox.width()), int(bbox.height)
+            w, h = int(bbox.width), int(bbox.height)
             l, t = bbox.ll().x().get(), bbox.ur().y().get()
             reg = self.copy_from_bbox(bbox)
             stringBuffer = reg.to_string()
@@ -516,7 +520,7 @@ class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg):
     def blit(self, bbox=None):
         """ Blit the region in bbox """
         self.replot = bbox
-        w, h = int(bbox.width()), int(bbox.height)
+        w, h = int(bbox.width), int(bbox.height)
         l, t = bbox.ll().x().get(), bbox.ur().y().get()
         self.update(l, self.renderer.height-t, w, h)
 
