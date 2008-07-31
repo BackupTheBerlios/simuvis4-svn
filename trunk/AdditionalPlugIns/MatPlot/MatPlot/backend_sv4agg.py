@@ -19,7 +19,7 @@ from matplotlib import verbose
 from matplotlib.numerix import asarray, fromstring, UInt8, zeros, \
      where, transpose, nonzero, indices, ones, nx
 import matplotlib.numerix as numerix
-from matplotlib.cbook import is_string_like, enumerate, onetrue
+from matplotlib.cbook import is_string_like, onetrue
 from matplotlib.font_manager import fontManager
 from matplotlib.backend_bases import RendererBase, GraphicsContextBase, \
      FigureManagerBase, FigureCanvasBase, NavigationToolbar2, cursors
@@ -416,20 +416,20 @@ class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg):
     def mousePressEvent(self, event):
         x = event.pos().x()
         # flipy so y=0 is bottom of canvas
-        y = self.figure.bbox.height() - event.pos().y()
+        y = self.figure.bbox.height - event.pos().y()
         button = self.buttond[event.button()]
         FigureCanvasAgg.button_press_event( self, x, y, button )
 
     def mouseMoveEvent(self, event):
         x = event.x()
         # flipy so y=0 is bottom of canvas
-        y = self.figure.bbox.height() - event.y()
+        y = self.figure.bbox.height - event.y()
         FigureCanvasAgg.motion_notify_event( self, x, y )
 
     def mouseReleaseEvent(self, event):
         x = event.x()
         # flipy so y=0 is bottom of canvas
-        y = self.figure.bbox.height() - event.y()
+        y = self.figure.bbox.height - event.y()
         button = self.buttond[event.button()]
         FigureCanvasAgg.button_release_event(self, x, y, button)
         self.draw()
@@ -446,7 +446,7 @@ class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg):
         QtGui.QWidget.resizeEvent( self, e)
         w = e.size().width()
         h = e.size().height()
-        dpival = self.figure.dpi.get()
+        dpival = self.figure.dpi #.get()
         winch = w/dpival
         hinch = h/dpival
         self.figure.set_size_inches( winch, hinch )
@@ -496,7 +496,7 @@ class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg):
         # we are blitting here
         else:
             bbox = self.replot
-            w, h = int(bbox.width()), int(bbox.height())
+            w, h = int(bbox.width()), int(bbox.height)
             l, t = bbox.ll().x().get(), bbox.ur().y().get()
             reg = self.copy_from_bbox(bbox)
             stringBuffer = reg.to_string()
@@ -516,7 +516,7 @@ class FigureCanvasSV4(QtGui.QWidget, FigureCanvasAgg):
     def blit(self, bbox=None):
         """ Blit the region in bbox """
         self.replot = bbox
-        w, h = int(bbox.width()), int(bbox.height())
+        w, h = int(bbox.width()), int(bbox.height)
         l, t = bbox.ll().x().get(), bbox.ur().y().get()
         self.update(l, self.renderer.height-t, w, h)
 
