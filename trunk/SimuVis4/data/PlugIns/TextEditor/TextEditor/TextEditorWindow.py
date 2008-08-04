@@ -7,11 +7,9 @@
 from SimuVis4.SubWin import SubWindow
 from SimuVis4.Errors import IOError
 import SimuVis4.Globals, os
-from PyQt4.QtGui import QTextEdit, QFileDialog, QPrintDialog, QPrinter, QDialog
+from PyQt4.QtGui import QTextEdit, QFileDialog, QPrintDialog, QPrinter, QDialog, QMessageBox
 from PyQt4.QtCore import SIGNAL, QCoreApplication
 
-
-# FIXME: add a changed-flag!
 
 class TextEditorWindow(SubWindow):
     def __init__(self, parent):
@@ -21,11 +19,17 @@ class TextEditorWindow(SubWindow):
         self.setWidget(self.textEdit)
         self.resize(600, 300)
         self.fileName = None
+        self.changed = False
+        self.connect(self.textEdit, SIGNAL("textChanged()"), self.setChanged)
 
 
     def setFileName(self, fileName):
         self.fileName = fileName
         self.setWindowTitle(fileName)
+
+
+    def setChanged(self):
+        self.changed = True
 
 
     def load(self, fileName=None):
@@ -35,6 +39,7 @@ class TextEditorWindow(SubWindow):
         try:
             txt = open(fileName, 'r').read()
             self.textEdit.setPlainText(txt)
+            self.changed = False
         except:
             raise IOError(unicode(QCoreApplication.translate('TextEditor', 'TextEditor: could not read file: %s')) % fileName)
 
@@ -47,6 +52,7 @@ class TextEditorWindow(SubWindow):
         try:
             txt = self.textEdit.toPlainText()
             open(self.fileName, 'w').write(unicode(txt))
+            self.changed = False
             return True
         except:
             raise IOError(unicode(QCoreApplication.translate('TextEditor', 'TextEditor: could not write file: %s')) % self.fileName)
@@ -71,9 +77,21 @@ class TextEditorWindow(SubWindow):
 
 
     def closeEvent(self, e):
-        # FIXME: try to save file if changed!
+        if self.changed:
+            save = QMessageBox.question(self,
+                QCoreApplication.translate('TextEdit', 'Save file?'),
+                QCoreApplication.translate('TextEdit', 'File is changed, save before closing window?'),
+                QCoreApplication.translate('TextEdit', 'Yes'),
+                QCoreApplication.translate('TextEdit', 'No'),
+                QCoreApplication.translate('TextEdit', 'Don\'t Close'),
+            )
+            print save
+            if save == 0:
+                self.save()
+            elif save == 2:
+                e.ignore()
+                return
         SubWindow.closeEvent(self, e)
-        #e.accept()
 
 
     def printWindow(self, printer=None):

@@ -77,13 +77,6 @@ class TextEditorManager(SubWinManager):
         QObject.connect(self.fileSaveAsAction, SIGNAL("triggered()"), self.save)
         menu.addAction(self.fileSaveAsAction)
 
-        #self.fileCloseAction = QAction(QIcon(QPixmap(i.fileClose)), QCoreApplication.translate('TextEditor', '&Close'),
-            #self.mainWin)
-        #self.fileCloseAction.setShortcut(QCoreApplication.translate('TextEditor', "Ctrl+W"))
-        #self.fileCloseAction.setStatusTip(QCoreApplication.translate('TextEditor', 'Save file'))
-        #QObject.connect(self.fileCloseAction, SIGNAL("triggered()"), self.closeWindow)
-        #menu.addAction(self.fileCloseAction)
-
         self.fileRunAction = QAction(QIcon(QPixmap(i.fileRun)), QCoreApplication.translate('TextEditor', '&Run'),
             self.mainWin)
         self.fileRunAction.setShortcut(QCoreApplication.translate('TextEditor', "Ctrl+J"))
