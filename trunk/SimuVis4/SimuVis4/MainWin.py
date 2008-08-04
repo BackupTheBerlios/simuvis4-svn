@@ -115,6 +115,12 @@ class MainWindow(QMainWindow):
         self.connect(self.winMaximizeAction, SIGNAL("triggered()"),
                      self.maximizeCurrentWindow)
 
+        #self.winCloseAction = QAction(QCoreApplication.translate('MainWin', "&Close"), self)
+        #self.winCloseAction.setShortcut(QCoreApplication.translate('MainWin', "Ctrl+F"))
+        #self.winCloseAction.setStatusTip(QCoreApplication.translate('MainWin', "Close current window"))
+        #self.connect(self.winCloseAction, SIGNAL("triggered()"),
+                     #self.closeActiveWindow)
+
         self.winNextAction = QAction(QCoreApplication.translate('MainWin', "Ne&xt"), self)
         self.winNextAction.setShortcut(QCoreApplication.translate('MainWin', "Ctrl+>"))
         self.winNextAction.setStatusTip(QCoreApplication.translate('MainWin', "Move the focus to the next window"))
@@ -306,6 +312,7 @@ class MainWindow(QMainWindow):
         self.windowMenu.addAction(self.winMaximizeAction)
         self.windowMenu.addAction(self.winTileAction)
         self.windowMenu.addAction(self.winCascadeAction)
+        #self.windowMenu.addAction(self.winCloseAction)
         self.windowMenu.addSeparator()
         self.windowMenu.addAction(self.winNextAction)
         self.windowMenu.addAction(self.winPreviousAction)
@@ -357,6 +364,13 @@ class MainWindow(QMainWindow):
                 w.showMinimized()
             else:
                 w.showMaximized()
+
+
+    def closeActiveWindow(self):
+        # self.workSpace.closeActiveWindow() # will be available soon
+        w = self.activeMdiChild()
+        if w:
+            w.close()
 
 
     def toggleFullScreen(self):
