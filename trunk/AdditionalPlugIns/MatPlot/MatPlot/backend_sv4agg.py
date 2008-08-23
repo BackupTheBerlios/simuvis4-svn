@@ -49,7 +49,7 @@ mplMinVersion = '0.90'
 mplMaxVersion = '0.92'
 if matplotlib.__version__ < mplMinVersion or matplotlib.__version__ > mplMaxVersion:
     raise 'backend_sv4agg: need matplotlib version between %s and %s, but found %s' % \
-                (mplMinVersion, mplMaxVersion, matplotlib.__version__)
+        (mplMinVersion, mplMaxVersion, matplotlib.__version__)
 
 backend_version = "0.3.0"
 
