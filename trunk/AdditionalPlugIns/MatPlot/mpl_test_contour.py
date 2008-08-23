@@ -1,11 +1,12 @@
-'''
-PRESS CTRL-J IN THIS WINDOW TO RUN THIS EXAMPLE!
+#
+# This example is from the original matplotlib distribution.
+# Press CTRL-J in the TextEditor window to execute it.
+#
+# Illustrate simple contour plotting, contours on an image with
+# a colorbar for the contours, and labelled contours.
+#
+# See also contour_image.py.
 
-Illustrate simple contour plotting, contours on an image with
-a colorbar for the contours, and labelled contours.
-
-See also contour_image.py.
-'''
 from pylab import *
 
 rcParams['xtick.direction'] = 'out'
@@ -33,21 +34,14 @@ title('Simplest default with labels')
 
 
 # You can force all the contours to be the same color.
+# Use colors = 'k' to make negative contours dashed;
+# use colors = ('k',) to leave all contours solid.
 figure()
 CS = contour(X, Y, Z, 6,
-             colors='k', # negative contours will be dashed by default
+             colors='k', # or ('k',) for all solid
              )
 clabel(CS, fontsize=9, inline=1)
-title('Single color - negative contours dashed')
-
-# You can set negative contours to be solid instead of dashed:
-rcParams['contour.negative_linestyle'] = 'solid'
-figure()
-CS = contour(X, Y, Z, 6,
-             colors='k', # negative contours will be dashed by default
-             )
-clabel(CS, fontsize=9, inline=1)
-title('Single color - negative contours solid')
+title('Single color')
 
 
 # And you can manually specify the colors of the contour
@@ -93,10 +87,10 @@ CBI = colorbar(im, orientation='horizontal', shrink=0.8)
 # This makes the original colorbar look a bit out of place,
 # so let's improve its position.
 
-l,b,w,h = gca().get_position().bounds
-ll,bb,ww,hh = CB.ax.get_position().bounds
+l,b,w,h = gca().get_position()
+ll,bb,ww,hh = CB.ax.get_position()
 CB.ax.set_position([ll, b+0.1*h, ww, h*0.8])
 
 
-#savefig('contour_demo')
+## savefig('contour_demo')
 show()
