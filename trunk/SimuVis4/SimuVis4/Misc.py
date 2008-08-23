@@ -6,7 +6,7 @@
 
 """Misc - misc. general functions and classes"""
 
-import os, time, stat, re, select
+import os, time, stat, re, select, mimetypes
 
 
 
@@ -246,4 +246,37 @@ def uniqueFileName(fileName, numFormat='%03d', sep='_'):
         fileName = sep.join(tmp) + ext
     return fileName
 
+
+class FileActionRegistry:
+
+    def __init__(self):
+        self.actions = {}
+
+    def addType(self, type, ext):
+        mimetypes.add_type(type, ext)
+
+    def addAction(self, action, types=[], name='', priority=1):
+        for type in types:
+            if not type in self.actions:
+                self.actions[type] = [(name, action, priority)]
+            else:
+                self.actions[type].append((name, action, priority))
+                self.actions[type].sort(lambda a, b: cmp(b[2], a[2]))
+                
+    def removeAction(self, action):
+        pass # FIXME! implement functions
+                
+    def fileType(self, fileName):
+        return mimetypes.guess_type(fileName)[0]
+
+    def hasActions(mimeType):
+        return len(self.actions.get(mimeType, []))
+        
+    def openFile(self, fileName):
+        t = self.fileType(fileName)
+        if t in self.actions:
+            self.actions[t][0][1](fileName)
+            return True
+        else:
+            return False
 
