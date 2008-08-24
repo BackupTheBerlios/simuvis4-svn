@@ -49,9 +49,9 @@ class FileSystemBrowser(QTreeView):
         fi = self.model.fileInfo(mi)
         if self.model.isDir(mi):
             return
-        self.filePath = str(fi.absoluteFilePath())
-        if not SimuVis4.Globals.fileTypeActions.openFile(self.filePath):
-            self.openExternal()
+        path = str(fi.absoluteFilePath())
+        if not SimuVis4.Globals.fileTypeActions.openFile(path):
+            self.openExternal(path)
 
     def showContextMenu(self, pos):
         """show context menu for item at pos"""
