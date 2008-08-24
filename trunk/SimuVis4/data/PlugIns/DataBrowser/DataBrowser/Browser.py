@@ -57,20 +57,22 @@ class FileSystemBrowser(QTreeView):
         """show context menu for item at pos"""
         mi = self.indexAt(pos)
         fi = self.model.fileInfo(mi)
-        if self.model.isDir(mi):
-            return
-        self.filePath = str(fi.absoluteFilePath())
         m = QMenu()
-        for a in SimuVis4.Globals.fileTypeActions.getActions(self.filePath):
-            # this is weird, ... but it works
-            m.addAction(a[0], lambda b=a[1]: b(self.filePath))
+        self.path = str(fi.absoluteFilePath())
+        if self.model.isDir(mi):
+            m.addAction(QCoreApplication.translate('DataBrowser', 'Refresh'),
+                lambda x=mi: self.model.refresh(x))
+        else:
+            for a in SimuVis4.Globals.fileTypeActions.getActions(self.path):
+                # this is weird, ... but it works
+                m.addAction(a[0], lambda x=a[1]: x(self.path))
         m.addSeparator()
         m.addAction(QCoreApplication.translate('DataBrowser', 'Open external'),
             self.openExternal)
         a = m.exec_(self.mapToGlobal(pos))
 
-    def openExternal(self, filePath=None):
-        if not filePath:
-            filePath = self.filePath
-        QDesktopServices.openUrl(QUrl.fromLocalFile(filePath))
-        #os.startfile(filePath) # only under windows... ?
+    def openExternal(self, path=None):
+        if not path:
+            path = self.path
+        QDesktopServices.openUrl(QUrl.fromLocalFile(path))
+        #os.startfile(path) # only under windows... ?
