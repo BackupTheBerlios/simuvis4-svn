@@ -21,6 +21,8 @@ from DSImport import newSensorGroup, importFiles
 
 
 from datastorage.database import DataBaseRoot
+from datastorage.project import Project
+from datastorage.sensorgroup import SensorGroup
 from datastorage.sensor import Sensor
 
 
@@ -250,7 +252,7 @@ class DSBrowser(QWidget):
                 title=escape(n.title), groups=len(n)) + formatMetaData(n)
         elif t == 'G':
             txt = groupInfo.substitute(name=n.name,  path='/'.join(n.path.split('/')[:-1]),
-                title=escape(n.title), sensors=len(n), charts=len(n.charts), start=formatTime(n.timegrid.start),
+                title=escape(n.title), sensors=len(n), charts=len(n.getCharts()), start=formatTime(n.timegrid.start),
                 stop=formatTime(n.timegrid.stop), step=n.timegrid.step, timezone=n.timegrid.timezone) + formatMetaData(n)
         elif t == 'S':
             txt = sensorInfo.substitute(name=n.name,  path='/'.join(n.path.split('/')[:-1]),
@@ -315,7 +317,7 @@ class DSBrowser(QWidget):
         elif t == 'P':
             m.addAction(QCoreApplication.translate('DataStorageBrowser', 'New sensorgroup'), self.newSensorGroup)
         elif t == 'G':
-            nCharts = len(n.charts)
+            nCharts = len(n.getCharts())
             if nCharts > 0:
                 txt = str(QCoreApplication.translate('DataStorageBrowser', 'Show all charts (%d)')) % nCharts
                 m.addAction(txt, self.showAllCharts)
@@ -461,11 +463,20 @@ class DSModel(QStandardItemModel):
     def _processProject(self, pr, parent, dbf):
         """process the project and add its child nodes"""
         for k, v in pr.items():
-            item = QStandardItem(k)
-            item.setIcon(self.icons['sensorgroup'])
-            item.setData(QVariant("G|%s|%s" % (dbf, v.path)))
-            parent.appendRow(item)
-            self._processSensorGroup(v, item, dbf)
+            if isinstance(v,  SensorGroup):
+                item = QStandardItem(k)
+                item.setIcon(self.icons['sensorgroup'])
+                item.setData(QVariant("G|%s|%s" % (dbf, v.path)))
+                parent.appendRow(item)
+                self._processSensorGroup(v, item, dbf)
+            elif isinstance(v,  Project):
+                item = QStandardItem(k)
+                item.setIcon(self.icons['project'])
+                item.setData(QVariant("P|%s|%s" % (dbf, v.path)))
+                parent.appendRow(item)
+                self._processProject(v, item, dbf)
+            else:
+                print k, v
 
 
     def _processSensorGroup(self, sg, parent, dbf):
@@ -475,7 +486,7 @@ class DSModel(QStandardItemModel):
             item.setIcon(self.icons['sensor'])
             item.setData(QVariant("S|%s|%s" % (dbf, v.path)))
             parent.appendRow(item)
-        for k, v in sg.charts.items():
+        for k, v in sg.getCharts().items():
             item = QStandardItem(k)
             item.setIcon(self.icons['graph'])
             item.setData(QVariant("C|%s|%s|%s" % (dbf, sg.path, k)))
