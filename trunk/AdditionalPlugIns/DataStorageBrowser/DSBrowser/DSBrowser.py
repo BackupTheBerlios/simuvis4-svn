@@ -20,7 +20,8 @@ from DSExport import exportSensors
 from DSImport import newSensorGroup, importFiles
 
 
-from datastorage.database import DataBaseRoot, Sensor
+from datastorage.database import DataBaseRoot
+from datastorage.sensor import Sensor
 
 
 showChartMaximized = SimuVis4.Globals.config.getboolean('datastoragebrowser', 'show_chart_maximized')
