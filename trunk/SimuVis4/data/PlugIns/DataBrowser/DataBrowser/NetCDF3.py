@@ -67,6 +67,10 @@ class NetCDF3Browser(QWidget):
         self.connect(self.treeView.selectionModel(), SIGNAL("currentChanged(QModelIndex, QModelIndex)"), self.showItem)
         self.connect(self.treeView, SIGNAL("doubleClicked(QModelIndex)"), self.itemAction)
 
+        ftActions = SimuVis4.Globals.fileTypeActions
+        ftActions.addAction(self.loadFile, ('application/x-netcdf',),
+            QCoreApplication.translate('NetCDF3', 'Open in netCDF3 browser'), 10)
+
     def loadFile(self, fn=None):
         if not fn:
             fn = QFileDialog.getOpenFileName(self, QCoreApplication.translate('NetCDF3', "Select netCDF3 file to open"),
@@ -77,6 +81,7 @@ class NetCDF3Browser(QWidget):
             else:
                 return
         self.model.addNcFile(fn)
+        SimuVis4.Globals.dataBrowser.toolBox.setCurrentWidget(self)
 
     def dropFiles(self):
         # FIXME: ...

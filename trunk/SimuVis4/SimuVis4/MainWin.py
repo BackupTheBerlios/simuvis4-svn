@@ -4,7 +4,7 @@
 # license:  GPL v2
 # this file is part of the SimuVis4 framework
 
-import Globals, Icons, Errors, UI, HelpBrowser
+import Globals, Icons, Errors, UI, HelpBrowser, Misc, Executor
 
 import sys, os, traceback, logging
 from PyQt4.QtGui import *
@@ -211,6 +211,9 @@ class MainWindow(QMainWindow):
             if not cfg.getboolean('main', 'hide_log_window'):
                 self.logWin.toggleVisibleAction.setChecked(True)
 
+        self.fileTypeActions = Misc.FileActionRegistry()
+        Globals.fileTypeActions = self.fileTypeActions
+
         progress(QCoreApplication.translate('MainWin', 'Starting plugin manager'))
         from SimuVis4.PlugInManager import PlugInManager
         self.plugInManager =  PlugInManager()
@@ -232,9 +235,14 @@ class MainWindow(QMainWindow):
         progress(QCoreApplication.translate('MainWin', 'Initializing Plugins'))
         self.plugInManager.initializePlugIns(progress)
 
-        from SimuVis4.Executor import ExecutorQt
-        self.executor = ExecutorQt()
+        self.executor = Executor.ExecutorQt()
         Globals.executor = self.executor
+        self.fileTypeActions.addType('application/simuvis4', '.sv4')
+        self.fileTypeActions.addAction(self.executor.runFilename, ('application/simuvis4',),
+            QCoreApplication.translate('MainWin', 'Run in SimuVis4'), 10)
+        self.fileTypeActions.addAction(self.executor.runFilename, ('text/x-python',),
+            QCoreApplication.translate('MainWin', 'Run in SimuVis4'), 3)
+
 
         logger.info(QCoreApplication.translate('MainWin', 'Main: startup succeeded'))
 

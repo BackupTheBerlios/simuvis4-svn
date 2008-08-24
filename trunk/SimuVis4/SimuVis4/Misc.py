@@ -262,21 +262,33 @@ class FileActionRegistry:
             else:
                 self.actions[type].append((name, action, priority))
                 self.actions[type].sort(lambda a, b: cmp(b[2], a[2]))
-                
+
     def removeAction(self, action):
-        pass # FIXME! implement functions
-                
+        pass # FIXME! implement function
+
     def fileType(self, fileName):
         return mimetypes.guess_type(fileName)[0]
 
     def hasActions(mimeType):
         return len(self.actions.get(mimeType, []))
-        
-    def openFile(self, fileName):
-        t = self.fileType(fileName)
-        if t in self.actions:
-            self.actions[t][0][1](fileName)
-            return True
-        else:
-            return False
 
+    def openFile(self, fileName):
+        tp = self.fileType(fileName)
+        if not tp:
+            return False
+        for t in tp, tp.split('/')[0]:
+            print t
+            if t in self.actions:
+                self.actions[t][0][1](fileName)
+                return True
+        return False
+
+    def getActions(self, fileName):
+        tp = self.fileType(fileName)
+        if not tp:
+            return []
+        a = []
+        for t in tp, tp.split('/')[0]:
+            if t in self.actions:
+                a += self.actions[t]
+        return a

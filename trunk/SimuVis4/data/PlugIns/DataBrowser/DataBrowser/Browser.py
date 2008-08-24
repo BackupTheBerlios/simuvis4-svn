@@ -23,7 +23,7 @@ class Browser(QDockWidget):
 
 
 class FileSystemBrowser(QTreeView):
-    """simple file system browser, no actions yet"""
+    """simple file system browser"""
 
     def __init__(self):
         QTreeView.__init__(self)
@@ -49,22 +49,28 @@ class FileSystemBrowser(QTreeView):
         fi = self.model.fileInfo(mi)
         if self.model.isDir(mi):
             return
-        filePath = str(fi.absoluteFilePath())
-        if not fileTypeActions.openFile(filePath):
-            QDesktopServices.openUrl(QUrl.fromLocalFile(filePath))
-            #os.startfile(filePath) # only under windows... ?
+        self.filePath = str(fi.absoluteFilePath())
+        if not SimuVis4.Globals.fileTypeActions.openFile(self.filePath):
+            self.openExternal()
 
     def showContextMenu(self, pos):
         """show context menu for item at pos"""
         mi = self.indexAt(pos)
+        fi = self.model.fileInfo(mi)
+        if self.model.isDir(mi):
+            return
+        self.filePath = str(fi.absoluteFilePath())
         m = QMenu()
-        m.addAction(QCoreApplication.translate('DataBrowser', 'Dummy'), self.dummy)
+        for a in SimuVis4.Globals.fileTypeActions.getActions(self.filePath):
+            # this is weird, ... but it works
+            m.addAction(a[0], lambda b=a[1]: b(self.filePath))
+        m.addSeparator()
+        m.addAction(QCoreApplication.translate('DataBrowser', 'Open external'),
+            self.openExternal)
         a = m.exec_(self.mapToGlobal(pos))
 
-    def dummy(self):
-        pass
-        
-
-fileTypeActions = SimuVis4.Misc.FileActionRegistry()
-fileTypeActions.addType('application/simuvis4', '.sv4')
-fileTypeActions.addAction(lambda f: SimuVis4.Globals.executor.runFilename(f), ('application/simuvis4',), 'Run in SimuVis4')
+    def openExternal(self, filePath=None):
+        if not filePath:
+            filePath = self.filePath
+        QDesktopServices.openUrl(QUrl.fromLocalFile(filePath))
+        #os.startfile(filePath) # only under windows... ?

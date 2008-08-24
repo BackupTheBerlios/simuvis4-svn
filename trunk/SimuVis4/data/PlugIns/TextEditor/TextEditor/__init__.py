@@ -20,8 +20,12 @@ class PlugIn(SimplePlugIn):
         xpm.loadFromData(self.getFile('text.xpm').read())
         winIcon = QIcon(xpm)
         self.winManager = TextEditorManager(SimuVis4.Globals.mainWin.workSpace, TextEditorWindow.TextEditorWindow,
-            QCoreApplication.translate('TextEditor', "Unnamed Textfile"), winIcon)
+            QCoreApplication.translate('TextEditor', 'Unnamed Textfile'), winIcon)
         self.winManager.initMain(SimuVis4.Globals.mainWin)
+        ftActions = SimuVis4.Globals.fileTypeActions
+        ftActions.addAction(self.winManager.openFile,
+            ('application/simuvis4', 'text'),
+            QCoreApplication.translate('TextEditor', 'Open in TextEditor'), 5)
         return True
 
 
@@ -103,14 +107,14 @@ class TextEditorManager(SubWinManager):
 
 
     def configOpenPersonal(self):
-        self.openFile(None, SimuVis4.Globals.personalConfigFile)
+        self.openFile(SimuVis4.Globals.personalConfigFile, None)
 
 
     def configOpenSystem(self):
-        self.openFile(None, SimuVis4.Globals.systemConfigFile)
+        self.openFile(SimuVis4.Globals.systemConfigFile, None)
 
 
-    def openFile(self, w=None, fileName=None):
+    def openFile(self, fileName=None, w=None):
         if not fileName:
             fileName = unicode(QFileDialog.getOpenFileName(self.workSpace,
                 QCoreApplication.translate('TextEditor', "Select file to open"), SimuVis4.Globals.defaultFolder))
