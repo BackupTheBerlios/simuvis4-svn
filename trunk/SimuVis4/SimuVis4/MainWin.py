@@ -260,7 +260,7 @@ class MainWindow(QMainWindow):
             self.executor.runFilename(unicode(fn))
         else:
             fn = QFileDialog.getOpenFileName(self, QCoreApplication.translate('MainWin', "Select file to execute"),
-                Globals.defaultFolder)
+                Globals.defaultFolder, 'Python Script(*.py *.pyw *.sv4)')
             if not fn.isEmpty():
                 fileName = unicode(fn)
                 Globals.defaultFolder, tmp = os.path.split(fileName)
