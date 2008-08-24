@@ -11,6 +11,8 @@ from SimuVis4.SubWinManager import SubWinManager
 from PyQt4.QtGui import QAction, QIcon, QWidget, QPixmap
 from PyQt4.QtCore import SIGNAL, QCoreApplication, QTranslator
 
+glb = SimuVis4.Globals
+
 class PlugIn(SimplePlugIn):
 
     def load(self):
@@ -24,13 +26,22 @@ class PlugIn(SimplePlugIn):
         xpm = QPixmap()
         xpm.loadFromData(self.getFile('3dwin.xpm').read())
         winIcon = QIcon(xpm)
-        self.winManager = SubWinManager(SimuVis4.Globals.mainWin.workSpace, self.VtkWindow.VtkWindow,
+        self.winManager = SubWinManager(glb.mainWin.workSpace, self.VtkWindow.VtkWindow,
                 QCoreApplication.translate('VtkWindow', "Vtk Window"), winIcon)
         testAction = QAction(winIcon,
-            QCoreApplication.translate('VtkWindow', '&VtkWindow Test'), SimuVis4.Globals.mainWin)
+            QCoreApplication.translate('VtkWindow', '&VtkWindow Test'), glb.mainWin)
         testAction.setStatusTip(QCoreApplication.translate('VtkWindow', 'Show a new Vtk test window'))
         QWidget.connect(testAction, SIGNAL("triggered()"), self.test)
-        SimuVis4.Globals.mainWin.plugInMenu.addAction(testAction)
+        glb.mainWin.plugInMenu.addAction(testAction)
+
+        ftActions = glb.fileTypeActions
+        ftActions.addType('application/x-3ds', '.3ds')
+        ftActions.addAction(self.show3DS, ('application/x-3ds',),
+            QCoreApplication.translate('VtkWindow', 'Open in VtkWindow'), 5)
+        ftActions.addType('application/x-vrml', '.wrl')
+        ftActions.addAction(self.showVRML, ('application/x-vrml',),
+            QCoreApplication.translate('VtkWindow', 'Open in VtkWindow'), 5)
+
         return True
 
 
@@ -80,4 +91,37 @@ class PlugIn(SimplePlugIn):
         w.vtkWidget.Initialize()
         w.vtkWidget.Start()
 
+        return w
+
+    def show3DS(self, fileName):
+        vtk = self.vtk
+        importer = vtk.vtk3DSImporter()
+        importer.ComputeNormalsOn()
+        importer.SetFileName(fileName)
+        importer.Read()
+        ren = importer.GetRenderer()
+        ren.SetBackground(0.1, 0.2, 0.4)
+        ren.ResetCamera()
+        w = self.winManager.newWindow(fileName)
+        importer.SetRenderWindow(w.vtkWidget.GetRenderWindow())
+        w.vtkWidget.GetRenderWindow().AddRenderer(ren)
+        w.show()
+        w.vtkWidget.Initialize()
+        w.vtkWidget.Start()
+        return w
+
+    def showVRML(self, fileName):
+        vtk = self.vtk
+        importer = vtk.vtkVRMLImporter()
+        importer.SetFileName(fileName)
+        importer.Read()
+        ren = importer.GetRenderer()
+        ren.SetBackground(0.1, 0.2, 0.4)
+        ren.ResetCamera()
+        w = self.winManager.newWindow(fileName)
+        importer.SetRenderWindow(w.vtkWidget.GetRenderWindow())
+        w.vtkWidget.GetRenderWindow().AddRenderer(ren)
+        w.show()
+        w.vtkWidget.Initialize()
+        w.vtkWidget.Start()
         return w
