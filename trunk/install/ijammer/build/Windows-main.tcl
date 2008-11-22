@@ -70,7 +70,7 @@ namespace eval ::InstallAPI {}
 namespace eval ::InstallJammer {}
 set conf(version)     1.2.10
 set info(Platform)    Windows
-set info(InstallerID) 8539F4E2-80D2-C9B4-3D52-E73EF097639E
+set info(InstallerID) 6B58351D-D7ED-B7C2-7B7E-89F7872A088A
 array set ::InstallJammer::languagecodes {en English}
 array set info {
 AllowLanguageSelection
@@ -130,6 +130,9 @@ InstallDir
 InstallMode
 Standard
 
+InstallPasswordEncrypted
+4674b5ad9cc7e3f92fc003803733d9ba593a2312
+
 InstallType
 Typical
 
@@ -146,7 +149,8 @@ MinorVersion
 0
 
 PackageDescription
-{}
+{SimuVis and its current implementation SimuVis4 is a framework and an interactive application for data handling, visualisation and simulations. It's based on python as the programming language, Qt for the GUI, Qwt for charts and VTK for 3D scenes. Currently it runs on Linux, Windows (both tested) and MacOS X (untested). SimuVis4 is released as OpenSource. The GUI is available in english and german, more languages can be added easily.
+}
 
 PackageLicense
 {GPL v2}
@@ -164,7 +168,7 @@ PackageRelease
 <%PatchVersion%>
 
 PackageSummary
-{}
+{SimuVis4 is a framework and an interactive application for data handling, visualisation and simulations}
 
 PackageVersion
 <%MajorVersion%>.<%MinorVersion%>
@@ -206,7 +210,7 @@ UpgradeApplicationID
 {}
 
 Version
-4.0.333
+4.0.362
 
 ViewReadme
 Yes
@@ -423,7 +427,7 @@ No
 No
 
 056CBA63-224D-BE60-8EB6-8F3FB81528F8,ProgramCommandLine
-{which python}
+{python -c "import sys; print sys.executable"}
 
 056CBA63-224D-BE60-8EB6-8F3FB81528F8,ProgressiveOutputWidget
 {}
@@ -914,33 +918,6 @@ true
 2158EB86-E196-AD39-AF59-C7806689931F,String
 <%GuiMode%>
 
-24E0474F-B203-5755-8E60-F22F589EFCF3,Active
-Yes
-
-24E0474F-B203-5755-8E60-F22F589EFCF3,CheckCondition
-3
-
-24E0474F-B203-5755-8E60-F22F589EFCF3,Component
-{}
-
-24E0474F-B203-5755-8E60-F22F589EFCF3,FailureFocus
-{}
-
-24E0474F-B203-5755-8E60-F22F589EFCF3,FailureMessage
-{}
-
-24E0474F-B203-5755-8E60-F22F589EFCF3,ID
-{}
-
-24E0474F-B203-5755-8E60-F22F589EFCF3,Include
-0
-
-24E0474F-B203-5755-8E60-F22F589EFCF3,Operator
-is
-
-24E0474F-B203-5755-8E60-F22F589EFCF3,Platform
-Linux-x86
-
 2665BB4D-E652-AB62-C647-F3AE9E362A37,Active
 Yes
 
@@ -1272,7 +1249,7 @@ Yes
 Yes
 
 3E035FE0-18B1-3BEC-B734-DF948C1118C2,Alias
-{Python Check Linux}
+DepCheck
 
 3E035FE0-18B1-3BEC-B734-DF948C1118C2,BackButton,subst
 1
@@ -1290,7 +1267,7 @@ Back/Next/Cancel
 {}
 
 3E035FE0-18B1-3BEC-B734-DF948C1118C2,Conditions
-{1 condition}
+{0 conditions}
 
 3E035FE0-18B1-3BEC-B734-DF948C1118C2,ID
 {}
@@ -1764,7 +1741,7 @@ Yes
 {}
 
 5D2567F5-8D32-BDB2-6FCF-FC39AA9ABE31,Action
-PythonChecksLinux
+PythonChecks
 
 5D2567F5-8D32-BDB2-6FCF-FC39AA9ABE31,Active
 Yes
@@ -3423,10 +3400,10 @@ A7D644C1-74A3-E8F2-10F1-1657BC684347,Active
 Yes
 
 A7D644C1-74A3-E8F2-10F1-1657BC684347,Alias
-PythonChecksLinux
+PythonChecks
 
 A7D644C1-74A3-E8F2-10F1-1657BC684347,Conditions
-{1 condition}
+{0 conditions}
 
 A7D644C1-74A3-E8F2-10F1-1657BC684347,ID
 {}
@@ -3892,33 +3869,6 @@ Typical
 
 D2AA0BFF-4338-DFBC-EAE2-DC926670A2E8,ShowSetupType
 Yes
-
-D2CB66CB-3B0E-F7B4-556B-0C211F466FBB,Active
-Yes
-
-D2CB66CB-3B0E-F7B4-556B-0C211F466FBB,CheckCondition
-6
-
-D2CB66CB-3B0E-F7B4-556B-0C211F466FBB,Component
-{}
-
-D2CB66CB-3B0E-F7B4-556B-0C211F466FBB,FailureFocus
-{}
-
-D2CB66CB-3B0E-F7B4-556B-0C211F466FBB,FailureMessage
-{}
-
-D2CB66CB-3B0E-F7B4-556B-0C211F466FBB,ID
-{}
-
-D2CB66CB-3B0E-F7B4-556B-0C211F466FBB,Include
-0
-
-D2CB66CB-3B0E-F7B4-556B-0C211F466FBB,Operator
-is
-
-D2CB66CB-3B0E-F7B4-556B-0C211F466FBB,Platform
-Linux-x86
 
 D6791390-434F-F7E6-B6FC-A8C3BAE2BB71,Active
 Yes
@@ -27779,9 +27729,8 @@ Condition FB4F8F64-C6F6-4CD6-8EF1-A47355C85874 -active Yes -parent 04FAD703-4AE7
 Condition 29861DD8-D94A-7E1E-D36A-EAEFE92521F3 -active Yes -parent 04FAD703-4AE7-94B6-49A8-A81C247314CA -title {String Is Condition} -component StringIsCondition -TreeObject::id 29861DD8-D94A-7E1E-D36A-EAEFE92521F3
 Condition 742CD652-6A21-86AB-A1C2-EC82AF4CC17D -active Yes -parent 04FAD703-4AE7-94B6-49A8-A81C247314CA -title {File Exists Condition} -component FileExistsCondition -TreeObject::id 742CD652-6A21-86AB-A1C2-EC82AF4CC17D
 InstallComponent 0792352F-AAC2-73DB-51DC-214F7E997A96 -setup Install -type actiongroup -title {Cancel Actions} -alias {Cancel Actions} -active Yes -parent ActionGroups
-InstallComponent A7D644C1-74A3-E8F2-10F1-1657BC684347 -setup Install -type actiongroup -conditions D2CB66CB-3B0E-F7B4-556B-0C211F466FBB -title PythonChecksLinux -command insert -alias PythonChecksLinux -active Yes -parent ActionGroups
-Condition D2CB66CB-3B0E-F7B4-556B-0C211F466FBB -active Yes -parent A7D644C1-74A3-E8F2-10F1-1657BC684347 -title {Platform Condition} -component PlatformCondition -TreeObject::id D2CB66CB-3B0E-F7B4-556B-0C211F466FBB
-InstallComponent 056CBA63-224D-BE60-8EB6-8F3FB81528F8 -setup Install -type action -title PythonExecutableCheck -component ExecuteExternalProgram -active Yes -parent A7D644C1-74A3-E8F2-10F1-1657BC684347
+InstallComponent A7D644C1-74A3-E8F2-10F1-1657BC684347 -setup Install -type actiongroup -title PythonChecks -command reorder -alias PythonChecks -active Yes -parent ActionGroups
+InstallComponent 056CBA63-224D-BE60-8EB6-8F3FB81528F8 -setup Install -type action -title PythonExecutableCheck -component ExecuteExternalProgram -command reorder -active Yes -parent A7D644C1-74A3-E8F2-10F1-1657BC684347
 InstallComponent 09F49A5C-9CD5-4E9B-815B-CBAA1D90EC3B -setup Install -type action -conditions F3438977-AE09-97D8-8FA9-ED9DDD0FACB6 -title PythonVersionCheck -component ExecuteExternalProgram -command insert -active Yes -parent A7D644C1-74A3-E8F2-10F1-1657BC684347
 Condition F3438977-AE09-97D8-8FA9-ED9DDD0FACB6 -active Yes -parent 09F49A5C-9CD5-4E9B-815B-CBAA1D90EC3B -title {File Exists Condition} -component FileExistsCondition -TreeObject::id F3438977-AE09-97D8-8FA9-ED9DDD0FACB6
 InstallComponent 8E3ED610-E362-8378-19DC-D751D855E020 -setup Install -type action -conditions 62551487-9276-5A6D-DF53-613133C063E4 -title PyQt4Missing -component ExecuteExternalProgram -command insert -active Yes -parent A7D644C1-74A3-E8F2-10F1-1657BC684347
@@ -28866,8 +28815,7 @@ thread::send -async $::tid ::installkit::base
 ::InstallJammer::InitInstall
 
 InstallComponent FC4C0D94-70DA-0E0A-F4DB-346029224211 -setup Install -type pane -title {Welcome Screen} -component Welcome -active Yes -parent Standard
-InstallComponent 3E035FE0-18B1-3BEC-B734-DF948C1118C2 -setup Install -type pane -conditions 24E0474F-B203-5755-8E60-F22F589EFCF3 -title {Python Check Linux} -component CustomBlankPane2 -command insert -alias {Python Check Linux} -active Yes -parent Standard
-Condition 24E0474F-B203-5755-8E60-F22F589EFCF3 -active Yes -parent 3E035FE0-18B1-3BEC-B734-DF948C1118C2 -title {Platform Condition} -component PlatformCondition -TreeObject::id 24E0474F-B203-5755-8E60-F22F589EFCF3
+InstallComponent 3E035FE0-18B1-3BEC-B734-DF948C1118C2 -setup Install -type pane -title DepCheck -component CustomBlankPane2 -command reorder -alias DepCheck -active Yes -parent Standard
 InstallComponent 5D2567F5-8D32-BDB2-6FCF-FC39AA9ABE31 -setup Install -type action -title {Execute Action} -component ExecuteAction -active Yes -parent 3E035FE0-18B1-3BEC-B734-DF948C1118C2
 InstallComponent 7B739727-CAD2-352F-6BDF-997460BCE5DD -setup Install -type pane -conditions {B7C42CBA-DB2D-8B76-9E83-36048760C90B 8127E549-44E5-ED2D-CD9F-B3613E1C8B27 57DA058F-3ED1-8AED-7064-0E6A0B4B4903} -title DepCheckFailed -component CustomBlankPane2 -operator OR -command insert -active Yes -parent Standard
 Condition B7C42CBA-DB2D-8B76-9E83-36048760C90B -active Yes -parent 7B739727-CAD2-352F-6BDF-997460BCE5DD -title PyVersion -component ScriptCondition -TreeObject::id B7C42CBA-DB2D-8B76-9E83-36048760C90B
