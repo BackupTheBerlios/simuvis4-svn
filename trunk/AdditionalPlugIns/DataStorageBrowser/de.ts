@@ -212,22 +212,22 @@ p, li { white-space: pre-wrap; }
         <translation>DataStorageBrowser: konnte Modul datastorage nicht importieren, kontrolliere die Einstellungen!</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="166"/>
+        <location filename="DSBrowser.py" line="168"/>
         <source>Open...</source>
         <translation>Öffnen...</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="168"/>
+        <location filename="DSBrowser.py" line="170"/>
         <source>Open a datastorage database</source>
         <translation>Öffne eine datastorage-Datenbank</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="224"/>
+        <location filename="DSBrowser.py" line="226"/>
         <source>Select a folder containing a datastorage database</source>
         <translation>Wähle einen Ordner, der eine datastorage-Datenbank enthält</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="335"/>
+        <location filename="DSBrowser.py" line="337"/>
         <source>Edit metadata</source>
         <translation>Editiere Metadaten</translation>
     </message>
@@ -237,12 +237,12 @@ p, li { white-space: pre-wrap; }
         <translation>Ändere Metadaten von %s</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="331"/>
+        <location filename="DSBrowser.py" line="333"/>
         <source>Show</source>
         <translation>Anzeigen</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="332"/>
+        <location filename="DSBrowser.py" line="334"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
@@ -314,7 +314,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;b&gt;Zu viele Werte in der Exceldatei:&lt;/b&gt;&lt;br&gt;65534 Reihen und 256 Spalten maximal erlaubt!</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="37"/>
+        <location filename="DSBrowser.py" line="39"/>
         <source>
 &lt;b&gt;Root $name&lt;/b&gt;&lt;br/&gt;
 &lt;hr/&gt;
@@ -327,7 +327,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="48"/>
+        <location filename="DSBrowser.py" line="50"/>
         <source>
 &lt;b&gt;Project $name&lt;/b&gt;&lt;br/&gt;
 &lt;i&gt;in $path&lt;/i&gt;
@@ -340,7 +340,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="88"/>
+        <location filename="DSBrowser.py" line="90"/>
         <source>
 &lt;b&gt;Chart $name&lt;/b&gt;&lt;br/&gt;
 &lt;i&gt;in $path&lt;/i&gt;
@@ -350,7 +350,7 @@ Doubleclick to show!
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="95"/>
+        <location filename="DSBrowser.py" line="97"/>
         <source>
 &lt;hr/&gt;
 &lt;b&gt;  Metadata:&lt;/b&gt;
@@ -359,77 +359,77 @@ Doubleclick to show!
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="175"/>
+        <location filename="DSBrowser.py" line="177"/>
         <source>Expand or collapse the whole tree</source>
         <translation>Den gesamten Baum aus- oder einklappen</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="180"/>
+        <location filename="DSBrowser.py" line="182"/>
         <source>Enter search text here</source>
         <translation>Suchtext hier eingeben</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="182"/>
+        <location filename="DSBrowser.py" line="184"/>
         <source>Enter search text using wildcards here, press ENTER again to go to next match!</source>
         <translation>Suchtext eingeben und mit ENTER abschließen, erneutes ENTER wählt den nächsten Treffer aus!</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="187"/>
+        <location filename="DSBrowser.py" line="189"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="189"/>
+        <location filename="DSBrowser.py" line="191"/>
         <source>Show help for DataStorageBrowser</source>
         <translation>Zeige Hilfe für den DataStorageBrowser</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="281"/>
+        <location filename="DSBrowser.py" line="283"/>
         <source>No (more) matches!</source>
         <translation>Keine (weiteren) Treffer!</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="282"/>
+        <location filename="DSBrowser.py" line="284"/>
         <source>No (more) matches found! Change you search text and try again!</source>
         <translation>Keine (weiteren) Treffer gefunden! Ändere den Suchtext und versuche es erneut!</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="313"/>
+        <location filename="DSBrowser.py" line="315"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="314"/>
+        <location filename="DSBrowser.py" line="316"/>
         <source>Reload</source>
         <translation>Erneut laden</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="316"/>
+        <location filename="DSBrowser.py" line="318"/>
         <source>New sensorgroup</source>
         <translation>Sensorgruppe hinzufügen</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="320"/>
+        <location filename="DSBrowser.py" line="322"/>
         <source>Show all charts (%d)</source>
         <translation>Zeige alle Charts (%d)</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="322"/>
+        <location filename="DSBrowser.py" line="324"/>
         <source>Save all charts as images</source>
         <translation>Speichere alle Charts als Bilder</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="323"/>
+        <location filename="DSBrowser.py" line="325"/>
         <source>Add chart</source>
         <translation>Chart hinzufügen</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="324"/>
+        <location filename="DSBrowser.py" line="326"/>
         <source>Add/update data</source>
         <translation>Daten hinzufügen/updaten</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="325"/>
+        <location filename="DSBrowser.py" line="327"/>
         <source>Export data</source>
         <translation>Daten exportieren</translation>
     </message>
@@ -451,12 +451,12 @@ Change this setting and restart the application to make this work!</source>
         <translation>Die Option &quot;set_default_backend&quot; in Section &quot;matplot&quot; ist aktiviert.Diese Aktion kann mit dieser Einstellung nicht durchgeführt werden.Ändere diese Einstellung und starte die Anwendung neu!</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="327"/>
+        <location filename="DSBrowser.py" line="329"/>
         <source>New plot (Qwt)</source>
         <translation>Neuer Plot (Qwt)</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="329"/>
+        <location filename="DSBrowser.py" line="331"/>
         <source>Add to plot (Qwt)</source>
         <translation>Zu Plot hinzufügen (Qwt)</translation>
     </message>
@@ -541,7 +541,7 @@ Change this setting and restart the application to make this work!</source>
         <translation>Wähle zu importierende Dateien</translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="64"/>
+        <location filename="DSBrowser.py" line="66"/>
         <source>
 &lt;b&gt;Group $name&lt;/b&gt;&lt;br/&gt;
 &lt;i&gt;in $path&lt;/i&gt;
@@ -559,7 +559,7 @@ Change this setting and restart the application to make this work!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DSBrowser.py" line="80"/>
+        <location filename="DSBrowser.py" line="82"/>
         <source>
 &lt;b&gt;Sensor $name&lt;/b&gt;&lt;br/&gt;
 &lt;i&gt;in $path&lt;/i&gt;&lt;br/&gt;
