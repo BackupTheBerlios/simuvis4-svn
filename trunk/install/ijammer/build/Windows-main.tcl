@@ -70,7 +70,7 @@ namespace eval ::InstallAPI {}
 namespace eval ::InstallJammer {}
 set conf(version)     1.2.10
 set info(Platform)    Windows
-set info(InstallerID) 6B58351D-D7ED-B7C2-7B7E-89F7872A088A
+set info(InstallerID) 963AAE92-385C-6444-248F-1E7690B72FEA
 array set ::InstallJammer::languagecodes {en English}
 array set info {
 AllowLanguageSelection
@@ -129,9 +129,6 @@ InstallDir
 
 InstallMode
 Standard
-
-InstallPasswordEncrypted
-4674b5ad9cc7e3f92fc003803733d9ba593a2312
 
 InstallType
 Typical
@@ -198,7 +195,7 @@ PyQt4Installed
 Missing
 
 PyQt4VersionMin
-200000
+300000
 
 PythonVersionMin
 2.5

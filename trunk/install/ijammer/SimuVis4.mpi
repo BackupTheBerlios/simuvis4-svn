@@ -42,7 +42,7 @@ CreateDesktopShortcut
 Yes
 
 CreateQuickLaunchShortcut
-Yes
+No
 
 DefaultDirectoryLocation
 {}
@@ -3730,7 +3730,13 @@ PyQt4-Version:	<%PyQt4Version%>}
 {Please install required versions of python and PyQt4!}
 
 7B739727-CAD2-352F-6BDF-997460BCE5DD,Message
-{Message will come soon ...}
+{SimuVis4 was written in the programming language Python using the Qt4 toolkit. To run SimuVis4 you need a python interpreter and the PyQt4 module in a recent version.
+
+Linux:
+Use your package manager to install python and PyQt4.
+
+Windows:
+Please download and install the required packages.}
 
 7B739727-CAD2-352F-6BDF-997460BCE5DD,Subtitle
 {Python and/or PyQt4 are not installed or too old}
