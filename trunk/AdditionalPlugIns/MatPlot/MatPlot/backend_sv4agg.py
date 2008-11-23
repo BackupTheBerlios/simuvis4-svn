@@ -15,12 +15,6 @@ from __future__ import division
 import math, os, sys, tempfile
 
 import matplotlib
-from matplotlib import verbose
-from matplotlib.numerix import asarray, fromstring, UInt8, zeros, \
-     where, transpose, nonzero, indices, ones, nx
-import matplotlib.numerix as numerix
-from matplotlib.cbook import is_string_like, onetrue
-from matplotlib.font_manager import fontManager
 from matplotlib.backend_bases import RendererBase, GraphicsContextBase, \
      FigureManagerBase, FigureCanvasBase, NavigationToolbar2, cursors
 from matplotlib._pylab_helpers import Gcf
@@ -45,8 +39,8 @@ except:
 from PyQt4 import QtCore, QtGui
 Qt = QtCore.Qt
 
-mplMinVersion = '0.90'
-mplMaxVersion = '0.92'
+mplMinVersion = '0.98'
+mplMaxVersion = '0.99'
 if matplotlib.__version__ < mplMinVersion or matplotlib.__version__ > mplMaxVersion:
     raise 'backend_sv4agg: need matplotlib version between %s and %s, but found %s' % \
         (mplMinVersion, mplMaxVersion, matplotlib.__version__)

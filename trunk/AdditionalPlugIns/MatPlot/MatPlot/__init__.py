@@ -14,8 +14,8 @@ from SimuVis4.SubWinManager import SubWinManager
 from PyQt4.QtGui import QAction, QIcon, QWidget, QMenu, QFileDialog, QMessageBox
 from PyQt4.QtCore import SIGNAL, QCoreApplication, QObject, QTimer
 
-mplMinVersion = '0.90'
-mplMaxVersion = '0.92'
+mplMinVersion = '0.98'
+mplMaxVersion = '0.99'
 
 configWarningText = unicode(QCoreApplication.translate('MatPlot',
 """The MatPlot plugin enables matplotlib/pylab to be
@@ -86,7 +86,7 @@ class PlugIn(SimplePlugIn):
 
 
     def test(self):
-        testCode = self.getFile('mpl_test_contour.py').read()
+        testCode = self.getFile('mpl_test.py').read()
         try:
             w = SimuVis4.Globals.plugInManager['TextEditor'].winManager.newWindow('MatPlot test')
             w.textEdit.setText(testCode)
