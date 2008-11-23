@@ -30,7 +30,7 @@ Usage: %s [options]
             use language lang if available
 """ % sys.argv[0]
 
-svn_revision = 362 # this line is changed automagically by mark_svn_rev.py
+svn_revision = 366 # this line is changed automagically by mark_svn_rev.py
 version_info = (4, 0, svn_revision)
 version_string = '4.0.%03d' % svn_revision
 
