@@ -1799,7 +1799,7 @@ File ::5E787848-3130-5736-5E66-E909B025BE47 -name QVTKRenderWindowInteractor.pyo
 File ::40A16C07-485D-DCF5-6A6E-918E77041B83 -name VtkWidget.pyo -parent FE4375AB-C5F9-2952-BFC0-1E08CB8639D8
 File ::EA08B09E-1AD5-91A3-C803-BCFE655A8E70 -name VtkWindow.pyo -parent FE4375AB-C5F9-2952-BFC0-1E08CB8639D8
 FileGroup ::C7FF042E-47FE-79FC-47DD-0276C590372C -setup Install -active Yes -platforms {AIX-ppc FreeBSD-4-x86 FreeBSD-x86 HPUX-hppa Linux-x86 Solaris-sparc Windows TarArchive ZipArchive} -name Misc -parent FileGroups
-File ::CFC502B5-33D6-D2EA-2F95-0D83FE7A0871 -name /home/joerg/Devel/simuvis/install/xyweb-1.0.0.exe -parent C7FF042E-47FE-79FC-47DD-0276C590372C
+File ::CFC502B5-33D6-D2EA-2F95-0D83FE7A0871 -name ../xyweb-1.0.0.exe -parent C7FF042E-47FE-79FC-47DD-0276C590372C
 Component ::5BD9876D-5E64-2DF8-D0C4-6C7F22C3DD9B -setup Install -active Yes -platforms {AIX-ppc FreeBSD-4-x86 FreeBSD-x86 HPUX-hppa Linux-x86 MacOS-X Solaris-sparc Windows} -name {Main Application} -parent Components
 Component ::62FD1271-AD56-988E-BA6A-314F85760C98 -setup Install -active Yes -platforms {AIX-ppc FreeBSD-4-x86 FreeBSD-x86 HPUX-hppa Linux-x86 MacOS-X Solaris-sparc Windows} -name {Aditional PlugIns} -parent Components
 SetupType ::D2AA0BFF-4338-DFBC-EAE2-DC926670A2E8 -setup Install -active Yes -platforms {Linux-x86 MacOS-X} -name Typical -parent SetupTypes
