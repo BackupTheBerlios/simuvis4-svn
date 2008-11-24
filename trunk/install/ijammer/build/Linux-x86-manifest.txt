@@ -71,10 +71,6 @@
 /home/joerg/Devel/simuvis/SimuVis4/data/Pictures/taskwin.xpm E75722D2-51F4-1883-B716-AACA7A5913FA zlib
 /home/joerg/Devel/simuvis/SimuVis4/data/Pictures/WindowIcons.png F38D1110-E9D0-6A54-C49A-6285A2D6960D zlib
 /home/joerg/Devel/simuvis/SimuVis4/data/PlugIns/DataBrowser/PLUGIN.INI ABEEB8DA-C69E-A794-8729-117EC30488D7 zlib
-/home/joerg/Devel/simuvis/SimuVis4/data/PlugIns/DataBrowser/.svn/all-wcprops 39E92B24-ACD0-04FE-C4D4-CFC3AABCA83D zlib
-/home/joerg/Devel/simuvis/SimuVis4/data/PlugIns/DataBrowser/.svn/entries 14A114C2-BA91-B426-F325-44B858A13437 zlib
-/home/joerg/Devel/simuvis/SimuVis4/data/PlugIns/DataBrowser/.svn/format 617566B8-0296-C59F-A043-E2720450071B zlib
-/home/joerg/Devel/simuvis/SimuVis4/data/PlugIns/DataBrowser/.svn/text-base/PLUGIN.INI.svn-base B8004EEE-F4B1-33C1-0695-148A91BE345E zlib
 /home/joerg/Devel/simuvis/SimuVis4/data/PlugIns/DataBrowser/DataBrowser/__init__.py B50DDFDA-2168-34F4-55EA-7A3F0BC88034 zlib
 /home/joerg/Devel/simuvis/SimuVis4/data/PlugIns/DataBrowser/DataBrowser/Browser.py DBCFBA22-3F46-7674-B4C3-78232C49DBD7 zlib
 /home/joerg/Devel/simuvis/SimuVis4/data/PlugIns/DataBrowser/DataBrowser/Icons.py 13F03842-81C9-F024-20DA-2A6E5F9BDB73 zlib
@@ -322,6 +318,7 @@
 /home/joerg/Devel/simuvis/SimuVis4/data/PlugIns/TextEditor/TextEditor/.svn/text-base/TextEditorWindow.py.svn-base DE74CAF5-BDB4-0301-BCCD-7EF18EE3B622 zlib
 /home/joerg/Devel/simuvis/SimuVis4/data/PlugIns/TextEditor/TextEditor/__init__.pyo F957B473-D55E-DF8D-7965-1620AFA4A3A9 zlib
 /home/joerg/Devel/simuvis/SimuVis4/data/PlugIns/TextEditor/TextEditor/TextEditorWindow.pyo 3F778557-0A15-1493-5A33-35AE112AAD3B zlib
+/home/joerg/Devel/simuvis/SimuVis4/data/GPLv2.txt~ 3A275353-F8AE-1F37-7683-0FCE3D51EFD6 zlib
 /home/joerg/Devel/simuvis/SimuVis4/SimuVis4/__init__.py A96D4262-B1E8-44E6-0423-8DA295890276 zlib
 /home/joerg/Devel/simuvis/SimuVis4/SimuVis4/About.py 5B5C75BE-2E17-3E01-1318-340F7FCC03D4 zlib
 /home/joerg/Devel/simuvis/SimuVis4/SimuVis4/Config.py B868C928-34C5-C6B3-9035-763A6D89EAF4 zlib

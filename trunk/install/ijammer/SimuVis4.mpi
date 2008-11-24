@@ -1053,6 +1053,7 @@ File ::4D834F21-1A30-E300-7FAF-02DB85080C79 -type dir -name props -parent ED1EC8
 File ::410B7006-B05A-8846-C95A-4DA4DFE9C973 -type dir -name text-base -parent ED1EC879-53A4-2585-693A-78107C32FCBB
 File ::F957B473-D55E-DF8D-7965-1620AFA4A3A9 -name __init__.pyo -parent 64B28510-B95C-834F-6C63-D986A3712303
 File ::3F778557-0A15-1493-5A33-35AE112AAD3B -name TextEditorWindow.pyo -parent 64B28510-B95C-834F-6C63-D986A3712303
+File ::3A275353-F8AE-1F37-7683-0FCE3D51EFD6 -name GPLv2.txt~ -parent 0ACFC2D3-3FEE-0E03-C207-C85FE276535E
 File ::04F6F113-8699-63E8-2BDA-AD420D9B3071 -type dir -name SimuVis4 -parent 2C26FFD3-D180-A094-A844-00BE1D9C60A3
 File ::A96D4262-B1E8-44E6-0423-8DA295890276 -name __init__.py -parent 04F6F113-8699-63E8-2BDA-AD420D9B3071
 File ::5B5C75BE-2E17-3E01-1318-340F7FCC03D4 -name About.py -parent 04F6F113-8699-63E8-2BDA-AD420D9B3071
@@ -1797,6 +1798,8 @@ File ::F38BDEC2-F7EF-FB01-8534-F34B2A045D18 -name Objects.pyo -parent FE4375AB-C
 File ::5E787848-3130-5736-5E66-E909B025BE47 -name QVTKRenderWindowInteractor.pyo -parent FE4375AB-C5F9-2952-BFC0-1E08CB8639D8
 File ::40A16C07-485D-DCF5-6A6E-918E77041B83 -name VtkWidget.pyo -parent FE4375AB-C5F9-2952-BFC0-1E08CB8639D8
 File ::EA08B09E-1AD5-91A3-C803-BCFE655A8E70 -name VtkWindow.pyo -parent FE4375AB-C5F9-2952-BFC0-1E08CB8639D8
+FileGroup ::C7FF042E-47FE-79FC-47DD-0276C590372C -setup Install -active Yes -platforms {AIX-ppc FreeBSD-4-x86 FreeBSD-x86 HPUX-hppa Linux-x86 Solaris-sparc Windows TarArchive ZipArchive} -name Misc -parent FileGroups
+File ::CFC502B5-33D6-D2EA-2F95-0D83FE7A0871 -name /home/joerg/Devel/simuvis/install/xyweb-1.0.0.exe -parent C7FF042E-47FE-79FC-47DD-0276C590372C
 Component ::5BD9876D-5E64-2DF8-D0C4-6C7F22C3DD9B -setup Install -active Yes -platforms {AIX-ppc FreeBSD-4-x86 FreeBSD-x86 HPUX-hppa Linux-x86 MacOS-X Solaris-sparc Windows} -name {Main Application} -parent Components
 Component ::62FD1271-AD56-988E-BA6A-314F85760C98 -setup Install -active Yes -platforms {AIX-ppc FreeBSD-4-x86 FreeBSD-x86 HPUX-hppa Linux-x86 MacOS-X Solaris-sparc Windows} -name {Aditional PlugIns} -parent Components
 SetupType ::D2AA0BFF-4338-DFBC-EAE2-DC926670A2E8 -setup Install -active Yes -platforms {Linux-x86 MacOS-X} -name Typical -parent SetupTypes
@@ -1805,10 +1808,23 @@ SetupType ::7FAD9D62-E406-8698-57C7-A0EDAB1EA8E3 -setup Install -active Yes -pla
 InstallComponent FC4C0D94-70DA-0E0A-F4DB-346029224211 -setup Install -type pane -title {Welcome Screen} -component Welcome -active Yes -parent StandardInstall
 InstallComponent 3E035FE0-18B1-3BEC-B734-DF948C1118C2 -setup Install -type pane -title DepCheck -component CustomBlankPane2 -command reorder -alias DepCheck -active Yes -parent StandardInstall
 InstallComponent 5D2567F5-8D32-BDB2-6FCF-FC39AA9ABE31 -setup Install -type action -title {Execute Action} -component ExecuteAction -active Yes -parent 3E035FE0-18B1-3BEC-B734-DF948C1118C2
-InstallComponent 7B739727-CAD2-352F-6BDF-997460BCE5DD -setup Install -type pane -conditions {B7C42CBA-DB2D-8B76-9E83-36048760C90B 8127E549-44E5-ED2D-CD9F-B3613E1C8B27 57DA058F-3ED1-8AED-7064-0E6A0B4B4903} -title DepCheckFailed -component CustomBlankPane2 -operator OR -command insert -active Yes -parent StandardInstall
+InstallComponent 23A94A82-9531-E6BE-90E0-01DEC17B6B78 -setup Install -type pane -title {License Agreement} -component License -active Yes -parent StandardInstall
+InstallComponent 23229939-5329-AF91-2176-C006A9271F07 -setup Install -type action -conditions {326E5BD3-91FA-4128-7839-EDE105D068E7 9B4A3C75-D8C8-96C2-AAAD-7FD6D635C668} -title {Modify Widget} -component ModifyWidget -command reorder -active Yes -parent 23A94A82-9531-E6BE-90E0-01DEC17B6B78
+Condition 326E5BD3-91FA-4128-7839-EDE105D068E7 -active Yes -parent 23229939-5329-AF91-2176-C006A9271F07 -title {String Is Condition} -component StringIsCondition -TreeObject::id 326E5BD3-91FA-4128-7839-EDE105D068E7
+Condition 9B4A3C75-D8C8-96C2-AAAD-7FD6D635C668 -active Yes -parent 23229939-5329-AF91-2176-C006A9271F07 -title {String Is Condition} -component StringIsCondition -TreeObject::id 9B4A3C75-D8C8-96C2-AAAD-7FD6D635C668
+InstallComponent 7B739727-CAD2-352F-6BDF-997460BCE5DD -setup Install -type pane -conditions {AE5EC57D-BC25-5301-1711-779C55C0B8C2 B7C42CBA-DB2D-8B76-9E83-36048760C90B 8127E549-44E5-ED2D-CD9F-B3613E1C8B27 57DA058F-3ED1-8AED-7064-0E6A0B4B4903} -title DepCheckFailedLinux -component CustomBlankPane2 -operator OR -command reorder -active Yes -parent StandardInstall
+Condition AE5EC57D-BC25-5301-1711-779C55C0B8C2 -active Yes -parent 7B739727-CAD2-352F-6BDF-997460BCE5DD -title {Platform Condition} -component PlatformCondition -TreeObject::id AE5EC57D-BC25-5301-1711-779C55C0B8C2
 Condition B7C42CBA-DB2D-8B76-9E83-36048760C90B -active Yes -parent 7B739727-CAD2-352F-6BDF-997460BCE5DD -title PyVersion -component ScriptCondition -TreeObject::id B7C42CBA-DB2D-8B76-9E83-36048760C90B
 Condition 8127E549-44E5-ED2D-CD9F-B3613E1C8B27 -active Yes -parent 7B739727-CAD2-352F-6BDF-997460BCE5DD -title PyQt4 -component StringEqualCondition -TreeObject::id 8127E549-44E5-ED2D-CD9F-B3613E1C8B27
 Condition 57DA058F-3ED1-8AED-7064-0E6A0B4B4903 -active Yes -parent 7B739727-CAD2-352F-6BDF-997460BCE5DD -title PyQt4Version -component ScriptCondition -TreeObject::id 57DA058F-3ED1-8AED-7064-0E6A0B4B4903
+InstallComponent 79AC5D90-5821-BDB7-B7C8-2A631E9FC08F -setup Install -type pane -conditions {FB8D5C4B-499D-BACF-8806-D0CC84B079CF 0841E038-BD71-4EC3-3C2E-CB96FFBB2639 603578B3-9A6E-BBB5-8F60-EEA5D28CBBA2 3FE12A5A-F4CA-9975-4271-ACC5370CDE57} -title DepCheckFailedWindows -component CustomBlankPane2 -operator OR -command reorder -active Yes -parent StandardInstall
+Condition FB8D5C4B-499D-BACF-8806-D0CC84B079CF -active Yes -parent 79AC5D90-5821-BDB7-B7C8-2A631E9FC08F -title {Platform Condition} -component PlatformCondition -TreeObject::id FB8D5C4B-499D-BACF-8806-D0CC84B079CF
+Condition 0841E038-BD71-4EC3-3C2E-CB96FFBB2639 -active Yes -parent 79AC5D90-5821-BDB7-B7C8-2A631E9FC08F -title PyVersion -component ScriptCondition -TreeObject::id B7C42CBA-DB2D-8B76-9E83-36048760C90B
+Condition 603578B3-9A6E-BBB5-8F60-EEA5D28CBBA2 -active Yes -parent 79AC5D90-5821-BDB7-B7C8-2A631E9FC08F -title PyQt4 -component StringEqualCondition -TreeObject::id 8127E549-44E5-ED2D-CD9F-B3613E1C8B27
+Condition 3FE12A5A-F4CA-9975-4271-ACC5370CDE57 -active Yes -parent 79AC5D90-5821-BDB7-B7C8-2A631E9FC08F -title PyQt4Version -component ScriptCondition -TreeObject::id 57DA058F-3ED1-8AED-7064-0E6A0B4B4903
+InstallComponent 052E6B8B-2B95-8715-AF0A-8E7671DD617F -setup Install -type action -title {Unpack Stored File} -component UnpackStoredFile -active Yes -parent 79AC5D90-5821-BDB7-B7C8-2A631E9FC08F
+InstallComponent 434D2971-C52F-E49B-3B5D-9A9D31B726F2 -setup Install -type action -conditions 9653B5D7-1233-E94B-02C4-FA768770C488 -title {Launch File} -component LaunchFile -command reorder -active Yes -parent 79AC5D90-5821-BDB7-B7C8-2A631E9FC08F
+Condition 9653B5D7-1233-E94B-02C4-FA768770C488 -active Yes -parent 434D2971-C52F-E49B-3B5D-9A9D31B726F2 -title {File Exists Condition} -component FileExistsCondition -TreeObject::id 9653B5D7-1233-E94B-02C4-FA768770C488
 InstallComponent 177721BE-66A5-A242-DADE-E629997C8585 -setup Install -type pane -conditions {0649A9BF-8C40-229B-73F3-AA8C360DA482 71E114AA-CC88-2325-4B16-330E3CDD99EA} -title {Select Destination} -component SelectDestination -command insert -active Yes -parent StandardInstall
 Condition 0649A9BF-8C40-229B-73F3-AA8C360DA482 -active Yes -parent 177721BE-66A5-A242-DADE-E629997C8585 -title {Script Condition} -component ScriptCondition -TreeObject::id 0649A9BF-8C40-229B-73F3-AA8C360DA482
 Condition 71E114AA-CC88-2325-4B16-330E3CDD99EA -active Yes -parent 177721BE-66A5-A242-DADE-E629997C8585 -title {File Permission Condition} -component FilePermissionCondition -TreeObject::id 71E114AA-CC88-2325-4B16-330E3CDD99EA
@@ -1975,6 +1991,18 @@ No
 04FAD703-4AE7-94B6-49A8-A81C247314CA,WorkingDirectory
 <%InstallDir%>
 
+052E6B8B-2B95-8715-AF0A-8E7671DD617F,AddToUninstall
+No
+
+052E6B8B-2B95-8715-AF0A-8E7671DD617F,Conditions
+{0 conditions}
+
+052E6B8B-2B95-8715-AF0A-8E7671DD617F,ExecuteAction
+{After Pane is Finished}
+
+052E6B8B-2B95-8715-AF0A-8E7671DD617F,FileID
+CFC502B5-33D6-D2EA-2F95-0D83FE7A0871
+
 056CBA63-224D-BE60-8EB6-8F3FB81528F8,Conditions
 {0 conditions}
 
@@ -1998,6 +2026,9 @@ PythonExecutable
 
 0792352F-AAC2-73DB-51DC-214F7E997A96,Conditions
 {0 conditions}
+
+0841E038-BD71-4EC3-3C2E-CB96FFBB2639,Script
+{<%PythonVersion%> < <%PythonVersionMin%>}
 
 095521ED-1445-A7C2-C073-6D7A09627E41,CheckCondition
 {Before Action is Executed}
@@ -2039,7 +2070,7 @@ Windows
 <%InstallDir%>
 
 16C635D2-CA46-98C0-BC53-6C68DC8EBF67,FileSize
-3815471
+3015545
 
 16C635D2-CA46-98C0-BC53-6C68DC8EBF67,Name
 {Main Application}
@@ -2109,6 +2140,54 @@ disabled
 
 2158EB86-E196-AD39-AF59-C7806689931F,String
 <%GuiMode%>
+
+23229939-5329-AF91-2176-C006A9271F07,Conditions
+{2 conditions}
+
+23229939-5329-AF91-2176-C006A9271F07,ExecuteAction
+{Before Pane is Displayed}
+
+23229939-5329-AF91-2176-C006A9271F07,State
+disabled
+
+23229939-5329-AF91-2176-C006A9271F07,Widget
+NextButton
+
+23A94A82-9531-E6BE-90E0-01DEC17B6B78,AcceptRadiobutton,subst
+0
+
+23A94A82-9531-E6BE-90E0-01DEC17B6B78,Active
+Yes
+
+23A94A82-9531-E6BE-90E0-01DEC17B6B78,BackButton,subst
+1
+
+23A94A82-9531-E6BE-90E0-01DEC17B6B78,CancelButton,subst
+1
+
+23A94A82-9531-E6BE-90E0-01DEC17B6B78,Caption,subst
+1
+
+23A94A82-9531-E6BE-90E0-01DEC17B6B78,Conditions
+{0 conditions}
+
+23A94A82-9531-E6BE-90E0-01DEC17B6B78,DeclineRadiobutton,subst
+0
+
+23A94A82-9531-E6BE-90E0-01DEC17B6B78,Message,subst
+1
+
+23A94A82-9531-E6BE-90E0-01DEC17B6B78,NextButton,subst
+1
+
+23A94A82-9531-E6BE-90E0-01DEC17B6B78,Subtitle,subst
+1
+
+23A94A82-9531-E6BE-90E0-01DEC17B6B78,Text,subst
+1
+
+23A94A82-9531-E6BE-90E0-01DEC17B6B78,Title,subst
+1
 
 2665BB4D-E652-AB62-C647-F3AE9E362A37,CheckCondition
 {Before Action is Executed}
@@ -2203,6 +2282,12 @@ Yes
 318D127E-BA7A-5738-E7AB-729CC16713B4,Title,subst
 1
 
+326E5BD3-91FA-4128-7839-EDE105D068E7,CheckCondition
+{Before Action is Executed}
+
+326E5BD3-91FA-4128-7839-EDE105D068E7,String
+{<%Property <%CurrentPane%> UserMustAcceptLicense%>}
+
 350E749C-4F44-469C-3FFF-95B4B4A0057F,Alias
 {Install Actions}
 
@@ -2286,6 +2371,24 @@ false
 
 3F52665D-2DC3-569E-24E1-78F519B8DED2,String
 <%Answer%>
+
+3FE12A5A-F4CA-9975-4271-ACC5370CDE57,Script
+{<%PyQt4Version%> < <%PyQt4VersionMin%>}
+
+434D2971-C52F-E49B-3B5D-9A9D31B726F2,Conditions
+{1 condition}
+
+434D2971-C52F-E49B-3B5D-9A9D31B726F2,ExecuteAction
+{After Pane is Finished}
+
+434D2971-C52F-E49B-3B5D-9A9D31B726F2,FileName
+{<%Temp%>\xyweb-1.0.0.exe}
+
+434D2971-C52F-E49B-3B5D-9A9D31B726F2,WaitForProgram
+Yes
+
+434D2971-C52F-E49B-3B5D-9A9D31B726F2,WorkingDirectory
+<%Temp%>
 
 46D5DAB0-6B44-DDA4-EB08-D0E003E7BD12,CheckCondition
 {Before Next Action is Executed}
@@ -2412,6 +2515,12 @@ PythonChecks
 
 5F3EB0A3-1812-26BC-BD66-42AD22953595,Title,subst
 1
+
+603578B3-9A6E-BBB5-8F60-EEA5D28CBBA2,String1
+<%PyQt4Installed%>
+
+603578B3-9A6E-BBB5-8F60-EEA5D28CBBA2,String2
+Missing
 
 62551487-9276-5A6D-DF53-613133C063E4,CheckCondition
 {Before Action is Executed}
@@ -2587,6 +2696,33 @@ false
 77A1632D-A03C-2BAD-69DA-B4F505814BFE,TrueValue
 No
 
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Active
+Yes
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,BackButton,subst
+1
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,CancelButton,subst
+1
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Caption,subst
+1
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Conditions
+{4 conditions}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Message,subst
+1
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,NextButton,subst
+1
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Subtitle,subst
+1
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Title,subst
+1
+
 7B499B80-8E44-E293-D8F8-4D432D18F438,CheckCondition
 {Before Action is Executed}
 
@@ -2612,7 +2748,7 @@ Back/Cancel
 1
 
 7B739727-CAD2-352F-6BDF-997460BCE5DD,Conditions
-{3 conditions}
+{4 conditions}
 
 7B739727-CAD2-352F-6BDF-997460BCE5DD,Message,subst
 1
@@ -2719,11 +2855,26 @@ false
 946568D4-03C8-C374-B7D6-B62D02A9F03D,String
 <%InstallStopped%>
 
+9653B5D7-1233-E94B-02C4-FA768770C488,CheckCondition
+{Before Action is Executed}
+
+9653B5D7-1233-E94B-02C4-FA768770C488,Filename
+{<%Temp%>\xyweb-1.0.0.exe}
+
 9A1C1229-BDB3-9144-EEE9-5A66346C6490,CheckCondition
 {Before Action is Executed}
 
 9A1C1229-BDB3-9144-EEE9-5A66346C6490,Filename
 <%ProgramExecutable%>
+
+9B4A3C75-D8C8-96C2-AAAD-7FD6D635C668,CheckCondition
+{Before Action is Executed}
+
+9B4A3C75-D8C8-96C2-AAAD-7FD6D635C668,Operator
+false
+
+9B4A3C75-D8C8-96C2-AAAD-7FD6D635C668,String
+<%LicenseAccepted%>
 
 9B5494DC-3731-DDE4-C115-F745768B0A27,CheckCondition
 {Before Action is Executed}
@@ -2817,6 +2968,9 @@ Installed
 
 AD068805-844C-4F34-52EA-710F8A6A8A52,VirtualText
 PyQt4Installed
+
+AE5EC57D-BC25-5301-1711-779C55C0B8C2,Platform
+Linux-x86
 
 AIX-ppc,Active
 No
@@ -2970,6 +3124,12 @@ C021C7FD-4D0C-52CA-5B33-24C4F6D2FCA3,Alias
 
 C097D3A3-F14B-32C0-01BA-127AF5DDCFEB,Alias
 {Setup Actions}
+
+C7FF042E-47FE-79FC-47DD-0276C590372C,Destination
+<%InstallDir%>
+
+C7FF042E-47FE-79FC-47DD-0276C590372C,Name
+Misc
 
 CD2720AF-2E6A-BF4B-9F72-CFFA6C17418F,CheckCondition
 {Before Action is Executed}
@@ -3135,6 +3295,9 @@ FB4F8F64-C6F6-4CD6-8EF1-A47355C85874,CheckCondition
 
 FB4F8F64-C6F6-4CD6-8EF1-A47355C85874,String
 <%GuiMode%>
+
+FB8D5C4B-499D-BACF-8806-D0CC84B079CF,Platform
+Windows
 
 FC4C0D94-70DA-0E0A-F4DB-346029224211,BackButton,subst
 1
@@ -3685,6 +3848,27 @@ ZipArchive,VirtualTextMap
 62FD1271-AD56-988E-BA6A-314F85760C98,Description
 {Zusätzliche PlugIns, die normalerweise weitere Python-Module erfordern}
 
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,BackButton
+{< <%Back%>}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,CancelButton
+<%Cancel%>
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Caption
+Überschrift
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Message
+Meldung
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,NextButton
+{<%Next%> >}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Subtitle
+Untertitel
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Title
+Titel
+
 B9585062-155D-7E14-E03E-E25DC9715921,Message
 <%UninstallingApplicationText%>
 
@@ -3698,6 +3882,288 @@ B9585062-155D-7E14-E03E-E25DC9715921,Message
 
 1DED3537-81A0-9C91-1DA5-1F333D175301,Message
 <%UninstallCompleteText%>
+
+23A94A82-9531-E6BE-90E0-01DEC17B6B78,Text
+{		    GNU GENERAL PUBLIC LICENSE
+		       Version 2, June 1991
+
+ Copyright (C) 1989, 1991 Free Software Foundation, Inc.,
+ 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+			    Preamble
+
+  The licenses for most software are designed to take away your
+freedom to share and change it.  By contrast, the GNU General Public
+License is intended to guarantee your freedom to share and change free
+software--to make sure the software is free for all its users.  This
+General Public License applies to most of the Free Software
+Foundation's software and to any other program whose authors commit to
+using it.  (Some other Free Software Foundation software is covered by
+the GNU Lesser General Public License instead.)  You can apply it to
+your programs, too.
+
+  When we speak of free software, we are referring to freedom, not
+price.  Our General Public Licenses are designed to make sure that you
+have the freedom to distribute copies of free software (and charge for
+this service if you wish), that you receive source code or can get it
+if you want it, that you can change the software or use pieces of it
+in new free programs; and that you know you can do these things.
+
+  To protect your rights, we need to make restrictions that forbid
+anyone to deny you these rights or to ask you to surrender the rights.
+These restrictions translate to certain responsibilities for you if you
+distribute copies of the software, or if you modify it.
+
+  For example, if you distribute copies of such a program, whether
+gratis or for a fee, you must give the recipients all the rights that
+you have.  You must make sure that they, too, receive or can get the
+source code.  And you must show them these terms so they know their
+rights.
+
+  We protect your rights with two steps: (1) copyright the software, and
+(2) offer you this license which gives you legal permission to copy,
+distribute and/or modify the software.
+
+  Also, for each author's protection and ours, we want to make certain
+that everyone understands that there is no warranty for this free
+software.  If the software is modified by someone else and passed on, we
+want its recipients to know that what they have is not the original, so
+that any problems introduced by others will not reflect on the original
+authors' reputations.
+
+  Finally, any free program is threatened constantly by software
+patents.  We wish to avoid the danger that redistributors of a free
+program will individually obtain patent licenses, in effect making the
+program proprietary.  To prevent this, we have made it clear that any
+patent must be licensed for everyone's free use or not licensed at all.
+
+  The precise terms and conditions for copying, distribution and
+modification follow.
+
+		    GNU GENERAL PUBLIC LICENSE
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+  0. This License applies to any program or other work which contains
+a notice placed by the copyright holder saying it may be distributed
+under the terms of this General Public License.  The "Program", below,
+refers to any such program or work, and a "work based on the Program"
+means either the Program or any derivative work under copyright law:
+that is to say, a work containing the Program or a portion of it,
+either verbatim or with modifications and/or translated into another
+language.  (Hereinafter, translation is included without limitation in
+the term "modification".)  Each licensee is addressed as "you".
+
+Activities other than copying, distribution and modification are not
+covered by this License; they are outside its scope.  The act of
+running the Program is not restricted, and the output from the Program
+is covered only if its contents constitute a work based on the
+Program (independent of having been made by running the Program).
+Whether that is true depends on what the Program does.
+
+  1. You may copy and distribute verbatim copies of the Program's
+source code as you receive it, in any medium, provided that you
+conspicuously and appropriately publish on each copy an appropriate
+copyright notice and disclaimer of warranty; keep intact all the
+notices that refer to this License and to the absence of any warranty;
+and give any other recipients of the Program a copy of this License
+along with the Program.
+
+You may charge a fee for the physical act of transferring a copy, and
+you may at your option offer warranty protection in exchange for a fee.
+
+  2. You may modify your copy or copies of the Program or any portion
+of it, thus forming a work based on the Program, and copy and
+distribute such modifications or work under the terms of Section 1
+above, provided that you also meet all of these conditions:
+
+    a) You must cause the modified files to carry prominent notices
+    stating that you changed the files and the date of any change.
+
+    b) You must cause any work that you distribute or publish, that in
+    whole or in part contains or is derived from the Program or any
+    part thereof, to be licensed as a whole at no charge to all third
+    parties under the terms of this License.
+
+    c) If the modified program normally reads commands interactively
+    when run, you must cause it, when started running for such
+    interactive use in the most ordinary way, to print or display an
+    announcement including an appropriate copyright notice and a
+    notice that there is no warranty (or else, saying that you provide
+    a warranty) and that users may redistribute the program under
+    these conditions, and telling the user how to view a copy of this
+    License.  (Exception: if the Program itself is interactive but
+    does not normally print such an announcement, your work based on
+    the Program is not required to print an announcement.)
+
+These requirements apply to the modified work as a whole.  If
+identifiable sections of that work are not derived from the Program,
+and can be reasonably considered independent and separate works in
+themselves, then this License, and its terms, do not apply to those
+sections when you distribute them as separate works.  But when you
+distribute the same sections as part of a whole which is a work based
+on the Program, the distribution of the whole must be on the terms of
+this License, whose permissions for other licensees extend to the
+entire whole, and thus to each and every part regardless of who wrote it.
+
+Thus, it is not the intent of this section to claim rights or contest
+your rights to work written entirely by you; rather, the intent is to
+exercise the right to control the distribution of derivative or
+collective works based on the Program.
+
+In addition, mere aggregation of another work not based on the Program
+with the Program (or with a work based on the Program) on a volume of
+a storage or distribution medium does not bring the other work under
+the scope of this License.
+
+  3. You may copy and distribute the Program (or a work based on it,
+under Section 2) in object code or executable form under the terms of
+Sections 1 and 2 above provided that you also do one of the following:
+
+    a) Accompany it with the complete corresponding machine-readable
+    source code, which must be distributed under the terms of Sections
+    1 and 2 above on a medium customarily used for software interchange; or,
+
+    b) Accompany it with a written offer, valid for at least three
+    years, to give any third party, for a charge no more than your
+    cost of physically performing source distribution, a complete
+    machine-readable copy of the corresponding source code, to be
+    distributed under the terms of Sections 1 and 2 above on a medium
+    customarily used for software interchange; or,
+
+    c) Accompany it with the information you received as to the offer
+    to distribute corresponding source code.  (This alternative is
+    allowed only for noncommercial distribution and only if you
+    received the program in object code or executable form with such
+    an offer, in accord with Subsection b above.)
+
+The source code for a work means the preferred form of the work for
+making modifications to it.  For an executable work, complete source
+code means all the source code for all modules it contains, plus any
+associated interface definition files, plus the scripts used to
+control compilation and installation of the executable.  However, as a
+special exception, the source code distributed need not include
+anything that is normally distributed (in either source or binary
+form) with the major components (compiler, kernel, and so on) of the
+operating system on which the executable runs, unless that component
+itself accompanies the executable.
+
+If distribution of executable or object code is made by offering
+access to copy from a designated place, then offering equivalent
+access to copy the source code from the same place counts as
+distribution of the source code, even though third parties are not
+compelled to copy the source along with the object code.
+
+  4. You may not copy, modify, sublicense, or distribute the Program
+except as expressly provided under this License.  Any attempt
+otherwise to copy, modify, sublicense or distribute the Program is
+void, and will automatically terminate your rights under this License.
+However, parties who have received copies, or rights, from you under
+this License will not have their licenses terminated so long as such
+parties remain in full compliance.
+
+  5. You are not required to accept this License, since you have not
+signed it.  However, nothing else grants you permission to modify or
+distribute the Program or its derivative works.  These actions are
+prohibited by law if you do not accept this License.  Therefore, by
+modifying or distributing the Program (or any work based on the
+Program), you indicate your acceptance of this License to do so, and
+all its terms and conditions for copying, distributing or modifying
+the Program or works based on it.
+
+  6. Each time you redistribute the Program (or any work based on the
+Program), the recipient automatically receives a license from the
+original licensor to copy, distribute or modify the Program subject to
+these terms and conditions.  You may not impose any further
+restrictions on the recipients' exercise of the rights granted herein.
+You are not responsible for enforcing compliance by third parties to
+this License.
+
+  7. If, as a consequence of a court judgment or allegation of patent
+infringement or for any other reason (not limited to patent issues),
+conditions are imposed on you (whether by court order, agreement or
+otherwise) that contradict the conditions of this License, they do not
+excuse you from the conditions of this License.  If you cannot
+distribute so as to satisfy simultaneously your obligations under this
+License and any other pertinent obligations, then as a consequence you
+may not distribute the Program at all.  For example, if a patent
+license would not permit royalty-free redistribution of the Program by
+all those who receive copies directly or indirectly through you, then
+the only way you could satisfy both it and this License would be to
+refrain entirely from distribution of the Program.
+
+If any portion of this section is held invalid or unenforceable under
+any particular circumstance, the balance of the section is intended to
+apply and the section as a whole is intended to apply in other
+circumstances.
+
+It is not the purpose of this section to induce you to infringe any
+patents or other property right claims or to contest validity of any
+such claims; this section has the sole purpose of protecting the
+integrity of the free software distribution system, which is
+implemented by public license practices.  Many people have made
+generous contributions to the wide range of software distributed
+through that system in reliance on consistent application of that
+system; it is up to the author/donor to decide if he or she is willing
+to distribute software through any other system and a licensee cannot
+impose that choice.
+
+This section is intended to make thoroughly clear what is believed to
+be a consequence of the rest of this License.
+
+  8. If the distribution and/or use of the Program is restricted in
+certain countries either by patents or by copyrighted interfaces, the
+original copyright holder who places the Program under this License
+may add an explicit geographical distribution limitation excluding
+those countries, so that distribution is permitted only in or among
+countries not thus excluded.  In such case, this License incorporates
+the limitation as if written in the body of this License.
+
+  9. The Free Software Foundation may publish revised and/or new versions
+of the General Public License from time to time.  Such new versions will
+be similar in spirit to the present version, but may differ in detail to
+address new problems or concerns.
+
+Each version is given a distinguishing version number.  If the Program
+specifies a version number of this License which applies to it and "any
+later version", you have the option of following the terms and conditions
+either of that version or of any later version published by the Free
+Software Foundation.  If the Program does not specify a version number of
+this License, you may choose any version ever published by the Free Software
+Foundation.
+
+  10. If you wish to incorporate parts of the Program into other free
+programs whose distribution conditions are different, write to the author
+to ask for permission.  For software which is copyrighted by the Free
+Software Foundation, write to the Free Software Foundation; we sometimes
+make exceptions for this.  Our decision will be guided by the two goals
+of preserving the free status of all derivatives of our free software and
+of promoting the sharing and reuse of software generally.
+
+			    NO WARRANTY
+
+  11. BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
+FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN
+OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
+PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
+OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS
+TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE
+PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,
+REPAIR OR CORRECTION.
+
+  12. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
+REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,
+INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING
+OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED
+TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY
+YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
+PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGES.
+
+		     END OF TERMS AND CONDITIONS}
 
 36B2DE03-65E3-1EAD-2B50-A57D01E9CD1A,Message
 <%UninstallStartupText%>
@@ -3759,17 +4225,38 @@ PyQt4-Version:	<%PyQt4Version%>}
 77A1632D-A03C-2BAD-69DA-B4F505814BFE,Title
 <%InstallApplicationText%>
 
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,BackButton
+{< <%Back%>}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,CancelButton
+<%Cancel%>
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Caption
+{Please install required versions of python and PyQt4!}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Message
+{SimuVis4 was written in the programming language Python using the Qt4 toolkit. To run SimuVis4 you need a python interpreter and the PyQt4 module in a recent version.
+
+Recommended way:  use python(x,y), a large package that contains all needed software to run SimuVis4 (and much, much more). When clicking Next an installer for python(x,y) starts that will download and install the packages from the web. Please install the "Basic" or "Full" version of python(x,y).
+
+Manual way: You may manually search, download and install several single packages. Please press Cancel, install the packages und restart the installation of SimuVis4.}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,NextButton
+{<%Next%> >}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Subtitle
+{Python and/or PyQt4 are not installed or too old}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Title
+{Packages missing!}
+
 7B739727-CAD2-352F-6BDF-997460BCE5DD,Caption
 {Please install required versions of python and PyQt4!}
 
 7B739727-CAD2-352F-6BDF-997460BCE5DD,Message
 {SimuVis4 was written in the programming language Python using the Qt4 toolkit. To run SimuVis4 you need a python interpreter and the PyQt4 module in a recent version.
 
-Linux:
-Use your package manager to install python and PyQt4.
-
-Windows:
-Please download and install the required packages.}
+Please use the package manager of your distribution to install python and PyQt4, then retry to install SimuVis4. }
 
 7B739727-CAD2-352F-6BDF-997460BCE5DD,Subtitle
 {Python and/or PyQt4 are not installed or too old}
@@ -3809,6 +4296,27 @@ E3E76824-563D-55CB-6FC6-5A290A107A62,Text
 48CF1A13-E808-67D8-8788-0C9E7A7E2FDD,Message
 <%InstallationCompleteText%>
 
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,BackButton
+{< <%Back%>}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,CancelButton
+<%Cancel%>
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Caption
+Leyenda
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Message
+Mensaje
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,NextButton
+{<%Next%> >}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Subtitle
+Subtítulo
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Title
+Título
+
 B9585062-155D-7E14-E03E-E25DC9715921,Message
 <%UninstallingApplicationText%>
 
@@ -3822,6 +4330,27 @@ B9585062-155D-7E14-E03E-E25DC9715921,Message
 
 48CF1A13-E808-67D8-8788-0C9E7A7E2FDD,Message
 <%InstallationCompleteText%>
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,BackButton
+{< <%Back%>}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,CancelButton
+<%Cancel%>
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Caption
+Légende
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Message
+Message
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,NextButton
+{<%Next%> >}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Subtitle
+Sous-titre
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Title
+Titre
 
 B9585062-155D-7E14-E03E-E25DC9715921,Message
 <%UninstallingApplicationText%>
@@ -3837,6 +4366,27 @@ B9585062-155D-7E14-E03E-E25DC9715921,Message
 48CF1A13-E808-67D8-8788-0C9E7A7E2FDD,Message
 <%InstallationCompleteText%>
 
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,BackButton
+{< <%Back%>}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,CancelButton
+<%Cancel%>
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Caption
+Leírás
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Message
+Üzenet
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,NextButton
+{<%Next%> >}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Subtitle
+Alcím
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Title
+Cím
+
 B9585062-155D-7E14-E03E-E25DC9715921,Message
 <%UninstallingApplicationText%>
 
@@ -3850,6 +4400,27 @@ B9585062-155D-7E14-E03E-E25DC9715921,Message
 
 48CF1A13-E808-67D8-8788-0C9E7A7E2FDD,Message
 <%InstallationCompleteText%>
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,BackButton
+{< <%Back%>}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,CancelButton
+<%Cancel%>
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Caption
+Didascalia
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Message
+Messaggio
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,NextButton
+{<%Next%> >}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Subtitle
+Sottotitolo
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Title
+Titolo
 
 B9585062-155D-7E14-E03E-E25DC9715921,Message
 <%UninstallingApplicationText%>
@@ -3865,6 +4436,27 @@ B9585062-155D-7E14-E03E-E25DC9715921,Message
 48CF1A13-E808-67D8-8788-0C9E7A7E2FDD,Message
 <%InstallationCompleteText%>
 
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,BackButton
+{< <%Back%>}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,CancelButton
+<%Cancel%>
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Caption
+Bijschrift
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Message
+Bericht
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,NextButton
+{<%Next%> >}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Subtitle
+Ondertitel
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Title
+Titel
+
 B9585062-155D-7E14-E03E-E25DC9715921,Message
 <%UninstallingApplicationText%>
 
@@ -3878,6 +4470,27 @@ B9585062-155D-7E14-E03E-E25DC9715921,Message
 
 48CF1A13-E808-67D8-8788-0C9E7A7E2FDD,Message
 <%InstallationCompleteText%>
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,BackButton
+{< <%Back%>}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,CancelButton
+<%Cancel%>
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Caption
+Nagłówek
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Message
+Wiadomość
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,NextButton
+{<%Next%> >}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Subtitle
+Podtytuł
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Title
+Tytuł
 
 B9585062-155D-7E14-E03E-E25DC9715921,Message
 <%UninstallingApplicationText%>
@@ -3893,8 +4506,52 @@ B9585062-155D-7E14-E03E-E25DC9715921,Message
 48CF1A13-E808-67D8-8788-0C9E7A7E2FDD,Message
 <%InstallationCompleteText%>
 
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,BackButton
+{< <%Back%>}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,CancelButton
+<%Cancel%>
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Caption
+Caption
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Message
+Mensagem
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,NextButton
+{<%Next%> >}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Subtitle
+Subtítulo
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Title
+Título
+
 B9585062-155D-7E14-E03E-E25DC9715921,Message
 <%UninstallingApplicationText%>
+
+}
+::msgcat::mcmset ru {
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,BackButton
+{< <%Back%>}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,CancelButton
+<%Cancel%>
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Caption
+Ïîäïèñü
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Message
+Ñîîáùåíèå
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,NextButton
+{<%Next%> >}
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Subtitle
+Ïîäçàãîëîâîê
+
+79AC5D90-5821-BDB7-B7C8-2A631E9FC08F,Title
+Çàãîëîâîê
 
 }
 
