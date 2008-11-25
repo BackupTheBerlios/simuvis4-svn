@@ -300,13 +300,15 @@ POSSIBILITY OF SUCH DAMAGES.
 {}
 
 3E035FE0-18B1-3BEC-B734-DF948C1118C2,Message
-{Python interpreter:	<%PythonExecutable%>
+{Dependency check passed:	<%PythonDepPassed%>
 
-Python version:	<%PythonVersion%>
+Python interpreter:	<%PythonExecutable%>
+
+Python version:	<%PythonVersion%>	(>=<%PythonVersionMin%> required)
 
 PyQt4-Modul:	<%PyQt4Installed%>
 
-PyQt4-Version:	<%PyQt4Version%>}
+PyQt4-Version:	<%PyQt4Version%>	(>=<%PyQt4VersionMin%> required)}
 
 3E035FE0-18B1-3BEC-B734-DF948C1118C2,Subtitle
 {Checking for Python and PyQt4}
@@ -379,7 +381,9 @@ Manual way: You may manually search, download and install several single package
 {Please install required versions of python and PyQt4!}
 
 7B739727-CAD2-352F-6BDF-997460BCE5DD,Message
-{SimuVis4 was written in the programming language Python using the Qt4 toolkit. To run SimuVis4 you need a python interpreter and the PyQt4 module in a recent version.
+{<%PythonDepPassed%>
+SimuVis4 was written in the programming language Python using the 
+Qt4 toolkit. To run SimuVis4 you need a python interpreter and the PyQt4 module in a recent version.
 
 Please use the package manager of your distribution to install python and PyQt4, then retry to install SimuVis4. }
 
