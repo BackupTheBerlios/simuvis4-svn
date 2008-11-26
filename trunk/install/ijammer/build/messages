@@ -1,4 +1,7 @@
 ::msgcat::mcmset en {
+132AD569-0F64-074E-9403-B3839B1C4AFE,Message
+{Do you want to start the installer for the python(x,y) distribution?}
+
 1886C064-E676-CB2C-110E-6999253C4EE9,Description
 <%ProgramFilesDescription%>
 
@@ -402,6 +405,9 @@ Please use the package manager of your distribution to install python and PyQt4,
 8E632CE9-1591-E3A3-F825-F623C7E701FF,Text
 <%ViewReadmeText%>
 
+A114EA48-88BA-91AC-9258-42672613CC15,Description
+{Misc. files - usually not needed}
+
 A286933D-60CA-317A-2FC5-2F5D98BD38D2,Text
 <%CreateDesktopShortcutText%>
 
@@ -563,6 +569,12 @@ CustomTextPane1,Text
 
 CustomTextPane1,Title
 Title
+
+D19935AC-18DD-BFB6-2A80-0A827841F3C3,Message
+{Should I launch a package manager (kpackage) now?}
+
+D19935AC-18DD-BFB6-2A80-0A827841F3C3,Title
+{Start package manager?}
 
 D2AA0BFF-4338-DFBC-EAE2-DC926670A2E8,Description
 <%TypicalInstallDescription%>

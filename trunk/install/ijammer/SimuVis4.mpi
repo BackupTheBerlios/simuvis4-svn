@@ -51,7 +51,7 @@ DefaultLanguage
 English
 
 Ext
-{}
+.exe
 
 ExtractSolidArchivesOnStartup
 No
@@ -1888,8 +1888,9 @@ File ::8774FA56-6679-854C-E31D-2C7F9B25C28B -name Objects.pyc -parent FE4375AB-C
 File ::7414FDF8-E766-F957-5829-D653E7A6C6EA -name QVTKRenderWindowInteractor.pyc -parent FE4375AB-C5F9-2952-BFC0-1E08CB8639D8
 File ::6EE60058-37CC-CCCC-A696-01B21D698614 -name VtkWidget.pyc -parent FE4375AB-C5F9-2952-BFC0-1E08CB8639D8
 File ::5FE5E4CB-10A2-BD63-BAFB-C2A2A59E3044 -name VtkWindow.pyc -parent FE4375AB-C5F9-2952-BFC0-1E08CB8639D8
-FileGroup ::C7FF042E-47FE-79FC-47DD-0276C590372C -setup Install -active Yes -platforms {AIX-ppc FreeBSD-4-x86 FreeBSD-x86 HPUX-hppa Linux-x86 Solaris-sparc Windows TarArchive ZipArchive} -name Misc -parent FileGroups
-File ::CFC502B5-33D6-D2EA-2F95-0D83FE7A0871 -name ../xyweb-1.0.0.exe -parent C7FF042E-47FE-79FC-47DD-0276C590372C
+FileGroup ::C7FF042E-47FE-79FC-47DD-0276C590372C -setup Install -active Yes -platforms {Linux-x86 Windows} -name Misc -parent FileGroups
+File ::AD859667-8FE9-AEDF-AD43-22832F05C24E -name ../xyweb-1.0.0.exe -alias pythonxy-installer -parent C7FF042E-47FE-79FC-47DD-0276C590372C
+Component ::A114EA48-88BA-91AC-9258-42672613CC15 -setup Install -active Yes -platforms {AIX-ppc FreeBSD-4-x86 FreeBSD-x86 HPUX-hppa Linux-x86 Solaris-sparc Windows} -name Misc -parent Components
 Component ::5BD9876D-5E64-2DF8-D0C4-6C7F22C3DD9B -setup Install -active Yes -platforms {AIX-ppc FreeBSD-4-x86 FreeBSD-x86 HPUX-hppa Linux-x86 MacOS-X Solaris-sparc Windows} -name {Main Application} -parent Components
 Component ::62FD1271-AD56-988E-BA6A-314F85760C98 -setup Install -active Yes -platforms {AIX-ppc FreeBSD-4-x86 FreeBSD-x86 HPUX-hppa Linux-x86 MacOS-X Solaris-sparc Windows} -name {Aditional PlugIns} -parent Components
 SetupType ::D2AA0BFF-4338-DFBC-EAE2-DC926670A2E8 -setup Install -active Yes -platforms {Linux-x86 MacOS-X} -name Typical -parent SetupTypes
@@ -1902,17 +1903,20 @@ Condition 326E5BD3-91FA-4128-7839-EDE105D068E7 -active Yes -parent 23229939-5329
 Condition 9B4A3C75-D8C8-96C2-AAAD-7FD6D635C668 -active Yes -parent 23229939-5329-AF91-2176-C006A9271F07 -title {String Is Condition} -component StringIsCondition -TreeObject::id 9B4A3C75-D8C8-96C2-AAAD-7FD6D635C668
 InstallComponent 3E035FE0-18B1-3BEC-B734-DF948C1118C2 -setup Install -type pane -title DepCheck -component CustomBlankPane2 -command reorder -alias DepCheck -active Yes -parent StandardInstall
 InstallComponent 5D2567F5-8D32-BDB2-6FCF-FC39AA9ABE31 -setup Install -type action -title DepCheckExec -component ExecuteAction -active Yes -parent 3E035FE0-18B1-3BEC-B734-DF948C1118C2
-InstallComponent 947E8E00-993C-0B0D-3DC1-92FF6E19738A -setup Install -type action -conditions {AFC3D1C2-0C3F-4194-8083-2AE5E7E05695 D23E25E4-CCA3-9E93-EFD1-DA5A9D24AD5A E06C5D77-A3A8-A8AF-F4FC-D883B42C9E88} -title {Set Virtual Text} -component SetVirtualText -command reorder -active Yes -parent 3E035FE0-18B1-3BEC-B734-DF948C1118C2
+InstallComponent 947E8E00-993C-0B0D-3DC1-92FF6E19738A -setup Install -type action -conditions {AFC3D1C2-0C3F-4194-8083-2AE5E7E05695 D23E25E4-CCA3-9E93-EFD1-DA5A9D24AD5A E06C5D77-A3A8-A8AF-F4FC-D883B42C9E88} -title {Set Virtual Text} -component SetVirtualText -command insert -active Yes -parent 3E035FE0-18B1-3BEC-B734-DF948C1118C2
 Condition AFC3D1C2-0C3F-4194-8083-2AE5E7E05695 -active Yes -parent 947E8E00-993C-0B0D-3DC1-92FF6E19738A -title {Script Condition} -component ScriptCondition -TreeObject::id AFC3D1C2-0C3F-4194-8083-2AE5E7E05695
 Condition D23E25E4-CCA3-9E93-EFD1-DA5A9D24AD5A -active Yes -parent 947E8E00-993C-0B0D-3DC1-92FF6E19738A -title {String Equal Condition} -component StringEqualCondition -TreeObject::id D23E25E4-CCA3-9E93-EFD1-DA5A9D24AD5A
 Condition E06C5D77-A3A8-A8AF-F4FC-D883B42C9E88 -active Yes -parent 947E8E00-993C-0B0D-3DC1-92FF6E19738A -title {Script Condition} -component ScriptCondition -TreeObject::id E06C5D77-A3A8-A8AF-F4FC-D883B42C9E88
-InstallComponent 7B739727-CAD2-352F-6BDF-997460BCE5DD -setup Install -type pane -conditions {AE5EC57D-BC25-5301-1711-779C55C0B8C2 C79AF959-63D7-B2B9-A8BE-0688BDAC55AE} -title DepCheckFailedLinux -component CustomBlankPane2 -command reorder -active Yes -parent StandardInstall
+InstallComponent 7B739727-CAD2-352F-6BDF-997460BCE5DD -setup Install -type pane -conditions {AE5EC57D-BC25-5301-1711-779C55C0B8C2 C79AF959-63D7-B2B9-A8BE-0688BDAC55AE} -title DepCheckFailedLinux -component CustomBlankPane2 -command insert -active Yes -parent StandardInstall
 Condition AE5EC57D-BC25-5301-1711-779C55C0B8C2 -active Yes -parent 7B739727-CAD2-352F-6BDF-997460BCE5DD -title {Platform Condition} -component PlatformCondition -TreeObject::id AE5EC57D-BC25-5301-1711-779C55C0B8C2
 Condition C79AF959-63D7-B2B9-A8BE-0688BDAC55AE -active Yes -parent 7B739727-CAD2-352F-6BDF-997460BCE5DD -title {String Equal Condition} -component StringEqualCondition -TreeObject::id C79AF959-63D7-B2B9-A8BE-0688BDAC55AE
-InstallComponent 79AC5D90-5821-BDB7-B7C8-2A631E9FC08F -setup Install -type pane -conditions {FB8D5C4B-499D-BACF-8806-D0CC84B079CF 75EB0B6B-C825-B380-91E0-2D868CABFF9E} -title DepCheckFailedWindows -component CustomBlankPane2 -command reorder -active Yes -parent StandardInstall
+InstallComponent 3A8AD0E4-B58A-6680-A9C7-70B8E397F69E -setup Install -type action -conditions D19935AC-18DD-BFB6-2A80-0A827841F3C3 -title {Execute External Program} -component ExecuteExternalProgram -command reorder -active Yes -parent 7B739727-CAD2-352F-6BDF-997460BCE5DD
+Condition D19935AC-18DD-BFB6-2A80-0A827841F3C3 -active Yes -parent 3A8AD0E4-B58A-6680-A9C7-70B8E397F69E -title {Ask Yes or No} -component AskYesOrNo -TreeObject::id D19935AC-18DD-BFB6-2A80-0A827841F3C3
+InstallComponent 79AC5D90-5821-BDB7-B7C8-2A631E9FC08F -setup Install -type pane -conditions {FB8D5C4B-499D-BACF-8806-D0CC84B079CF 75EB0B6B-C825-B380-91E0-2D868CABFF9E} -title DepCheckFailedWindows -component CustomBlankPane2 -command insert -active Yes -parent StandardInstall
 Condition FB8D5C4B-499D-BACF-8806-D0CC84B079CF -active Yes -parent 79AC5D90-5821-BDB7-B7C8-2A631E9FC08F -title {Platform Condition} -component PlatformCondition -TreeObject::id FB8D5C4B-499D-BACF-8806-D0CC84B079CF
 Condition 75EB0B6B-C825-B380-91E0-2D868CABFF9E -active Yes -parent 79AC5D90-5821-BDB7-B7C8-2A631E9FC08F -title {String Equal Condition} -component StringEqualCondition -TreeObject::id 75EB0B6B-C825-B380-91E0-2D868CABFF9E
-InstallComponent 052E6B8B-2B95-8715-AF0A-8E7671DD617F -setup Install -type action -title {Unpack Stored File} -component UnpackStoredFile -active Yes -parent 79AC5D90-5821-BDB7-B7C8-2A631E9FC08F
+InstallComponent 052E6B8B-2B95-8715-AF0A-8E7671DD617F -setup Install -type action -conditions 132AD569-0F64-074E-9403-B3839B1C4AFE -title {Unpack Stored File} -component UnpackStoredFile -command reorder -active Yes -parent 79AC5D90-5821-BDB7-B7C8-2A631E9FC08F
+Condition 132AD569-0F64-074E-9403-B3839B1C4AFE -active Yes -parent 052E6B8B-2B95-8715-AF0A-8E7671DD617F -title {Ask Yes or No} -component AskYesOrNo -TreeObject::id 132AD569-0F64-074E-9403-B3839B1C4AFE
 InstallComponent 434D2971-C52F-E49B-3B5D-9A9D31B726F2 -setup Install -type action -conditions 9653B5D7-1233-E94B-02C4-FA768770C488 -title {Launch File} -component LaunchFile -command insert -active Yes -parent 79AC5D90-5821-BDB7-B7C8-2A631E9FC08F
 Condition 9653B5D7-1233-E94B-02C4-FA768770C488 -active Yes -parent 434D2971-C52F-E49B-3B5D-9A9D31B726F2 -title {File Exists Condition} -component FileExistsCondition -TreeObject::id 9653B5D7-1233-E94B-02C4-FA768770C488
 InstallComponent 177721BE-66A5-A242-DADE-E629997C8585 -setup Install -type pane -conditions {0649A9BF-8C40-229B-73F3-AA8C360DA482 71E114AA-CC88-2325-4B16-330E3CDD99EA} -title {Select Destination} -component SelectDestination -command insert -active Yes -parent StandardInstall
@@ -1949,7 +1953,7 @@ InstallComponent 1B585234-8505-D59F-D759-C9BE894AF1E7 -setup Install -type actio
 InstallComponent 5E602D06-28A1-29AE-B6EF-E0ADC685F59B -setup Install -type action -title {Execute Action} -component ExecuteAction -active Yes -parent D6791390-434F-F7E6-B6FC-A8C3BAE2BB71
 InstallComponent 19B0B2B7-0865-B892-8851-345E7656BFAA -setup Install -type action -title {Move Forward} -component MoveForward -active Yes -parent D6791390-434F-F7E6-B6FC-A8C3BAE2BB71
 InstallComponent 00F6B2ED-75D3-102B-DF76-845D93FFCC63 -setup Install -type pane -title {Setup Complete} -component SetupComplete -active Yes -parent DefaultInstall
-InstallComponent 8E632CE9-1591-E3A3-F825-F623C7E701FF -setup Install -type action -conditions {B1FD6436-171D-B185-29B6-729463BF3FE3 2A6FB5F4-D70E-66BB-87DD-5E2ADAA0FBF3} -title {View Readme Checkbutton} -component AddWidget -command insert -active Yes -parent 00F6B2ED-75D3-102B-DF76-845D93FFCC63
+InstallComponent 8E632CE9-1591-E3A3-F825-F623C7E701FF -setup Install -type action -conditions {B1FD6436-171D-B185-29B6-729463BF3FE3 2A6FB5F4-D70E-66BB-87DD-5E2ADAA0FBF3} -title {View Readme Checkbutton} -component AddWidget -command reorder -active Yes -parent 00F6B2ED-75D3-102B-DF76-845D93FFCC63
 Condition B1FD6436-171D-B185-29B6-729463BF3FE3 -active Yes -parent 8E632CE9-1591-E3A3-F825-F623C7E701FF -title {File Exists Condition} -component FileExistsCondition -TreeObject::id B1FD6436-171D-B185-29B6-729463BF3FE3
 Condition 2A6FB5F4-D70E-66BB-87DD-5E2ADAA0FBF3 -active Yes -parent 8E632CE9-1591-E3A3-F825-F623C7E701FF -title {String Is Condition} -component StringIsCondition -TreeObject::id 2A6FB5F4-D70E-66BB-87DD-5E2ADAA0FBF3
 InstallComponent 5B5D589A-8346-EB2E-BB65-2A3F88CAF02A -setup Install -type action -conditions {9A1C1229-BDB3-9144-EEE9-5A66346C6490 A629035C-143E-3820-4FC1-72D974B6A3B0} -title {Launch Application Checkbutton} -component AddWidget -command insert -active Yes -parent 00F6B2ED-75D3-102B-DF76-845D93FFCC63
@@ -2085,13 +2089,16 @@ No
 No
 
 052E6B8B-2B95-8715-AF0A-8E7671DD617F,Conditions
-{0 conditions}
+{1 condition}
 
 052E6B8B-2B95-8715-AF0A-8E7671DD617F,ExecuteAction
-{After Pane is Finished}
+{Before Next Pane is Displayed}
 
 052E6B8B-2B95-8715-AF0A-8E7671DD617F,FileID
-CFC502B5-33D6-D2EA-2F95-0D83FE7A0871
+pythonxy-installer
+
+052E6B8B-2B95-8715-AF0A-8E7671DD617F,TargetFilename
+xyweb-1.0.0.exe
 
 056CBA63-224D-BE60-8EB6-8F3FB81528F8,Conditions
 {0 conditions}
@@ -2152,6 +2159,15 @@ PythonVersion
 
 12AA2E99-075D-AF02-845B-D4F86302F7EC,Platform
 Windows
+
+132AD569-0F64-074E-9403-B3839B1C4AFE,CheckCondition
+{Before Action is Executed}
+
+132AD569-0F64-074E-9403-B3839B1C4AFE,Message,subst
+1
+
+132AD569-0F64-074E-9403-B3839B1C4AFE,Title,subst
+1
 
 16C635D2-CA46-98C0-BC53-6C68DC8EBF67,Destination
 <%InstallDir%>
@@ -2393,6 +2409,18 @@ Yes
 36B2DE03-65E3-1EAD-2B50-A57D01E9CD1A,TrueValue
 No
 
+3A8AD0E4-B58A-6680-A9C7-70B8E397F69E,Conditions
+{1 condition}
+
+3A8AD0E4-B58A-6680-A9C7-70B8E397F69E,ExecuteAction
+{Before Next Pane is Displayed}
+
+3A8AD0E4-B58A-6680-A9C7-70B8E397F69E,ExecuteAsRoot
+Yes
+
+3A8AD0E4-B58A-6680-A9C7-70B8E397F69E,ProgramCommandLine
+kpackage
+
 3AA0DED0-28B6-001F-A703-F1E59439B7E4,Prompt
 <%ConsoleSelectDestinationText%>
 
@@ -2463,7 +2491,7 @@ false
 {1 condition}
 
 434D2971-C52F-E49B-3B5D-9A9D31B726F2,ExecuteAction
-{After Pane is Finished}
+{Before Next Pane is Displayed}
 
 434D2971-C52F-E49B-3B5D-9A9D31B726F2,FileName
 {<%Temp%>\xyweb-1.0.0.exe}
@@ -2822,9 +2850,6 @@ Yes
 7B739727-CAD2-352F-6BDF-997460BCE5DD,BackButton,subst
 1
 
-7B739727-CAD2-352F-6BDF-997460BCE5DD,Buttons
-Back/Cancel
-
 7B739727-CAD2-352F-6BDF-997460BCE5DD,CancelButton,subst
 1
 
@@ -2909,6 +2934,9 @@ PyQt4Missing
 8E632CE9-1591-E3A3-F825-F623C7E701FF,Background
 white
 
+8E632CE9-1591-E3A3-F825-F623C7E701FF,Conditions
+{2 conditions}
+
 8E632CE9-1591-E3A3-F825-F623C7E701FF,Text,subst
 1
 
@@ -2983,6 +3011,18 @@ false
 
 9F5CAC16-B942-2DB1-1873-D5346AE6A9C4,WorkingDirectory
 <%InstallDir%>
+
+A114EA48-88BA-91AC-9258-42672613CC15,Description,subst
+1
+
+A114EA48-88BA-91AC-9258-42672613CC15,DisplayName,subst
+1
+
+A114EA48-88BA-91AC-9258-42672613CC15,FileGroups
+C7FF042E-47FE-79FC-47DD-0276C590372C
+
+A114EA48-88BA-91AC-9258-42672613CC15,Name
+Misc
 
 A12993C4-ED5B-5846-B72F-67C4C5E08FF8,CheckCondition
 {Before Action is Executed}
@@ -3230,6 +3270,9 @@ No
 C7FF042E-47FE-79FC-47DD-0276C590372C,Destination
 <%InstallDir%>
 
+C7FF042E-47FE-79FC-47DD-0276C590372C,FileSize
+401123
+
 C7FF042E-47FE-79FC-47DD-0276C590372C,Name
 Misc
 
@@ -3238,6 +3281,15 @@ CD2720AF-2E6A-BF4B-9F72-CFFA6C17418F,CheckCondition
 
 CD2720AF-2E6A-BF4B-9F72-CFFA6C17418F,Filename
 <%ProgramExecutable%>
+
+D19935AC-18DD-BFB6-2A80-0A827841F3C3,CheckCondition
+{Before Action is Executed}
+
+D19935AC-18DD-BFB6-2A80-0A827841F3C3,Message,subst
+1
+
+D19935AC-18DD-BFB6-2A80-0A827841F3C3,Title,subst
+1
 
 D23E25E4-CCA3-9E93-EFD1-DA5A9D24AD5A,CheckCondition
 {Before Action is Executed}
@@ -3994,6 +4046,9 @@ B9585062-155D-7E14-E03E-E25DC9715921,Message
 
 }
 ::msgcat::mcmset en {
+132AD569-0F64-074E-9403-B3839B1C4AFE,Message
+{Do you want to start the installer for the python(x,y) distribution?}
+
 1886C064-E676-CB2C-110E-6999253C4EE9,Description
 <%ProgramFilesDescription%>
 
@@ -4397,11 +4452,20 @@ Please use the package manager of your distribution to install python and PyQt4,
 8E632CE9-1591-E3A3-F825-F623C7E701FF,Text
 <%ViewReadmeText%>
 
+A114EA48-88BA-91AC-9258-42672613CC15,Description
+{Misc. files - usually not needed}
+
 A286933D-60CA-317A-2FC5-2F5D98BD38D2,Text
 <%CreateDesktopShortcutText%>
 
 B9585062-155D-7E14-E03E-E25DC9715921,Message
 <%UninstallingApplicationText%>
+
+D19935AC-18DD-BFB6-2A80-0A827841F3C3,Message
+{Should I launch a package manager (kpackage) now?}
+
+D19935AC-18DD-BFB6-2A80-0A827841F3C3,Title
+{Start package manager?}
 
 D2AA0BFF-4338-DFBC-EAE2-DC926670A2E8,Description
 <%TypicalInstallDescription%>

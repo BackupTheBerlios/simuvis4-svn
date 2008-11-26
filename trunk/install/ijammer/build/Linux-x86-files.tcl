@@ -1,4 +1,5 @@
 proc ::InstallJammer::InitFiles {} {
+    File ::AD859667-8FE9-AEDF-AD43-22832F05C24E -name xyweb-1.0.0.exe -parent C7FF042E-47FE-79FC-47DD-0276C590372C -alias pythonxy-installer -directory <%InstallDir%> -size 401123 -mtime 1227625813 -permissions 00644 -filemethod 0
     File ::2C26FFD3-D180-A094-A844-00BE1D9C60A3 -name SimuVis4 -parent 16C635D2-CA46-98C0-BC53-6C68DC8EBF67 -type dir -directory <%InstallDir%>/SimuVis4 -size 4096 -mtime 1227516353 -permissions 040755 -filemethod 0
     File ::8D2DE7C3-9634-2CF9-5623-C138F140FDA9 -name setup.py -parent 16C635D2-CA46-98C0-BC53-6C68DC8EBF67 -directory <%InstallDir%>/SimuVis4 -size 4984 -mtime 1227516353 -permissions 00755 -filemethod 0
     File ::3B353EB6-EC2C-554C-2102-431F29A05485 -name .devel -parent 16C635D2-CA46-98C0-BC53-6C68DC8EBF67 -type dir -directory <%InstallDir%>/SimuVis4/.devel -size 4096 -mtime 1227516353 -permissions 040755 -filemethod 0

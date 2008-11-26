@@ -1,3 +1,4 @@
+/home/joerg/Devel/simuvis/install/xyweb-1.0.0.exe AD859667-8FE9-AEDF-AD43-22832F05C24E zlib
 /home/joerg/Devel/simuvis/SimuVis4/setup.py 8D2DE7C3-9634-2CF9-5623-C138F140FDA9 zlib
 /home/joerg/Devel/simuvis/SimuVis4/.devel/clear.sh 6C806467-C76F-BDC2-B0E4-F490070E30C2 zlib
 /home/joerg/Devel/simuvis/SimuVis4/.devel/mark_svn_rev.py 5CF57188-50F9-B95D-8B01-FE8A800EB22C zlib
