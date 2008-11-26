@@ -3,36 +3,6 @@
 <context>
     <name>MatPlot</name>
     <message>
-        <location filename="__init__.py" line="39"/>
-        <source>The MatPlot plugin enables matplotlib/pylab to be
-used from within SimuVis4. Unfortinately some manual
-intervention is necessary for this to work. This has
-not been done on your system.
-
-The following step will require write access to
-the matplotlib folder. Make sure you have sufficient
-rights (become root on a linux system).
-
-Please run the Script configure_matplotlib.py
-(in %s)!
-This will make two small changes to the installed
-matplotlib files and will symlink or copy the file
-backend_sv4agg.py to matplotlib.
-
-After a restart of SimuVis4 you should be able to
-use matplotlib/pylab in the python console (if the
-PythonConsole plugin is active) or in scripts.</source>
-        <translation>Das MatPlot-Plugin ermöglicht den Zugriff auf matplotlib/pylabaus SimuVis4 heraus. Leider muß dafür eine Änderung anmatplotlib durchgeführt werden. Dies ist auf diesemSystem noch nicht geschehen.
-Der folgende Schritt benötigt Schreibrechte im matplotlib-Ordner.Stelle sicher, dass Du ausreichende Benutzerrechte besitzt (z.B. eine root-shell auf einem Linux-System).
-Bitte starte das Skript configure_matplotlib.py(im Ordner %s).Es werden dabei zwei der installierten Dateien von matplotlibleicht geändert und eine Kopie oder ein Symlink der Datei backend_sv4agg.py angelegt.
-Nach einem Neustart von SimuVis4 solltest Du matplot/pylabin der PythonConsole (falls installiert) oder in Skripten nutzen können.</translation>
-    </message>
-    <message>
-        <location filename="__init__.py" line="44"/>
-        <source>MatPlot plugin configuration info</source>
-        <translation>Informationen zur Konfiguration vom MatPlot-Plugin</translation>
-    </message>
-    <message>
         <location filename="backend_sv4agg.py" line="146"/>
         <source>Figure %d</source>
         <translation>Diagramm %d</translation>
@@ -133,7 +103,7 @@ Nach einem Neustart von SimuVis4 solltest Du matplot/pylabin der PythonConsole (
         <translation>Drucke das Diagramm</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="63"/>
+        <location filename="__init__.py" line="35"/>
         <source>MatPlot: need matplotlib version between %s and %s, but found %s</source>
         <translation>MatPlot: matplotlib in Version zwischen %s und %s benötigt, vorhanden ist %s</translation>
     </message>
@@ -158,12 +128,12 @@ Nach einem Neustart von SimuVis4 solltest Du matplot/pylabin der PythonConsole (
         <translation>Öffne einen Hilfebrowser</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="81"/>
+        <location filename="__init__.py" line="53"/>
         <source>&amp;MatPlot/PyLab Test</source>
         <translation>&amp;MatPlot/PyLab Test</translation>
     </message>
     <message>
-        <location filename="__init__.py" line="82"/>
+        <location filename="__init__.py" line="54"/>
         <source>Show a matplotlib/pylab test window</source>
         <translation>Zeige ein matplotlib/pylab-Testfenster</translation>
     </message>
