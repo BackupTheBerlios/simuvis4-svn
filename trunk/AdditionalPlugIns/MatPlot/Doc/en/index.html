@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ascii" />
-<meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
 <title></title>
 <style type="text/css">
 
@@ -147,31 +147,28 @@ code, tt {
 </head>
 <body>
 <div class="document">
-<p>Go to: <a class="reference" href="/">Index</a> | <a class="reference" href="http://simuvis.de/">Homepage</a></p>
+
+
+<p>Go to: <a class="reference external" href="/">Index</a> | <a class="reference external" href="http://simuvis.de/">Homepage</a></p>
 <hr class="docutils" />
-<div class="section">
-<h1><a id="plugin-matplot" name="plugin-matplot">PlugIn: MatPlot</a></h1>
-<p>The <a class="reference" href="/simuvis/plugin.html">PlugIn</a> MatPlot provides support for the matplotlib in SimuVis. There's a special
+<div class="section" id="plugin-matplot">
+<h1>PlugIn: MatPlot</h1>
+<p>The <a class="reference external" href="/simuvis/plugin.html">PlugIn</a> MatPlot provides support for the matplotlib in SimuVis. There's a special
 matplotlib backend which opens plot windows as MDI subwindows in SimuVis. The window
 appearance was choosen to be as close as possible to the other backends. In fact,
 the SV4Agg backend is a slightly modified version of the Qt4Agg backend shipped
 with matplotlib.</p>
-<div class="section">
-<h2><a id="using-pylab" name="using-pylab">Using pylab</a></h2>
-<p>Unfortunately this backend can't be added dynamically to be used with pylab. Some
-matplotlib files need to be changed and one file needs to be copied. There's a
-helper script to ease this process (<tt class="docutils literal"><span class="pre">configure_matplotlib.py</span></tt> in the plugin folder).</p>
-<p>In combination with the <a class="reference" href="/plugin/PythonConsole/index.html">PythonConsole</a>, <a class="reference" href="/plugin/TextEditor/index.html">TextEditor</a> or <a class="reference" href="/plugin/RemoteControl/index.html">RemoteControl</a> in combination
+<div class="section" id="using-pylab">
+<h2>Using pylab</h2>
+<p>In combination with the <a class="reference external" href="/plugin/PythonConsole/index.html">PythonConsole</a>, <a class="reference external" href="/plugin/TextEditor/index.html">TextEditor</a> or <a class="reference external" href="/plugin/RemoteControl/index.html">RemoteControl</a> in combination
 with your favourite text editor you may conveniently use the pylab interface to
 matplotlib. You should use the backend 'SV4Agg' for interactice matplot sessions.
-If you enable this feature in the configuration, <tt class="docutils literal"><span class="pre">matplotlib.use('SV4Agg'</span></tt>) is set
-by default in SimuVis4. If this is not possible because your matplotlib installation
-was not modified, a message dialog is shown (but can be disabled).</p>
+If you enable this feature in the configuration, <tt class="docutils literal"><span class="pre">matplotlib.use('module://backend_sv4agg'</span></tt>) is set
+by default in SimuVis4.</p>
 </div>
-<div class="section">
-<h2><a id="using-matplotlib" name="using-matplotlib">Using matplotlib</a></h2>
-<p>You may use the backend manually, even if you did not change the matplot installation.
-You will get the classes FigureManagerSV4, NavigationToolbar2SV4 and FigureCanvasSV4
+<div class="section" id="using-matplotlib">
+<h2>Using matplotlib</h2>
+<p>You will get the classes FigureManagerSV4, NavigationToolbar2SV4 and FigureCanvasSV4
 from the plugin:</p>
 <pre class="literal-block">
 ...
@@ -180,12 +177,12 @@ canvas = mpl_backend.FigureCanvasSV4(figure)
 ...
 </pre>
 </div>
-<div class="section">
-<h2><a id="versions" name="versions">Versions</a></h2>
-<p>This plugin is tested with matplotlib 0.90.1 and 0.91.1 on linux and windows.</p>
+<div class="section" id="versions">
+<h2>Versions</h2>
+<p>This plugin is tested with matplotlib 0.98.3 on linux and windows.</p>
 </div>
-<div class="section">
-<h2><a id="known-problems" name="known-problems">Known Problems</a></h2>
+<div class="section" id="known-problems">
+<h2>Known Problems</h2>
 <ul class="simple">
 <li>Printing with CTRL-P or the print button will save the figure to an SVG file
 and load it for rendering. This may result in figures missing some contents but gives
@@ -193,14 +190,13 @@ you the well-known print dialog. If the result is bad, please save a figure
 to a PDF file and print it manually.</li>
 <li>pylab.show() will show all existing figures. If some module used matlab/pylab
 to render but didn't show the figures yet, calling <tt class="docutils literal"><span class="pre">pylab.show()</span></tt> may popup several
-(maybe empty) windows. You may get this with <a class="reference" href="/plugin/DataStorageBrowser/index.html">DataStorageBrowser</a>.</li>
-<li>In matplotlib 0.91.1 it seems impossible to switch backends with <tt class="docutils literal"><span class="pre">matplotlib.use(backend)</span></tt>.</li>
-<li><tt class="docutils literal"><span class="pre">set_default_backend</span></tt> must not be set when using the <a class="reference" href="/plugin/DataStorageBrowser/index.html">DataStorageBrowser</a> plugin!</li>
+(maybe empty) windows. You may get this with <a class="reference external" href="/plugin/DataStorageBrowser/index.html">DataStorageBrowser</a>.</li>
+<li><tt class="docutils literal"><span class="pre">set_default_backend</span></tt> must not be set when using the <a class="reference external" href="/plugin/DataStorageBrowser/index.html">DataStorageBrowser</a> plugin!</li>
 </ul>
 </div>
-<div class="section">
-<h2><a id="configuration" name="configuration">Configuration</a></h2>
-<p>In a <a class="reference" href="/simuvis/config.html">configfile</a> you may use the following items:</p>
+<div class="section" id="configuration">
+<h2>Configuration</h2>
+<p>In a <a class="reference external" href="/simuvis/config.html">configfile</a> you may use the following items:</p>
 <pre class="literal-block">
 [matplot]
 
@@ -217,18 +213,18 @@ zoom_step_factor = 0.2
 mouse_wheel_step = 15
 </pre>
 </div>
-<div class="section">
-<h2><a id="interaction" name="interaction">Interaction</a></h2>
+<div class="section" id="interaction">
+<h2>Interaction</h2>
 <img alt="Screenshot1.png" src="Screenshot1.png" />
 <p>The first seven buttons in the toolbar are identical to the buttons in most interactive
 matplotlib backends. Two additional buttons provide the following functions:</p>
-<div class="section">
-<h3><a id="printing" name="printing">Printing</a></h3>
+<div class="section" id="printing">
+<h3>Printing</h3>
 <p>The Print button or CTRL-P opens the well known print dialog, which lets you choose
 papers size, orientation and other settings. See known problems above for details.</p>
 </div>
-<div class="section">
-<h3><a id="canvas-zoom" name="canvas-zoom">Canvas Zoom</a></h3>
+<div class="section" id="canvas-zoom">
+<h3>Canvas Zoom</h3>
 <p>When this button is activated, the size of the plot canvas is not bound to the window size.
 While pressing CTRL you may zoom using the mousewheel or the keys '+' and '-'. If you
 additionally press SHIFT, only the width of the canvas will change. This way you may

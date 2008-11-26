@@ -13,20 +13,14 @@ with matplotlib.
 
 Using pylab
 ===========
-Unfortunately this backend can't be added dynamically to be used with pylab. Some
-matplotlib files need to be changed and one file needs to be copied. There's a
-helper script to ease this process (``configure_matplotlib.py`` in the plugin folder).
-
 In combination with the PythonConsole_, TextEditor_ or RemoteControl_ in combination
 with your favourite text editor you may conveniently use the pylab interface to
 matplotlib. You should use the backend 'SV4Agg' for interactice matplot sessions.
-If you enable this feature in the configuration, ``matplotlib.use('SV4Agg'``) is set
-by default in SimuVis4. If this is not possible because your matplotlib installation
-was not modified, a message dialog is shown (but can be disabled).
+If you enable this feature in the configuration, ``matplotlib.use('module://backend_sv4agg'``) is set
+by default in SimuVis4.
 
 Using matplotlib
 ================
-You may use the backend manually, even if you did not change the matplot installation.
 You will get the classes FigureManagerSV4, NavigationToolbar2SV4 and FigureCanvasSV4
 from the plugin:
 
@@ -39,7 +33,7 @@ from the plugin:
 
 Versions
 ========
-This plugin is tested with matplotlib 0.90.1 and 0.91.1 on linux and windows.
+This plugin is tested with matplotlib 0.98.3 on linux and windows.
 
 Known Problems
 ==============
@@ -51,7 +45,6 @@ Known Problems
 * pylab.show() will show all existing figures. If some module used matlab/pylab
   to render but didn't show the figures yet, calling ``pylab.show()`` may popup several
   (maybe empty) windows. You may get this with DataStorageBrowser_.
-* In matplotlib 0.91.1 it seems impossible to switch backends with ``matplotlib.use(backend)``.
 * ``set_default_backend`` must not be set when using the DataStorageBrowser_ plugin!
 
 
