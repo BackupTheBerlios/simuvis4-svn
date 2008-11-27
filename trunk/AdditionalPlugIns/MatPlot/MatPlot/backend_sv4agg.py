@@ -20,12 +20,8 @@ from matplotlib.backend_bases import RendererBase, GraphicsContextBase, \
 from matplotlib._pylab_helpers import Gcf
 from matplotlib.figure import Figure
 from matplotlib.widgets import SubplotTool
-try:
-    from backend_agg import FigureCanvasAgg
-    from backend_qt4 import SubplotToolQt
-except ImportError:
-    from matplotlib.backends.backend_agg import FigureCanvasAgg
-    from matplotlib.backends.backend_qt4 import SubplotToolQt
+from matplotlib.backends.backend_agg import FigureCanvasAgg
+from matplotlib.backends.backend_qt4 import SubplotToolQt
 
 
 try:
@@ -39,7 +35,7 @@ except:
 from PyQt4 import QtCore, QtGui
 Qt = QtCore.Qt
 
-mplMinVersion = '0.98'
+mplMinVersion = '0.98.3'
 mplMaxVersion = '0.99'
 if matplotlib.__version__ < mplMinVersion or matplotlib.__version__ > mplMaxVersion:
     raise 'backend_sv4agg: need matplotlib version between %s and %s, but found %s' % \
