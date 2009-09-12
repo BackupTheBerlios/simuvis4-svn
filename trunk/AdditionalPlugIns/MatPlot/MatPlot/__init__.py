@@ -15,7 +15,7 @@ from PyQt4.QtGui import QAction, QIcon, QWidget, QMenu, QFileDialog, QMessageBox
 from PyQt4.QtCore import SIGNAL, QCoreApplication, QObject, QTimer
 
 mplMinVersion = '0.98.3'
-mplMaxVersion = '0.99'
+mplMaxVersion = '0.99.0'
 
 
 class PlugIn(SimplePlugIn):

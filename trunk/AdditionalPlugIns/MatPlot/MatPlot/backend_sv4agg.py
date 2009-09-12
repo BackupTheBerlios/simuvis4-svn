@@ -36,7 +36,7 @@ from PyQt4 import QtCore, QtGui
 Qt = QtCore.Qt
 
 mplMinVersion = '0.98.3'
-mplMaxVersion = '0.99'
+mplMaxVersion = '0.99.0'
 if matplotlib.__version__ < mplMinVersion or matplotlib.__version__ > mplMaxVersion:
     raise 'backend_sv4agg: need matplotlib version between %s and %s, but found %s' % \
         (mplMinVersion, mplMaxVersion, matplotlib.__version__)
